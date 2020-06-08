@@ -7,6 +7,10 @@ miniRT aka minirt
 ## Stay tuned.
 
 ---
+<sub><sup>
+Dev. notes:
+</sup></sub>
+___
 
 # Pre install:
 `$ git submodule update --init`
