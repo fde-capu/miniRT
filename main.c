@@ -6,11 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 05:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/08 15:37:01 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/08 16:42:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 //int	deal_key(int key, void *param)
 //{
