@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/08 16:41:27 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/08 16:56:24 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADS	=	miniRT.h
 CC		=	clang
 #CFLAGS	=	-Wall -Werror -Wextra -O3 -g
 CFLAGS	=	-O3 -g
-IFLAGS	=	-I$(INC) -I./mlx -L./mlx -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
+IFLAGS	=	-I$(INC) -I./$(DEPMLX) -L./$(DEPMLX) -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
 OBJS	=	$(SRCS:.c=.o)
 INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
