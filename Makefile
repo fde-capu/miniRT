@@ -6,16 +6,16 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/09 07:58:20 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/09 10:44:45 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	mrt
 ARGV	=	mini.rt
-DEPFT	=	libft
-DEPMLX	=	minilibx-linux
 SRCS	=	main.c	ext_rt_1.c
 HEADS	=	minirt.h
+DEPFT	=	libft
+DEPMLX	=	minilibx-linux
 CC		=	clang
 #CFLAGS	=	-Wall -Werror -Wextra -O3 -g
 CFLAGS	=	-O3 -g

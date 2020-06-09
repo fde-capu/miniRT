@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 08:17:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/09 10:54:38 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct		s_scene
 t_scn				g_scn;
 
 int					load_rt_file(char *fn, t_scn *sc);
-void				rt_line_interpret(char *ln, t_scn sc);
+void				rt_line_interpret(char *ln, t_scn *sc);
 
 #endif

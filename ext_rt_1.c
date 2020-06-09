@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 10:41:29 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/09 10:54:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	rt_line_interpret(char *ln, t_scn sc)
+void	rt_line_interpret(char *ln, t_scn *sc)
 {
 	char	**com;
 
@@ -24,8 +24,8 @@ void	rt_line_interpret(char *ln, t_scn sc)
 	free(ln);
 	if (com[0] && ft_stridentical(com[0], "R"))
 	{
-		sc.r.x = ft_atoi(com[1]);
-		sc.r.y = ft_atoi(com[2]);
+		sc->r.x = ft_atoi(com[1]);
+		sc->r.y = ft_atoi(com[2]);
 	}
 	ft_strfree2d(com);
 	return ;
@@ -53,7 +53,7 @@ int		load_rt_file(char *fn, t_scn *sc)
 			eof = read(fd, buf, 1) ? 0 : 1;
 			ln = eof ? ln : ft_strcatxl(ln, buf);
 		}
-		rt_line_interpret(ln, *sc);
+		rt_line_interpret(ln, sc);
 	}
 	free(ln);
 	free(buf);
