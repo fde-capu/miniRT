@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 13:47:41 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/09 14:44:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 	free(ln);
 	if (rt_command(com[0], "R"))
 		sc->r = ft_i2d(ft_atoi(com[1]), ft_atoi(com[2]));
+	if (rt_command(com[0], "A"))
+		sc->a = amb_light_init(ft_atod(com[1]), ft_atorgb(com[2]));
 	ft_strfree2d(com);
 	return ;
 }
