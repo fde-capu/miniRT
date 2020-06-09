@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 10:01:29 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/09 10:41:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ void	rt_line_interpret(char *ln, t_scn sc)
 	char	**com;
 
 	ft_putstr(ln);
-	if(ft_is_comment(&ln))
+	if(ft_is_comment(ln))
 		return ;
+	ln = ft_strtrim(ln, TRIM_SET);
 	com = ft_split(ln, ' ');
+	free(ln);
 	if (com[0] && ft_stridentical(com[0], "R"))
 	{
 		sc.r.x = ft_atoi(com[1]);
 		sc.r.y = ft_atoi(com[2]);
 	}
 	ft_strfree2d(com);
-	free(ln);
 	return ;
 }
 
@@ -43,10 +44,10 @@ int		load_rt_file(char *fn, t_scn *sc)
 	buf = ft_calloc(1 + 1, 1);
 	eof = 0;
 	ft_putstr_nl(fn);
-	ln = ft_strdup("");
+	ln = ft_strnew();
 	while (!eof)
 	{
-		ln = ft_strx(ft_strdup(""), ln);
+		ln = ft_strx(ft_strnew(), ln);
 		while (!ft_lastchar_eq(ln, '\n') && !eof)
 		{
 			eof = read(fd, buf, 1) ? 0 : 1;
