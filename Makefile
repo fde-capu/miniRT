@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/08 21:40:45 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/08 21:47:34 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS	=	$(SRCS:.c=.o)
 INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
 FLAGS	=	$(CFLAGS) $(IFLAGS)
-DEPS	=	$(DEPFT) #$(DEPMLX)
+DEPS	=	$(DEPFT) $(DEPMLX)
 VALGRIND=	valgrind --leak-check=full --show-leak-kinds=all
 
 all		:	$(DEPS) $(NAME)
