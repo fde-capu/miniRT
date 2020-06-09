@@ -6,16 +6,20 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 05:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/08 16:42:06 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/08 17:48:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//int	deal_key(int key, void *param)
-//{
-//	ft_putchar('X');
-//
+// dev notes
+// Makefile is missing -WWW
+
+int	deal_key(int key, void *param)
+{
+	ft_putchar('X');
+	return (1);
+}
 
 int	main (void)
 {

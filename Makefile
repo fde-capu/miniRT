@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/08 16:56:24 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/08 21:40:45 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,20 +18,22 @@ HEADS	=	miniRT.h
 CC		=	clang
 #CFLAGS	=	-Wall -Werror -Wextra -O3 -g
 CFLAGS	=	-O3 -g
-IFLAGS	=	-I$(INC) -I./$(DEPMLX) -L./$(DEPMLX) -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
+#IFLAGS	=	-I$(INC) -I./$(DEPMLX) -L./$(DEPMLX) -lmlx -L./$(DEPFT) -lft -L$(INCLIB) -lXext -lX11 -lm -lbsd
+IFLAGS	=	-I./$(DEPMLX) -L./$(DEPMLX) -lmlx -L./$(DEPFT) -lft -lXext -lX11 -lm -lbsd
 OBJS	=	$(SRCS:.c=.o)
 INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
-FLAGS	=	$(CFLAGS) $(INCFLAGS)
-DEPS	=	$(DEPFT) $(DEPMLX)
+FLAGS	=	$(CFLAGS) $(IFLAGS)
+DEPS	=	$(DEPFT) #$(DEPMLX)
+VALGRIND=	valgrind --leak-check=full --show-leak-kinds=all
 
 all		:	$(DEPS) $(NAME)
 
 $(NAME)	:	$(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(IFLAGS)
+	$(CC) -o $(NAME) $(OBJS) $(FLAGS)
 
 %.o		:	%.c
-	$(CC) -c $(CFLAGS) $(IFLAGS) $< -o $@
+	$(CC) -c $(FLAGS) $< -o $@
 
 clean	:
 	rm -f $(OBJS)
@@ -39,10 +41,25 @@ clean	:
 fclean	:	clean
 	rm -f $(NAME)
 
+ffclean	:	fre	fclean
+
 re		:	fclean	all
 
-$(DEPMLX)	:
-	cd $(DEPMLX) && ./configure && make re
-
-$(DEPFT)	:
+$(DEPFT)	: ./$(DEPFT)/$(DEPFT).a
+./$(DEPFT)/$(DEPFT).a	:
 	cd $(DEPFT) && $(MAKE)
+
+$(DEPMLX)	: ./$(DEPMLX)/libmlx.a
+./$(DEPMLX)/libmlx.a	:
+	cd $(DEPMLX) && ./configure && $(MAKE)
+
+rt		:	ffclean t
+fre		:
+	cd $(DEPFT) && make fclean
+	cd $(DEPMLX) && make clean
+
+t		:	all
+	./$(NAME)
+v		:	all
+	$(VALGRIND) ./$(NAME)
+rv		:	ffclean	v
