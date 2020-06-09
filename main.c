@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 05:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 00:46:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/09 01:30:58 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	deal_key(int key, void *param)
 	return (1);
 }
 
-int	main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	void	*x;
 	void	*w;
