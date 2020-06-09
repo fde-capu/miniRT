@@ -6,14 +6,15 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/08 22:20:01 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/09 00:45:49 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	mrt
+ARGV	=	mini.rt
 DEPFT	=	libft
 DEPMLX	=	minilibx-linux
-SRCS	=	main.c
+SRCS	=	main.c	ext_rt_1.c
 HEADS	=	minirt.h
 CC		=	clang
 #CFLAGS	=	-Wall -Werror -Wextra -O3 -g
@@ -24,7 +25,7 @@ INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
 FLAGS	=	$(CFLAGS) $(IFLAGS)
 DEPS	=	$(DEPFT) $(DEPMLX)
-VALGRIND=	valgrind --leak-check=full --show-leak-kinds=all
+VALGRIND=	valgrind --leak-check=full
 
 all		:	$(DEPS) $(HEADS) $(NAME)
 
@@ -58,7 +59,7 @@ fre		:
 	cd $(DEPMLX) && make clean
 
 t		:	all
-	./$(NAME)
+	-./$(NAME) $(ARGV)
 v		:	all
-	$(VALGRIND) ./$(NAME)
+	$(VALGRIND) ./$(NAME) $(ARGV)
 rv		:	ffclean	v

@@ -1,3 +1,4 @@
 *.o
 mrt
+minilibx-linux
 minilibx-linux/*
