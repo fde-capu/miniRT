@@ -6,11 +6,16 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 10:54:06 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/09 13:47:41 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int		rt_command(char *str, char *com)
+{
+	return (str && ft_stridentical(str, com) ? 1 : 0);
+}
 
 void	rt_line_interpret(char *ln, t_scn *sc)
 {
@@ -22,11 +27,8 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 	ln = ft_strtrim(ln, TRIM_SET);
 	com = ft_split(ln, ' ');
 	free(ln);
-	if (com[0] && ft_stridentical(com[0], "R"))
-	{
-		sc->r.x = ft_atoi(com[1]);
-		sc->r.y = ft_atoi(com[2]);
-	}
+	if (rt_command(com[0], "R"))
+		sc->r = ft_i2d(ft_atoi(com[1]), ft_atoi(com[2]));
 	ft_strfree2d(com);
 	return ;
 }
