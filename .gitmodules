@@ -2,6 +2,6 @@
 	path = libft
 	url = https://github.com/fde-capu/libft
 [submodule "minilibx-linux"]
-	path = minilibx-linux
+	path = ft_mlx/minilibx-linux
 	url = https://github.com/42sp/minilibx-linux
 	ignore = dirty

@@ -6,14 +6,14 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 05:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 16:36:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:04:16 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // dev notes
-// Makefile is missing -WWW
+// ftmlx ==> Makefile is missing -WWW
 
 int	deal_key(int key, void *param)
 {
@@ -23,8 +23,10 @@ int	deal_key(int key, void *param)
 
 int	main(int argc, char **argv)
 {
+	t_mlx	*mlx;
 	void	*x;
 	void	*w;
+	int		err;
 
 	ft_init();
 	ft_putstr("\n\n"WIN_TITLE"\n\n");
@@ -40,12 +42,14 @@ int	main(int argc, char **argv)
 	DEBD3D("cam origin", g_scn.c.o);
 	DEBVEC("cam point", g_scn.c.p);
 	DEBDBL("cam fov", g_scn.c.fov);
-	x = mlx_init();
-	w = mlx_new_window(x, g_scn.r.x, g_scn.r.y, WIN_TITLE);
-	mlx_pixel_put(x, w, 250, 250, 0xFFFFFF);
-	mlx_key_hook(w, deal_key, (void *)0);
-	mlx_loop(x);
-	free(x);
-	free(w);
+	mlx = ft_mlx_init(g_scn.r.x, g_scn.r.y, WIN_TITLE);
+	if (!mlx)
+		return (1);
+	ft_mov(mlx, 250, 250);
+	ft_col(mlx, 0xFFFFFF);
+	ft_pix(mlx);
+//	mlx_key_hook(mlx.win, deal_key, (void *)0);
+	mlx_loop(mlx->mlx);
+	ft_mlx_destroy(mlx);
 	return (0);
 }

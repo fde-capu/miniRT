@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/09 14:40:36 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/10 17:30:08 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,23 @@ ARGV	=	mini.rt
 SRCS	=	main.c	ext_rt_1.c	scene_init.c
 HEADS	=	minirt.h
 DEPFT	=	libft
+DEPFTMLX=	ftmlx
 DEPMLX	=	minilibx-linux
+DEPMLXL	=	libmlx.a
 CC		=	clang
 #CFLAGS	=	-Wall -Werror -Wextra -O3 -g
 CFLAGS	=	-O3 -g
-IFLAGS	=	-I$(INC) -I./$(DEPMLX) -L./$(DEPMLX) -lmlx -L./$(DEPFT) -lft -L$(INCLIB) -lXext -lX11 -lm -lbsd
+#IFLAGS	=	-I$(INC) -I./$(DEPFTMLX) -L./$(DEPFTMLX) -lftmlx -L./$(DEPFT) -lft \
+			-L$(INCLIB) -lXext -lX11 -lm -lbsd
+IFLAGS	=	-L./$(DEPFTMLX) -L./$(DEPFT) -lft -lftmlx \
+			-I$(INC) -L$(INCLIB) \
+			-L./$(DEPMLX) -I./$(DEPMLX) -lmlx \
+			-lXext -lX11 -lm -lbsd
 OBJS	=	$(SRCS:.c=.o)
 INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
 FLAGS	=	$(CFLAGS) $(IFLAGS)
-DEPS	=	$(DEPFT) $(DEPMLX)
+DEPS	=	$(DEPFT) $(DEPFTMLX) $(DEPMLX)
 VALGRIND=	valgrind --leak-check=full
 
 all		:	$(DEPS) $(HEADS) $(NAME)
@@ -49,13 +56,18 @@ $(DEPFT)	: ./$(DEPFT)/$(DEPFT).a
 ./$(DEPFT)/$(DEPFT).a	:
 	cd $(DEPFT) && $(MAKE)
 
-$(DEPMLX)	: ./$(DEPMLX)/libmlx.a
-./$(DEPMLX)/libmlx.a	:
-	cd $(DEPMLX) && ./configure && $(MAKE)
+$(DEPFTMLX)	: ./$(DEPFTMLX)/$(DEPFTMLX).a
+./$(DEPFTMLX)/$(DEPFTMLX).a	:
+	cd $(DEPFTMLX) && $(MAKE)
+
+$(DEPMLX)	: ./$(DEPMLX)/$(DEPMLXL)
+./$(DEPMLX)/$(DEPMLXL)	:
+	cd $(DEPMLX) && $(MAKE)
 
 rt		:	ffclean t
 fre		:
 	cd $(DEPFT) && make fclean
+	cd $(DEPFTMLX) && make fclean
 	cd $(DEPMLX) && make clean
 
 t		:	all

@@ -6,15 +6,16 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 16:35:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:52:59 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
+# include "ftmlx/ftmlx.h"
+# include "minilibx-linux/mlx.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
