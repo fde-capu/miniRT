@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/10 11:37:28 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:23:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 
 	ft_putstr(ln);
 	ln = ft_trim(ft_strdup(ln));
-	if(ft_is_comment(ln))
+	if (ft_is_comment(ln))
 	{
 		free(ln);
 		return ;
@@ -54,7 +54,6 @@ int		load_rt_file(char *fn, t_scn *sc)
 	eof = 0;
 	ft_putstr_nl(fn);
 	ln = ft_strnew();
-	DEBSTRADD("ln1", ln);
 	while (!eof)
 	{
 		ln = ft_x(ln, ft_strnew());
