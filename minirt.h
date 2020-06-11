@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/10 15:52:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:54:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <fcntl.h>
 
 # define WIN_TITLE	":: mrt : minirt : miniRT :: by fde-capu :: 42SP ::"
-# define FILE_ERROR	"Error loading file."
 
 typedef struct		s_camera
 {
@@ -50,5 +49,12 @@ void				rt_line_interpret(char *ln, t_scn *sc);
 int					rt_command(char *str, char *com);
 t_amb_light			amb_light_init(double f, t_rgb rgb);
 t_cam				cam_init(t_d3d o, t_vec p, double fov);
+void				verbose_scene(void);
+int					die(const char *msg, unsigned char err);
+
+# define FILE_ERROR		"Error loading file."
+# define ERR_FILE		1
+# define MLX_INIT_ERROR	"Error MLX init."
+# define ERR_MLX_INIT	2
 
 #endif
