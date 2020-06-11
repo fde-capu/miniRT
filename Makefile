@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/11 13:51:16 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/11 14:39:35 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,14 @@ fclean	:	clean
 	rm -f $(NAME)
 
 ffclean	:	fre	fclean
+
+fffcleano	:
+	find . -name "*.o" -exec rm -f {} \;
+
+fffcleana	:
+	find . -name "*.a" -exec rm -f {} \;
+
+f			:	fffcleano	fffcleana
 
 re		:	fclean	all
 

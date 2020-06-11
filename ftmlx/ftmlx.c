@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 13:56:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 14:06:51 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	key_hook(t_mlx *mlx, int k)
 {
-	mlx_hook(mlx->mlx, 1L << X_KPRESS, 1L << M_KPRESS, key(k).onpress, 0);
-	mlx_hook(mlx->mlx, 1L << X_KRELEASE, 1L << M_KRELEASE, key(k).onrelease, 0);
+	mlx_hook(mlx->mlx, 1L << XPRESS, 1L << MPRESS, key(k)->on_press, 0);
+	mlx_hook(mlx->mlx, 1L << XRELEASE, 1L << MRELEASE, key(k)->on_release, 0);
 	return ;
 }
 

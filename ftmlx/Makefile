@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 14:22:40 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/11 09:50:56 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/11 14:34:52 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ CFLAGS	=	-O3 -g
 
 FLAGS	=	$(CFLAGS) $(IFLAGS)
 
-SRCS	=	ftmlx.c	pixels.c	keys.c
+SRCS	=	ftmlx.c	pixels.c
 
-HEADS	=	ftmlx.h	keys.h
+HEADS	=	ftmlx.h
 
 OBJS	=	$(SRCS:.c=.o)
 
