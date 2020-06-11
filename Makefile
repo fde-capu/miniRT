@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/11 16:30:36 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/11 20:38:39 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,53 +32,61 @@ INCLIB	=	$(INC)/../lib
 FLAGS	=	$(CFLAGS) $(IFLAGS)
 DEPS	=	$(D_FTMLX) $(D_LIBFT) $(D_MLXOC)
 VALGRIND=	valgrind --leak-check=full
+ELINE	=	echo	""; echo ""
+LINE	=	echo	"================== from $(NAME) ==============================================="
+PUTS	=	echo	
+T0		=	$(ELINE); $(LINE); $(PUTS)
+T2		=	; $(LINE)
 
 all		:	$(DEPS) $(HEADS) $(NAME)
+	@$(T0) Allrighty! $(T2); $(ELINE)
 
 $(D_FTMLX)	: ./$(D_FTMLX)/$(D_FTMLX).a
 ./$(D_FTMLX)/$(D_FTMLX).a	:
+	@$(T0) Child $(D_FTMLX) $(T2)
 	cd $(D_FTMLX) && $(MAKE)
 
 $(D_LIBFT)	: ./$(D_LIBFT)/$(D_LIBFT).a
 ./$(D_LIBFT)/$(D_LIBFT).a	:
+	@$(T0) Child $(D_LIBFT) $(T2)
 	cd $(D_LIBFT) && $(MAKE)
 
 $(D_MLXOC)	: ./$(D_MLXOC)/$(D_MLX_L).a
-./$(D_MLXOC)/$(D_MLXL).a	:
+./$(D_MLXOC)/$(D_MLX_L).a	:
+	@$(T0) Child $(D_MLXOC) $(T2)
 	cd $(D_MLXOC) && $(MAKE)
 
 $(NAME)	:	$(OBJS) $(HEADS)
+	@$(T0) Finally: $(NAME) $(T2)
 	$(CC) -o $(NAME) $(OBJS) $(FLAGS)
 
 %.o		:	%.c $(HEADS)
+	@$(T0) Create object: $@ $(T2)
 	$(CC) -c $(FLAGS) $< -o $@
 
 clean	:
+	@$(T0) "Clean natives:" $(T2)
 	rm -f $(OBJS)
 
 fclean	:	clean
+	@$(T0) "And full." $(T2)
 	rm -f $(NAME)
 
 ffclean	:	fre	fclean
-
-fffcleano	:
-	find . -name "*.o" -exec rm -f {} \;
-
-fffcleana	:
-	find . -name "*.a" -exec rm -f {} \;
-
-f			:	fffcleano	fffcleana
+	@$(T0) "All clear!" $(T2)
+	@$(ELINE); $(ELINE); $(ELINE)
 
 re		:	fclean	all
 
 rt		:	ffclean t
 fre		:
+	@$(T0) "Clean dependency:" $(D_FTMLX) $(T2)
 	cd $(D_FTMLX) && make fclean
+	@$(T0) "Clean dependency:" $(D_LIBFT) $(T2)
 	cd $(D_LIBFT) && make fclean
-	cd $(D_MLXOC) && make clean
 
 t		:	all
 	-./$(NAME) $(ARGV)
 v		:	all
-	$(VALGRIND) ./$(NAME) $(ARGV)
+	-$(VALGRIND) ./$(NAME) $(ARGV)
 rv		:	ffclean	v
