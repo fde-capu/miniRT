@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 14:22:40 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/11 14:34:52 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/11 16:17:58 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ DEPFT	=	../libft
 
 IFLAGS	=	-I../$(DEPMLX) -L../$(DEPMLX) -lmlx \
 			-I$(INC) -L$(INCLIB) -lXext -lX11 -lm -lbsd \
-			-L$(DEPFT) -lft
+			-I$(DEPFT) -L$(DEPFT) -lft
 
 DEPS	=	$(DEPMLX) $(DEPINCLIB)
 

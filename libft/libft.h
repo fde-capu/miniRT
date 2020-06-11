@@ -6,13 +6,9 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 14:22:23 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 16:07:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** Note: this program includes <math.h> and you can not be sure it is allowed.
-*/
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -21,7 +17,6 @@
 # include <errno.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <math.h>
 
 # include "libft_types.h"
 # include "debug.h"

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 14:36:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 16:15:58 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FTMLX_H
 
 # include "../libft/libft.h"
+# include "../libft/keys.h"
 # include "../minilibx-linux/mlx.h"
 
 typedef struct	s_win {
@@ -36,6 +37,6 @@ void			ft_pix(t_mlx *mlx);
 void			ft_mov(t_mlx *mlx, int x, int y);
 void			ft_col(t_mlx *mlx, int color);
 void			hook_keys(t_mlx *mlx, int ks, int ke);
-void			key_hook(t_mlx *mlx, int k);
+void			ft_key_hook(t_mlx *mlx, int k);
 
 #endif

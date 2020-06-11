@@ -6,12 +6,14 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 18:46:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 14:41:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 16:08:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYS_H
 # define KEYS_H
+
+# include "../libft/libft.h"
 
 typedef struct		s_key {
 	int				id;

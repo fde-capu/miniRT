@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:53:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/10 11:30:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 16:08:51 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double	ft_atod(const char *str)
 	lod = ft_atoi(n);
 	snc = ft_strnchr(n, '.');
 	rod = ft_atoi(snc && ft_isdigit(*(snc + 1)) ? snc + 1 : 0);
-	dec = rod / (pow(10, ft_countdigits(rod)));
+	dec = rod / (ft_pow(10, ft_countdigits(rod)));
 	free(n);
 	return (lod + dec);
 }

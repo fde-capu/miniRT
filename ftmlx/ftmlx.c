@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 14:06:51 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 16:13:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmlx.h"
 
-void	key_hook(t_mlx *mlx, int k)
+void	ft_key_hook(t_mlx *mlx, int k)
 {
 	mlx_hook(mlx->mlx, 1L << XPRESS, 1L << MPRESS, key(k)->on_press, 0);
 	mlx_hook(mlx->mlx, 1L << XRELEASE, 1L << MRELEASE, key(k)->on_release, 0);
@@ -25,7 +25,7 @@ void	hook_keys(t_mlx *mlx, int ks, int ke)
 
 	i = ks;
 	while (i <= ke)
-		key_hook(mlx, i++);
+		ft_key_hook(mlx, i++);
 	return ;
 }
 

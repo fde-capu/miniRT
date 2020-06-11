@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/11 14:39:35 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/11 16:30:36 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,38 @@ NAME	=	mrt
 ARGV	=	mini.rt
 SRCS	=	main.c	ext_rt_1.c	scene_init.c	verbose.c
 HEADS	=	minirt.h
-DEPFT	=	libft
-DEPFTMLX=	ftmlx
-DEPMLX	=	minilibx-linux
-DEPMLXL	=	libmlx.a
+D_FTMLX	=	ftmlx
+D_LIBFT	=	libft
+D_MLXOC	=	minilibx-linux
+D_MLX_L	=	libmlx
 CC		=	clang
 #CFLAGS	=	-Wall -Werror -Wextra -O3 -g
 CFLAGS	=	-O3 -g
-#IFLAGS	=	-I$(INC) -I./$(DEPFTMLX) -L./$(DEPFTMLX) -lftmlx -L./$(DEPFT) -lft \
-			-L$(INCLIB) -lXext -lX11 -lm -lbsd
-IFLAGS	=	-L./$(DEPFTMLX) -L./$(DEPFT) -lft -lftmlx \
+IFLAGS	=	-I./$(D_FTMLX) -L./$(D_FTMLX) -lftmlx \
+			-I./$(D_LIBFT) -L./$(D_LIBFT) -lft \
+			-I./$(D_MLXOC) -L./$(D_MLXOC) -lmlx \
 			-I$(INC) -L$(INCLIB) \
-			-L./$(DEPMLX) -I./$(DEPMLX) -lmlx \
 			-lXext -lX11 -lm -lbsd
 OBJS	=	$(SRCS:.c=.o)
 INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
 FLAGS	=	$(CFLAGS) $(IFLAGS)
-DEPS	=	$(DEPFT) $(DEPFTMLX) $(DEPMLX)
+DEPS	=	$(D_FTMLX) $(D_LIBFT) $(D_MLXOC)
 VALGRIND=	valgrind --leak-check=full
 
 all		:	$(DEPS) $(HEADS) $(NAME)
+
+$(D_FTMLX)	: ./$(D_FTMLX)/$(D_FTMLX).a
+./$(D_FTMLX)/$(D_FTMLX).a	:
+	cd $(D_FTMLX) && $(MAKE)
+
+$(D_LIBFT)	: ./$(D_LIBFT)/$(D_LIBFT).a
+./$(D_LIBFT)/$(D_LIBFT).a	:
+	cd $(D_LIBFT) && $(MAKE)
+
+$(D_MLXOC)	: ./$(D_MLXOC)/$(D_MLX_L).a
+./$(D_MLXOC)/$(D_MLXL).a	:
+	cd $(D_MLXOC) && $(MAKE)
 
 $(NAME)	:	$(OBJS) $(HEADS)
 	$(CC) -o $(NAME) $(OBJS) $(FLAGS)
@@ -60,23 +71,11 @@ f			:	fffcleano	fffcleana
 
 re		:	fclean	all
 
-$(DEPFT)	: ./$(DEPFT)/$(DEPFT).a
-./$(DEPFT)/$(DEPFT).a	:
-	cd $(DEPFT) && $(MAKE)
-
-$(DEPFTMLX)	: ./$(DEPFTMLX)/$(DEPFTMLX).a
-./$(DEPFTMLX)/$(DEPFTMLX).a	:
-	cd $(DEPFTMLX) && $(MAKE)
-
-$(DEPMLX)	: ./$(DEPMLX)/$(DEPMLXL)
-./$(DEPMLX)/$(DEPMLXL)	:
-	cd $(DEPMLX) && $(MAKE)
-
 rt		:	ffclean t
 fre		:
-	cd $(DEPFT) && make fclean
-	cd $(DEPFTMLX) && make fclean
-	cd $(DEPMLX) && make clean
+	cd $(D_FTMLX) && make fclean
+	cd $(D_LIBFT) && make fclean
+	cd $(D_MLXOC) && make clean
 
 t		:	all
 	-./$(NAME) $(ARGV)
