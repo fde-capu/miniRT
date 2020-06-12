@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 18:46:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 16:08:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 21:12:33 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct		s_key {
 	char			st;
 	struct s_key	*nx; //
 	struct s_key	*pv; //
-	int				(*on_press)(int keycode);
-	int				(*on_release)(int keycode);
+	int				(*on_press)(void);
+	int				(*on_release)(void);
 }					t_key;
 
 # define KEYS_FIRST		0
