@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 18:46:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 21:12:33 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 23:21:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct		s_key {
 	char			st;
 	struct s_key	*nx; //
 	struct s_key	*pv; //
-	int				(*on_press)(void);
-	int				(*on_release)(void);
+	int				(*on_press)(int kc);
+	int				(*on_release)(int kc);
 }					t_key;
 
 # define KEYS_FIRST		0
@@ -29,15 +29,15 @@ typedef struct		s_key {
 # define KEY_OFF		0
 # define KEY_ON			1
 # define XPRESS			2
-# define XRELEASE		3
 # define MPRESS			0
+# define XRELEASE		3
 # define MRELEASE		1
 
 t_key				*g_key;
 int					keys_init(void);
 int					keys_destroy(void);
 t_key				*key(int id);
-int					*on_press(int kc);
-int					*on_release(int kc);
+int					on_press(int kc);
+int					on_release(int kc);
 
 #endif

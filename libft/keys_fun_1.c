@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.c                                             :+:      :+:    :+:   */
+/*   keys_fun_1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/10 19:07:30 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 21:35:54 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/06/11 23:23:53 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/06/11 23:23:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keys.h"
 
-void	key_init(int k)
+int		on_press(int kc)
 {
-	if (k < KEYS_LAST)
-	{
-		key(k)->on_press = on_press;
-		key(k)->on_release = on_release;
-		key_init(k + 1);
-	}
-	return ;
+	key(kc)->st = KEY_ON;
+	DEBINT2("pressed", kc, key(kc)->st);
+	return (0);
 }
 
-int		keys_init(void)
+int		on_release(int kc)
 {
-	g_key = ft_calloc(sizeof(t_key) * (KEYS_LAST - KEYS_FIRST), 1);
-	key_init(KEYS_FIRST);
-	return (1);
-}
-
-int		keys_destroy(void)
-{
-	free(g_key);
-	return (1);
-}
-
-t_key	*key(int id)
-{
-	return (&g_key[id]);
+	key(kc)->st = KEY_OFF;
+	DEBINT2("release", kc, key(kc)->st);
+	return (0);
 }
