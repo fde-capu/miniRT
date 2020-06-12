@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 20:46:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/11 23:59:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int					die(char *msg, unsigned char err);
 # define ERR_MLX_INIT	2
 # define STRANGE_ERROR	"This is weird, you should not be here."
 # define ERR_STRANGE	42
+
 
 #endif

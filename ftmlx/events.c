@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys_fun_1.c                                       :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/11 23:23:53 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/12 00:05:14 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/06/11 23:36:47 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/06/12 00:03:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "ftmlx.h"
 
-int		on_press(int kc, int (fun)())
+int	ev_close(t_mlx *mlx)
 {
-	key(kc)->st = KEY_ON;
-	DEBINT2("pressed", kc, key(kc)->st);
-	fun();
-	return (1);
+	ft_mlx_destroy(mlx);
+	exit(0);	
 }
 
-int		on_release(int kc, int (fun)())
+int	test(t_mlx *mlx)
 {
-	key(kc)->st = KEY_OFF;
-	DEBINT2("release", kc, key(kc)->st);
-	fun();
+	ft_putstr("KEY!");
 	return (1);
 }

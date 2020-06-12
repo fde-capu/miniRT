@@ -6,22 +6,16 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 23:22:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/12 00:09:41 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmlx.h"
 
-void	test(int k)
-{
-	ft_putstr("KEY!");
-	return ;
-}
-
 void	ft_key_hook(t_mlx *mlx, int k)
 {
-	mlx_hook(mlx->win, XPRESS, 1L << MPRESS, on_press, 0);
-	mlx_hook(mlx->win, XRELEASE, 1L << MRELEASE, on_release, 0);
+	mlx_hook(mlx->win, XPRESS, 1L << MPRESS, on_press, test);
+	mlx_hook(mlx->win, XRELEASE, 1L << MRELEASE, on_release, test);
 	return ;
 }
 
