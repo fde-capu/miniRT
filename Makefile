@@ -6,13 +6,14 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/15 13:43:13 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/15 17:18:39 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	mrt
 ARGV	=	mini.rt
-SRCS	=	minirt.c	ext_rt_1.c	scene_init.c	scene_destroy.c	verbose.c
+SRCS	=	minirt.c		ext_rt_1.c		scene_init.c \
+			scene_init2.c	scene_destroy.c	verbose.c
 HEADS	=	minirt.h
 D_FTMLX	=	ftmlx
 D_LIBFT	=	libft

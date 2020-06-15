@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 16:54:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 17:28:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*prim_tpnm(int type)
 		return (ft_str(TYPE_SQ_NM));
 	if (type == TYPE_CY)
 		return (ft_str(TYPE_CY_NM));
+	return (0);
 }
 
 void	verb_primitives(void)
@@ -48,7 +49,7 @@ void	verb_primitives(void)
 	while (h)
 	{
 		DEBSTR("Type", t = prim_tpnm(h->type));
-		free (t);
+		free(t);
 		DEBD3D("origin", h->o);
 		DEBVEC("normal", h->n);
 		DEBDBL("height", h->h);
@@ -62,7 +63,7 @@ void	verb_primitives(void)
 void	verb_faces(void)
 {
 	t_tr	*h;
-	
+
 	h = g_scn->faces;
 	while (h)
 	{

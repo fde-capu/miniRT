@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 12:16:52 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 17:16:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	main(int argc, char **argv)
 	if (!load_rt_file(argv[1], g_scn))
 		return (die(FILE_ERROR, ERR_FILE));
 	verbose_scene();
-	if (!(mlx = ft_mlx_init(g_scn->resolution.x, g_scn->resolution.y, WIN_TITLE)))
+	if (!(mlx = ft_mlx_init(g_scn->resolution.x, g_scn->resolution.y,
+		WIN_TITLE)))
 		return (die(MLX_INIT_ERROR, ERR_MLX_INIT));
 	ft_mov(mlx, 250, 250);
 	ft_col(mlx, 0xFFFFFF);

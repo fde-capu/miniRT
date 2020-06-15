@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 15:15:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 17:32:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,41 @@
 int		rt_command(char *str, char *com)
 {
 	return (str && ft_stridentical(str, com) ? 1 : 0);
+}
+
+/*
+** Cylinder gets 5 parameters from .rt file.
+** Though norm does not allow 5 parameters functions!
+** :/
+*/
+
+void	rt_line_translate(t_scn *sc, char **c)
+{
+	if (rt_command(c[0], "R"))
+		sc->resolution = ft_i2d(ft_atoi(c[1]), ft_atoi(c[2]));
+	if (rt_command(c[0], "A"))
+		sc->ambient = amb_light_init(ft_atod(c[1]), ft_atorgb(c[2]));
+	if (rt_command(c[0], "c"))
+		sc->cam_active = cam_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+			ft_atod(c[3]));
+	if (rt_command(c[0], "l"))
+		light_init(ft_atod3d(c[1]), ft_atod(c[2]), ft_atorgb(c[3]));
+	if (rt_command(c[0], "sp"))
+		sphere_init(ft_atod3d(c[1]), ft_atod(c[2]), ft_atorgb(c[3]));
+	if (rt_command(c[0], "pl"))
+		plane_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atorgb(c[3]));
+	if (rt_command(c[0], "sq"))
+		square_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atod(c[3]),
+			ft_atorgb(c[4]));
+	if (rt_command(c[0], "cy"))
+		cylinder_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atod(c[3]),
+			ft_atod(c[4]));
+	if (rt_command(c[0], "cy"))
+		sc->primitives->rgb = ft_atorgb(c[5]);
+	if (rt_command(c[0], "tr"))
+		triangle_init(ft_atod3d(c[1]), ft_atod3d(c[2]), ft_atod3d(c[3]),
+			ft_atorgb(c[4]));
+	return ;
 }
 
 void	rt_line_interpret(char *ln, t_scn *sc)
@@ -30,24 +65,7 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 	}
 	com = ft_split(ln, ' ');
 	free(ln);
-	if (rt_command(com[0], "R"))
-		sc->resolution = ft_i2d(ft_atoi(com[1]), ft_atoi(com[2]));
-	if (rt_command(com[0], "A"))
-		sc->ambient = amb_light_init(ft_atod(com[1]), ft_atorgb(com[2]));
-	if (rt_command(com[0], "c"))
-		sc->cam_active = cam_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]));
-	if (rt_command(com[0], "l"))
-		light_init(ft_atod3d(com[1]), ft_atod(com[2]), ft_atorgb(com[3]));
-	if (rt_command(com[0], "sp"))
-		sphere_init(ft_atod3d(com[1]), ft_atod(com[2]), ft_atorgb(com[3]));
-	if (rt_command(com[0], "pl"))
-		plane_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atorgb(com[3]));
-	if (rt_command(com[0], "sq"))
-		square_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]), ft_atorgb(com[4]));
-	if (rt_command(com[0], "cy"))
-		cylinder_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]), ft_atod(com[4]), ft_atorgb(com[5]));
-	if (rt_command(com[0], "tr"))
-		triangle_init(ft_atod3d(com[1]), ft_atod3d(com[2]), ft_atod3d(com[3]), ft_atorgb(com[4]));
+	rt_line_translate(sc, com);
 	ft_strfree2d(com);
 	return ;
 }

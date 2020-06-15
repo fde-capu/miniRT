@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 16:49:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 17:26:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void					light_init(t_d3d o, double f, t_rgb rgb);
 void					sphere_init(t_d3d o, double d, t_rgb rgb);
 void					plane_init(t_d3d o, t_vec n, t_rgb rgb);
 void					square_init(t_d3d o, t_vec n, double h, t_rgb rgb);
-void					cylinder_init(t_d3d o, t_vec n, double h, double d, t_rgb rgb);
+void					cylinder_init(t_d3d o, t_vec n, double h, double d);
 void					triangle_init(t_d3d a, t_d3d b, t_d3d c, t_rgb rgb);
 void					scn_free_list_light(t_light *lst);
 void					scn_free_list_cam(t_cam *lst);
