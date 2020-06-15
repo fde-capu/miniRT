@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 10:48:25 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 11:01:11 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_amb_light			amb_light_init(double f, t_rgb rgb);
 t_cam				cam_init(t_d3d o, t_vec p, double fov);
 void				verbose_scene(void);
 int					die(char *msg, unsigned char err);
-int	minirt_exit(void *mlx);
+int					minirt_exit(void *mlx);
 
 # define FILE_ERROR		"Error loading file."
 # define ERR_FILE		1

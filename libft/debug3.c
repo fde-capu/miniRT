@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 14:07:49 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 14:10:41 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 11:04:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	debug_int2(char *str, int val, int val2)
 	o = ft_x(o, ft_itoa(val2));
 	ft_putstr(o);
 	ft_putstr("\n");
-	free (o);
+	free(o);
 	return ;
 }
