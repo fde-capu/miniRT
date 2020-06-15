@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 12:15:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 12:49:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,21 @@ typedef struct		s_amb_light
 	t_rgb			rgb;
 }					t_amb_light;
 
+typedef struct		s_light
+{
+	t_d3d			o;
+	double			f;
+	t_rgb			rgb;
+	struct s_light	*nx;
+}					t_light;
+
 typedef struct		s_scene
 {
 	t_i2d			resolution;
 	t_amb_light		ambient;
 	t_cam			*cam_active;
 	t_cam			*cam_list;
+	t_light			*lights;
 }					t_scn;
 
 t_scn				*g_scn;
@@ -57,6 +66,7 @@ int					die(char *msg, unsigned char err);
 int					minirt_exit(void *mlx);
 void				scene_init(t_scn *sc);
 int					scene_destroy(t_scn *sc);
+void				light_init(t_d3d o, double f, t_rgb rgb);
 
 # define FILE_ERROR		"Error loading file."
 # define ERR_FILE		1

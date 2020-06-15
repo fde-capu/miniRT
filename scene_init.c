@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 12:36:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 12:50:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ int			scene_destroy(t_scn *sc)
 		free(h);
 		h = b;
 	}
+
+	t_light	*lh;
+	t_light	*ln;
+	lh = sc->lights;
+	while (lh)
+	{
+		ln = ln->nx;
+		free(lh);
+		lh = ln;
+	}
+
 	free (sc);
 	return (1);
 }
@@ -54,4 +65,16 @@ t_cam		*cam_init(t_d3d o, t_vec p, double fov)
 	cam->nx = g_scn->cam_list;
 	g_scn->cam_list = cam;
 	return (cam);
+}
+
+void		light_init(t_d3d o, double f, t_rgb rgb)
+{
+	t_light	*new;
+
+	new = ft_calloc(sizeof(t_light), 1);
+	new->o = o;
+	new->f = f;
+	new->rgb = rgb;
+	new->nx = g_scn->lights;
+	g_scn->lights = new;
 }

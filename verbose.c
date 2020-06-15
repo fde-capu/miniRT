@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 12:33:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 12:52:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	verbose_scene(void)
 	DEBD3D("cam origin", g_scn->cam_active->o);
 	DEBVEC("cam point", g_scn->cam_active->p);
 	DEBDBL("cam fov", g_scn->cam_active->fov);
-//	DEBD3D("light origin", g_scn->.c.o);
+	DEBD3D("light origin", g_scn->lights->o);
+	DEBDBL("light force", g_scn->lights->f);
+	DEBRGB("light rgb", g_scn->lights->rgb);
 	return ;
 }

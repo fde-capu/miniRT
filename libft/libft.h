@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 09:18:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:12:12 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memset(void *b, int c, size_t len);
 double			ft_pow(double a, double e);
+double			ft_pow2(double a, double e);
 char			*ft_ptoa(void *p);
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
