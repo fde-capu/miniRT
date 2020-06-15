@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 14:47:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 12:17:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 	com = ft_split(ln, ' ');
 	free(ln);
 	if (rt_command(com[0], "R"))
-		sc->r = ft_i2d(ft_atoi(com[1]), ft_atoi(com[2]));
+		sc->resolution = ft_i2d(ft_atoi(com[1]), ft_atoi(com[2]));
 	if (rt_command(com[0], "A"))
-		sc->a = amb_light_init(ft_atod(com[1]), ft_atorgb(com[2]));
+		sc->ambient = amb_light_init(ft_atod(com[1]), ft_atorgb(com[2]));
 	if (rt_command(com[0], "c"))
-		sc->c = cam_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]));
+		sc->cam_active = cam_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]));
+//	if (rt_command(com[0], "l"))
+		//
 	ft_strfree2d(com);
 	return ;
 }
