@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 09:33:46 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 10:46:02 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ typedef struct	s_mlx {
 }				t_mlx;
 
 t_mlx			*ft_mlx_init(int res_x, int res_y, char *win_title);
-int				ft_mlx_destroy(t_mlx *mlx);
+int				ft_mlx_destroy(void *mlx);
 void			ft_pix(t_mlx *mlx);
 void			ft_mov(t_mlx *mlx, int x, int y);
 void			ft_col(t_mlx *mlx, int color);
 void			hook_keys(t_mlx *mlx, int ks, int ke);
-void			ft_key_hook(t_mlx *mlx, int k, int (*fun)(int));
+void	ft_key_mlx(t_mlx *mlx, char *key_code, int (*fun)(void*), void *arg);
 int				test(t_mlx *mlx);
 
 int	ev_close(t_mlx *mlx);

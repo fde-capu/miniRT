@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 19:07:30 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 09:22:25 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 10:51:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,17 @@ t_key	*key(int id)
 	return (0);
 }
 
-int		ft_key(char *key_code, int (*fun)(int))
+t_key	*ft_key(char *key_code, int (*fun)(), void *arg)
 {
 	t_key	*kev;
 	
 	kev = key_interpret(key_code);
-	if (!kev->key_up)
-		kev->press = fun;
+	kev->press = on_press;
+	kev->release = on_release;
+	kev->fun = fun;
+	kev->arg = arg;
 	keylist_add(kev);
-	return (1);
+	return (kev);
 }
 
 t_key	*key_interpret(char *kc)

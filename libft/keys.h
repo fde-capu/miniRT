@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 18:46:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 09:32:45 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 10:36:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct		s_key {
 	struct s_key	*nx;
 	int				(*press)(int);
 	int				(*release)(int);
+	int				(*fun)(void *);
+	void			*arg;
 	t_bol			shift;
 	t_bol			ctrl;
 	t_bol			alt;
@@ -38,9 +40,9 @@ t_key				*g_key;
 int					keys_init(void);
 int					keys_destroy(void);
 t_key				*key(int id);
-int					on_press(int kc, int (fun)());
-int					on_release(int kc, int (fun)());
-int					ft_key(char *key_code, int (*fun)(int));
+int					on_press(int kc);
+int					on_release(int kc);
+t_key				*ft_key(char *key_code, int (*fun)(int), void *arg);
 t_key				*key_interpret(char *kc);
 void				keylist_add(t_key *new);
 

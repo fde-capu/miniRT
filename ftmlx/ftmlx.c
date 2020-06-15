@@ -6,16 +6,19 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 08:50:52 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 10:58:27 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmlx.h"
 
-void	ft_key_hook(t_mlx *mlx, int k, int (*fun)(int))
+void	ft_key_mlx(t_mlx *mlx, char *key_code, int (*fun)(void*), void *arg)
 {
-	mlx_hook(mlx->win, XPRESS, 1L << MPRESS, on_press, fun);
-	mlx_hook(mlx->win, XRELEASE, 1L << MRELEASE, on_release, fun);
+	t_key	*k;
+
+	k = ft_key(key_code, fun, arg);
+	mlx_hook(mlx->win, XPRESS, 1L << MPRESS, k->press, 0);
+	mlx_hook(mlx->win, XRELEASE, 1L << MRELEASE, k->release, 0);
 	return ;
 }
 
@@ -38,10 +41,14 @@ t_mlx	*ft_mlx_init(int res_x, int res_y, char *win_title)
 	return (mlx);
 }
 
-int		ft_mlx_destroy(t_mlx *mlx)
+int		ft_mlx_destroy(void *mlxvoid)
 {
+	t_mlx	*mlx;
+
+	mlx = (t_mlx*)mlxvoid;
 	free(mlx->w.title);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	free(mlx);
+	exit(0);
 	return (1);
 }
