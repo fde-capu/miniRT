@@ -6,11 +6,74 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 13:41:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 16:54:59 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	verb_lights(void)
+{
+	t_light	*h;
+
+	h = g_scn->lights;
+	while (h)
+	{
+		DEBD3D("light origin", h->o);
+		DEBDBL("light force", h->f);
+		DEBRGB("light rgb", h->rgb);
+		h = h->nx;
+	}
+	return ;
+}
+
+char	*prim_tpnm(int type)
+{
+	if (type == TYPE_SP)
+		return (ft_str(TYPE_SP_NM));
+	if (type == TYPE_PL)
+		return (ft_str(TYPE_PL_NM));
+	if (type == TYPE_SQ)
+		return (ft_str(TYPE_SQ_NM));
+	if (type == TYPE_CY)
+		return (ft_str(TYPE_CY_NM));
+}
+
+void	verb_primitives(void)
+{
+	t_prim	*h;
+	char	*t;
+
+	h = g_scn->primitives;
+	while (h)
+	{
+		DEBSTR("Type", t = prim_tpnm(h->type));
+		free (t);
+		DEBD3D("origin", h->o);
+		DEBVEC("normal", h->n);
+		DEBDBL("height", h->h);
+		DEBDBL("diameter", h->d);
+		DEBRGB("RGB", h->rgb);
+		h = h->nx;
+	}
+	return ;
+}
+
+void	verb_faces(void)
+{
+	t_tr	*h;
+	
+	h = g_scn->faces;
+	while (h)
+	{
+		DEBD3D("face a", h->a);
+		DEBD3D("face b", h->b);
+		DEBD3D("face c", h->c);
+		DEBRGB("face rgb", h->rgb);
+		h = h->nx;
+	}
+	return ;
+}
 
 void	verbose_scene(void)
 {
@@ -21,11 +84,8 @@ void	verbose_scene(void)
 	DEBD3D("cam origin", g_scn->cam_active->o);
 	DEBVEC("cam point", g_scn->cam_active->p);
 	DEBDBL("cam fov", g_scn->cam_active->fov);
-	DEBD3D("light origin", g_scn->lights->o);
-	DEBDBL("light force", g_scn->lights->f);
-	DEBRGB("light rgb", g_scn->lights->rgb);
-	DEBD3D("sphere origin", g_scn->spheres->o);
-	DEBDBL("sphere force", g_scn->spheres->d);
-	DEBRGB("sphere rgb", g_scn->spheres->rgb);
+	verb_lights();
+	verb_primitives();
+	verb_faces();
 	return ;
 }

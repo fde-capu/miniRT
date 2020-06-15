@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 16:24:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 15:22:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,14 @@ t_d3d	ft_d3d(double x, double y, double z)
 	o.y = y;
 	o.z = z;
 	return (o);
+}
+
+t_vec	ft_vec(double x, double y, double z)
+{
+	return (ft_vector(x, y, z));
+}
+
+t_vec	ft_vector(double x, double y, double z)
+{
+	return ((t_vec)ft_d3d(x, y, z));
 }

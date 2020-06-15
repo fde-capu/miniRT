@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:30:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/10 14:14:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 15:35:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_rgb	ft_rgb(unsigned char r, unsigned char b, unsigned char g)
+t_rgb	ft_rgb(unsigned char r, unsigned char g, unsigned char b)
 {
 	t_rgb	o;
 

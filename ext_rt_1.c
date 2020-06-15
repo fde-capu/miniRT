@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 13:35:27 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 15:15:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 		light_init(ft_atod3d(com[1]), ft_atod(com[2]), ft_atorgb(com[3]));
 	if (rt_command(com[0], "sp"))
 		sphere_init(ft_atod3d(com[1]), ft_atod(com[2]), ft_atorgb(com[3]));
+	if (rt_command(com[0], "pl"))
+		plane_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atorgb(com[3]));
+	if (rt_command(com[0], "sq"))
+		square_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]), ft_atorgb(com[4]));
+	if (rt_command(com[0], "cy"))
+		cylinder_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]), ft_atod(com[4]), ft_atorgb(com[5]));
+	if (rt_command(com[0], "tr"))
+		triangle_init(ft_atod3d(com[1]), ft_atod3d(com[2]), ft_atod3d(com[3]), ft_atorgb(com[4]));
 	ft_strfree2d(com);
 	return ;
 }
