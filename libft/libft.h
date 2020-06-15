@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 08:14:32 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 09:18:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
+int				ft_islower(int c);
 int				ft_isnumber(char *str);
 int				ft_isprint(int c);
+int				ft_isupper(int c);
 char			*ft_itoa(int n);
 t_rgb			ft_itorgb(int i);
 char			*ft_join(char **split);

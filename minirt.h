@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 23:59:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 09:40:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_amb_light			amb_light_init(double f, t_rgb rgb);
 t_cam				cam_init(t_d3d o, t_vec p, double fov);
 void				verbose_scene(void);
 int					die(char *msg, unsigned char err);
+int					ftmlx_exit(t_mlx *mlx);
 
 # define FILE_ERROR		"Error loading file."
 # define ERR_FILE		1
@@ -60,5 +61,6 @@ int					die(char *msg, unsigned char err);
 # define STRANGE_ERROR	"This is weird, you should not be here."
 # define ERR_STRANGE	42
 
+# define MSG_EXIT		"Exit miniRT.\nThank you!"
 
 #endif

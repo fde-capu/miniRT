@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 05:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/11 20:45:18 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/06/15 09:40:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	main(int argc, char **argv)
 	ft_mov(mlx, 250, 250);
 	ft_col(mlx, 0xFFFFFF);
 	ft_pix(mlx);
+	ft_key("q", ftmlx_exit);
 	mlx_loop(mlx->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));
-//	ft_mlx_destroy(mlx);	// ?
 }
 
 int	die(char *msg, unsigned char err)
@@ -48,4 +48,11 @@ int	die(char *msg, unsigned char err)
 	if (msg)
 		ft_putstr(msg);
 	return (err);
+}
+
+int	ftmlx_exit(t_mlx *mlx)
+{
+	ft_putstr(MSG_EXIT);
+	ft_mlx_destroy(mlx);
+	return (1);
 }

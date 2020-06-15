@@ -6,37 +6,73 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 19:07:30 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/12 00:02:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 09:22:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keys.h"
 
-void	key_init(int k)
-{
-	if (k < KEYS_LAST)
-	{
-		key(k)->k_press = on_press;
-		key(k)->k_release = on_release;
-		key_init(k + 1);
-	}
-	return ;
-}
-
 int		keys_init(void)
 {
-	g_key = ft_calloc(sizeof(t_key) * (KEYS_LAST - KEYS_FIRST), 1);
-	key_init(KEYS_FIRST);
+	g_key = ft_calloc(sizeof(t_key), 1);
 	return (1);
 }
 
 int		keys_destroy(void)
 {
+	t_key	*h;
+	t_key	*n;
+
+	h = g_key->nx;
+	while (h)
+	{
+		n = h->nx ? h->nx : 0;
+		free (h);
+		h = n;
+	}
 	free(g_key);
 	return (1);
 }
 
 t_key	*key(int id)
 {
-	return (&g_key[id]);
+	t_key	*h;
+
+	h = g_key->nx;
+	while (h)
+	{
+		if (h->key_code == id)
+			return (h);
+		h = h->nx;
+	}
+	return (0);
+}
+
+int		ft_key(char *key_code, int (*fun)(int))
+{
+	t_key	*kev;
+	
+	kev = key_interpret(key_code);
+	if (!kev->key_up)
+		kev->press = fun;
+	keylist_add(kev);
+	return (1);
+}
+
+t_key	*key_interpret(char *kc)
+{
+	t_key	*kev;
+	char	*h;
+
+	kev = ft_calloc(sizeof(t_key), 1);
+	h = kc;
+	while (*h)
+	{
+		if (ft_islower(*h))
+		{
+			kev->key_code = *h;
+		}
+		h++;
+	}
+	return kev;
 }

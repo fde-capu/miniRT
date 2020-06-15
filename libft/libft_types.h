@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:40:42 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/09 16:39:16 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 09:07:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ typedef struct		s_rgb
 	unsigned char	g;
 	unsigned char	b;
 }					t_rgb;
+
+typedef unsigned char	t_bol;
 
 #endif
