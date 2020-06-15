@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/15 17:18:39 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/15 17:47:22 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ INCLIB	=	$(INC)/../lib
 FLAGS	=	$(CFLAGS) $(IFLAGS)
 DEPS	=	$(D_FTMLX) $(D_LIBFT) $(D_MLXOC)
 VALGRIND=	valgrind --leak-check=full
+ALLLEAKS=	--show-leak-kinds=all
 ELINE	=	echo	""; echo ""
 LINE	=	echo	"================== from $(NAME) ==============================================="
 PUTS	=	echo	
@@ -90,4 +91,6 @@ t		:	all
 	-./$(NAME) $(ARGV)
 v		:	all
 	-$(VALGRIND) ./$(NAME) $(ARGV)
+vf		:	all
+	-$(VALGRIND) $(ALLLEAKS) ./$(NAME) $(ARGV)
 rv		:	ffclean	v
