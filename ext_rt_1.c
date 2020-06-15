@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 12:43:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:35:27 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 		sc->cam_active = cam_init(ft_atod3d(com[1]), ft_atovec(com[2]), ft_atod(com[3]));
 	if (rt_command(com[0], "l"))
 		light_init(ft_atod3d(com[1]), ft_atod(com[2]), ft_atorgb(com[3]));
+	if (rt_command(com[0], "sp"))
+		sphere_init(ft_atod3d(com[1]), ft_atod(com[2]), ft_atorgb(com[3]));
 	ft_strfree2d(com);
 	return ;
 }

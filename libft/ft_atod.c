@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:53:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 13:09:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:48:17 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char	*ft_d3dtoa(t_d3d vec)
 	char	*o;
 
 	o = ft_dtoa(vec.x);
-	o = ft_strcatxl(o, DIV);
-	o = ft_strcatx(o, ft_dtoa(vec.x));
 	o = ft_strcatxl(o, DIV);
 	o = ft_strcatx(o, ft_dtoa(vec.y));
 	o = ft_strcatxl(o, DIV);

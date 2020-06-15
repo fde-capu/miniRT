@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 12:52:44 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:41:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ void	verbose_scene(void)
 	DEBD3D("light origin", g_scn->lights->o);
 	DEBDBL("light force", g_scn->lights->f);
 	DEBRGB("light rgb", g_scn->lights->rgb);
+	DEBD3D("sphere origin", g_scn->spheres->o);
+	DEBDBL("sphere force", g_scn->spheres->d);
+	DEBRGB("sphere rgb", g_scn->spheres->rgb);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 12:49:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:42:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # include <math.h>
 
 # define WIN_TITLE	":: mrt : minirt : miniRT :: by fde-capu :: 42SP ::"
+
+typedef struct		s_sphere
+{
+	t_d3d			o;
+	double			d;
+	t_rgb			rgb;
+	struct s_sphere	*nx;
+}					t_sp;
 
 typedef struct		s_camera
 {
@@ -52,6 +60,7 @@ typedef struct		s_scene
 	t_cam			*cam_active;
 	t_cam			*cam_list;
 	t_light			*lights;
+	t_sp			*spheres;
 }					t_scn;
 
 t_scn				*g_scn;
@@ -67,6 +76,7 @@ int					minirt_exit(void *mlx);
 void				scene_init(t_scn *sc);
 int					scene_destroy(t_scn *sc);
 void				light_init(t_d3d o, double f, t_rgb rgb);
+void				sphere_init(t_d3d o, double d, t_rgb rgb);
 
 # define FILE_ERROR		"Error loading file."
 # define ERR_FILE		1
