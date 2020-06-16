@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 15:35:52 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 08:34:30 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "keys.h"
 
 long long		ft_abs(long long value);
+size_t			ft_strarrlen(char **s);
 double			ft_atod(const char *str);
 t_d3d			ft_atod3d(const char *str);
 long long		ft_atoi(const char *str);
@@ -89,6 +90,7 @@ void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+void			ft_putnbr(int n);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putstr(char *s);
 void			ft_putstr_nl(char *s);
@@ -99,6 +101,7 @@ t_rgb			ft_rgb(unsigned char r, unsigned char g, unsigned char b);
 char			*ft_rgbtoa(t_rgb rgb);
 int				ft_rgbtoi(t_rgb rgb);
 char			**ft_split(char const *s, char c);
+char			**ft_split_set(char const *s, const char *c);
 char			*ft_strcat(const char *dst, const char *src);
 char			*ft_strcatchrx(char *dst, char *c);
 char			*ft_strcatx(char *dst, char *src);
@@ -152,6 +155,7 @@ char			*ft_bit8_str(u_int8_t data);
 char			*ft_removequotes(char *quoted);
 
 # define TRIM_SET			" \t\n\r\v\f"
+# define SPLIT_SET			" \t"
 # define COMMENT_SET		"#"
 # define DIV				" :: "
 # define DOUBLE_PRECISION	10

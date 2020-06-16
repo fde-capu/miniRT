@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 22:55:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/01/28 15:45:23 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 08:26:17 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ void		ft_putnbr_fd(int n, int fd)
 	w = (int)x + '0';
 	write(fd, &w, 1);
 	return ;
+}
+
+void		ft_putnbr(int n)
+{
+	return (ft_putnbr_fd(n, 1));
 }

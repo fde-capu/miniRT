@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 17:32:01 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 08:36:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		rt_command(char *str, char *com)
+int		rt_c(char *str, char *com)
 {
 	return (str && ft_stridentical(str, com) ? 1 : 0);
 }
@@ -25,31 +25,49 @@ int		rt_command(char *str, char *com)
 
 void	rt_line_translate(t_scn *sc, char **c)
 {
-	if (rt_command(c[0], "R"))
+	if (rt_c(c[0], "R"))
 		sc->resolution = ft_i2d(ft_atoi(c[1]), ft_atoi(c[2]));
-	if (rt_command(c[0], "A"))
+	if (rt_c(c[0], "A"))
 		sc->ambient = amb_light_init(ft_atod(c[1]), ft_atorgb(c[2]));
-	if (rt_command(c[0], "c"))
+	if (rt_c(c[0], "c"))
 		sc->cam_active = cam_init(ft_atod3d(c[1]), ft_atovec(c[2]),
 			ft_atod(c[3]));
-	if (rt_command(c[0], "l"))
+	if (rt_c(c[0], "l"))
 		light_init(ft_atod3d(c[1]), ft_atod(c[2]), ft_atorgb(c[3]));
-	if (rt_command(c[0], "sp"))
+	if (rt_c(c[0], "sp"))
 		sphere_init(ft_atod3d(c[1]), ft_atod(c[2]), ft_atorgb(c[3]));
-	if (rt_command(c[0], "pl"))
+	if (rt_c(c[0], "pl"))
 		plane_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atorgb(c[3]));
-	if (rt_command(c[0], "sq"))
+	if (rt_c(c[0], "sq"))
 		square_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atod(c[3]),
 			ft_atorgb(c[4]));
-	if (rt_command(c[0], "cy"))
+	if (rt_c(c[0], "cy"))
 		cylinder_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atod(c[3]),
 			ft_atod(c[4]));
-	if (rt_command(c[0], "cy"))
+	if (rt_c(c[0], "cy"))
 		sc->primitives->rgb = ft_atorgb(c[5]);
-	if (rt_command(c[0], "tr"))
+	if (rt_c(c[0], "tr"))
 		triangle_init(ft_atod3d(c[1]), ft_atod3d(c[2]), ft_atod3d(c[3]),
 			ft_atorgb(c[4]));
 	return ;
+}
+
+int		valid_arg_count(char **c)
+{
+	int	cc;
+
+	cc = ft_strarrlen(c);
+	if (((rt_c(c[0], "R" ) && cc != ARGS_R))
+	|| ((rt_c(c[0], "A" ) && cc != ARGS_A))
+	|| ((rt_c(c[0], "c" ) && cc != ARGS_C))
+	|| ((rt_c(c[0], "l" ) && cc != ARGS_L))
+	|| ((rt_c(c[0], "sp") && cc != ARGS_SP))
+	|| ((rt_c(c[0], "pl") && cc != ARGS_PL))
+	|| ((rt_c(c[0], "sq") && cc != ARGS_SQ))
+	|| ((rt_c(c[0], "cy") && cc != ARGS_CY))
+	|| ((rt_c(c[0], "tr") && cc != ARGS_TR)))
+		return (0);
+	return (1);
 }
 
 void	rt_line_interpret(char *ln, t_scn *sc)
@@ -63,7 +81,13 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 		free(ln);
 		return ;
 	}
-	com = ft_split(ln, ' ');
+	com = ft_split_set(ln, RT_SPLIT);
+	if (!valid_arg_count(com))
+	{
+		free(ln);
+		ft_strfree2d(com);
+		die(ARGS_ERROR, ERR_ARGS);
+	}
 	free(ln);
 	rt_line_translate(sc, com);
 	ft_strfree2d(com);

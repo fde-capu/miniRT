@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 17:16:46 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 08:27:32 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 	void	*w;
 	int		err;
 
+	g_mlx = 0;
+	g_scn = 0;
 	ft_init();
 	scene_init(g_scn);
 	ft_putstr("\n\n"WIN_TITLE"\n\n");
@@ -31,6 +33,7 @@ int	main(int argc, char **argv)
 	if (!(mlx = ft_mlx_init(g_scn->resolution.x, g_scn->resolution.y,
 		WIN_TITLE)))
 		return (die(MLX_INIT_ERROR, ERR_MLX_INIT));
+	g_mlx = mlx;
 	ft_mov(mlx, 250, 250);
 	ft_col(mlx, 0xFFFFFF);
 	ft_pix(mlx);
@@ -41,9 +44,18 @@ int	main(int argc, char **argv)
 
 int	die(char *msg, unsigned char err)
 {
+	ft_putnbr(err);
+	ft_putstr(": ");
 	if (msg)
 		ft_putstr(msg);
-	return (err);
+	ft_putstr("\n");
+	if (g_scn)
+		scene_destroy(g_scn);
+	if (g_mlx)
+		ft_mlx_destroy(g_mlx);
+	ft_putstr("\n");
+	exit (err);
+	return (0);
 }
 
 int	minirt_exit(void *mlx)
@@ -51,5 +63,6 @@ int	minirt_exit(void *mlx)
 	scene_destroy(g_scn);
 	ft_mlx_destroy((t_mlx*)mlx);
 	ft_putstr(MSG_EXIT);
-	return (1);
+	exit (0);
+	return (0);
 }
