@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 08:36:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:28:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,16 @@ int		valid_arg_count(char **c)
 	return (1);
 }
 
+int		valid_arg_types(char **c)
+{
+	return (1);
+}
+
+int		valid_command(char **c)
+{
+	return (ft_strstr(c[0], VALID_COMMANDS) ? 1 : 0);
+}
+
 void	rt_line_interpret(char *ln, t_scn *sc)
 {
 	char	**com;
@@ -82,13 +92,17 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 		return ;
 	}
 	com = ft_split_set(ln, RT_SPLIT);
-	if (!valid_arg_count(com))
+	free(ln);
+	if (!valid_command(com))
 	{
-		free(ln);
+		ft_strfree2d(com);
+		die(COM_ERROR, ERR_COM);
+	}
+	if ((!valid_arg_count(com)) || (!valid_arg_types(com)))
+	{
 		ft_strfree2d(com);
 		die(ARGS_ERROR, ERR_ARGS);
 	}
-	free(ln);
 	rt_line_translate(sc, com);
 	ft_strfree2d(com);
 	return ;

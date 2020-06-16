@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 08:37:16 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:12:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,22 @@ void					scn_free_list_light(t_light *lst);
 void					scn_free_list_cam(t_cam *lst);
 void					scn_free_list_prim(t_prim *lst);
 void					scn_free_list_tr(t_tr *lst);
+void					rt_line_translate(t_scn *sc, char **c);
 int						valid_arg_count(char **c);
+int						valid_arg_types(char **c);
+int						valid_command(char **c);
 
 # define RT_SPLIT		" \t"
+# define VALID_COMMANDS	"R A c l sp pl sq cy tr"
 
 # define FILE_ERROR		"Error loading file."
 # define ERR_FILE		1
 # define MLX_INIT_ERROR	"Error MLX init."
 # define ERR_MLX_INIT	2
-# define ARGS_ERROR		"Wrong number of arguments."
+# define ARGS_ERROR		"Wrong arguments."
 # define ERR_ARGS		3
+# define COM_ERROR		"Unknown command."
+# define ERR_COM		4
 # define STRANGE_ERROR	"This is weird, you should not be here."
 # define ERR_STRANGE	42
 

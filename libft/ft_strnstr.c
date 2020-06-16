@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 11:34:40 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/01/27 19:07:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:27:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,9 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		len--;
 	}
 	return (NULL);
+}
+
+char		*ft_strstr(const char *a, const char *b)
+{
+	return (ft_strnstr(b, a, ft_strlen(b)));
 }

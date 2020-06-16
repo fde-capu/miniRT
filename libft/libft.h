@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 08:34:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:18:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include "keys.h"
 
 long long		ft_abs(long long value);
-size_t			ft_strarrlen(char **s);
 double			ft_atod(const char *str);
 t_d3d			ft_atod3d(const char *str);
 long long		ft_atoi(const char *str);
@@ -102,6 +101,7 @@ char			*ft_rgbtoa(t_rgb rgb);
 int				ft_rgbtoi(t_rgb rgb);
 char			**ft_split(char const *s, char c);
 char			**ft_split_set(char const *s, const char *c);
+size_t			ft_strarrlen(char **s);
 char			*ft_strcat(const char *dst, const char *src);
 char			*ft_strcatchrx(char *dst, char *c);
 char			*ft_strcatx(char *dst, char *src);
@@ -127,6 +127,7 @@ char			*ft_strnstr(const char *haystack, const char *needle, \
 					size_t len);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strrev(char *src);
+char			*ft_strstr(const char *a, const char *b);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strtrimx(char *s1, char *set);
 char			*ft_strtrunc(char *dst, char trunc);
