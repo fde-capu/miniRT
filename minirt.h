@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 16:12:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 16:14:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,25 @@ int						valid_command(char **c);
 # define ARGS_SQ		5
 # define ARGS_CY		6
 # define ARGS_TR		5
+# define ARGS_MAX		6
+
+# define ATP_UINT		1
+# define REG_UINT		"\\d+"
+# define ATP_0TO1		2
+# define REG_0TO1		"0*(1(\\.0?)?|0*\\.?\\d*)"
+# define ATP_RGB		3
+# define REG_RGB		"(0*(25[012345]|[012]\\d{0,2})|0+),(0*(25[012345]|[12]\\d{0,2})|0+),(0*(25[012345]|[12]\\d{0,2})|0+)"
+# define ATP_COORD		4
+# define REG_COORD		"-?\\d+\\.?\\d*,-?\\d+\\.?\\d*,-?\\d+\\.?\\d*"
+# define ATP_NORMAL		5
+# define REG_NORMAL		"-?(1\\.0|0\\.?\\d*),-?(1\\.0|0\\.?\\d*),-?(1\\.0|0\\.?\\d*)"
+# define ATP_0TO180DBL	6
+# define REG_0TO180DBL	""
+# define ATP_UDBL		7
+# define REG_UDBL		""
+
+# define MSG_KEY_RELEASED	"Key released"
+# define MSG_RX				"Resolution X"
+# define MSG_RY				"Resolution Y"
 
 #endif

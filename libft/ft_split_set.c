@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 07:05:10 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 08:32:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 10:29:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*setstc_skip_c(char *s, const char *c)
 {
-	while ((*s) && (ft_chrinset(s, c)))
+	while ((*s) && (ft_strchrinset(s, c)))
 		s++;
 	return (s);
 }
@@ -25,9 +25,9 @@ static int	setstc_count(char *s, const char *c)
 
 	n = 0;
 	s = setstc_skip_c((char *)s, c);
-	if ((*s) && !ft_chrinset(s, c))
+	if ((*s) && !ft_strchrinset(s, c))
 		n++;
-	while ((*s) && !ft_chrinset(s, c))
+	while ((*s) && !ft_strchrinset(s, c))
 		s++;
 	return (*s ? n + setstc_count(s, c) : n);
 }
@@ -37,7 +37,7 @@ static int	setstc_len(char *s, const char *c)
 	int	n;
 
 	n = 0;
-	while ((*s) && !ft_chrinset(s, c))
+	while ((*s) && !ft_strchrinset(s, c))
 	{
 		s++;
 		n++;
@@ -57,7 +57,7 @@ char		**ft_split_set(char const *s, const char *c)
 	if (!spl)
 		return (NULL);
 	i = 0;
-	while ((*z) && (ft_chrinset(z, c)))
+	while ((*z) && (ft_strchrinset(z, c)))
 		z++;
 	while (*z)
 	{
@@ -65,10 +65,10 @@ char		**ft_split_set(char const *s, const char *c)
 		if (!spl[i])
 			return (NULL);
 		w = 0;
-		while ((*z) && (!ft_chrinset(z, c)))
+		while ((*z) && (!ft_strchrinset(z, c)))
 			spl[i][w++] = *z++;
 		i++;
-		while ((*z) && (ft_chrinset(z, c)))
+		while ((*z) && (ft_strchrinset(z, c)))
 			z++;
 	}
 	return (spl);

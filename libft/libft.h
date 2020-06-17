@@ -6,9 +6,16 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 16:18:25 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 15:38:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** v0.0.1
+** Incompatibility!
+** ft_chrinset used to be `(char *, char *)`, now is `(char, char *)`.
+** Change previous version to `ft_strchrinset (char *, char *)` to fix it.
+*/
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -31,7 +38,8 @@ t_vec			ft_atovec(const char *str);
 long long		ft_btod(char *nbr, int b_from);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
-int				ft_chrinset(char *r, char const *set);
+char			*ft_check(char *str, char *reg);
+int				ft_chrinset(char r, char const *set);
 char			*ft_chrtostr(char chr);
 char			*ft_convert_base(const void *bdata, ...);
 unsigned int	ft_countdigits(long long number);
@@ -40,10 +48,14 @@ t_d3d			ft_d3d(double x, double y, double z);
 char			*ft_d3dtoa(t_d3d vec);
 char			*ft_dtoa(double d);
 char			*ft_dtob(long long n, int b_to);
+int				ft_enclosure(char *io, char h);
 char			*ft_findstr(char *str, char c);
 char			*ft_get_word(char *line);
 t_i2d			ft_i2d(int x, int y);
 void			ft_init(void);
+char			*ft_inside(char *h);
+char			*ft_inskip(char *h);
+char			**ft_insplit(const char *str, char x);
 int				ft_is_comment(char *str);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
@@ -108,7 +120,9 @@ char			*ft_strcatx(char *dst, char *src);
 char			*ft_strcatxl(char *s1, char *s2);
 char			*ft_strcatxr(char *s1, char *s2);
 int				ft_strcmp(const char *s1, const char *s2);
+char			*ft_strchr(char *str, char c);
 char			*ft_strchrcat(const char *dst, const char src);
+int				ft_strchrinset(char *t, char const *sset);
 char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strdup(const char *s1);
 void			ft_strfree2d(char **str);
@@ -120,7 +134,6 @@ size_t			ft_strlen(const char *s);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_str(char *str);
-char			*ft_strchr(char *str, char c);
 char			*ft_strnchr(char *str, char c);
 char			*ft_strnew(void);
 char			*ft_strnstr(const char *haystack, const char *needle, \
@@ -162,5 +175,7 @@ char			*ft_removequotes(char *quoted);
 # define DOUBLE_PRECISION	10
 # define DECIMAL_POINT		"."
 # define DEB_STR_ENCLOSURE	"\""
+# define ENCLOSE_OPEN		"([{"
+# define ENCLOSURES			"()[]{}"
 
 #endif

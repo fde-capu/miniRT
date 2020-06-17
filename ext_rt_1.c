@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 16:28:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 16:22:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int		valid_arg_count(char **c)
 	int	cc;
 
 	cc = ft_strarrlen(c);
-	if (((rt_c(c[0], "R" ) && cc != ARGS_R))
-	|| ((rt_c(c[0], "A" ) && cc != ARGS_A))
-	|| ((rt_c(c[0], "c" ) && cc != ARGS_C))
-	|| ((rt_c(c[0], "l" ) && cc != ARGS_L))
+	if (((rt_c(c[0], "R") && cc != ARGS_R))
+	|| ((rt_c(c[0], "A") && cc != ARGS_A))
+	|| ((rt_c(c[0], "c") && cc != ARGS_C))
+	|| ((rt_c(c[0], "l") && cc != ARGS_L))
 	|| ((rt_c(c[0], "sp") && cc != ARGS_SP))
 	|| ((rt_c(c[0], "pl") && cc != ARGS_PL))
 	|| ((rt_c(c[0], "sq") && cc != ARGS_SQ))
@@ -70,9 +70,96 @@ int		valid_arg_count(char **c)
 	return (1);
 }
 
+int		check_arg_types(char **c, int a[ARGS_MAX])
+{
+	int	i;
+
+	i = 0;
+	while (a[i])
+	{
+		if (((a[i] == ATP_UINT) && (!ft_check(c[i + 1], REG_UINT)))
+		|| (((a[i] == ATP_0TO1) && (!ft_check(c[i + 1], REG_0TO1))))
+		|| (((a[i] == ATP_RGB) && (!ft_check(c[i + 1], REG_RGB))))
+		|| (((a[i] == ATP_COORD) && (!ft_check(c[i + 1], REG_COORD))))
+		|| (((a[i] == ATP_UDBL) && (!ft_check(c[i + 1], REG_UDBL))))
+		|| (((a[i] == ATP_NORMAL) && (!ft_check(c[i + 1], REG_NORMAL))))
+		|| (((a[i] == ATP_0TO180DBL) && (!ft_check(c[i + 1], REG_0TO180DBL)))))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int		valid_arg_types(char **c)
 {
-	return (1);
+	int	argt[ARGS_MAX];
+
+	if (rt_c(c[0], "R"))
+	{
+		argt[0] = ATP_UINT;
+		argt[1] = ATP_UINT;
+		argt[2] = 0;
+	}
+	if (rt_c(c[0], "A"))
+	{
+		argt[0] = ATP_0TO1;
+		argt[1] = ATP_RGB;
+		argt[2] = 0;
+	}
+	if (rt_c(c[0], "c"))
+	{
+		argt[0] = ATP_COORD;
+		argt[1] = ATP_NORMAL;
+		argt[2] = ATP_0TO180DBL;
+		argt[3] = 0;
+	}
+	if (rt_c(c[0], "l"))
+	{
+		argt[0] = ATP_COORD;
+		argt[1] = ATP_0TO1;
+		argt[2] = ATP_RGB;
+		argt[3] = 0;
+	}
+	if (rt_c(c[0], "sp"))
+	{
+		argt[0] = ATP_COORD;
+		argt[1] = ATP_UDBL;
+		argt[2] = ATP_RGB;
+		argt[3] = 0;
+	}
+	if (rt_c(c[0], "pl"))
+	{
+		argt[0] = ATP_COORD;
+		argt[1] = ATP_NORMAL;
+		argt[2] = ATP_RGB;
+		argt[3] = 0;
+	}
+	if (rt_c(c[0], "sq"))
+	{
+		argt[0] = ATP_COORD;
+		argt[1] = ATP_NORMAL;
+		argt[2] = ATP_UDBL;
+		argt[3] = ATP_RGB;
+		argt[4] = 0;
+	}
+	if (rt_c(c[0], "cy"))
+	{
+		argt[0] = ATP_COORD;
+		argt[1] = ATP_NORMAL;
+		argt[2] = ATP_UDBL;
+		argt[3] = ATP_UDBL;
+		argt[4] = ATP_RGB;
+		argt[5] = 0;
+	}
+	if (rt_c(c[0], "tr"))
+	{
+		argt[0] = ATP_COORD;
+		argt[1] = ATP_COORD;
+		argt[2] = ATP_COORD;
+		argt[3] = ATP_RGB;
+		argt[4] = 0;
+	}
+	return (check_arg_types(c, argt));
 }
 
 int		valid_command(char **c)

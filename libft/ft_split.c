@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:48:36 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/01/29 09:10:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 13:05:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ char		**ft_split(char const *s, char c)
 	z = (char *)s;
 	spl = (char **)ft_calloc(sizeof(char *) * (stc_count(z, c) + 1), 1);
 	if (!spl)
-		return (NULL);
+		return (0);
 	i = 0;
 	z = stc_skip_c(z, c);
 	while (*z)
 	{
 		spl[i] = (char *)ft_calloc(stc_len(z, c) + 1, 1);
 		if (!spl[i])
-			return (NULL);
+			return (0);
 		w = 0;
 		while ((*z) && (*z != c))
 			spl[i][w++] = *z++;

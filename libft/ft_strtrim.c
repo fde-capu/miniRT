@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 07:18:41 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/10 12:14:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 10:30:23 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char		*st_trimstart(char const *s1, char const *set)
 	char	*r;
 
 	r = (char *)s1;
-	while ((*r) && (ft_chrinset(r, set)))
+	while ((*r) && (ft_strchrinset(r, set)))
 		r++;
 	return (r);
 }
@@ -35,7 +35,7 @@ static size_t	st_trimlen(char const *s1, char const *set)
 		l++;
 	}
 	r--;
-	while ((l) && (ft_chrinset(r, set)))
+	while ((l) && (ft_strchrinset(r, set)))
 	{
 		r--;
 		l--;
