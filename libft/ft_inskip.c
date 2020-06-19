@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 09:16:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/17 17:32:08 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 09:26:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 char	*ft_inskip(char *h)
 {
 	char	io[2];
-	
+
 	if (!ft_enclosure(io, *h))
 		return (0);
 	if (*h == io[0])

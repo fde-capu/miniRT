@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 07:31:57 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 08:37:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 09:25:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	*ft_check(char *sh, char *rh)
 	int		(*chk_set_v)(char r, char const *sset);
 	int		(*chk_csame)(char a, char b);
 
-//	DEB2(sh, rh);
 	if ((*rh == '$') && (*sh))
 		return (0);
 	if (!*rh)

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 12:41:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/18 14:44:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 09:26:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	insp_count(char *h, char x)
 {
 	int		i;
-	
+
 	i = 1;
 	while (*h)
 	{
@@ -29,7 +29,7 @@ static int	insp_count(char *h, char x)
 static int	insp_len(char *h, char x)
 {
 	char	*h2;
-	
+
 	h2 = h;
 	while (*h2)
 	{

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:38:21 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/17 17:23:16 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 09:24:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,35 +68,21 @@ int		valid_arg_types(char **c)
 	char	*tmp;
 	char	*h;
 
-	if (rt_c(c[0], "R"))
-		tmp = ft_str(XARGS_R);
-	if (rt_c(c[0], "A"))
-		tmp = ft_str(XARGS_A);
-	if (rt_c(c[0], "c"))
-		tmp = ft_str(XARGS_C);
-	if (rt_c(c[0], "l"))
-		tmp = ft_str(XARGS_L);
-	if (rt_c(c[0], "sp"))
-		tmp = ft_str(XARGS_SP);
-	if (rt_c(c[0], "pl"))
-		tmp = ft_str(XARGS_PL);
-	if (rt_c(c[0], "sq"))
-		tmp = ft_str(XARGS_SQ);
-	if (rt_c(c[0], "cy"))
-		tmp = ft_str(XARGS_CY);
-	if (rt_c(c[0], "tr"))
-		tmp = ft_str(XARGS_TR);
+	tmp = ft_str("");
+	tmp = rt_c(c[0], "R") ? ft_x(tmp, ft_str(XARGS_R)) : tmp;
+	tmp = rt_c(c[0], "A") ? ft_x(tmp, ft_str(XARGS_A)) : tmp;
+	tmp = rt_c(c[0], "c") ? ft_x(tmp, ft_str(XARGS_C)) : tmp;
+	tmp = rt_c(c[0], "l") ? ft_x(tmp, ft_str(XARGS_L)) : tmp;
+	tmp = rt_c(c[0], "sp") ? ft_x(tmp, ft_str(XARGS_SP)) : tmp;
+	tmp = rt_c(c[0], "pl") ? ft_x(tmp, ft_str(XARGS_PL)) : tmp;
+	tmp = rt_c(c[0], "sq") ? ft_x(tmp, ft_str(XARGS_SQ)) : tmp;
+	tmp = rt_c(c[0], "cy") ? ft_x(tmp, ft_str(XARGS_CY)) : tmp;
+	tmp = rt_c(c[0], "tr") ? ft_x(tmp, ft_str(XARGS_TR)) : tmp;
 	h = tmp;
 	i = 0;
 	while (*h)
-	{
-		argt[i] = *h - '0';
-		i++;
-		h++;
-	}
+		argt[i++] = *h++ - '0';
 	argt[i] = 0;
 	free(tmp);
 	return (check_arg_types(c, argt));
 }
-
-// must finish defines 0to180 and udbl
