@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/17 16:14:01 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 08:35:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,10 @@ int						valid_arg_count(char **c);
 int						valid_arg_types(char **c);
 int						valid_command(char **c);
 
+# define ARGS_MAX		6
+
+int						check_arg_types(char **c, int a[ARGS_MAX]);
+
 # define RT_SPLIT		" \t"
 # define VALID_COMMANDS	"R A c l sp pl sq cy tr"
 
@@ -143,22 +147,32 @@ int						valid_command(char **c);
 # define ARGS_SQ		5
 # define ARGS_CY		6
 # define ARGS_TR		5
-# define ARGS_MAX		6
+
+# define XARGS_R		"11"
+# define XARGS_A		"23"
+# define XARGS_C		"456"
+# define XARGS_L		"423"
+# define XARGS_SP		"473"
+# define XARGS_PL		"453"
+# define XARGS_SQ		"4573"
+# define XARGS_CY		"45773"
+# define XARGS_TR		"4443"
 
 # define ATP_UINT		1
-# define REG_UINT		"\\d+"
+# define REG_UINT		"\\d+$"
 # define ATP_0TO1		2
-# define REG_0TO1		"0*(1(\\.0?)?|0*\\.?\\d*)"
+# define REG_0TO1		"0*(1(\\.0?)?$|0*\\.?\\d*$)"
 # define ATP_RGB		3
-# define REG_RGB		"(0*(25[012345]|[012]\\d{0,2})|0+),(0*(25[012345]|[12]\\d{0,2})|0+),(0*(25[012345]|[12]\\d{0,2})|0+)"
+# define REG_RGB1		"(\\d{1,2},|1\\d{2},|2[01234]\\d,|25[012345],){2}"
+# define REG_RGB2		"(\\d{1,2}$|1\\d{2}$|2[01234]\\d$|25[012345]$)"
 # define ATP_COORD		4
-# define REG_COORD		"-?\\d+\\.?\\d*,-?\\d+\\.?\\d*,-?\\d+\\.?\\d*"
+# define REG_COORD		"-?\\d+\\.?\\d*,-?\\d+\\.?\\d*,-?\\d+\\.?\\d*$"
 # define ATP_NORMAL		5
-# define REG_NORMAL		"-?(1\\.0|0\\.?\\d*),-?(1\\.0|0\\.?\\d*),-?(1\\.0|0\\.?\\d*)"
+# define REG_NORMAL		"(-?(1\\.0|0\\.?\\d*),){2}-?(1\\.0$|0\\.?\\d*$)"
 # define ATP_0TO180DBL	6
-# define REG_0TO180DBL	""
+# define REG_0TO180DBL	"(0*1[012345678]\\d|0+|0*\\d{1,2})\\.?\\d*$"
 # define ATP_UDBL		7
-# define REG_UDBL		""
+# define REG_UDBL		"\\d+\\.?\\d*$"
 
 # define MSG_KEY_RELEASED	"Key released"
 # define MSG_RX				"Resolution X"

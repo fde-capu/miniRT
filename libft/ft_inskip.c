@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 09:16:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/17 14:46:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 17:32:08 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_inside(char *h)
 	e = ft_inskip(h);
 	if (e)
 	{
-		return (ft_substr(h, 1, e - h - 2));
+		return (ft_substr(h, 1, e - h - 1));
 	}
 	return (e);
 }

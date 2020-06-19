@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 15:59:21 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/17 16:34:32 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	ft_mov(mlx, 250, 250);
 	ft_col(mlx, 0xFFFFFF);
 	ft_pix(mlx);
-//	ft_key_mlx(mlx, "q", minirt_exit, mlx);
+	ft_key_mlx(mlx, "q", minirt_exit, mlx);
 	mlx_loop(mlx->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));
 }
@@ -54,7 +54,7 @@ int	die(char *msg, unsigned char err)
 	if (g_mlx)
 		ft_mlx_destroy(g_mlx);
 	ft_putstr("\n");
-	exit (err);
+	exit(err);
 	return (0);
 }
 
@@ -63,6 +63,6 @@ int	minirt_exit(void *mlx)
 	scene_destroy(g_scn);
 	ft_mlx_destroy((t_mlx*)mlx);
 	ft_putstr(MSG_EXIT);
-	exit (0);
+	exit(0);
 	return (0);
 }
