@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 11:50:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 15:02:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_i2d			ft_i2d(int x, int y);
 void			ft_init(void);
 char			*ft_inside(char *h);
 char			*ft_inskip(char *h);
+int				ft_insp_count(char *h, char x);
 char			**ft_insplit(const char *str, char x);
 int				ft_is_comment(char *str);
 int				ft_isalnum(int c);
@@ -180,6 +181,18 @@ char			*ft_removequotes(char *quoted);
 # define ENCLOSE_OPEN		"([{"
 # define ENCLOSURES			"()[]{}"
 
+/*
+** Regex related.
+*/
+
+int				rgx_fun_in(int fun);
+void			rgx_maybe_free(char *blk, int fun);
+int				rgx_function_n(char *rh);
+char			*rgx_chk_function(int mode, char *sh, char *blk);
+void			rgx_set_rep(int *mm, char *mod);
+char			*rgx_sk_mod(char *mod);
+int				rgx_mm_manual(int pos, char *keys);
+void			rgx_mm_mod(int *mm, int oblig, int optio);
 
 /*
 ** ft_check related:

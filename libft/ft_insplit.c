@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 12:41:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 12:06:25 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 14:50:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	insp_count(char *h, char x)
+int			ft_insp_count(char *h, char x)
 {
 	int		i;
 
@@ -48,7 +48,7 @@ char		**ft_insplit(const char *str, char x)
 	char	*h;
 
 	h = (char *)str;
-	c = insp_count(h, x);
+	c = ft_insp_count(h, x);
 	spl = (char **)ft_calloc(sizeof(char *) * (c + 1), 1);
 	if (!spl)
 		return (0);

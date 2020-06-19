@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 09:16:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 13:14:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 14:24:24 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** ft_inskip :: is fairly uncomplete.
-** does not yet counts for escapes.
 ** does not take account for sub-skips such as "" or ''.
 */
 
