@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 07:31:57 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 09:25:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 13:20:38 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,19 @@ int		mm_manual(int pos, char *keys)
 
 char	*sk_mod(char *mod)
 {
+	if ((!mod) || (!*mod))
+		return (0);
 	if (ft_chrinset(*mod, "+?*"))
 		return (mod + 1);
 	if (ft_chrinset(*mod, "{"))
-		return (ft_inskip(mod) + 1);
+		return (ft_inskip(mod));
 	return (mod);
 }
 
 void	make_mod(int *mm, char *mod)
 {
 	mm_mod(&mm[0], 1, 1);
-	if ((!mod) || (!*mod))
+	if ((!mod) || (!(*mod)))
 		return ;
 	if (*mod == '+')
 		mm_mod(&mm[0], 1, 0);
@@ -60,6 +62,24 @@ void	make_mod(int *mm, char *mod)
 	return ;
 }
 
+char	*chk_function(int mode, char *sh, char *blk)
+{
+	if (mode == FUN_DIG)
+		return (ft_isdigit(*sh) ? sh : 0);
+	if (mode == FUN_PAR)
+		return (ft_check(sh, blk));
+	if (mode == FUN_SET)
+		return (ft_chrinset(*sh, blk) ? sh : 0);
+	if (mode == FUN_CHR)
+		return (ft_chrsame(*sh, *blk) ? sh : 0);
+	return (0);
+}
+
+int		fun_in(int fun)
+{
+	return (fun == FUN_PAR || fun == FUN_SET ? 1 : 0);
+}
+
 char	*ft_check(char *sh, char *rh)
 {
 	int		i;
@@ -67,14 +87,12 @@ char	*ft_check(char *sh, char *rh)
 	char	*blk;
 	char	*mod;
 	char	**opt;
-	int		(*chk_digit)(int);
-	char	*(*chk_valid)(char *, char *);
-	int		(*chk_set_v)(char r, char const *sset);
-	int		(*chk_csame)(char a, char b);
+	int		fun;
 
-	if ((*rh == '$') && (*sh))
+	DEB2(sh, rh);
+	if (rh && *rh == '$' && (*sh))
 		return (0);
-	if (!*rh)
+	if ((!rh) || (!*rh))
 		return (sh);
 	opt = ft_insplit(rh, '|');
 	i = 0;
@@ -92,65 +110,58 @@ char	*ft_check(char *sh, char *rh)
 		}
 	}
 	ft_strfree2d(opt);
-	if (*rh == '\\')
-	{
-		rh++;
-		if (*rh == 'd')
-		{
-			chk_digit = &ft_isdigit;
-			blk = rh;
-			mod = *blk ? blk + 1 : 0;
-			make_mod(&mm[0], mod);
-			while (mm[0]-- > 0)
-				if ((*sh) && (!chk_digit(*sh++)))
-					return (0);
-			while ((--mm[1]) && (chk_digit(*sh)))
-				sh++;
-			return (ft_check(sh, sk_mod(mod)));
-		}
-	}
+	fun = 0;
+	if (ft_strbegins(rh, "\\d"))
+		fun = FUN_DIG;
 	if (*rh == '(')
-	{
-		chk_valid = &ft_check;
-		blk = ft_inside(rh);
-		mod = *ft_inskip(rh) ? ft_inskip(rh) + 1 : 0;
-		make_mod(&mm[0], mod);
-		while (mm[0]-- > 0)
-			if (!(sh = chk_valid(sh, blk)))
-			{
-				free(blk);
-				return (0);
-			}
-		while ((--mm[1]) && (sh = chk_valid(sh, blk)))
-			;
-		free(blk);
-		return (ft_check(sh, sk_mod(mod)));
-	}
+		fun = FUN_PAR;
 	if (*rh == '[')
+		fun = FUN_SET;
+	fun = fun ? fun : FUN_CHR;
+	rh += ft_strbegins(rh, "\\") ? 1 : 0;
+	if (fun_in(fun))
 	{
-		chk_set_v = &ft_chrinset;
 		blk = ft_inside(rh);
-		mod = *ft_inskip(rh) ? ft_inskip(rh) + 1 : 0;
-		make_mod(&mm[0], mod);
+		mod = ft_inskip(rh);
+	}
+	else
+	{
+		blk = rh;
+		mod = *blk ? blk + 1 : 0;
+	}
+	make_mod(&mm[0], mod);
+	if (!fun_in(fun))
+	{
 		while (mm[0]-- > 0)
-			if ((*sh) && (!chk_set_v(*sh++, blk)))
+			if ((*sh) && (!chk_function(fun, sh++, blk)))
+				return (0);
+		while ((--mm[1]) && (chk_function(fun, sh, blk)))
+			sh++;
+	}
+	if (fun == FUN_PAR)
+	{
+		while (mm[0]-- > 0)
+			if (!(sh = chk_function(FUN_PAR, sh, blk)))
 			{
 				free(blk);
 				return (0);
 			}
-		while ((--mm[1]) && (chk_set_v(*sh, blk)))
-			sh++;
-		free(blk);
-		return (ft_check(sh, sk_mod(mod)));
+		while ((--mm[1]) && (sh = chk_function(FUN_PAR, sh, blk)))
+			;
 	}
-	chk_csame = &ft_chrsame;
-	blk = rh;
-	mod = *blk ? blk + 1 : 0;
-	make_mod(&mm[0], mod);
-	while (mm[0]-- > 0)
-		if ((*sh) && (!chk_csame(*sh++, *blk)))
-			return (0);
-	while ((--mm[1]) && (chk_csame(*sh, *blk)))
-		sh++;
-	return (ft_check(sh, sk_mod(mod)));
+	if (fun == FUN_SET)
+	{
+		while (mm[0]-- > 0)
+			if ((*sh) && (!chk_function(FUN_SET, sh++, blk)))
+			{
+				free(blk);
+				return (0);
+			}
+		while ((--mm[1]) && (chk_function(FUN_SET, sh, blk)))
+			sh++;
+	}
+	if (fun_in(fun))
+		free(blk);
+	rh = sk_mod(mod);
+	return (ft_check(sh, rh));
 }

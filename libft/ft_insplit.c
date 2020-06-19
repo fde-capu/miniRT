@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 12:41:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 09:26:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 12:06:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static int	insp_count(char *h, char x)
 	while (*h)
 	{
 		i += *h == x ? 1 : 0;
-		h = ft_inskip(h) ? ft_inskip(h) : h;
-		h++;
+		h = ft_inskip(h);
 	}
 	return (i);
 }
@@ -35,8 +34,7 @@ static int	insp_len(char *h, char x)
 	{
 		if (*h2 == x)
 			break ;
-		h2 = ft_inskip(h2) ? ft_inskip(h2) : h2;
-		h2++;
+		h2 = ft_inskip(h2);
 	}
 	return (h2 - h);
 }

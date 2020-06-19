@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 11:34:40 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/16 16:27:55 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 11:49:28 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,17 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	return (NULL);
 }
 
+/*
+**	ft_strstr :: twisted version of above.
+**  = find (this on this), give me address or nothing'.
+*/
+
 char		*ft_strstr(const char *a, const char *b)
 {
 	return (ft_strnstr(b, a, ft_strlen(b)));
+}
+
+int			ft_strbegins(const char *str, const char *beg)
+{
+	return (ft_strstr(beg, str) == str ? 1 : 0);
 }

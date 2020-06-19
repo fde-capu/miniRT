@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:38:21 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 09:24:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 11:57:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int		check_arg_types(char **c, int a[ARGS_MAX])
 	i = 0;
 	while (a[i])
 	{
-		if (((a[i] == ATP_UINT) && (!ft_check(c[i + 1], REG_UINT)))
-		|| (((a[i] == ATP_0TO1) && (!ft_check(c[i + 1], REG_0TO1))))
-		|| (((a[i] == ATP_RGB) && (!ft_check(c[i + 1], reg_rgb))))
-		|| (((a[i] == ATP_COORD) && (!ft_check(c[i + 1], REG_COORD))))
-		|| (((a[i] == ATP_UDBL) && (!ft_check(c[i + 1], REG_UDBL))))
-		|| (((a[i] == ATP_NORMAL) && (!ft_check(c[i + 1], REG_NORMAL))))
-		|| (((a[i] == ATP_0TO180DBL) && (!ft_check(c[i + 1], REG_0TO180DBL)))))
+		if ((a[i] == ATP_UINT && (!ft_check(c[i + 1], REG_UINT)))
+		|| ((a[i] == ATP_0TO1 && (!ft_check(c[i + 1], REG_0TO1))))
+		|| ((a[i] == ATP_RGB && (!ft_check(c[i + 1], reg_rgb))))
+		|| ((a[i] == ATP_COORD && (!ft_check(c[i + 1], REG_COORD))))
+		|| ((a[i] == ATP_UDBL && (!ft_check(c[i + 1], REG_UDBL))))
+		|| ((a[i] == ATP_NORMAL && (!ft_check(c[i + 1], REG_NORMAL))))
+		|| ((a[i] == ATP_0TO180DBL && (!ft_check(c[i + 1], REG_0TO180DBL)))))
 		{
 			free(reg_rgb);
 			return (0);

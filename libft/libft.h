@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/18 11:52:51 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/19 11:50:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int				ft_rgbtoi(t_rgb rgb);
 char			**ft_split(char const *s, char c);
 char			**ft_split_set(char const *s, const char *c);
 size_t			ft_strarrlen(char **s);
+int				ft_strbegins(const char *str, const char *beg);
 char			*ft_strcat(const char *dst, const char *src);
 char			*ft_strcatchrx(char *dst, char *c);
 char			*ft_strcatx(char *dst, char *src);
@@ -178,5 +179,15 @@ char			*ft_removequotes(char *quoted);
 # define DEB_STR_ENCLOSURE	"\""
 # define ENCLOSE_OPEN		"([{"
 # define ENCLOSURES			"()[]{}"
+
+
+/*
+** ft_check related:
+*/
+
+# define FUN_DIG			1
+# define FUN_PAR			2
+# define FUN_SET			3
+# define FUN_CHR			4
 
 #endif
