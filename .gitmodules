@@ -1,9 +1,3 @@
-[submodule "libft"]
-	path = libft
-	url = https://github.com/fde-capu/libft
-[submodule "ftmath"]
-	path = ftmath
-	url = https://github.com/fde-capu/ftmath
 [submodule "minilibx-linux"]
 	path = ft_mlx/minilibx-linux
 	url = https://github.com/42sp/minilibx-linux
