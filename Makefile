@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/19 17:32:41 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/19 19:34:15 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CC		=	clang
 CFLAGS	=	-O3 -g
 IFLAGS	=	-I./$(D_FTMLX) -L./$(D_FTMLX) -lftmlx \
 			-I./$(D_LIBFT) -L./$(D_LIBFT) -lft \
-			-I./$(D_FTMAT) -L./$(D_FTMAT) -lft \
+			-I./$(D_FTMAT) -L./$(D_FTMAT) -lftmath \
 			-I./$(D_MLXOC) -L./$(D_MLXOC) -lmlx \
 			-I$(INC) -L$(INCLIB) \
 			-lXext -lX11 -lm -lbsd
@@ -32,7 +32,7 @@ OBJS	=	$(SRCS:.c=.o)
 INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
 FLAGS	=	$(CFLAGS) $(IFLAGS)
-DEPS	=	$(D_FTMLX) $(D_LIBFT) $(FTMAT) $(D_MLXOC)
+DEPS	=	$(D_FTMLX) $(D_LIBFT) $(D_FTMAT) $(D_MLXOC)
 VALGRIND=	valgrind --leak-check=full
 ALLLEAKS=	--show-leak-kinds=all
 ELINE	=	echo	""; echo ""
@@ -54,8 +54,8 @@ $(D_LIBFT)	: ./$(D_LIBFT)/$(D_LIBFT).a
 	@$(T0) Child $(D_LIBFT) $(T2)
 	cd $(D_LIBFT) && $(MAKE)
 
-$(D_FTMAT)	: ./$(D_FTMAT)/$(D_FTMAT).a
-./$(D_FTMAT)/$(D_FTMAT).a	:
+$(D_FTMAT)	: ./$(D_FTMAT)/lib$(D_FTMAT).a
+./$(D_FTMAT)/lib$(D_FTMAT).a	:
 	@$(T0) Child $(D_FTMAT) $(T2)
 	cd $(D_FTMAT) && $(MAKE)
 
