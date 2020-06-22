@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 14:37:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 15:45:16 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 	ft_col(mlx, 0xFFFFFF);
 	ft_pix(mlx);
 	ft_key_mlx(mlx, KEY_QUIT, minirt_exit, mlx);
+	mlx_hook(mlx->win, 17, (1L << 17), win_close, mlx);
 	mlx_loop(mlx->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));
 }
@@ -65,4 +66,16 @@ int	minirt_exit(void *mlx)
 	ft_putstr(MSG_EXIT);
 	exit(0);
 	return (0);
+}
+
+int	win_close(void *mlx)
+{
+	DEB("WINCLOSE");
+	return (minirt_exit(mlx));
+}
+
+int	test(void *mlx)
+{
+	DEB("LEAVE! LEFT!");
+	return (1);
 }

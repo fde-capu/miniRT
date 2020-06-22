@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 18:46:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 14:04:11 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 15:19:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,18 @@ typedef struct		s_key {
 # define MPRESS			0
 # define XRELEASE		3
 # define MRELEASE		1
+# define XCLOSE			17
+# define MLEAVEWIN		5
 
 t_key				*g_key;
 int					keys_init(void);
 int					keys_destroy(void);
 t_key				*key(int id);
-int					on_press(int kc);
-int					on_release(int kc);
 t_key				*ft_key(char *key_code, int (*fun)(void*), void *arg);
 t_key				*key_interpret(char *kc);
 void				keylist_add(t_key *new);
+int					on_press(int kc);
+int					on_release(int kc);
 
 # define K_ESC 65307
 # define K_SHIFT_L 65505

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 14:37:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 15:33:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ void					rt_line_translate_2(t_scn *sc, char **c);
 int						valid_arg_count(char **c);
 int						valid_arg_types(char **c);
 int						valid_command(char **c);
+int						win_close(void *mlx);
+
+int	test(void *mlx);
 
 # define ARGS_MAX		6
 
 int						check_arg_types(char **c, int a[ARGS_MAX]);
 
 # define KEY_QUIT		"{ESC}"
+# define FTMLX_ONWCLOSE	win_close
 # define RT_SPLIT		" \t"
 # define VALID_COMMANDS	"R A c l sp pl sq cy tr"
 
