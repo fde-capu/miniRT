@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/19 19:34:15 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/22 09:39:45 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,8 @@ fre		:
 	cd $(D_FTMLX) && make fclean
 	@$(T0) "Clean dependency:" $(D_LIBFT) $(T2)
 	cd $(D_LIBFT) && make fclean
+	@$(T0) "Clean dependency:" $(D_FTMAT) $(T2)
+	cd $(D_FTMAT) && make fclean
 
 t		:	all
 	-./$(NAME) $(ARGV)

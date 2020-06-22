@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 19:13:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 09:35:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,28 @@ void	rt_line_translate(t_scn *sc, char **c)
 	if (rt_c(c[0], "A"))
 		sc->ambient = amb_light_init(ft_atod(c[1]), ft_atorgb(c[2]));
 	if (rt_c(c[0], "c"))
-		sc->cam_active = cam_init(ft_atod3d(c[1]), ft_atovec(c[2]),
-			ft_atod(c[3]));
+		scn_add(TYPE_CAM, cam_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+			ft_atod(c[3])), sc);
 	if (rt_c(c[0], "l"))
-		light_init(ft_atod3d(c[1]), ft_atod(c[2]), ft_atorgb(c[3]));
+		scn_add(TYPE_LHT, light_init(ft_atod3d(c[1]), ft_atod(c[2]),
+			ft_atorgb(c[3])), sc);
 	if (rt_c(c[0], "sp"))
-		sphere_init(ft_atod3d(c[1]), ft_atod(c[2]), ft_atorgb(c[3]));
+		scn_add(TYPE_PRM, sphere_init(ft_atod3d(c[1]), ft_atod(c[2]),
+			ft_atorgb(c[3])), sc);
 	if (rt_c(c[0], "pl"))
-		plane_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atorgb(c[3]));
+		scn_add(TYPE_PRM, plane_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+			ft_atorgb(c[3])), sc);
 	if (rt_c(c[0], "sq"))
-		square_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atod(c[3]),
-			ft_atorgb(c[4]));
+		scn_add(TYPE_PRM, square_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+			ft_atod(c[3]), ft_atorgb(c[4])), sc);
 	if (rt_c(c[0], "cy"))
-		cylinder_init(ft_atod3d(c[1]), ft_atovec(c[2]), ft_atod(c[3]),
-			ft_atod(c[4]));
+		scn_add(TYPE_PRM, cylinder_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+			ft_atod(c[3]), ft_atod(c[4])), sc);
 	if (rt_c(c[0], "cy"))
 		sc->primitives->rgb = ft_atorgb(c[5]);
 	if (rt_c(c[0], "tr"))
-		triangle_init(ft_atod3d(c[1]), ft_atod3d(c[2]), ft_atod3d(c[3]),
-			ft_atorgb(c[4]));
+		scn_add(TYPE_TRI, triangle_init(ft_atod3d(c[1]), ft_atod3d(c[2]),
+			ft_atod3d(c[3]), ft_atorgb(c[4])), sc);
 	return ;
 }
 
