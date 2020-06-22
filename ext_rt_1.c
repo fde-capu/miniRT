@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 13:32:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 13:36:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	rt_line_translate_2(t_scn *sc, char **c)
 	return ;
 }
 
-void	rt_line_translate_1(t_scn *sc, char **c)
+void	rt_line_translate(t_scn *sc, char **c)
 {
 	if (rt_c(c[0], "R"))
 		sc->resolution = ft_i2d(ft_atoi(c[1]), ft_atoi(c[2]));
@@ -84,7 +84,7 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 		ft_strfree2d(com);
 		die(ARGS_ERROR, ERR_ARGS);
 	}
-	rt_line_translate_1(sc, com);
+	rt_line_translate(sc, com);
 	ft_strfree2d(com);
 	return ;
 }

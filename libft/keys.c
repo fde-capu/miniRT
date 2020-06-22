@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 19:07:30 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 11:04:51 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 14:35:53 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ t_key	*key_interpret(char *kc)
 
 	kev = ft_calloc(sizeof(t_key), 1);
 	h = kc;
+	if (ft_head_read(&h, kc, "{ESC}"))
+	{
+		kev->key_code = K_ESC;
+	}
 	while (*h)
 	{
 		if (ft_islower(*h))

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 09:02:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 14:38:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char			*ft_dtob(long long n, int b_to);
 int				ft_enclosure(char *io, char h);
 char			*ft_findstr(char *str, char c);
 char			*ft_get_word(char *line);
+int				ft_head_read(char **h, char *r, char *key);
 t_i2d			ft_i2d(int x, int y);
 void			ft_init(void);
 char			*ft_inside(char *h);

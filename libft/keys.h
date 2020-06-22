@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 18:46:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 11:07:08 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 14:04:11 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_key				*ft_key(char *key_code, int (*fun)(void*), void *arg);
 t_key				*key_interpret(char *kc);
 void				keylist_add(t_key *new);
 
+# define K_ESC 65307
 # define K_SHIFT_L 65505
 # define K_CTRL_L 65507
 # define K_ALT_L 65513
