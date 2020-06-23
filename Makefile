@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/22 09:39:45 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/23 08:43:07 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,14 @@ D_FTMAT	=	ftmath
 D_MLXOC	=	minilibx-linux
 D_MLX_L	=	libmlx
 CC		=	clang
-#CFLAGS	=	-Wall -Werror -Wextra -O3 -g
-CFLAGS	=	-O3 -g
+CFLAGS	=	-Wall -Werror -Wextra -O3 -g
+#CFLAGS	=	-O3 -g
 IFLAGS	=	-I./$(D_FTMLX) -L./$(D_FTMLX) -lftmlx \
 			-I./$(D_LIBFT) -L./$(D_LIBFT) -lft \
 			-I./$(D_FTMAT) -L./$(D_FTMAT) -lftmath \
 			-I./$(D_MLXOC) -L./$(D_MLXOC) -lmlx \
 			-I$(INC) -L$(INCLIB) \
-			-lXext -lX11 -lm -lbsd
+			-lXext -lX11 -lm -lbsd -lz
 OBJS	=	$(SRCS:.c=.o)
 INC		=	/usr/include
 INCLIB	=	$(INC)/../lib
@@ -66,11 +66,11 @@ $(D_MLXOC)	: ./$(D_MLXOC)/$(D_MLX_L).a
 
 $(NAME)	:	$(OBJS) $(HEADS)
 	@$(T0) Finally: $(NAME) $(T2)
-	$(CC) -o $(NAME) $(OBJS) $(FLAGS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(IFLAGS)
 
 %.o		:	%.c $(HEADS)
 	@$(T0) Create object: $@ $(T2)
-	$(CC) -c $(FLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean	:
 	@$(T0) "Clean natives:" $(T2)

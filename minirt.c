@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 15:45:16 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 08:20:49 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 // dev notes
 // ftmlx ==> Makefile is missing -WWW
+// XIO: Fatal IO error 11 on close by Alt+F4 or (x) button.
 
 int	main(int argc, char **argv)
 {
 	t_mlx	*mlx;
-	void	*x;
-	void	*w;
-	int		err;
 
+	(void)argc;
 	g_mlx = 0;
 	g_scn = 0;
-	ft_init();
 	g_scn = scene_init();
 	ft_putstr("\n\n"WIN_TITLE"\n\n");
 	if (!load_rt_file(argv[1], g_scn))
@@ -38,7 +36,8 @@ int	main(int argc, char **argv)
 	ft_col(mlx, 0xFFFFFF);
 	ft_pix(mlx);
 	ft_key_mlx(mlx, KEY_QUIT, minirt_exit, mlx);
-	mlx_hook(mlx->win, 17, (1L << 17), win_close, mlx);
+	mlx_hook(mlx->win, 17, 1L << 17, win_close, mlx);
+//	mlx_hook(mlx->win, 10, 1L << 21, test, mlx);
 	mlx_loop(mlx->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));
 }
@@ -61,21 +60,23 @@ int	die(char *msg, unsigned char err)
 
 int	minirt_exit(void *mlx)
 {
+	ft_putstr(MSG_EXIT);
 	scene_destroy(g_scn);
 	ft_mlx_destroy((t_mlx*)mlx);
-	ft_putstr(MSG_EXIT);
 	exit(0);
 	return (0);
 }
 
 int	win_close(void *mlx)
 {
-	DEB("WINCLOSE");
+	ft_putstr(MSG_EXIT);
+	DEB("Windows closed pressing button (X).");
 	return (minirt_exit(mlx));
 }
 
 int	test(void *mlx)
 {
-	DEB("LEAVE! LEFT!");
+	(void)mlx;
+	DEB("Focus Out.");
 	return (1);
 }

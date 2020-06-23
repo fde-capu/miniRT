@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 07:20:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/18 15:12:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 17:03:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@
 # define DEB2		debug_str_str
 # define VERB		debug_str_only
 # define DEBSTRADD	debug_str_add
-
-int		g_debug;
-int		g_verbose;
 
 int		debug_pass(void);
 void	debug(char *str, char *val, int *ival);

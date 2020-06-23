@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 07:00:22 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 11:03:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/22 17:03:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		debug_pass(void)
 {
-	if (g_debug)
+	if (DEBUG_FLAG)
 		return (1);
-	if (g_verbose)
+	if (VERBOSE_FLAG)
 		return (1);
 	return (0);
 }

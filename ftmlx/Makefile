@@ -6,25 +6,25 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 14:22:40 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/19 15:47:07 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/23 09:18:22 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftmlx.a
-DEPMLX	=	minilibx-linux
-DEPMLXLIB=	libmlx.a
-INC		=	/usr/include
-INCLIB	=	$(INC)/../lib
-DEPFT	=	../libft
-IFLAGS	=	-I../$(DEPMLX) -L../$(DEPMLX) -lmlx \
+#DEPMLX	=	minilibx-linux
+#DEPMLXLIB=	libmlx.a
+#INC		=	/usr/include
+#INCLIB	=	$(INC)/../lib
+#DEPFT	=	../libft
+#IFLAGS	=	-I../$(DEPMLX) -L../$(DEPMLX) -lmlx \
 			-I$(INC) -L$(INCLIB) -lXext -lX11 -lm -lbsd \
 			-I$(DEPFT) -L$(DEPFT) -lft
-DEPS	=	$(DEPMLX) $(DEPFT)
+#DEPS	=	$(DEPMLX) $(DEPFT)
 CC		=	clang
 AR		=	ar -rcs
-#CFLAGS	=	-Wall -Wextra -Werror -g -O3
-CFLAGS	=	-O3 -g
-FLAGS	=	$(CFLAGS) $(IFLAGS)
+CFLAGS	=	-Wall -Wextra -Werror -g -O3
+#CFLAGS	=	-O3 -g
+#FLAGS	=	$(CFLAGS) $(IFLAGS)
 SRCS	=	ftmlx.c	pixels.c events.c
 HEADS	=	ftmlx.h
 OBJS	=	$(SRCS:.c=.o)
@@ -34,7 +34,8 @@ PUTS	=	echo
 T0		=	$(ELINE); $(LINE); $(PUTS)
 T2		=	; $(LINE)
 
-all		:	$(DEPS) $(HEADS) $(NAME)
+#all		:	$(DEPS) $(HEADS) $(NAME)
+all		:	$(HEADS) $(NAME)
 	@$(T0) ALL DONE! $(T2); $(ELINE)
 
 $(NAME)	:	$(HEADS) $(OBJS)
@@ -43,7 +44,7 @@ $(NAME)	:	$(HEADS) $(OBJS)
 
 %.o		:	%.c
 	@$(T0) Create object $@ : $(T2)
-	$(CC) -c $(FLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean	:
 	@$(T0) Clean $(T2)
@@ -59,12 +60,12 @@ clean_d	:
 
 re		:	fclean all
 
-$(DEPMLX)	:	../$(DEPMLX)/$(DEPMLXLIB)
-../$(DEPMLX)/$(DEPMLXLIB)	:
-	@$(T0) "MAKE (dep) :: " $(DEPMLX) $(T2)
-	cd ../$(DEPMLX) && $(MAKE)
-
-$(DEPFT)	:	$(DEPFT)/$(DEPFT).a
-$(DEPFT)/$(DEPFT).a	:
-	@$(T0) "MAKE (dep) :: " $(DEPFT) $(T2)
-	cd $(DEPFT) && $(MAKE)
+#$(DEPMLX)	:	../$(DEPMLX)/$(DEPMLXLIB)
+#../$(DEPMLX)/$(DEPMLXLIB)	:
+#	@$(T0) "MAKE (dep) :: " $(DEPMLX) $(T2)
+#	cd ../$(DEPMLX) && $(MAKE)
+#
+#$(DEPFT)	:	$(DEPFT)/$(DEPFT).a
+#$(DEPFT)/$(DEPFT).a	:
+#	@$(T0) "MAKE (dep) :: " $(DEPFT) $(T2)
+#	cd $(DEPFT) && $(MAKE)
