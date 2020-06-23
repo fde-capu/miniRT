@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_types.h                                      :+:      :+:    :+:   */
+/*   types_libft.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 22:40:42 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 08:04:43 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/06/23 11:40:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_TYPES_H
-# define LIBFT_TYPES_H
+#ifndef TYPES_LIBFT_H
+# define TYPES_LIBFT_H
 
 typedef struct		s_list
 {

@@ -6,12 +6,12 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 09:35:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 11:42:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MATH_H
-# define FT_MATH_H
+#ifndef FTMATH_H
+# define FTMATH_H
 
 # include "../libft/libft.h"
 # include <math.h>
@@ -94,8 +94,7 @@ void					scn_free_list_lht(t_lht *lst);
 void					scn_free_list_cam(t_cam *lst);
 void					scn_free_list_prm(t_prm *lst);
 void					scn_free_list_tri(t_tri *lst);
-
-void	scn_add(int objtype, void *obj, t_scn *sc);
+void					scn_add(int objtype, void *obj, t_scn *sc);
 
 # define TYPE_SP_NM		"Sphere"
 # define TYPE_SP		1
@@ -114,7 +113,5 @@ void	scn_add(int objtype, void *obj, t_scn *sc);
 # define TYPE_PRM		7
 # define TYPE_TRI_NM	"Triangle"
 # define TYPE_TRI		8
-
-
 
 #endif

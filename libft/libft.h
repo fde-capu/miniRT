@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 09:51:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 11:40:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-# include "libft_types.h"
+# include "types_libft.h"
 # include "debug.h"
 # include "keys.h"
 

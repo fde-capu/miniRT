@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 19:35:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 11:43:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_alt	amb_light_init(double f, t_rgb rgb)
 	return (lit);
 }
 
-t_cam		*cam_init(t_d3d o, t_vec p, double fov)
+t_cam	*cam_init(t_d3d o, t_vec p, double fov)
 {
 	t_cam	*cam;
 
@@ -37,7 +37,7 @@ t_cam		*cam_init(t_d3d o, t_vec p, double fov)
 	return (cam);
 }
 
-t_lht		*light_init(t_d3d o, double f, t_rgb rgb)
+t_lht	*light_init(t_d3d o, double f, t_rgb rgb)
 {
 	t_lht	*new;
 
@@ -48,7 +48,7 @@ t_lht		*light_init(t_d3d o, double f, t_rgb rgb)
 	return (new);
 }
 
-t_tri		*triangle_init(t_d3d a, t_d3d b, t_d3d c, t_rgb rgb)
+t_tri	*triangle_init(t_d3d a, t_d3d b, t_d3d c, t_rgb rgb)
 {
 	t_tri	*new;
 
