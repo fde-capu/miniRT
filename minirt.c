@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 11:14:08 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 15:12:28 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 	ft_col(mlx, 0xFFFFFF);
 	ft_pix(mlx);
 	ft_key_mlx(mlx, KEY_QUIT, minirt_exit, mlx);
+	ft_key_mlx(mlx, KEY_CAM, change_cam, g_scn);
 	mlx_hook(mlx->win, 17, 1L << 17, minirt_exit, mlx);
 	mlx_loop(mlx->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));

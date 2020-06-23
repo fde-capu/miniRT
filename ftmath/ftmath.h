@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 11:42:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 14:55:56 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void					verbose_scene(t_scn *scn);
 void					verb_faces(t_scn *scn);
 void					verb_primitives(t_scn *scn);
 void					verb_lights(t_scn *scn);
+void					verb_cam(t_scn *scn);
+void					verb_cam_active(t_scn *scn);
 char					*prim_tpnm(int type);
 t_scn					*scene_init(void);
 int						scene_destroy(t_scn *sc);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 11:43:00 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 15:04:33 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 t_scn	*scene_init(void)
 {
-	return (ft_calloc(sizeof(t_scn), 1));
+	t_scn	*scn;
+
+	scn = ft_calloc(sizeof(t_scn), 1);
+	return (scn);
 }
 
 t_alt	amb_light_init(double f, t_rgb rgb)

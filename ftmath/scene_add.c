@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 09:19:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 09:31:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 15:19:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	scn_add(int objtype, void *obj, t_scn *sc)
 	{
 		((t_cam *)obj)->nx = sc->cam_list;
 		sc->cam_list = (t_cam *)obj;
-		sc->cam_active = (t_cam *)obj;
+		sc->cam_active = sc->cam_active ?: sc->cam_list;
 	}
 	if (objtype == TYPE_LHT)
 	{

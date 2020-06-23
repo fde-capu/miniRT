@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_math_verb.c                                     :+:      :+:    :+:   */
+/*   ftmath_verb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 18:07:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 14:52:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ void	verbose_scene(t_scn *scn)
 	DEBINT2("resolution", scn->resolution.x, scn->resolution.y);
 	DEBDBL("amb force", scn->ambient.f);
 	DEBRGB("amb rgb", scn->ambient.rgb);
-	DEBD3D("cam origin", scn->cam_active->o);
-	DEBVEC("cam point", scn->cam_active->p);
-	DEBDBL("cam fov", scn->cam_active->fov);
+	verb_cam(scn);
+	verb_cam_active(scn);
 	verb_lights(scn);
 	verb_primitives(scn);
 	verb_faces(scn);
