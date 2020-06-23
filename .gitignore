@@ -1,4 +1,6 @@
 *.o
 mrt
 *.a
+minilibx-linux
+minilibx-linux/*
 minilibx-linux/test/mlx-test

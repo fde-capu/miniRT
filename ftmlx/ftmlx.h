@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 15:18:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 11:16:27 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+
+# define FTMLX_LIMIT_WIN_SIZE	0
 
 typedef struct	s_win {
 	char		*title;

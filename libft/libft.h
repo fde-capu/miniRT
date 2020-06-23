@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 14:38:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 09:51:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 t_list			*ft_lstnew(void *content);
 int				ft_lstsize(t_list *lst);
 char			*ft_ltoa(long n);
+void			ft_max2d(int *x, int *y, int x_lim, int y_lim);
 void			*ft_memcat(void *m1, void *m2, int s1, int s2);
 void			*ft_memcatx(void *m1, void *m2, int s1, int s2);
 void			*ft_memcatxl(void *m1, void *m2, int s1, int s2);

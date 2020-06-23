@@ -6,13 +6,13 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/23 08:43:07 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/23 09:46:19 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	mrt
 ARGV	=	mini.rt
-SRCS	=	minirt.c		ext_rt_1.c		ext_rt_2.c
+SRCS	=	minirt.c		minirt2.c	ext_rt_1.c		ext_rt_2.c
 HEADS	=	minirt.h
 D_FTMLX	=	ftmlx
 D_LIBFT	=	libft
@@ -82,6 +82,10 @@ fclean	:	clean
 
 ffclean	:	fre	fclean
 	@$(T0) "All clear!" $(T2)
+	@$(ELINE); $(ELINE); $(ELINE)
+	@$(ELINE); $(ELINE); $(ELINE)
+	@sleep 1
+	@$(ELINE); $(ELINE); $(ELINE)
 	@$(ELINE); $(ELINE); $(ELINE)
 
 re		:	fclean	all

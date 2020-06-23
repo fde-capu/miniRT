@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 15:19:23 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 11:16:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	ft_key_mlx(t_mlx *mlx, char *key_code, int (*fun)(void*), void *arg)
 t_mlx	*ft_mlx_init(int res_x, int res_y, char *win_title)
 {
 	t_mlx	*mlx;
+	int		screen_x;
+	int		screen_y;
 
 	mlx = ft_calloc(sizeof(t_mlx), 1);
 	mlx->mlx = mlx_init();
@@ -33,6 +35,11 @@ t_mlx	*ft_mlx_init(int res_x, int res_y, char *win_title)
 		return (0);
 	mlx->w.width = res_x;
 	mlx->w.height = res_y;
+	if (FTMLX_LIMIT_WIN_SIZE)
+	{
+		mlx_get_screen_size(mlx->mlx, &screen_x, &screen_y);
+		ft_max2d(&mlx->w.width, &mlx->w.height, screen_x, screen_y);
+	}
 	mlx->w.title = ft_str(win_title);
 	mlx->win = \
 		mlx_new_window(mlx->mlx, mlx->w.width, mlx->w.height, mlx->w.title);

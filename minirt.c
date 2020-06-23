@@ -6,15 +6,15 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 08:20:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 11:14:08 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // dev notes
-// ftmlx ==> Makefile is missing -WWW
 // XIO: Fatal IO error 11 on close by Alt+F4 or (x) button.
+// ft_mlx_init currently mlx_get_screen_size is not found.
 
 int	main(int argc, char **argv)
 {
@@ -36,8 +36,7 @@ int	main(int argc, char **argv)
 	ft_col(mlx, 0xFFFFFF);
 	ft_pix(mlx);
 	ft_key_mlx(mlx, KEY_QUIT, minirt_exit, mlx);
-	mlx_hook(mlx->win, 17, 1L << 17, win_close, mlx);
-//	mlx_hook(mlx->win, 10, 1L << 21, test, mlx);
+	mlx_hook(mlx->win, 17, 1L << 17, minirt_exit, mlx);
 	mlx_loop(mlx->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));
 }
@@ -65,18 +64,4 @@ int	minirt_exit(void *mlx)
 	ft_mlx_destroy((t_mlx*)mlx);
 	exit(0);
 	return (0);
-}
-
-int	win_close(void *mlx)
-{
-	ft_putstr(MSG_EXIT);
-	DEB("Windows closed pressing button (X).");
-	return (minirt_exit(mlx));
-}
-
-int	test(void *mlx)
-{
-	(void)mlx;
-	DEB("Focus Out.");
-	return (1);
 }
