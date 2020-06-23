@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/23 09:46:19 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/23 14:04:10 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(D_FTMAT)	: ./$(D_FTMAT)/lib$(D_FTMAT).a
 $(D_MLXOC)	: ./$(D_MLXOC)/$(D_MLX_L).a
 ./$(D_MLXOC)/$(D_MLX_L).a	:
 	@$(T0) Child $(D_MLXOC) $(T2)
-	cd $(D_MLXOC) && $(MAKE)
+	cd $(D_MLXOC) && ./configure && $(MAKE)
 
 $(NAME)	:	$(OBJS) $(HEADS)
 	@$(T0) Finally: $(NAME) $(T2)
