@@ -6,11 +6,16 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 12:22:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 12:27:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 12:38:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** In case of finding the "test", ft_args return a pointer to the next argv,
+** or to the found argv if it is the last one.
+*/
 
 char	*ft_args(int argc, char **argv, char *test)
 {

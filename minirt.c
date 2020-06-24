@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 12:22:01 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 12:49:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ int	die(char *msg, unsigned char err)
 int	minirt_exit(void *mlx)
 {
 	ft_putstr(MSG_EXIT);
-	scene_destroy(g_scn);
-	ft_mlx_destroy((t_mlx*)mlx);
+	if (g_scn)
+		scene_destroy(g_scn);
+	if (g_mlx)
+		ft_mlx_destroy(g_mlx);
+	(void)mlx;
 	exit(0);
 	return (0);
 }

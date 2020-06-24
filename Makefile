@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/24 12:33:57 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/24 12:49:35 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,4 +107,4 @@ vf		:	all
 	-$(VALGRIND) $(ALLLEAKS) ./$(NAME) $(ARGV)
 rv		:	ffclean	v
 ts		:	ffclean	all
-	-$(VALGRIND) $(ALLLEAKS) ./$(NAME) $(ARGV) $(T_SAVE)
+	-$(VALGRIND) ./$(NAME) $(ARGV) $(T_SAVE)
