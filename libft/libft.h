@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 11:40:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 12:23:16 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "keys.h"
 
 long long		ft_abs(long long value);
+char			*ft_args(int argc, char **argv, char *test);
 double			ft_atod(const char *str);
 t_d3d			ft_atod3d(const char *str);
 long long		ft_atoi(const char *str);

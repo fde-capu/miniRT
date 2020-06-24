@@ -6,12 +6,13 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/24 09:13:20 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/24 12:33:57 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	mrt
 ARGV	=	mini.rt
+T_SAVE	=	--save
 SRCS	=	minirt.c		minirt2.c	ext_rt_1.c		ext_rt_2.c
 HEADS	=	minirt.h
 D_FTMLX	=	ftmlx
@@ -21,7 +22,6 @@ D_MLXOC	=	minilibx-linux
 D_MLX_L	=	libmlx
 CC		=	clang
 CFLAGS	=	-Wall -Werror -Wextra -O3 -g
-#CFLAGS	=	-O3 -g
 IFLAGS	=	-I./$(D_FTMLX) -L./$(D_FTMLX) -lftmlx \
 			-I./$(D_FTMAT) -L./$(D_FTMAT) -lftmath \
 			-I./$(D_LIBFT) -L./$(D_LIBFT) -lft \
@@ -36,7 +36,7 @@ DEPS	=	$(D_FTMLX) $(D_LIBFT) $(D_FTMAT) $(D_MLXOC)
 VALGRIND=	valgrind --leak-check=full
 ALLLEAKS=	--show-leak-kinds=all
 ELINE	=	echo	""; echo ""
-LINE	=	echo	"================== from $(NAME) ==============================================="
+LINE	=	echo	"================== from $(NAME) =========================="
 PUTS	=	echo	
 T0		=	$(ELINE); $(LINE); $(PUTS)
 T2		=	; $(LINE)
@@ -106,3 +106,5 @@ v		:	all
 vf		:	all
 	-$(VALGRIND) $(ALLLEAKS) ./$(NAME) $(ARGV)
 rv		:	ffclean	v
+ts		:	ffclean	all
+	-$(VALGRIND) $(ALLLEAKS) ./$(NAME) $(ARGV) $(T_SAVE)

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 18:10:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 12:34:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <math.h>
 
 # define WIN_TITLE	":: mrt : minirt : miniRT :: by fde-capu :: 42SP ::"
+# define SAVE_FN	"minirt.bmp"
 
 t_scn					*g_scn;
 t_mlx					*g_mlx;
@@ -64,6 +65,7 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ERR_STRANGE	42
 
 # define MSG_EXIT		"\n\nExit miniRT.\nThank you!\n\n"
+# define MSG_SAVED		"\nImage saved.\n"
 
 # define ARGS_R			3
 # define ARGS_A			3
