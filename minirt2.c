@@ -6,21 +6,34 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 09:34:41 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 15:19:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 11:53:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	change_cam(void *scn)
+int	change_cam_up(void *scn)
+{
+	t_scn	*s;
+	t_cam	*nnx;
+
+	DEB("noshift");
+	s = ((t_scn *)scn);
+	nnx = &*s->cam_active;
+	while ((s->cam_active->nx ? s->cam_active->nx : s->cam_list) != nnx)
+		s->cam_active = s->cam_active->nx ? s->can_active->nx : s->cam_list;
+	verb_cam_active((t_scn *)scn);
+	return (1);
+}
+
+int	change_cam_down(void *scn)
 {
 	t_cam	*cam;
 	t_scn	*s;
 
 	s = (t_scn *)scn;
 	cam = s->cam_active;
-	s->cam_active = s->cam_active->nx ?: s->cam_list;
-	DEB("Changed cam.");
-	verb_cam_active(s);
-	return (0);
+	s->cam_active = s->cam_active->nx ? s->cam_active_nx : s->cam_list;
+	verb_cam_active((t_scn *)scn);
+	return (1);
 }

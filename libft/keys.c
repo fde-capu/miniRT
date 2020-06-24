@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 19:07:30 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 15:40:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 20:01:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ t_key	*key(int id)
 	h = g_key->nx;
 	while (h)
 	{
-		if (h->key_code == id)
+		if ((h->key_code == id)
+			&& (g_key->shift == h->shift)
+			&& (g_key->ctrl == h->ctrl)
+			&& (g_key->alt == h->alt))
 			return (h);
 		h = h->nx;
 	}
@@ -68,17 +71,21 @@ t_key	*key_interpret(char *kc)
 
 	kev = ft_calloc(sizeof(t_key), 1);
 	h = kc;
-	if (ft_head_read(&h, kc, "{ESC}"))
-	{
-		kev->key_code = K_ESC;
-	}
 	while (*h)
 	{
+		if (ft_head_read(&h, kc, "{ESC}"))
+			kev->key_code = K_ESC;
+		if (ft_head_read(&h, kc, "{SHIFT}"))
+			kev->shift = KEY_ON;
+		if (ft_head_read(&h, kc, "{CTRL}"))
+			kev->ctrl = KEY_ON;
+		if (ft_head_read(&h, kc, "{ALT}"))
+			kev->alt = KEY_ON;
 		if (ft_islower(*h))
 		{
 			kev->key_code = *h;
+			h++;
 		}
-		h++;
 	}
 	return (kev);
 }

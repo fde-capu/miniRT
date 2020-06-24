@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 15:44:51 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/23 18:10:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void					rt_line_translate_2(t_scn *sc, char **c);
 int						valid_arg_count(char **c);
 int						valid_arg_types(char **c);
 int						valid_command(char **c);
-int						change_cam(void *mlx);
+int						change_cam_up(void *mlx);
+int						change_cam_down(void *mlx);
 
 # define ARGS_MAX		6
 
@@ -45,7 +46,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 
 # define KEY_QUIT1		"{ESC}"
 # define KEY_QUIT2		"q"
-# define KEY_CAM		"c"
+# define KEY_CAM_UP		"c"
+# define KEY_CAM_DOWN	"{SHIFT}c"
 
 # define RT_SPLIT		" \t"
 # define VALID_COMMANDS	"R A c l sp pl sq cy tr"
