@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 12:34:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:49:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define SAVE_FN	"minirt.bmp"
 
 t_scn					*g_scn;
-t_mrt					*g_mlx;
+t_mrt					*g_mrt;
 
 int						load_rt_file(char *fn, t_scn *sc);
 void					rt_line_interpret(char *ln, t_scn *sc);
@@ -61,11 +61,15 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ERR_ARGS		3
 # define COM_ERROR		"Unknown command."
 # define ERR_COM		4
+# define IMG_ERROR		"Error image initialization."
+# define ERR_IMG		5
+# define WIN_ERROR		"Window creation error."
+# define ERR_WIN		6
 # define STRANGE_ERROR	"This is weird, you should not be here."
 # define ERR_STRANGE	42
 
 # define MSG_EXIT		"\n\nExit miniRT.\nThank you!\n\n"
-# define MSG_SAVED		"\nImage saved.\n"
+# define MSG_SAVED		"\nImage saved: "
 
 # define ARGS_R			3
 # define ARGS_A			3

@@ -6,27 +6,34 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 13:38:48 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/10 14:52:56 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 15:48:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmlx.h"
 
-void	ft_pix(t_mrt *mlx)
+void	ft_pxi(t_mrt *mrt)
 {
-	mlx_pixel_put(mlx->mlx, mlx->win, mlx->cursor.x, mlx->cursor.y,
-		ft_rgbtoi(mlx->color));
+	*mrt->icursor = ft_rgbtoi(mrt->color);
 	return ;
 }
 
-void	ft_mov(t_mrt *mlx, int x, int y)
+void	ft_pxw(t_mrt *mrt)
 {
-	mlx->cursor.x = x;
-	mlx->cursor.y = y;
+	mlx_pixel_put(mrt->mlx, mrt->win, mrt->cursor.x, mrt->cursor.y,
+		ft_rgbtoi(mrt->color));
 	return ;
 }
 
-void	ft_col(t_mrt *mlx, int color)
+void	ft_mov(t_mrt *mrt, int x, int y)
 {
-	mlx->color = ft_itorgb(color);
+	mrt->cursor.x = x;
+	mrt->cursor.y = y;
+	mrt->icursor = mrt->i.address + (y * mrt->i.line_l + x * (mrt->i.bpp / 8));
+	return ;
+}
+
+void	ft_col(t_mrt *mrt, int color)
+{
+	mrt->color = ft_itorgb(color);
 }

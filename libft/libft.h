@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 12:23:16 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 16:00:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void			ft_putstr_nl(char *s);
 char			*ft_removequotes(char *quoted);
 char			*ft_repchar(char c, unsigned int rpt);
 void			ft_repchar_fd(char c, unsigned int rpt, int fd);
-t_rgb			ft_rgb(unsigned char r, unsigned char g, unsigned char b);
+t_rgb			ft_rgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
 char			*ft_rgbtoa(t_rgb rgb);
 int				ft_rgbtoi(t_rgb rgb);
 char			**ft_split(char const *s, char c);
