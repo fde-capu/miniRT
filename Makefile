@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/23 14:04:10 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/24 09:13:20 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ CC		=	clang
 CFLAGS	=	-Wall -Werror -Wextra -O3 -g
 #CFLAGS	=	-O3 -g
 IFLAGS	=	-I./$(D_FTMLX) -L./$(D_FTMLX) -lftmlx \
-			-I./$(D_LIBFT) -L./$(D_LIBFT) -lft \
 			-I./$(D_FTMAT) -L./$(D_FTMAT) -lftmath \
+			-I./$(D_LIBFT) -L./$(D_LIBFT) -lft \
 			-I./$(D_MLXOC) -L./$(D_MLXOC) -lmlx \
 			-I$(INC) -L$(INCLIB) \
 			-lXext -lX11 -lm -lbsd -lz
