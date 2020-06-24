@@ -12,7 +12,7 @@
 
 #include "ftmlx.h"
 
-void	ft_key_mlx(t_mlx *mlx, char *key_code, int (*fun)(void*), void *arg)
+void	ft_key_mlx(t_mrt *mlx, char *key_code, int (*fun)(void*), void *arg)
 {
 	t_key	*k;
 
@@ -22,13 +22,13 @@ void	ft_key_mlx(t_mlx *mlx, char *key_code, int (*fun)(void*), void *arg)
 	return ;
 }
 
-t_mlx	*ft_mlx_init(int res_x, int res_y, char *win_title)
+t_mrt	*ft_mrt_init(int res_x, int res_y, char *win_title)
 {
-	t_mlx	*mlx;
+	t_mrt	*mlx;
 	int		screen_x;
 	int		screen_y;
 
-	mlx = ft_calloc(sizeof(t_mlx), 1);
+	mlx = ft_calloc(sizeof(t_mrt), 1);
 	mlx->mlx = mlx_init();
 	keys_init();
 	if (!mlx->mlx)
@@ -48,11 +48,11 @@ t_mlx	*ft_mlx_init(int res_x, int res_y, char *win_title)
 	return (mlx);
 }
 
-int		ft_mlx_destroy(void *mlxvoid)
+int		ft_mrt_destroy(void *mlxvoid)
 {
-	t_mlx	*mlx;
+	t_mrt	*mlx;
 
-	mlx = (t_mlx*)mlxvoid;
+	mlx = (t_mrt*)mlxvoid;
 	free(mlx->w.title);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	free(mlx->mlx);

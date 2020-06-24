@@ -14,11 +14,11 @@
 
 // dev notes
 // XIO: Fatal IO error 11 on close by Alt+F4 or (x) button.
-// ft_mlx_init currently mlx_get_screen_size is not found.
+// ft_mrt_init currently mlx_get_screen_size is not found.
 
 int	main(int argc, char **argv)
 {
-	t_mlx	*mlx;
+	t_mrt	*mlx;
 
 	(void)argc;
 	g_mlx = 0;
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	if (!load_rt_file(argv[1], g_scn))
 		return (die(FILE_ERROR, ERR_FILE));
 	verbose_scene(g_scn);
-	if (!(mlx = ft_mlx_init(g_scn->resolution.x, g_scn->resolution.y,
+	if (!(mlx = ft_mrt_init(g_scn->resolution.x, g_scn->resolution.y,
 		WIN_TITLE)))
 		return (die(MLX_INIT_ERROR, ERR_MLX_INIT));
 	g_mlx = mlx;
@@ -60,7 +60,7 @@ int	die(char *msg, unsigned char err)
 	if (g_scn)
 		scene_destroy(g_scn);
 	if (g_mlx)
-		ft_mlx_destroy(g_mlx);
+		ft_mrt_destroy(g_mlx);
 	ft_putstr("\n");
 	exit(err);
 	return (0);
@@ -72,7 +72,7 @@ int	minirt_exit(void *mlx)
 	if (g_scn)
 		scene_destroy(g_scn);
 	if (g_mlx)
-		ft_mlx_destroy(g_mlx);
+		ft_mrt_destroy(g_mlx);
 	(void)mlx;
 	exit(0);
 	return (0);

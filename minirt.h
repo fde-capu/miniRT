@@ -26,7 +26,7 @@
 # define SAVE_FN	"minirt.bmp"
 
 t_scn					*g_scn;
-t_mlx					*g_mlx;
+t_mrt					*g_mlx;
 
 int						load_rt_file(char *fn, t_scn *sc);
 void					rt_line_interpret(char *ln, t_scn *sc);
