@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 14:52:00 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 16:25:28 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	verb_lights(t_scn *scn)
 	{
 		DEBD3D("light origin", h->o);
 		DEBDBL("light force", h->f);
-		DEBRGB("light rgb", h->rgb);
+		DEBRGB("light argb", h->rgb);
 		h = h->nx;
 	}
 	return ;
@@ -54,7 +54,7 @@ void	verb_primitives(t_scn *scn)
 		DEBVEC("normal", h->n);
 		DEBDBL("height", h->h);
 		DEBDBL("diameter", h->d);
-		DEBRGB("RGB", h->rgb);
+		DEBRGB("ARGB", h->rgb);
 		h = h->nx;
 	}
 	return ;
@@ -70,7 +70,7 @@ void	verb_faces(t_scn *scn)
 		DEBD3D("face a", h->a);
 		DEBD3D("face b", h->b);
 		DEBD3D("face c", h->c);
-		DEBRGB("face rgb", h->rgb);
+		DEBRGB("face argb", h->rgb);
 		h = h->nx;
 	}
 	return ;
@@ -80,7 +80,7 @@ void	verbose_scene(t_scn *scn)
 {
 	DEBINT2("resolution", scn->resolution.x, scn->resolution.y);
 	DEBDBL("amb force", scn->ambient.f);
-	DEBRGB("amb rgb", scn->ambient.rgb);
+	DEBRGB("amb argb", scn->ambient.rgb);
 	verb_cam(scn);
 	verb_cam_active(scn);
 	verb_lights(scn);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 16:01:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 17:11:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,21 @@ int	main(int argc, char **argv)
 		WIN_TITLE))
 		return (die(WIN_ERROR, ERR_WIN));
 	g_mrt = mrt;
-	ft_mov(mrt, 250, 250);
-	ft_col(mrt, 0xFFFFFF);
-	ft_pxw(mrt);
 	ft_key_mrt(mrt, KEY_QUIT1, minirt_exit, mrt);
 	ft_key_mrt(mrt, KEY_QUIT2, minirt_exit, mrt);
 	ft_key_mrt(mrt, KEY_CAM_UP, change_cam_up, g_scn);
 	ft_key_mrt(mrt, KEY_CAM_DOWN, change_cam_down, g_scn);
 	mlx_do_key_autorepeatoff(mrt->mlx);
 	mlx_hook(mrt->win, 17, 1L << 17, minirt_exit, mrt);
+	ft_mov(mrt, 50, 50);
+	ft_col(mrt, 0x00FFFFFF);
+	ft_pxi(mrt);
+	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	ft_mov(mrt, 52, 52);
+	ft_pxw(mrt);
+	ft_mov(mrt, 54, 54);
+	ft_pxi(mrt);
+//	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	mlx_loop(mrt->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));
 }

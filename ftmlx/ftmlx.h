@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 15:58:56 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 16:51:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				ft_mrt_destroy(void *mrt);
 void			ft_pxw(t_mrt *mrt);
 void			ft_pxi(t_mrt *mrt);
 void			ft_mov(t_mrt *mrt, int x, int y);
-void			ft_col(t_mrt *mrt, int color);
+void			ft_col(t_mrt *mrt, unsigned int color);
 void			hook_keys(t_mrt *mrt, int ks, int ke);
 void			ft_key_mrt
 					(t_mrt *mrt, char *key_code, int (*fun)(void*), void *arg);

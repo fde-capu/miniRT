@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/23 11:40:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 16:27:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef t_d3d		t_vec;
 
 typedef struct		s_rgb
 {
-	unsigned char	t;
+	unsigned char	a;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
