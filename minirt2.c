@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 09:34:41 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 12:28:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/24 16:16:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	change_cam_up(void *scn)
 	t_scn	*s;
 	t_cam	*nnx;
 
-	DEB("noshift");
 	s = ((t_scn *)scn);
 	nnx = &*s->cam_active;
 	while ((s->cam_active->nx ? s->cam_active->nx : s->cam_list) != nnx)
