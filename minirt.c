@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 17:11:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 09:49:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	ft_mov(mrt, 52, 52);
 	ft_pxw(mrt);
-	ft_mov(mrt, 54, 54);
-	ft_pxi(mrt);
-//	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	mlx_loop(mrt->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 13:38:48 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 17:11:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 09:48:30 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_pxi(t_mrt *mrt)
 {
-	*(unsigned int *)mrt->icursor = ft_argbtoi(mrt->color);
+	*mrt->icursor = ft_argbtoi(mrt->color);
 	return ;
 }
 
