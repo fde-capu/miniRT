@@ -6,15 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/25 09:49:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 09:54:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// dev notes
-// XIO: Fatal IO error 11 on close by Alt+F4 or (x) button.
-// ft_mrt_init currently mlx_get_screen_size is not found.
 
 int	main(int argc, char **argv)
 {
