@@ -6,11 +6,43 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/25 09:54:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 17:23:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	ft_puthex(unsigned char x)
+{
+	ft_putnbr((int)x);
+	return ;
+}
+
+#include <stdio.h> //
+char	*ft_mrtitobmp(t_mrt *mrt)
+{
+	char	*h;
+	int		x;
+	int		y;
+	t_rgb	bgra;
+
+	x = 1;
+	while (x <= mrt->i.height)
+	{
+		y = 1;
+		while (y <= mrt->i.width)
+		{
+			h = ft_mov(mrt, x, y);
+			bgra = ft_itobgra(*(unsigned int *)h);
+			DEBRGB("", bgra);
+			printf("\t\t");
+			y += 1;
+		}
+		printf("\n");
+		x++;
+	}
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -30,6 +62,35 @@ int	main(int argc, char **argv)
 	{
 		if (!ft_mrt_init_img(mrt, g_scn->resolution.x, g_scn->resolution.y))
 			die(IMG_ERROR, ERR_IMG);
+		ft_col(mrt, 0x01020304);
+		ft_mov(mrt, 1, 1);
+		ft_pxi(mrt);
+		ft_mov(mrt, 2, 2);
+		ft_pxi(mrt);
+		ft_mov(mrt, 3, 3);
+		ft_pxi(mrt);
+//		ft_mov(mrt, 4, 4);
+//		ft_pxi(mrt);
+		int	size = sizeof(t_bmp) + (mrt->i.line_l * mrt->i.height);
+		t_bmp *bmp = ft_calloc(size, 1);
+		bmp->file_header.bftype = 19778;
+		bmp->file_header.bfsize = size;
+		DEBINT("ln_l", mrt->i.line_l);
+		DEBINT("pixs", (mrt->i.line_l * mrt->i.height));
+		DEBINT("size", size);
+		bmp->file_header.bfoffs = sizeof(t_bmp);
+		bmp->info_header.bisize = sizeof(t_bmih);
+		bmp->info_header.biwidth = g_scn->resolution.x;
+		bmp->info_header.biheight = g_scn->resolution.y;
+		bmp->info_header.biplanes = 1;
+		bmp->info_header.bpp = mrt->i.bpp;
+		ft_mrtitobmp(mrt);
+//		int	fp;
+//		if ((fp = open("test.bmp", O_WRONLY | O_CREAT | O_TRUNC)) == -1)
+//			die ("Could not open file for writing.", 10);
+//		write(fp, bmp, sizeof(t_bmp));
+//		write(fp, ft_mrtitobmp(mrt), (mrt->i.line_l * mrt->i.height));
+//		close (fp);
 		ft_putstr(MSG_SAVED);
 		ft_putstr(SAVE_FN);
 		ft_putstr("\n");
@@ -45,11 +106,11 @@ int	main(int argc, char **argv)
 	ft_key_mrt(mrt, KEY_CAM_DOWN, change_cam_down, g_scn);
 	mlx_do_key_autorepeatoff(mrt->mlx);
 	mlx_hook(mrt->win, 17, 1L << 17, minirt_exit, mrt);
-	ft_mov(mrt, 50, 50);
-	ft_col(mrt, 0x00FFFFFF);
+	ft_mov(mrt, 1, 1);
+	ft_col(mrt, 0x000022FF);
 	ft_pxi(mrt);
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-	ft_mov(mrt, 52, 52);
+	ft_mov(mrt, 3, 3);
 	ft_pxw(mrt);
 	mlx_loop(mrt->mlx);
 	return (die(STRANGE_ERROR, ERR_STRANGE));

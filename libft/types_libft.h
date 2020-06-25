@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 16:27:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 12:53:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,46 @@ typedef struct		s_rgb
 }					t_rgb;
 
 typedef unsigned char	t_bol;
+
+/*
+** BMP related:
+*/
+
+typedef struct		s_bmfh
+{
+	unsigned short	bftype;
+	unsigned int  	bfsize;
+	unsigned int  	zeroes;
+	unsigned int  	bfoffs;
+}					t_bmfh;
+
+typedef struct		s_bmih
+{
+	unsigned int	bisize;
+	int				biwidth;
+	int				biheight;
+	unsigned short	biplanes;
+	unsigned short	bpp;
+	unsigned int	bicompress;
+	unsigned int	bisizeimg;
+	int				bixppmeter;
+	int				biyppmeter;
+	unsigned int	binumofcolors;
+	unsigned int	biimportantcolors;
+}					t_bmih;
+
+typedef struct		s_rgbquad
+{
+	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
+	unsigned char	z;
+}					t_rgbquad;
+
+typedef struct		s_bmp
+{
+	t_bmfh			file_header;
+	t_bmih			info_header;
+}					t_bmp;
 
 #endif

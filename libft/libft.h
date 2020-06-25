@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 16:58:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 17:22:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int				ft_isprint(int c);
 int				ft_isupper(int c);
 char			*ft_itoa(int n);
 t_rgb			ft_itoargb(unsigned int i);
+t_rgb			ft_itobgra(unsigned int i);
 char			*ft_join(char **split);
 char			*ft_lastchar(char *str);
 int				ft_lastchar_eq(char *str, char chr);

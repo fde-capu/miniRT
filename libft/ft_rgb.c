@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:30:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 16:57:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 17:21:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ char			*ft_rgbtoa(t_rgb rgb)
 	char	*o;
 
 	o = ft_uctoa(rgb.a);
-	o = ft_strcatxl(o, DIV);
+	o = ft_strcatxl(o, ",");
 	o = ft_strcatx(o, ft_uctoa(rgb.r));
-	o = ft_strcatxl(o, DIV);
+	o = ft_strcatxl(o, ",");
 	o = ft_strcatx(o, ft_uctoa(rgb.g));
-	o = ft_strcatxl(o, DIV);
+	o = ft_strcatxl(o, ",");
 	o = ft_strcatx(o, ft_uctoa(rgb.b));
 	return (o);
 }
@@ -90,6 +90,17 @@ unsigned int	ft_argbtoi(t_rgb rgb)
 	o += (rgb.g << 8);
 	o += (rgb.b);
 	return (o);
+}
+
+t_rgb			ft_itobgra(unsigned int i)
+{
+	t_rgb	rgb;
+
+	rgb.b = (i & 0xFF000000) >> 24;
+	rgb.g = (i & 0x00FF0000) >> 16;
+	rgb.r = (i & 0X0000FF00) >> 8;
+	rgb.a = (i & 0x000000FF) >> 0;
+	return (rgb);
 }
 
 t_rgb			ft_itoargb(unsigned int i)

@@ -6,11 +6,17 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:27:28 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/03/02 16:28:12 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/25 14:38:33 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** char	*ft_convert_base (char *nbr, int b_fr, int b_to);
+** or
+** char	*ft_convert_base (int nbr, int b_fr, int b_to);
+*/
 
 char	*ft_convert_base(const void *bdata, ...)
 {
