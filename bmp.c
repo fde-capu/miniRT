@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:38:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 11:24:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ void	write_mrtitobmp(t_mrt *mrt, int fp)
 			write(fp, &n, sizeof(int));
 			y++;
 		}
-		y--;
-		n = 0;
-		while (y++ % 4)
-			write(fp, &n, sizeof(int));
 		x--;
 	}
 	return ;
