@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:36:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 10:00:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		ft_col(mrt, 0x000000FF);
 		ft_mov(mrt, 3, 3);
 		ft_pxi(mrt);
-		save_mrttobmp(mrt, "test.bmp");
+		save_mrttobmp(mrt, SAVE_FN);
 		ft_putstr(MSG_SAVED);
 		ft_putstr(SAVE_FN);
 		ft_putstr("\n");

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 07:20:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:51:51 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 10:00:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define DEBUG_FLAG		1
 # define VERBOSE_FLAG	1
-# define SUBDEB_KEYS	1
+# define SUBDEB_KEYS	0
 
 # include "libft.h"
 

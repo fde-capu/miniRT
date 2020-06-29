@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 14:07:49 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:53:27 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:57:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	debug_int2(char *str, int val, int val2)
 	return ;
 }
 
-void	debug_int2(char *str, int val, int val2, int subdeb)
+void	subdebug_int2(char *str, int val, int val2, int subdeb)
 {
 	if (subdeb)
 		return (debug_int2(str, val, val2));
@@ -52,7 +52,7 @@ void	debug_int(char *str, int val)
 	return ;
 }
 
-void	debug_int(char *str, int val, int subdeb)
+void	subdebug_int(char *str, int val, int subdeb)
 {
 	if (subdeb)
 		return (debug_int(str, val));
