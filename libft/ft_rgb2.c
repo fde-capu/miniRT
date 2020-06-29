@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:41:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:42:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 15:23:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ unsigned int	ft_argbtoi(t_rgb rgb)
 	o += (rgb.a << 24);
 	o += (rgb.r << 16);
 	o += (rgb.g << 8);
-	o += (rgb.b);
+	o += (rgb.b << 0);
 	return (o);
 }
 

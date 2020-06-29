@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 14:18:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 15:32:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,16 @@ void	write_mrtitobmp(t_mrt *mrt, int fp)
 	char	*h;
 	int		x;
 	int		y;
-	t_rgb	argb;
-	int		n;
 
 	render(mrt);
 	x = mrt->i.height;
-	while (x >= 1)
+	while (x > 0)
 	{
 		y = 1;
 		while (y <= mrt->i.width)
 		{
 			h = ft_mov(mrt, x, y);
-			argb = ft_itobgra(*(unsigned int *)h);
-			n = ft_argbtoi(argb);
-			write(fp, &n, sizeof(int));
+			write(fp, h, sizeof(int));
 			y++;
 		}
 		x--;

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 13:38:48 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:56:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 15:31:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,17 @@
 
 void			ft_pxi(t_mrt *mrt)
 {
-	*(mrt->icursor + 0) = mrt->color.a;
-	*(mrt->icursor + 1) = mrt->color.r;
-	*(mrt->icursor + 2) = mrt->color.g;
-	*(mrt->icursor + 3) = mrt->color.b;
-	return ;
-}
-
-void			ft_pxw(t_mrt *mrt)
-{
-	mlx_pixel_put(mrt->mlx, mrt->win, mrt->cursor.x, mrt->cursor.y,
-		ft_argbtoi(mrt->color));
+	*(mrt->icursor + 0) = mrt->color.b;
+	*(mrt->icursor + 1) = mrt->color.g;
+	*(mrt->icursor + 2) = mrt->color.r;
+	*(mrt->icursor + 3) = mrt->color.a;
 	return ;
 }
 
 char			*ft_mov(t_mrt *mrt, int x, int y)
 {
+	x--;
+	y--;
 	mrt->cursor.x = x;
 	mrt->cursor.y = y;
 	mrt->icursor = mrt->i.address + \
