@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:02:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:11:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,13 @@ int	main(int argc, char **argv)
 		ft_pxi(mrt);
 		ft_mov(mrt, 3, 3);
 		ft_pxi(mrt);
-		int	size = sizeof(t_bmp) + ((mrt->i.width * mrt->i.height) * sizeof(int));
+		int	size = 14 + 40 + ((mrt->i.width * mrt->i.height) * sizeof(int));
 		DEBINT("size", size);
-		DEBINT("int", sizeof(int));
-		DEBINT("short", sizeof(short));
-		DEBINT("bmfh", sizeof(t_bmfh));
-		DEBINT("bmih", sizeof(t_bmih));
-		DEBINT("t_bmp", sizeof(t_bmp));
 		t_bmp *bmp = ft_calloc(sizeof(t_bmp), 1);
 		bmp->file_header.bftype = 19778;
 		bmp->file_header.bfsize = size;
-		bmp->file_header.bfoffs = sizeof(t_bmp);
-		bmp->info_header.bisize = sizeof(t_bmih);
+		bmp->file_header.bfoffs = 14 + 40;
+		bmp->info_header.bisize = 40;
 		bmp->info_header.biwidth = g_scn->resolution.x;
 		bmp->info_header.biheight = g_scn->resolution.y;
 		bmp->info_header.biplanes = 1;
