@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:11:01 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:14:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		ft_mrtitobmp(t_mrt *mrt, int fp)
 	int		*n;
 
 	buf = 0;
-	x = 1;
-	while (x <= mrt->i.height)
+	x = mrt->i.height;
+	while (x >= 1)
 	{
 		y = 1;
 		while (y <= mrt->i.width)
@@ -46,7 +46,7 @@ int		ft_mrtitobmp(t_mrt *mrt, int fp)
 		y--;
 		while (y++ % 4)
 			write(fp, 0, sizeof(int));
-		x++;
+		x--;
 	}
 	return (buf);
 }
