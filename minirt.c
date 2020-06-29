@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 14:07:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 14:19:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 		minirt_exit(save_mrttobmp(mrt, SAVE_FN));
 	if (!ft_mrt_init_win(mrt, WIN_TITLE))
 		return (die(mrt, WIN_ERROR, ERR_WIN));
-	mrt_win_binds();
+	mrt_win_binds(mrt);
 	render(mrt);
 	flip(mrt);
 	mlx_loop(mrt->mlx);

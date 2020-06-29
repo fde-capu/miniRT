@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 13:41:33 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 14:18:59 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	write_bmpheads(t_bmp *bmp, int fp)
 		sizeof((t_bmih *)0)->biimportantcolors);
 }
 
-int		save_mrttobmp(t_mrt *mrt, char *fn)
+void	*save_mrttobmp(t_mrt *mrt, char *fn)
 {
 	int		size;
 	t_bmp	*bmp;

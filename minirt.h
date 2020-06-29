@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 14:07:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 14:19:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int						change_cam_up(void *mlx);
 int						change_cam_down(void *mlx);
 void					write_mrtitobmp(t_mrt *mrt, int fp);
 void					write_bmpheads(t_bmp *bmp, int fp);
-void					save_mrttobmp(t_mrt *mrt, char *fn);
+void					*save_mrttobmp(t_mrt *mrt, char *fn);
 void					mrt_win_binds(t_mrt *mrt);
+void					render(t_mrt *mrt);
 void					flip(t_mrt *mrt);
 
 # define ARGS_MAX		6

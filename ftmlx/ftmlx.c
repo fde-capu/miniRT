@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 14:08:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 14:26:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		ft_mrt_init_win(t_mrt *mrt, char *win_title)
 		mlx_new_window(mrt->mlx, mrt->w.width, mrt->w.height, mrt->w.title);
 	if (!mrt->win)
 		return (0);
-	return (ft_mrt_init_img(mrt));
+	return (1);
 }
 
 int		ft_mrt_destroy(void *mrtvoid)
