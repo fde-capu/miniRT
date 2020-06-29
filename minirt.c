@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/25 17:23:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:02:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ void	ft_puthex(unsigned char x)
 	return ;
 }
 
-#include <stdio.h> //
-char	*ft_mrtitobmp(t_mrt *mrt)
+int		ft_mrtitobmp(t_mrt *mrt, int fp)
 {
 	char	*h;
 	int		x;
 	int		y;
-	t_rgb	bgra;
+	t_rgb	argb;
+	int		buf;
+	int		*n;
 
+	buf = 0;
 	x = 1;
 	while (x <= mrt->i.height)
 	{
@@ -33,15 +35,20 @@ char	*ft_mrtitobmp(t_mrt *mrt)
 		while (y <= mrt->i.width)
 		{
 			h = ft_mov(mrt, x, y);
-			bgra = ft_itobgra(*(unsigned int *)h);
-			DEBRGB("", bgra);
-			printf("\t\t");
+			argb = ft_itobgra(*(unsigned int *)h);
+			n = ft_calloc(sizeof(int), 1);
+			*n = ft_argbtoi(argb);
+			write(fp, (void *)n, sizeof(int));
+			free(n);
+			DEBRGB("", argb);
 			y += 1;
 		}
-		printf("\n");
+		y--;
+		while (y++ % 4)
+			write(fp, 0, sizeof(int));
 		x++;
 	}
-	return (0);
+	return (buf);
 }
 
 int	main(int argc, char **argv)
@@ -62,35 +69,48 @@ int	main(int argc, char **argv)
 	{
 		if (!ft_mrt_init_img(mrt, g_scn->resolution.x, g_scn->resolution.y))
 			die(IMG_ERROR, ERR_IMG);
-		ft_col(mrt, 0x01020304);
-		ft_mov(mrt, 1, 1);
-		ft_pxi(mrt);
+		ft_col(mrt, 0x00FFFFFF);
 		ft_mov(mrt, 2, 2);
 		ft_pxi(mrt);
 		ft_mov(mrt, 3, 3);
 		ft_pxi(mrt);
-//		ft_mov(mrt, 4, 4);
-//		ft_pxi(mrt);
-		int	size = sizeof(t_bmp) + (mrt->i.line_l * mrt->i.height);
-		t_bmp *bmp = ft_calloc(size, 1);
+		int	size = sizeof(t_bmp) + ((mrt->i.width * mrt->i.height) * sizeof(int));
+		DEBINT("size", size);
+		DEBINT("int", sizeof(int));
+		DEBINT("short", sizeof(short));
+		DEBINT("bmfh", sizeof(t_bmfh));
+		DEBINT("bmih", sizeof(t_bmih));
+		DEBINT("t_bmp", sizeof(t_bmp));
+		t_bmp *bmp = ft_calloc(sizeof(t_bmp), 1);
 		bmp->file_header.bftype = 19778;
 		bmp->file_header.bfsize = size;
-		DEBINT("ln_l", mrt->i.line_l);
-		DEBINT("pixs", (mrt->i.line_l * mrt->i.height));
-		DEBINT("size", size);
 		bmp->file_header.bfoffs = sizeof(t_bmp);
 		bmp->info_header.bisize = sizeof(t_bmih);
 		bmp->info_header.biwidth = g_scn->resolution.x;
 		bmp->info_header.biheight = g_scn->resolution.y;
 		bmp->info_header.biplanes = 1;
 		bmp->info_header.bpp = mrt->i.bpp;
-		ft_mrtitobmp(mrt);
-//		int	fp;
-//		if ((fp = open("test.bmp", O_WRONLY | O_CREAT | O_TRUNC)) == -1)
-//			die ("Could not open file for writing.", 10);
-//		write(fp, bmp, sizeof(t_bmp));
-//		write(fp, ft_mrtitobmp(mrt), (mrt->i.line_l * mrt->i.height));
-//		close (fp);
+		int	fp;
+		if ((fp = open("test.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0666)) == -1)
+			die ("Could not open file for writing.", 10);
+		write(fp, &bmp->file_header.bftype, sizeof((t_bmfh *)0)->bftype);
+		write(fp, &bmp->file_header.bfsize, sizeof((t_bmfh *)0)->bfsize);
+		write(fp, &bmp->file_header.zeros1, sizeof((t_bmfh *)0)->zeros1);
+		write(fp, &bmp->file_header.zeros2, sizeof((t_bmfh *)0)->zeros2);
+		write(fp, &bmp->file_header.bfoffs, sizeof((t_bmfh *)0)->bfoffs);
+		write(fp, &bmp->info_header.bisize, sizeof((t_bmih *)0)->bisize);
+		write(fp, &bmp->info_header.biwidth, sizeof((t_bmih *)0)->biwidth);
+		write(fp, &bmp->info_header.biheight, sizeof((t_bmih *)0)->biheight);
+		write(fp, &bmp->info_header.biplanes, sizeof((t_bmih *)0)->biplanes);
+		write(fp, &bmp->info_header.bpp, sizeof((t_bmih *)0)->bpp);
+		write(fp, &bmp->info_header.bicompress, sizeof((t_bmih *)0)->bicompress);
+		write(fp, &bmp->info_header.bisizeimg, sizeof((t_bmih *)0)->bisizeimg);
+		write(fp, &bmp->info_header.bixppmeter, sizeof((t_bmih *)0)->bixppmeter);
+		write(fp, &bmp->info_header.biyppmeter, sizeof((t_bmih *)0)->biyppmeter);
+		write(fp, &bmp->info_header.binumofcolors, sizeof((t_bmih *)0)->binumofcolors);
+		write(fp, &bmp->info_header.biimportantcolors, sizeof((t_bmih *)0)->biimportantcolors);
+		ft_mrtitobmp(mrt, fp);
+		close (fp);
 		ft_putstr(MSG_SAVED);
 		ft_putstr(SAVE_FN);
 		ft_putstr("\n");
