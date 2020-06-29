@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 15:30:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 15:35:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,12 @@ void	render(t_mrt *mrt)
 	ft_col(mrt, 0x00FF0000);
 	ft_mov(mrt, 1, 1);
 	ft_pxi(mrt);
-//	ft_mov(mrt, 3, 1);
-//	ft_pxi(mrt);
-//	ft_mov(mrt, 1, 3);
-//	ft_pxi(mrt);
-//	ft_mov(mrt, 3, 3);
-//	ft_pxi(mrt);
 	ft_col(mrt, 0x0000FF00);
 	ft_mov(mrt, 2, 2);
 	ft_pxi(mrt);
-//	ft_mov(mrt, 1, 2);
-//	ft_pxi(mrt);
-//	ft_mov(mrt, 3, 2);
-//	ft_pxi(mrt);
 	ft_col(mrt, 0x000000FF);
 	ft_mov(mrt, 3, 3);
 	ft_pxi(mrt);
-
-	ft_col(mrt, 0x00FFFFFF);
-	ft_mov(mrt, 0, 0);
-	ft_pxi(mrt);
-//	ft_mov(mrt, 3, 1);
-//	ft_pxi(mrt);
 	return ;
 }
 

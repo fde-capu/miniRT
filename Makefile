@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/06/29 13:32:20 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/06/29 15:49:09 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ FLAGS	=	$(CFLAGS) $(IFLAGS)
 DEPS	=	$(D_FTMLX) $(D_LIBFT) $(D_FTMAT) $(D_MLXOC)
 VALGRIND=	valgrind --leak-check=full
 ALLLEAKS=	--show-leak-kinds=all
+NORM	=	~/.norminette/norminette *.h *.c
 ELINE	=	echo	""; echo ""
 LINE	=	echo	"================== from $(NAME) =========================="
 PUTS	=	echo	
@@ -111,3 +112,8 @@ ts		:	ffclean	all
 	-$(VALGRIND) ./$(NAME) $(ARGV) $(T_SAVE)
 s		:	all
 	-$(VALGRIND) ./$(NAME) $(ARGV) $(T_SAVE)
+norm	:
+	$(NORM)
+	cd libft && $(NORM) *.h *.c
+	cd ftmath && $(NORM) *.h *.c
+	cd ftmlx && $(NORM) *.h *.c
