@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 23:23:53 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 09:11:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:51:30 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		set_mods(int kc, int onoff)
 	g_key->shift = kc == K_SHIFT_L || kc == K_SHIFT_R ? onoff : g_key->shift;
 	g_key->ctrl = kc == K_CTRL_L || kc == K_CTRL_R ? onoff : g_key->ctrl;
 	g_key->alt = kc == K_ALT_L || kc == K_ALT_R ? onoff : g_key->alt;
-//	DEBINT("mod", kc);
+	SUBDEBINT("mod", kc, SUBDEB_KEYS);
 	return (kc == K_SHIFT_L || kc == K_SHIFT_R || kc == K_CTRL_L
 		|| kc == K_CTRL_R || kc == K_CTRL_R || kc == K_ALT_L
 		|| kc == K_ALT_R ? 1 : 0);
@@ -32,10 +32,10 @@ int		on_press(int kc)
 	k = key(kc);
 	if (!k)
 	{
-//		DEBINT("pressed (no map)", kc);
+		SUBDEBINT("pressed (no map)", kc, SUBDEB_KEYS);
 		return (0);
 	}
-//	DEBINT2("pressed", kc, k->state);
+	SUBDEBINT2("pressed", kc, k->state, SUBDEB_KEYS);
 	k->state = KEY_ON;
 	if (!(k->key_up))
 		k->fun(k->arg);
@@ -51,11 +51,11 @@ int		on_release(int kc)
 	k = key(kc);
 	if (!k)
 	{
-//		DEBINT("released (no map)", kc);
+		SUBDEBINT("released (no map)", kc, SUBDEB_KEYS);
 		return (0);
 	}
 	k->state = KEY_OFF;
-//	DEBINT2("release", kc, k->state);
+	SUBDEBINT2("release", kc, k->state, SUBDEB_KEYS);
 	if (k->key_up)
 		k->fun(k->arg);
 	return (1);

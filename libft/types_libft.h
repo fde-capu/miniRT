@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 08:42:24 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:40:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ typedef unsigned char	t_bol;
 typedef struct		s_bmfh
 {
 	unsigned short	bftype;
-	unsigned int  	bfsize;
+	unsigned int	bfsize;
 	unsigned short	zeros1;
 	unsigned short	zeros2;
-	unsigned int  	bfoffs;
+	unsigned int	bfoffs;
 }					t_bmfh;
 
 typedef struct		s_bmih

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/25 15:55:14 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:55:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ typedef struct		s_mrt {
 
 t_mrt				*ft_mrt_init(void);
 int					ft_mrt_init_img(t_mrt *mrt, int res_x, int res_y);
-int					ft_mrt_init_win(t_mrt *mrt, int res_x, int res_y, char *win_title);
+int					ft_mrt_init_win(t_mrt *mrt, \
+						int res_x, int res_y, char *win_title);
 int					ft_mrt_destroy(void *mrt);
 void				ft_pxw(t_mrt *mrt);
 void				ft_pxi(t_mrt *mrt);
 char				*ft_mov(t_mrt *mrt, int x, int y);
 void				ft_col(t_mrt *mrt, unsigned int color);
 void				hook_keys(t_mrt *mrt, int ks, int ke);
-void				ft_key_mrt
-						(t_mrt *mrt, char *key_code, int (*fun)(void*), void *arg);
+void				ft_key_mrt(t_mrt *mrt, \
+						char *key_code, int (*fun)(void*), void *arg);
 
 #endif

@@ -6,11 +6,18 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:04:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/15 13:49:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:50:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	debug(char *str, char *val, int *ival)
+{
+	if (!debug_pass())
+		return ;
+	return (debug_body(str, val ? val : 0, ival ? *ival : 0));
+}
 
 void	debug_body(char *str, char *val, int ival)
 {
@@ -26,21 +33,6 @@ void	debug_body(char *str, char *val, int ival)
 	ft_putstr(sval);
 	ft_putstr("\n");
 	free(sval);
-	return ;
-}
-
-void	debug_double(char *str, double val)
-{
-	char	*o;
-
-	if (!debug_pass())
-		return ;
-	ft_putstr(str);
-	ft_putstr(DEB_DIV);
-	o = ft_dtoa(val);
-	ft_putstr(o);
-	ft_putstr("\n");
-	free(o);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/25 16:25:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:55:49 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ t_mrt	*ft_mrt_init(void)
 int		ft_mrt_init_img(t_mrt *mrt, int res_x, int res_y)
 {
 	if (!(mrt->img = mlx_new_image(mrt->mlx, res_x, res_y)))
-		return 0;
+		return (0);
 	mrt->i.height = res_y;
 	mrt->i.width = res_x;
-	mrt->i.address = mlx_get_data_addr(mrt->img, &mrt->i.bpp,	\
+	mrt->i.address = mlx_get_data_addr(mrt->img, &mrt->i.bpp, \
 		&mrt->i.line_l, &mrt->i.endian);
 	return (1);
 }

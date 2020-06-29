@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 14:07:49 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/18 15:12:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:53:27 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,46 @@ void	debug_int2(char *str, int val, int val2)
 	return ;
 }
 
-void	debug_str_str(char *str1, char *str2)
+void	debug_int2(char *str, int val, int val2, int subdeb)
 {
-	if (!debug_pass())
-		return ;
-	ft_putstr(str1);
-	ft_putstr(DEB_DIV);
-	ft_putstr(str2);
-	ft_putstr("\n");
+	if (subdeb)
+		return (debug_int2(str, val, val2));
 	return ;
 }
 
-void	debug_str2(char *str, char *val, char *val2)
+void	debug_int(char *str, int val)
 {
+	char	*o;
+
 	if (!debug_pass())
 		return ;
 	ft_putstr(str);
 	ft_putstr(DEB_DIV);
-	ft_putstr(DEB_STR_ENCLOSURE);
-	ft_putstr(val);
-	ft_putstr(DEB_STR_ENCLOSURE);
-	ft_putstr(DEB_DIV);
-	ft_putstr(DEB_STR_ENCLOSURE);
-	ft_putstr(val2);
-	ft_putstr(DEB_STR_ENCLOSURE);
+	o = ft_itoa(val);
+	ft_putstr(o);
 	ft_putstr("\n");
+	free(o);
+	return ;
+}
+
+void	debug_int(char *str, int val, int subdeb)
+{
+	if (subdeb)
+		return (debug_int(str, val));
+	return ;
+}
+
+void	debug_double(char *str, double val)
+{
+	char	*o;
+
+	if (!debug_pass())
+		return ;
+	ft_putstr(str);
+	ft_putstr(DEB_DIV);
+	o = ft_dtoa(val);
+	ft_putstr(o);
+	ft_putstr("\n");
+	free(o);
 	return ;
 }

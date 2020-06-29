@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 07:20:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 17:03:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:51:51 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define DEBUG_FLAG		1
 # define VERBOSE_FLAG	1
+# define SUBDEB_KEYS	1
 
 # include "libft.h"
 
@@ -25,6 +26,8 @@
 # define DEBSTR2	debug_str2
 # define DEBINT		debug_int
 # define DEBINT2	debug_int2
+# define SUBDEBINT	subdebug_int
+# define SUBDEBINT2	subdebug_int2
 # define VERBSTR	debug_str
 # define VERBINT	debug_int
 # define DEBDBL		debug_double
@@ -42,6 +45,8 @@ void	debug(char *str, char *val, int *ival);
 void	debug_body(char *str, char *val, int ival);
 void	debug_int(char *str, int ival);
 void	debug_int2(char *str, int val, int val2);
+void	subdebug_int(char *str, int ival, int subdeb);
+void	subdebug_int2(char *str, int val, int val2, int subdeb);
 void	debug_str(char *str, char *val);
 void	debug_str2(char *str, char *val, char *val2);
 void	debug_str_only(char *str);

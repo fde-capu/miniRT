@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 14:49:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 09:36:17 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int						valid_arg_types(char **c);
 int						valid_command(char **c);
 int						change_cam_up(void *mlx);
 int						change_cam_down(void *mlx);
+void					write_mrtitobmp(t_mrt *mrt, int fp);
+void					write_bmpheads(t_bmp *bmp, int fp);
+void					save_mrttobmp(t_mrt *mrt, char *fn);
 
 # define ARGS_MAX		6
 
