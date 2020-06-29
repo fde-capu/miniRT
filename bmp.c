@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 11:24:25 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 13:41:33 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	write_mrtitobmp(t_mrt *mrt, int fp)
 	t_rgb	argb;
 	int		n;
 
+	render(mrt);
 	x = mrt->i.height;
 	while (x >= 1)
 	{
@@ -59,7 +60,7 @@ void	write_bmpheads(t_bmp *bmp, int fp)
 		sizeof((t_bmih *)0)->biimportantcolors);
 }
 
-void	save_mrttobmp(t_mrt *mrt, char *fn)
+int		save_mrttobmp(t_mrt *mrt, char *fn)
 {
 	int		size;
 	t_bmp	*bmp;
@@ -71,15 +72,18 @@ void	save_mrttobmp(t_mrt *mrt, char *fn)
 	bmp->file_header.bfsize = size;
 	bmp->file_header.bfoffs = 14 + 40;
 	bmp->info_header.bisize = 40;
-	bmp->info_header.biwidth = g_scn->resolution.x;
-	bmp->info_header.biheight = g_scn->resolution.y;
+	bmp->info_header.biwidth = mrt->scn->resolution.x;
+	bmp->info_header.biheight = mrt->scn->resolution.y;
 	bmp->info_header.biplanes = 1;
 	bmp->info_header.bpp = mrt->i.bpp;
 	if ((fp = open(fn, O_WRONLY | O_CREAT | O_TRUNC, 0666)) == -1)
-		die("Could not open file for writing.", 10);
+		die(mrt, OPEN_W_ERROR, ERR_OPEN_W);
 	write_bmpheads(bmp, fp);
 	write_mrtitobmp(mrt, fp);
 	close(fp);
 	free(bmp);
-	return ;
+	ft_putstr(MSG_SAVED);
+	ft_putstr(SAVE_FN);
+	ft_putstr("\n");
+	return (0);
 }

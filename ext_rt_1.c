@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/25 15:48:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 13:24:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ void	rt_line_translate(t_scn *sc, char **c)
 	if (rt_c(c[0], "R"))
 	{
 		if (sc->resolution.x)
-			die("Double entry.", 11);
+			die(0, DOUBLE_E_ERROR, ERR_DOUBLE_E);
 		sc->resolution = ft_i2d(ft_atoi(c[1]), ft_atoi(c[2]));
 		if (sc->resolution.x <= 0 || sc->resolution.y <= 0)
-			die("Invalid parameter.", 12);
+			die(0, INV_PARAM_ERR, ERR_INV_PARAM);
 	}
 	if (rt_c(c[0], "A"))
 	{
 		if (sc->ambient.f)
-			die("Double entry.", 11);
+			die(0, DOUBLE_E_ERROR, ERR_DOUBLE_E);
 		sc->ambient = amb_light_init(ft_atod(c[1]), ft_atorgb(c[2]));
 		if (sc->ambient.f <= 0)
-			die("Invalid parameter.", 12);
+			die(0, INV_PARAM_ERR, ERR_INV_PARAM);
 	}
 	if (rt_c(c[0], "c"))
 		scn_add(TYPE_CAM, cam_init(ft_atod3d(c[1]), ft_atovec(c[2]),
@@ -89,12 +89,12 @@ void	rt_line_interpret(char *ln, t_scn *sc)
 	if (!valid_command(com))
 	{
 		ft_strfree2d(com);
-		die(COM_ERROR, ERR_COM);
+		die(0, COM_ERROR, ERR_COM);
 	}
 	if ((!valid_arg_count(com)) || (!valid_arg_types(com)))
 	{
 		ft_strfree2d(com);
-		die(ARGS_ERROR, ERR_ARGS);
+		die(0, ARGS_ERROR, ERR_ARGS);
 	}
 	rt_line_translate(sc, com);
 	ft_strfree2d(com);

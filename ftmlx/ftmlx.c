@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:55:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 14:08:53 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,26 @@ t_mrt	*ft_mrt_init(void)
 	return (mrt->mlx ? mrt : 0);
 }
 
-int		ft_mrt_init_img(t_mrt *mrt, int res_x, int res_y)
+int		ft_mrt_init_img(t_mrt *mrt)
 {
-	if (!(mrt->img = mlx_new_image(mrt->mlx, res_x, res_y)))
+	if (!(mrt->img = mlx_new_image(mrt->mlx, \
+		mrt->scn->resolution.x, mrt->scn->resolution.y)))
 		return (0);
-	mrt->i.height = res_y;
-	mrt->i.width = res_x;
+	mrt->i.height = mrt->scn->resolution.y;
+	mrt->i.width = mrt->scn->resolution.x;
 	mrt->i.address = mlx_get_data_addr(mrt->img, &mrt->i.bpp, \
 		&mrt->i.line_l, &mrt->i.endian);
 	return (1);
 }
 
-int		ft_mrt_init_win(t_mrt *mrt, int res_x, int res_y, char *win_title)
+int		ft_mrt_init_win(t_mrt *mrt, char *win_title)
 {
 	int		screen_x;
 	int		screen_y;
 
 	keys_init();
-	mrt->w.width = res_x;
-	mrt->w.height = res_y;
+	mrt->w.width = mrt->scn->resolution.x;
+	mrt->w.height = mrt->scn->resolution.y;
 	if (FTMLX_LIMIT_WIN_SIZE)
 	{
 		mlx_get_screen_size(mrt->mlx, &screen_x, &screen_y);
@@ -60,7 +61,7 @@ int		ft_mrt_init_win(t_mrt *mrt, int res_x, int res_y, char *win_title)
 		mlx_new_window(mrt->mlx, mrt->w.width, mrt->w.height, mrt->w.title);
 	if (!mrt->win)
 		return (0);
-	return (ft_mrt_init_img(mrt, res_x, res_y));
+	return (ft_mrt_init_img(mrt));
 }
 
 int		ft_mrt_destroy(void *mrtvoid)

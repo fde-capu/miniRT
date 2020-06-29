@@ -6,89 +6,73 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 10:00:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 14:07:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char **argv)
+void	mrt_win_binds(t_mrt *mrt)
+{
+	ft_key_mrt(mrt, KEY_QUIT1, minirt_exit, mrt);
+	ft_key_mrt(mrt, KEY_QUIT2, minirt_exit, mrt);
+	ft_key_mrt(mrt, KEY_CAM_UP, change_cam_up, mrt->scn);
+	ft_key_mrt(mrt, KEY_CAM_DOWN, change_cam_down, mrt->scn);
+	mlx_do_key_autorepeatoff(mrt->mlx);
+	mlx_hook(mrt->win, 17, 1L << 17, minirt_exit, mrt);
+	return ;
+}
+
+int		main(int argc, char **argv)
 {
 	t_mrt	*mrt;
 
-	(void)argc;
-	g_mrt = 0;
-	g_scn = 0;
-	g_scn = scene_init();
-	ft_putstr("\n\n"WIN_TITLE"\n\n");
-	if (!load_rt_file(argv[1], g_scn))
-		return (die(FILE_ERROR, ERR_FILE));
-	verbose_scene(g_scn);
 	if (!(mrt = ft_mrt_init()))
-		die(MLX_INIT_ERROR, ERR_MLX_INIT);
+		die(0, MLX_INIT_ERROR, ERR_MLX_INIT);
+	mrt->scn = scene_init();
+	ft_putstr("\n\n"WIN_TITLE"\n\n");
+	if (!load_rt_file(argv[1], mrt->scn))
+		die(mrt, FILE_ERROR, ERR_FILE);
+	verbose_scene(mrt->scn);
+	if (!ft_mrt_init_img(mrt))
+		die(mrt, IMG_ERROR, ERR_IMG);
 	if (ft_args(argc, argv, "--save"))
-	{
-		if (!ft_mrt_init_img(mrt, g_scn->resolution.x, g_scn->resolution.y))
-			die(IMG_ERROR, ERR_IMG);
-		ft_col(mrt, 0x99FF0000);
-		ft_mov(mrt, 1, 1);
-		ft_pxi(mrt);
-		ft_col(mrt, 0x0000FF00);
-		ft_mov(mrt, 2, 2);
-		ft_pxi(mrt);
-		ft_col(mrt, 0x000000FF);
-		ft_mov(mrt, 3, 3);
-		ft_pxi(mrt);
-		save_mrttobmp(mrt, SAVE_FN);
-		ft_putstr(MSG_SAVED);
-		ft_putstr(SAVE_FN);
-		ft_putstr("\n");
-		return (minirt_exit(0));
-	}
-	if (!ft_mrt_init_win(mrt, g_scn->resolution.x, g_scn->resolution.y,
-		WIN_TITLE))
-		return (die(WIN_ERROR, ERR_WIN));
-	g_mrt = mrt;
-	ft_key_mrt(mrt, KEY_QUIT1, minirt_exit, mrt);
-	ft_key_mrt(mrt, KEY_QUIT2, minirt_exit, mrt);
-	ft_key_mrt(mrt, KEY_CAM_UP, change_cam_up, g_scn);
-	ft_key_mrt(mrt, KEY_CAM_DOWN, change_cam_down, g_scn);
-	mlx_do_key_autorepeatoff(mrt->mlx);
-	mlx_hook(mrt->win, 17, 1L << 17, minirt_exit, mrt);
-	ft_mov(mrt, 1, 1);
-	ft_col(mrt, 0x000022FF);
-	ft_pxi(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-	ft_mov(mrt, 3, 3);
-	ft_pxw(mrt);
+		minirt_exit(save_mrttobmp(mrt, SAVE_FN));
+	if (!ft_mrt_init_win(mrt, WIN_TITLE))
+		return (die(mrt, WIN_ERROR, ERR_WIN));
+	mrt_win_binds();
+	render(mrt);
+	flip(mrt);
 	mlx_loop(mrt->mlx);
-	return (die(STRANGE_ERROR, ERR_STRANGE));
+	return (die(mrt, STRANGE_ERROR, ERR_STRANGE));
 }
 
-int	die(char *msg, unsigned char err)
+int		die(t_mrt *mrt, char *msg, unsigned char err)
 {
+	ft_putstr(ERROR_STR_A);
 	ft_putnbr(err);
-	ft_putstr(": ");
+	ft_putstr(ERROR_STR_B);
 	if (msg)
 		ft_putstr(msg);
 	ft_putstr("\n");
-	if (g_scn)
-		scene_destroy(g_scn);
-	if (g_mrt)
-		ft_mrt_destroy(g_mrt);
+	if (mrt)
+	{
+		scene_destroy(mrt->scn);
+		ft_mrt_destroy(mrt);
+	}
 	ft_putstr("\n");
 	exit(err);
 	return (0);
 }
 
-int	minirt_exit(void *mrt)
+int		minirt_exit(void *mrt)
 {
 	ft_putstr(MSG_EXIT);
-	if (g_scn)
-		scene_destroy(g_scn);
-	if (g_mrt)
-		ft_mrt_destroy(g_mrt);
-	(void)mrt;
+	if ((t_mrt *)mrt)
+	{
+		scene_destroy(((t_mrt *)mrt)->scn);
+		ft_mrt_destroy((t_mrt *)mrt);
+	}
 	exit(0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:55:14 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/29 12:48:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "../ftmath/ftmath.h"
 
 # define FTMLX_LIMIT_WIN_SIZE	1
 
@@ -37,6 +38,7 @@ typedef struct		s_mrt {
 	void			*mlx;
 	void			*win;
 	void			*img;
+	t_scn			*scn;
 	t_win			w;
 	t_img			i;
 	t_i2d			cursor;
@@ -45,9 +47,8 @@ typedef struct		s_mrt {
 }					t_mrt;
 
 t_mrt				*ft_mrt_init(void);
-int					ft_mrt_init_img(t_mrt *mrt, int res_x, int res_y);
-int					ft_mrt_init_win(t_mrt *mrt, \
-						int res_x, int res_y, char *win_title);
+int					ft_mrt_init_img(t_mrt *mrt);
+int					ft_mrt_init_win(t_mrt *mrt, char *win_title);
 int					ft_mrt_destroy(void *mrt);
 void				ft_pxw(t_mrt *mrt);
 void				ft_pxi(t_mrt *mrt);
