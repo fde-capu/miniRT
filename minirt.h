@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 14:19:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/06/30 07:41:38 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define RT_SPLIT		" \t"
 # define VALID_COMMANDS	"R A c l sp pl sq cy tr"
 
-# define ERROR_STR_A	"Error ["
+# define ERROR_STR_A	"Error\n["
 # define ERROR_STR_B	"]: "
 # define FILE_ERROR		"Error loading file."
 # define ERR_FILE		1
@@ -113,7 +113,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ATP_COORD		4
 # define REG_COORD		"-?\\d+\\.?\\d*,-?\\d+\\.?\\d*,-?\\d+\\.?\\d*$"
 # define ATP_NORMAL		5
-# define REG_NORMAL		"(-?(1\\.0|0\\.?\\d*),){2}-?(1\\.0$|0\\.?\\d*$)"
+# define M11			"-?(0*\\.\\d*|0*1(\\.0*)?|0+)"
+# define REG_NORMAL		"(("M11"),){2}("M11")$"
 # define ATP_0TO180DBL	6
 # define REG_0TO180DBL	"(0*1[012345678]\\d|0+|0*\\d{1,2})\\.?\\d*$"
 # define ATP_UDBL		7
