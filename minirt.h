@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 11:55:28 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 07:24:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ERR_DOUBLE_E	8
 # define INV_PARAM_ERR	"Invalid parameter."
 # define ERR_INV_PARAM	9
+# define CAMLESS_ERR	"No camera found."
+# define ERR_CAMLESS	10
 # define STRANGE_ERROR	"This is weird, you should not be here."
 # define ERR_STRANGE	42
 

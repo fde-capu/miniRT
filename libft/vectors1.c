@@ -6,11 +6,20 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 14:25:33 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 07:48:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	ft_vec_destroy(t_vec *vec)
+{
+	if (!vec)
+		return ;
+	ft_lstdbl_destroy(vec->i);
+	free(vec);
+	return ;
+}
 
 t_vec	*ft_vec(int len, ...)
 {

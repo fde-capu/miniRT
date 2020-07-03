@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 12:36:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 07:56:28 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstdbl_addlast(t_dbl *h, double d);
+void			ft_lstdbl_destroy(t_dbl *dbl);
 t_dbl			*ft_lstdbl_last(t_dbl *h);
 t_dbl			*ft_lstdbl_new(double val);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
@@ -170,6 +171,7 @@ char			*ft_ultoa(unsigned long n);
 char			*ft_ultoa(unsigned long n);
 double			ft_v(t_vec *vec, int i);
 t_vec			*ft_vec(int len, ...);
+void			ft_vec_destroy(t_vec *vec);
 t_vec			*ft_veci(int len, ...);
 char			*ft_vtoa(t_vec *vec);
 char			ft_whichar(const char *s, int x);
