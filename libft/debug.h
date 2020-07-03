@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 07:20:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 09:06:51 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 16:24:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define VERB		debug_str_only
 # define DEBSTRADD	debug_str_add
 # define DEBMAT		debug_matrix
+# define DEBMATVEC	debug_matrix_of_vectors
 
 int		debug_pass(void);
 void	debug(char *str, char *val, int *ival);
@@ -76,5 +77,6 @@ void	debug_str_add(char *str, void *add);
 void	debug_str_str(char *str1, char *str2);
 void	debug_t_dbl(char *str, t_dbl *dbl);
 void	debug_matrix(char *str, t_mat *mat);
+void	debug_matrix_of_vectors(char *str, t_mvec *mat);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 11:09:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:20:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int						load_rt_file(char *fn, t_scn *sc);
 int						minirt_exit(void *mrt);
 void					mrt_win_binds(t_mrt *mrt);
 void					render(t_mrt *mrt);
+void					render_prepare(t_mrt *mrt);
 void					rt_line_interpret(char *ln, t_scn *sc);
 int						rt_c(char *str, char *com);
 void					rt_line_translate(t_scn *sc, char **c);

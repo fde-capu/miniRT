@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 13:38:48 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 11:20:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 13:17:45 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmlx.h"
 
-void			ft_pxi(t_mrt *mrt)
+void	ft_pxi(t_mrt *mrt)
 {
 	*(mrt->icursor + 0) = mrt->color.b;
 	*(mrt->icursor + 1) = mrt->color.g;
@@ -21,7 +21,7 @@ void			ft_pxi(t_mrt *mrt)
 	return ;
 }
 
-char			*ft_mov(t_mrt *mrt, int x, int y)
+char	*ft_mov(t_mrt *mrt, int x, int y)
 {
 	x--;
 	y--;
@@ -31,12 +31,13 @@ char			*ft_mov(t_mrt *mrt, int x, int y)
 	return (mrt->icursor);
 }
 
-void			ft_col(t_mrt *mrt, unsigned int color)
+void	ft_col(t_mrt *mrt, unsigned int color)
 {
 	mrt->color = ft_itoargb(color);
+	return ;
 }
 
-void			ft_pix(t_mrt *mrt, int x, int y, unsigned int color)
+void	ft_pix(t_mrt *mrt, int x, int y, unsigned int color)
 {
 	ft_col(mrt, color);
 	ft_mov(mrt, x, y);

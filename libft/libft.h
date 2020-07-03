@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 11:23:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 16:43:11 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 t_list			*ft_lstnew(void *content);
 int				ft_lstsize(t_list *lst);
 char			*ft_ltoa(long n);
-double			ft_m(t_mat *mat, int m, int n);
+double			ft_m(t_mat *mat, int i, int j);
+t_mvec			*ft_mvec(void);
+void			ft_mvec_destroy(t_mvec *mat);
 t_mat			*ft_mat(int m, ...);
+void			ft_mat_destroy(t_mat *mat);
 void			ft_max2d(int *x, int *y, int x_lim, int y_lim);
 void			*ft_memcat(void *m1, void *m2, int s1, int s2);
 void			*ft_memcatx(void *m1, void *m2, int s1, int s2);
@@ -104,6 +107,8 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memset(void *b, int c, size_t len);
+t_vec			*ft_vm(t_mvec *mv, int i, int j);
+void			ft_vm_add(t_mvec *mv, int i, int j, t_vec *vec);
 double			ft_pow(double a, double e);
 double			ft_pow2(double a, double e);
 char			*ft_ptoa(void *p);

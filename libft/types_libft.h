@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:18:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 16:37:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,21 @@ typedef struct			s_dbl
 
 typedef struct			s_matrix
 {
-	t_dbl				*i;
 	int					m;
 	int					n;
+	struct s_matrix		*nx;
+	struct s_matrix		*pv;
+	t_dbl				*i;
 }						t_mat;
 
 typedef t_mat			t_vec;
+
+typedef struct			s_matrix_of_vectors
+{
+	int					m;
+	int					n;
+	t_vec				*i;
+}						t_mvec;
 
 typedef struct			s_triangle
 {
@@ -160,7 +169,7 @@ typedef struct			s_mrt {
 	void				*win;
 	void				*img;
 	t_scn				*scn;
-	void				*pjt;
+	t_mvec				*pjt;
 	t_win				w;
 	t_img				i;
 	t_vec				*cursor;
