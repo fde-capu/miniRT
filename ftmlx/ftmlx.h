@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 10:40:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:18:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,6 @@
 # include "../ftmath/ftmath.h"
 
 # define FTMLX_LIMIT_WIN_SIZE	1
-
-typedef struct		s_win {
-	char			*title;
-	int				height;
-	int				width;
-}					t_win;
-
-typedef struct		s_img {
-	int				height;
-	int				width;
-	char			*address;
-	int				bpp;
-	int				endian;
-	int				line_l;
-}					t_img;
-
-typedef struct		s_mrt {
-	void			*mlx;
-	void			*win;
-	void			*img;
-	t_scn			*scn;
-	void			*pjt;
-	t_win			w;
-	t_img			i;
-	t_vec			*cursor;
-	char			*icursor;
-	t_rgb			color;
-}					t_mrt;
 
 t_mrt				*ft_mrt_init(void);
 int					ft_mrt_init_img(t_mrt *mrt);

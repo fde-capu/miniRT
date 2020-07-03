@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/30 08:53:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:20:17 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	render(t_mrt *mrt)
 		while (x <= mrt->i.width)
 		{
 			if (collision_pix(mrt, x, y))
-				ft_pix(mrt, x, y, (x*y/2)<<16);
+				ft_pix(mrt, x, y, (x * y / 2) << 16);
 			x++;
 		}
 		y++;

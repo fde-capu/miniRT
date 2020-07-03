@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 07:43:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:12:56 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		main(int argc, char **argv)
 	ft_putstr("\n\n"WIN_TITLE"\n\n");
 	if (!load_rt_file(argv[1], mrt->scn))
 		die(mrt, FILE_ERROR, ERR_FILE);
+	die_if_random_error(mrt);
 	verbose_scene(mrt->scn);
 	if (!ft_mrt_init_img(mrt))
 		die(mrt, IMG_ERROR, ERR_IMG);

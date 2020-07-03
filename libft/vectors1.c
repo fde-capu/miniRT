@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 07:48:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:05:16 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,4 @@ t_mat	*ft_mat(int m, ...)
 	mat->m = m;
 	mat->n = ft_ceil((double)argc / (double)m);
 	return (mat);
-}
-
-double	ft_m(t_mat *mat, int m, int n)
-{
-	t_dbl	*h;
-	int		c;
-
-	if (!mat->i)
-		return (0);
-	h = mat->i;
-	c = (n - 1) * mat->m + m;
-	while (--c)
-		h = h->nx;
-	return (h ? h->d : 0);
-}
-
-double	ft_v(t_vec *vec, int i)
-{
-	return (ft_m(vec, i, 1));
 }

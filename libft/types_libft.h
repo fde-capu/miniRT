@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 10:43:51 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:18:53 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,33 @@ typedef struct			s_scene
 	t_prm				*primitives;
 	t_tri				*faces;
 }						t_scn;
+
+typedef struct			s_win {
+	char				*title;
+	int					height;
+	int					width;
+}						t_win;
+
+typedef struct			s_img {
+	int					height;
+	int					width;
+	char				*address;
+	int					bpp;
+	int					endian;
+	int					line_l;
+}						t_img;
+
+typedef struct			s_mrt {
+	void				*mlx;
+	void				*win;
+	void				*img;
+	t_scn				*scn;
+	void				*pjt;
+	t_win				w;
+	t_img				i;
+	t_vec				*cursor;
+	char				*icursor;
+	t_rgb				color;
+}						t_mrt;
 
 #endif

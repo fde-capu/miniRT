@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:38:21 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 11:57:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:24:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ int		check_arg_types(char **c, int a[ARGS_MAX])
 {
 	int		i;
 	char	*reg_rgb;
+	char	*reg_normal;
 
 	reg_rgb = ft_strcat(REG_RGB1, REG_RGB2);
+	reg_normal = ft_strcat(REG_NORMAL1, REG_NORMAL2);
 	i = 0;
 	while (a[i])
 	{
@@ -49,7 +51,7 @@ int		check_arg_types(char **c, int a[ARGS_MAX])
 		|| ((a[i] == ATP_RGB && (!ft_check(c[i + 1], reg_rgb))))
 		|| ((a[i] == ATP_COORD && (!ft_check(c[i + 1], REG_COORD))))
 		|| ((a[i] == ATP_UDBL && (!ft_check(c[i + 1], REG_UDBL))))
-		|| ((a[i] == ATP_NORMAL && (!ft_check(c[i + 1], REG_NORMAL))))
+		|| ((a[i] == ATP_NORMAL && (!ft_check(c[i + 1], reg_normal))))
 		|| ((a[i] == ATP_0TO180DBL && (!ft_check(c[i + 1], REG_0TO180DBL)))))
 		{
 			free(reg_rgb);
@@ -58,6 +60,7 @@ int		check_arg_types(char **c, int a[ARGS_MAX])
 		i++;
 	}
 	free(reg_rgb);
+	free(reg_normal);
 	return (1);
 }
 
@@ -85,4 +88,11 @@ int		valid_arg_types(char **c)
 	argt[i] = 0;
 	free(tmp);
 	return (check_arg_types(c, argt));
+}
+
+void	die_if_random_error(t_mrt *mrt)
+{
+	if (!(mrt->scn->cam_list))
+		die(0, CAMLESS_ERR, ERR_CAMLESS);
+	return ;
 }

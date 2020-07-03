@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 07:24:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:23:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,25 @@
 # define WIN_TITLE	":: mrt : minirt : miniRT :: by fde-capu :: 42SP ::"
 # define SAVE_FN	"minirt.bmp"
 
+int						change_cam_up(void *mlx);
+int						change_cam_down(void *mlx);
+int						die(t_mrt *mrt, char *msg, unsigned char err);
+void					die_if_random_error(t_mrt *mrt);
+void					flip(t_mrt *mrt);
 int						load_rt_file(char *fn, t_scn *sc);
+int						minirt_exit(void *mrt);
+void					mrt_win_binds(t_mrt *mrt);
+void					render(t_mrt *mrt);
 void					rt_line_interpret(char *ln, t_scn *sc);
 int						rt_c(char *str, char *com);
-int						die(t_mrt *mrt, char *msg, unsigned char err);
-int						minirt_exit(void *mrt);
 void					rt_line_translate(t_scn *sc, char **c);
 void					rt_line_translate_2(t_scn *sc, char **c);
+void					*save_mrttobmp(t_mrt *mrt, char *fn);
 int						valid_arg_count(char **c);
 int						valid_arg_types(char **c);
 int						valid_command(char **c);
-int						change_cam_up(void *mlx);
-int						change_cam_down(void *mlx);
 void					write_mrtitobmp(t_mrt *mrt, int fp);
 void					write_bmpheads(t_bmp *bmp, int fp);
-void					*save_mrttobmp(t_mrt *mrt, char *fn);
-void					mrt_win_binds(t_mrt *mrt);
-void					render(t_mrt *mrt);
-void					flip(t_mrt *mrt);
 
 # define ARGS_MAX		6
 
@@ -115,8 +116,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ATP_COORD		4
 # define REG_COORD		"-?\\d+\\.?\\d*,-?\\d+\\.?\\d*,-?\\d+\\.?\\d*$"
 # define ATP_NORMAL		5
-# define M11			"-?(0*\\.\\d*|0*1(\\.0*)?|0+)"
-# define REG_NORMAL		"(("M11"),){2}("M11")$"
+# define REG_NORMAL1	"((-?(0*\\.\\d*|0*1(\\.0*)?|0+)),){2}"
+# define REG_NORMAL2	"(-?(0*\\.\\d*|0*1(\\.0*)?|0+))$"
 # define ATP_0TO180DBL	6
 # define REG_0TO180DBL	"(0*1[012345678]\\d|0+|0*\\d{1,2})\\.?\\d*$"
 # define ATP_UDBL		7

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 07:28:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:16:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,5 @@ int		load_rt_file(char *fn, t_scn *sc)
 	}
 	free(ln);
 	free(buf);
-	if (!(sc->cam_list))
-		die (0, CAMLESS_ERR, ERR_CAMLESS);
 	return (1);
 }
