@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 07:20:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 12:52:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:34:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define DEBTDBL	debug_t_dbl
 # define DEBRGB		debug_rgb
 # define DEBVEC		debug_vector
-# define DEBD3D		debug_vector
 # define VERBOSE	verbose
 # define DEB		debug_str_only
 # define DEB2		debug_str_str

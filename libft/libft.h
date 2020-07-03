@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 07:56:28 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:43:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,5 +216,34 @@ void			rgx_mm_mod(int *mm, int oblig, int optio);
 # define FUN_PAR			2
 # define FUN_SET			3
 # define FUN_CHR			4
+
+/*
+** Math related:
+*/
+
+char			*prim_tpnm(int type);
+void			verb_cam(t_scn *scn);
+void			verb_cam_active(t_scn *scn);
+void			verb_faces(t_scn *scn);
+void			verb_lights(t_scn *scn);
+void			verb_primitives(t_scn *scn);
+void			verbose_scene(t_scn *scn);
+
+# define TYPE_SP_NM		"Sphere"
+# define TYPE_SP		1
+# define TYPE_PL_NM		"Plane"
+# define TYPE_PL		2
+# define TYPE_SQ_NM		"Square"
+# define TYPE_SQ		3
+# define TYPE_CY_NM		"Cylinder"
+# define TYPE_CY		4
+# define TYPE_CAM_NM	"Camera"
+# define TYPE_CAM		5
+# define TYPE_LHT_NM	"Light"
+# define TYPE_LHT		6
+# define TYPE_PRM_NM	"Primitive"
+# define TYPE_PRM		7
+# define TYPE_TRI_NM	"Triangle"
+# define TYPE_TRI		8
 
 #endif
