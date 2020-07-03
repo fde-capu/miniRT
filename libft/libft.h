@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:43:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 11:23:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ double			ft_v(t_vec *vec, int i);
 t_vec			*ft_vec(int len, ...);
 void			ft_vec_destroy(t_vec *vec);
 t_vec			*ft_veci(int len, ...);
+t_vec			*ft_vecx(t_vec *old, t_vec *new);
 char			*ft_vtoa(t_vec *vec);
 char			ft_whichar(const char *s, int x);
 void			*ft_x(void *a1, void *a2);

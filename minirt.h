@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:23:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 11:09:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int						change_cam_up(void *mlx);
 int						change_cam_down(void *mlx);
 int						die(t_mrt *mrt, char *msg, unsigned char err);
 void					die_if_random_error(t_mrt *mrt);
-void					flip(t_mrt *mrt);
 int						load_rt_file(char *fn, t_scn *sc);
 int						minirt_exit(void *mrt);
 void					mrt_win_binds(t_mrt *mrt);
@@ -84,7 +83,6 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 
 # define MSG_EXIT		"\n\nExit miniRT.\nThank you!\n\n"
 # define MSG_SAVED		"\nImage saved: "
-# define MSG_RENDERING	"\nRendering..."
 
 # define ARGS_R			3
 # define ARGS_A			3

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 13:38:48 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 14:32:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 11:20:58 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char			*ft_mov(t_mrt *mrt, int x, int y)
 {
 	x--;
 	y--;
-	mrt->cursor = ft_vec(2, x, y);
+	mrt->cursor = ft_vecx(mrt->cursor, ft_vec(2, x, y));
 	mrt->icursor = mrt->i.address + \
 		((y * mrt->i.line_l) + (x * (mrt->i.bpp / 8)));
 	return (mrt->icursor);

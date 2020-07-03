@@ -6,11 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:20:17 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 11:17:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "ftmlx.h"
 
 int		collision_pix(t_mrt *mrt, int x, int y)
 {
@@ -38,8 +38,10 @@ void	render(t_mrt *mrt)
 		x = 1;
 		while (x <= mrt->i.width)
 		{
-			if (collision_pix(mrt, x, y))
+//			if (collision_pix(mrt, x, y))
 				ft_pix(mrt, x, y, (x * y / 2) << 16);
+				if (ON_PIXEL_FLIP)
+					flip(mrt);
 			x++;
 		}
 		y++;

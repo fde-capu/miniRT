@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 08:04:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:05:14 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 11:22:32 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ double	ft_m(t_mat *mat, int m, int n)
 double	ft_v(t_vec *vec, int i)
 {
 	return (ft_m(vec, i, 1));
+}
+
+t_vec	*ft_vecx(t_vec *old, t_vec *new)
+{
+	ft_vec_destroy(old);
+	return (new);
 }
