@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 17:49:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 17:56:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,4 @@ t_mvec	*ft_mvec(void)
 
 	mvec = ft_calloc(sizeof(t_mvec), 1);
 	return (mvec);
-}
-
-void	ft_vm_add(t_mvec *mv, int i, int j, t_vec *vec)
-{
-	t_vec	*h;
-
-	h = ft_vm(mv, i, j);
-	if (h->pv)
-	{
-		vec->pv = h->pv;
-		vec->nx = h->nx;
-		vec->pv->nx = vec;
-		ft_vec_destroy(h);
-	}
-	else
-	{
-		vec->pv = 0;
-		vec->nx = mv->i->nx;
-		mv->i = ft_vecx(mv->i, vec);
-	}
-	return ;
 }
