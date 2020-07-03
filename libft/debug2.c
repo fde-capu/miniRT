@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:04:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 09:32:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 08:48:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ void	debug_vector(char *str, t_vec *vec)
 		return ;
 	ft_putstr(str);
 	ft_putstr(DEB_DIV);
+	if (!vec)
+	{
+		ft_putstr(VOID_MSG);
+		ft_putstr("\n");
+		return ;
+	}
 	o = ft_vtoa(vec);
 	ft_putstr(o);
 	ft_putstr("\n");

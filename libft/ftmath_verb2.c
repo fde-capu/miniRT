@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 14:49:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:43:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 09:03:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	verb_cam(t_scn *scn)
 	c = scn->cam_list;
 	while (c)
 	{
-		DEBVEC("cam origin", c->o);
-		DEBVEC("cam point", c->p);
-		DEBDBL("cam fov", c->fov);
+		DEB(TIT_CAM);
+		DEBVEC(S_ORIGIN, c->o);
+		DEBVEC(S_NORMAL, c->p);
+		DEBDBL(S_FOV, c->fov);
 		c = c->nx;
 	}
 	return ;
@@ -29,10 +30,10 @@ void	verb_cam(t_scn *scn)
 
 void	verb_cam_active(t_scn *scn)
 {
-	DEB("Active cam:");
-	DEBVEC("cam origin", scn->cam_active->o);
-	DEBVEC("cam point", scn->cam_active->p);
-	DEBDBL("cam fov", scn->cam_active->fov);
+	DEB(TIT_CAM_ACT);
+	DEBVEC(S_ORIGIN, scn->cam_active->o);
+	DEBVEC(S_NORMAL, scn->cam_active->p);
+	DEBDBL(S_FOV, scn->cam_active->fov);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:39:28 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/03 09:01:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	verb_lights(t_scn *scn)
 	h = scn->lights;
 	while (h)
 	{
-		DEBVEC("light origin", h->o);
-		DEBDBL("light force", h->f);
-		DEBRGB("light argb", h->rgb);
+		DEB(TIT_LHT);
+		DEBVEC(S_ORIGIN, h->o);
+		DEBDBL(S_FORCE, h->f);
+		DEBRGB(S_COLOR, h->rgb);
 		h = h->nx;
 	}
 	return ;
@@ -35,13 +36,14 @@ void	verb_primitives(t_scn *scn)
 	h = scn->primitives;
 	while (h)
 	{
-		DEBSTR("Type", t = prim_tpnm(h->type));
+		DEB(TIT_PRM);
+		DEBSTR(S_TYPE, t = prim_tpnm(h->type));
 		free(t);
-		DEBVEC("origin", h->o);
-		DEBVEC("normal", h->n);
-		DEBDBL("height", h->h);
-		DEBDBL("diameter", h->d);
-		DEBRGB("ARGB", h->rgb);
+		DEBVEC(S_ORIGIN, h->o);
+		DEBVEC(S_NORMAL, h->n);
+		DEBDBL(S_HEIGHT, h->h);
+		DEBDBL(S_WIDTH, h->d);
+		DEBRGB(S_COLOR, h->rgb);
 		h = h->nx;
 	}
 	return ;
@@ -54,10 +56,11 @@ void	verb_faces(t_scn *scn)
 	h = scn->faces;
 	while (h)
 	{
-		DEBVEC("face a", h->a);
-		DEBVEC("face b", h->b);
-		DEBVEC("face c", h->c);
-		DEBRGB("face argb", h->rgb);
+		DEB(TIT_TRI);
+		DEBVEC(S_VERTEX, h->a);
+		DEBVEC(S_VERTEX, h->b);
+		DEBVEC(S_VERTEX, h->c);
+		DEBRGB(S_COLOR, h->rgb);
 		h = h->nx;
 	}
 	return ;
@@ -65,9 +68,10 @@ void	verb_faces(t_scn *scn)
 
 void	verbose_scene(t_scn *scn)
 {
-	DEBVEC("resolution", scn->resolution);
-	DEBDBL("amb force", scn->ambient.f);
-	DEBRGB("amb argb", scn->ambient.rgb);
+	DEB(TIT_SCN);
+	DEBVEC(S_RESOLUTION, scn->resolution);
+	DEBDBL(S_FORCE, scn->ambient.f);
+	DEBRGB(S_COLOR, scn->ambient.rgb);
 	verb_cam(scn);
 	verb_cam_active(scn);
 	verb_lights(scn);
