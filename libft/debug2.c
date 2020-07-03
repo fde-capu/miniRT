@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:04:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:50:18 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 09:32:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	debug_rgb(char *str, t_rgb rgb)
 	return ;
 }
 
-void	debug_vector(char *str, t_vec vec)
+void	debug_vector(char *str, t_vec *vec)
 {
 	char	*o;
 
@@ -59,7 +59,7 @@ void	debug_vector(char *str, t_vec vec)
 		return ;
 	ft_putstr(str);
 	ft_putstr(DEB_DIV);
-	o = ft_d3dtoa(vec);
+	o = ft_vtoa(vec);
 	ft_putstr(o);
 	ft_putstr("\n");
 	free(o);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 14:44:06 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 10:38:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ t_mrt	*ft_mrt_init(void)
 int		ft_mrt_init_img(t_mrt *mrt)
 {
 	if (!(mrt->img = mlx_new_image(mrt->mlx, \
-		mrt->scn->resolution.x, mrt->scn->resolution.y)))
+		ft_v(mrt->scn->resolution, 1), ft_v(mrt->scn->resolution, 2))))
 		return (0);
-	mrt->i.height = mrt->scn->resolution.y;
-	mrt->i.width = mrt->scn->resolution.x;
+	mrt->i.height = ft_v(mrt->scn->resolution, 2);
+	mrt->i.width = ft_v(mrt->scn->resolution, 1);
 	mrt->i.address = mlx_get_data_addr(mrt->img, &mrt->i.bpp, \
 		&mrt->i.line_l, &mrt->i.endian);
 	return (1);
@@ -49,8 +49,8 @@ int		ft_mrt_init_win(t_mrt *mrt, char *win_title)
 	int		screen_y;
 
 	keys_init();
-	mrt->w.width = mrt->scn->resolution.x;
-	mrt->w.height = mrt->scn->resolution.y;
+	mrt->w.width = ft_v(mrt->scn->resolution, 1);
+	mrt->w.height = ft_v(mrt->scn->resolution, 2);
 	if (FTMLX_LIMIT_WIN_SIZE)
 	{
 		mlx_get_screen_size(mrt->mlx, &screen_x, &screen_y);
@@ -72,6 +72,7 @@ int		ft_mrt_destroy(void *mrtvoid)
 	free(mrt->w.title);
 	mlx_destroy_image(mrt->mlx, mrt->img);
 	mlx_destroy_window(mrt->mlx, mrt->win);
+	free(mrt->pjt);
 	free(mrt->mlx);
 	free(mrt);
 	keys_destroy();

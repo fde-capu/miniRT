@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:39:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 12:36:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ long long		ft_abs(long long value);
 unsigned int	ft_argbtoi(t_rgb rgb);
 char			*ft_args(int argc, char **argv, char *test);
 double			ft_atod(const char *str);
-t_d3d			ft_atod3d(const char *str);
 long long		ft_atoi(const char *str);
 t_rgb			ft_atorgb(char *str);
-t_vec			ft_atovec(const char *str);
+t_vec			*ft_atov(char *str);
 long long		ft_btod(char *nbr, int b_from);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
+int				ft_ceil(double d);
 char			*ft_check(char *str, char *reg);
 int				ft_chrinset(char r, char const *set);
 int				ft_chrsame(char a, char b);
@@ -47,15 +47,12 @@ char			*ft_chrtostr(char chr);
 char			*ft_convert_base(const void *bdata, ...);
 unsigned int	ft_countdigits(long long number);
 unsigned int	ft_countdigits_ibase(long long number, unsigned int base);
-t_d3d			ft_d3d(double x, double y, double z);
-char			*ft_d3dtoa(t_d3d vec);
 char			*ft_dtoa(double d);
 char			*ft_dtob(long long n, int b_to);
 int				ft_enclosure(char *io, char h);
 char			*ft_findstr(char *str, char c);
 char			*ft_get_word(char *line);
 int				ft_head_read(char **h, char *r, char *key);
-t_i2d			ft_i2d(int x, int y);
 void			ft_init(void);
 char			*ft_inside(char *h);
 char			*ft_inskip(char *h);
@@ -81,6 +78,9 @@ char			*ft_lltoa(signed long long n);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void *));
+void			ft_lstdbl_addlast(t_dbl *h, double d);
+t_dbl			*ft_lstdbl_last(t_dbl *h);
+t_dbl			*ft_lstdbl_new(double val);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstlast(t_list *lst);
@@ -89,6 +89,8 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 t_list			*ft_lstnew(void *content);
 int				ft_lstsize(t_list *lst);
 char			*ft_ltoa(long n);
+double			ft_m(t_mat *mat, int m, int n);
+t_mat			*ft_mat(int m, ...);
 void			ft_max2d(int *x, int *y, int x_lim, int y_lim);
 void			*ft_memcat(void *m1, void *m2, int s1, int s2);
 void			*ft_memcatx(void *m1, void *m2, int s1, int s2);
@@ -166,8 +168,10 @@ char			*ft_uitoa(unsigned int n);
 char			*ft_ulltoa(unsigned long long n);
 char			*ft_ultoa(unsigned long n);
 char			*ft_ultoa(unsigned long n);
-t_vec			ft_vec(double x, double y, double z);
-t_vec			ft_vector(double x, double y, double z);
+double			ft_v(t_vec *vec, int i);
+t_vec			*ft_vec(int len, ...);
+t_vec			*ft_veci(int len, ...);
+char			*ft_vtoa(t_vec *vec);
 char			ft_whichar(const char *s, int x);
 void			*ft_x(void *a1, void *a2);
 void			*ft_xlloc(void *arg1, void *arg2);
@@ -204,6 +208,8 @@ void			rgx_mm_mod(int *mm, int oblig, int optio);
 ** ft_check related:
 */
 
+# define REG_DOUBLE			"-?\\d+\\.?\\d*"
+# define REG_UDOUBLE		"\\d+\\.?\\d*"
 # define FUN_DIG			1
 # define FUN_PAR			2
 # define FUN_SET			3

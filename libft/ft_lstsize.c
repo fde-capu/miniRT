@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 03:53:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/01/24 03:58:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 08:09:41 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int				ft_lstsize(t_list *lst)
 	if (!lst)
 		return (0);
 	x = 1;
-	while (lst->next)
+	while (lst->nx)
 	{
 		x++;
-		lst = lst->next;
+		lst = lst->nx;
 	}
 	return (x);
 }

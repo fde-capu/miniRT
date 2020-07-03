@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/19 19:19:56 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 09:45:02 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmath.h"
 
-t_prm		*sphere_init(t_d3d o, double d, t_rgb rgb)
+t_prm		*sphere_init(t_vec *o, double d, t_rgb rgb)
 {
 	t_prm	*new;
 
@@ -24,7 +24,7 @@ t_prm		*sphere_init(t_d3d o, double d, t_rgb rgb)
 	return (new);
 }
 
-t_prm		*plane_init(t_d3d o, t_vec n, t_rgb rgb)
+t_prm		*plane_init(t_vec *o, t_vec *n, t_rgb rgb)
 {
 	t_prm	*new;
 
@@ -36,7 +36,7 @@ t_prm		*plane_init(t_d3d o, t_vec n, t_rgb rgb)
 	return (new);
 }
 
-t_prm		*square_init(t_d3d o, t_vec n, double h, t_rgb rgb)
+t_prm		*square_init(t_vec *o, t_vec *n, double h, t_rgb rgb)
 {
 	t_prm	*new;
 
@@ -49,7 +49,7 @@ t_prm		*square_init(t_d3d o, t_vec n, double h, t_rgb rgb)
 	return (new);
 }
 
-t_prm		*cylinder_init(t_d3d o, t_vec n, double h, double d)
+t_prm		*cylinder_init(t_vec *o, t_vec *n, double h, double d)
 {
 	t_prm	*new;
 

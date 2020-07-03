@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 13:24:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 14:36:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ int		rt_c(char *str, char *com)
 void	rt_line_translate_2(t_scn *sc, char **c)
 {
 	if (rt_c(c[0], "l"))
-		scn_add(TYPE_LHT, light_init(ft_atod3d(c[1]), ft_atod(c[2]),
+		scn_add(TYPE_LHT, light_init(ft_atov(c[1]), ft_atod(c[2]),
 			ft_atorgb(c[3])), sc);
 	if (rt_c(c[0], "tr"))
-		scn_add(TYPE_TRI, triangle_init(ft_atod3d(c[1]), ft_atod3d(c[2]),
-			ft_atod3d(c[3]), ft_atorgb(c[4])), sc);
+		scn_add(TYPE_TRI, triangle_init(ft_atov(c[1]), ft_atov(c[2]),
+			ft_atov(c[3]), ft_atorgb(c[4])), sc);
 	if (rt_c(c[0], "sp"))
-		scn_add(TYPE_PRM, sphere_init(ft_atod3d(c[1]), ft_atod(c[2]),
+		scn_add(TYPE_PRM, sphere_init(ft_atov(c[1]), ft_atod(c[2]),
 			ft_atorgb(c[3])), sc);
 	if (rt_c(c[0], "pl"))
-		scn_add(TYPE_PRM, plane_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+		scn_add(TYPE_PRM, plane_init(ft_atov(c[1]), ft_atov(c[2]),
 			ft_atorgb(c[3])), sc);
 	if (rt_c(c[0], "sq"))
-		scn_add(TYPE_PRM, square_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+		scn_add(TYPE_PRM, square_init(ft_atov(c[1]), ft_atov(c[2]),
 			ft_atod(c[3]), ft_atorgb(c[4])), sc);
 	if (rt_c(c[0], "cy"))
-		scn_add(TYPE_PRM, cylinder_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+		scn_add(TYPE_PRM, cylinder_init(ft_atov(c[1]), ft_atov(c[2]),
 			ft_atod(c[3]), ft_atod(c[4])), sc);
 	if (rt_c(c[0], "cy"))
 		sc->primitives->rgb = ft_atorgb(c[5]);
@@ -52,10 +52,10 @@ void	rt_line_translate(t_scn *sc, char **c)
 {
 	if (rt_c(c[0], "R"))
 	{
-		if (sc->resolution.x)
+		if (sc->resolution)
 			die(0, DOUBLE_E_ERROR, ERR_DOUBLE_E);
-		sc->resolution = ft_i2d(ft_atoi(c[1]), ft_atoi(c[2]));
-		if (sc->resolution.x <= 0 || sc->resolution.y <= 0)
+		sc->resolution = ft_veci(2, ft_atoi(c[1]), ft_atoi(c[2]));
+		if (ft_v(sc->resolution, 1) <= 0 || ft_v(sc->resolution, 2) <= 0)
 			die(0, INV_PARAM_ERR, ERR_INV_PARAM);
 	}
 	if (rt_c(c[0], "A"))
@@ -67,7 +67,7 @@ void	rt_line_translate(t_scn *sc, char **c)
 			die(0, INV_PARAM_ERR, ERR_INV_PARAM);
 	}
 	if (rt_c(c[0], "c"))
-		scn_add(TYPE_CAM, cam_init(ft_atod3d(c[1]), ft_atovec(c[2]),
+		scn_add(TYPE_CAM, cam_init(ft_atov(c[1]), ft_atov(c[2]),
 			ft_atod(c[3])), sc);
 	rt_line_translate_2(sc, c);
 	return ;

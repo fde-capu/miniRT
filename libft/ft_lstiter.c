@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 04:49:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/01/24 04:57:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 08:10:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	while (lst)
 	{
 		f(lst->content);
-		lst = lst->next;
+		lst = lst->nx;
 	}
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 15:32:09 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 11:35:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	*save_mrttobmp(t_mrt *mrt, char *fn)
 	bmp->file_header.bfsize = size;
 	bmp->file_header.bfoffs = 14 + 40;
 	bmp->info_header.bisize = 40;
-	bmp->info_header.biwidth = mrt->scn->resolution.x;
-	bmp->info_header.biheight = mrt->scn->resolution.y;
+	bmp->info_header.biwidth = ft_v(mrt->scn->resolution, 1);
+	bmp->info_header.biheight = ft_v(mrt->scn->resolution, 2);
 	bmp->info_header.biplanes = 1;
 	bmp->info_header.bpp = mrt->i.bpp;
 	if ((fp = open(fn, O_WRONLY | O_CREAT | O_TRUNC, 0666)) == -1)

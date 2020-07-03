@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 03:51:21 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/22 09:02:32 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 08:10:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new->next = *lst;
+	new->nx = *lst;
 	*lst = new;
 	return ;
 }

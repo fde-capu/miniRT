@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 15:16:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/10 12:34:21 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 10:35:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 
 typedef	struct	s_cubic_bezier
 {
-	t_d2d		a;
-	t_d2d		b;
-	t_d2d		c;
-	t_d2d		d;
+	t_vec		*a;
+	t_vec		*b;
+	t_vec		*c;
+	t_vec		*d;
 }				t_cub_bez;
 
-t_d2d			linint(t_d2d a, t_d2d b, double t);
-t_d2d			cubic_bez(t_cub_bez bez, double t);
-t_cub_bez		bez_init(t_d2d a, t_d2d b, t_d2d c, t_d2d d);
+t_vec			*linint(t_vec *a, t_vec *b, double t);
+t_vec			*cubic_bez(t_cub_bez bez, double t);
+t_cub_bez		bez_init(t_vec *a, t_vec *b, t_vec *c, t_vec *d);
 
 #endif

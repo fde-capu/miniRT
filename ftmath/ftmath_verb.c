@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/24 16:25:28 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 11:31:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	verb_faces(t_scn *scn)
 
 void	verbose_scene(t_scn *scn)
 {
-	DEBINT2("resolution", scn->resolution.x, scn->resolution.y);
+	DEBVEC("resolution", scn->resolution);
 	DEBDBL("amb force", scn->ambient.f);
 	DEBRGB("amb argb", scn->ambient.rgb);
 	verb_cam(scn);

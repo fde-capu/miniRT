@@ -6,7 +6,7 @@
 /*   By: fde-capu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 03:47:49 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/01/30 10:12:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/02 07:20:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ t_list			*ft_lstnew(void *content)
 	if (!ret)
 		return (NULL);
 	ret->content = content;
-	ret->next = 0;
+	ret->nx = 0;
 	return (ret);
 }
