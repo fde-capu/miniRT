@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 17:41:25 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/08 17:40:41 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,34 @@ int		collision_pix(t_mrt *mrt, int x, int y)
 void	render_prepare(t_mrt *mrt)
 {
 	int		res_base;
-	int		res_m;
-	int		res_n;
+	int		step_base;
+	int		step_y;
+	int		step_x;
 	int		x;
 	int		y;
 	t_vec	*vec;
 
 	res_base = mrt->i.height > mrt->i.width ? mrt->i.height : mrt->i.width;
-//	step = 2 * tan(mrt->scn->cam_active.fov / 2) / (double)res_base;
+	step_base = 2 * tan(mrt->scn->cam_active->fov / 2) / (double)res_base;
 	if (mrt->i.height >= mrt->i.width)
 	{
-		res_m = mrt->i.height;
-		res_n = ft_trig(mrt->i.height, mrt->i.width, res_m);
+		step_y = step_base;
+		step_x = ft_trig(mrt->i.height, mrt->i.width, step_y);
 	}
 	else
 	{
-		res_n = mrt->i.width;
-		res_m = ft_trig(mrt->i.width, mrt->i.height, res_n);
+		step_x = step_base;
+		step_y = ft_trig(mrt->i.width, mrt->i.height, step_x);
 	}
 	mrt->pjt = ft_mvec();
 	y = 1;
-	DEBINT2("res", res_m, res_n);
-	while (y <= res_n)
+	DEBINT2("res", step_y, step_x);
+	while (y <= step_x)
 	{
 		x = 1;
-		while (x <= res_m)
+		while (x <= step_y)
 		{
-			vec = ft_vec(3, 1, 2, 3);
+			vec = ft_vsum(mrt->scn->cam_active->o, mrt->scn->cam_active->p);
 			ft_vm_add(mrt->pjt, x, y, vec);
 			x++;
 		}
@@ -83,9 +84,11 @@ void	render(t_mrt *mrt)
 		while (x <= mrt->i.width)
 		{
 //			if (collision_pix(mrt, x, y))
+//			{
 				ft_pix(mrt, x, y, (x * y / 2) << 16);
 				if ((FLIP_PARTS != 1) && (pix_count++ % (int)rtflip == 0))
 					flip(mrt);
+//			}
 			x++;
 		}
 		y++;

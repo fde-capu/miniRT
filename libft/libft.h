@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 16:43:11 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/06 15:29:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char			*ft_lltoa(signed long long n);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void *));
-void			ft_lstdbl_addlast(t_dbl *h, double d);
+t_dbl			*ft_lstdbl_addlast(t_dbl *h, double d);
 void			ft_lstdbl_destroy(t_dbl *dbl);
 t_dbl			*ft_lstdbl_last(t_dbl *h);
 t_dbl			*ft_lstdbl_new(double val);
@@ -91,6 +91,7 @@ t_list			*ft_lstnew(void *content);
 int				ft_lstsize(t_list *lst);
 char			*ft_ltoa(long n);
 double			ft_m(t_mat *mat, int i, int j);
+t_mat			*ft_msum(t_mat *a, t_mat *b);
 t_mvec			*ft_mvec(void);
 void			ft_mvec_destroy(t_mvec *mat);
 t_mat			*ft_mat(int m, ...);
@@ -109,6 +110,7 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memset(void *b, int c, size_t len);
 t_vec			*ft_vm(t_mvec *mv, int i, int j);
 void			ft_vm_add(t_mvec *mv, int i, int j, t_vec *vec);
+t_vec			*ft_vsum(t_vec *a, t_vec *b);
 double			ft_pow(double a, double e);
 double			ft_pow2(double a, double e);
 char			*ft_ptoa(void *p);
@@ -164,6 +166,7 @@ char			*ft_strtrunc(char *dst, char trunc);
 char			*ft_strtrunc_pos(char *str, int pos);
 char			*ft_strx(char *s1, char *s2);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
+t_mat			*ft_subm(t_mat *a, int i, int j);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 char			*ft_trim(char *str);
@@ -178,6 +181,7 @@ double			ft_v(t_vec *vec, int i);
 t_vec			*ft_vec(int len, ...);
 void			ft_vec_destroy(t_vec *vec);
 t_vec			*ft_veci(int len, ...);
+t_vec			*ft_vecsum(t_vec *a, t_vec *b);
 t_vec			*ft_vecx(t_vec *old, t_vec *new);
 char			*ft_vtoa(t_vec *vec);
 char			ft_whichar(const char *s, int x);

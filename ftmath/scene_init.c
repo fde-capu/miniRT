@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 14:32:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/06 13:54:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_cam	*cam_init(t_vec *o, t_vec *p, double fov)
 	cam = ft_calloc(sizeof(t_cam), 1);
 	cam->o = o;
 	cam->p = p;
+	cam->n = ft_vec(3, 0, 0, 1);
 	cam->fov = fov;
 	return (cam);
 }
