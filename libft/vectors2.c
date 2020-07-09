@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 08:04:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 17:57:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/09 10:18:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_mvec_destroy(t_mvec *mat)
 	if (!mat)
 		return ;
 	h = mat->i;
-	n = h->nx;
+	n = h ? h->nx : 0;
 	while (n)
 	{
 		ft_vec_destroy(h);
