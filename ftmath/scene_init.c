@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/06 13:54:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/10 17:11:16 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_cam	*cam_init(t_vec *o, t_vec *p, double fov)
 	cam = ft_calloc(sizeof(t_cam), 1);
 	cam->o = o;
 	cam->p = p;
-	cam->n = ft_vec(3, 0, 0, 1);
+	cam->n = vector_build(3, 0, 0, 1);
 	cam->fov = fov;
 	return (cam);
 }
@@ -60,7 +60,7 @@ t_tri	*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb)
 	new->a = a;
 	new->b = b;
 	new->c = c;
-	new->n = ft_vec(3, 0, 0, 0);
+	new->n = vector_build(3, 0, 0, 0);
 	new->rgb = rgb;
 	return (new);
 }

@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 08:04:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/09 10:18:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/10 17:22:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_mat_destroy(t_mat *mat)
+void	matrix_destroy(t_mat *mat)
 {
 	if (!mat)
 		return ;
@@ -21,7 +21,7 @@ void	ft_mat_destroy(t_mat *mat)
 	return ;
 }
 
-void	ft_mvec_destroy(t_mvec *mat)
+void	matvec_destroy(t_mvec *mat)
 {
 	t_vec	*h;
 	t_vec	*n;
@@ -32,37 +32,37 @@ void	ft_mvec_destroy(t_mvec *mat)
 	n = h ? h->nx : 0;
 	while (n)
 	{
-		ft_vec_destroy(h);
+		vector_destroy(h);
 		h = n;
 		n = n->nx;
 	}
-	ft_vec_destroy(h);
+	vector_destroy(h);
 	return ;
 }
 
-t_vec	*ft_vecx(t_vec *old, t_vec *new)
+t_vec	*vectorx(t_vec *old, t_vec *new)
 {
-	ft_vec_destroy(old);
+	vector_destroy(old);
 	return (new);
 }
 
-void	ft_vm_add(t_mvec *mv, int i, int j, t_vec *vec)
+void	matvec_add(t_mvec *mv, int i, int j, t_vec *vec)
 {
 	t_vec	*h;
 
-	h = ft_vm(mv, i, j);
+	h = matvec_get_elem(mv, i, j);
 	if (h->pv)
 	{
 		vec->pv = h->pv;
 		vec->nx = h->nx;
 		vec->pv->nx = vec;
-		ft_vec_destroy(h);
+		vector_destroy(h);
 	}
 	else
 	{
 		vec->pv = 0;
 		vec->nx = mv->i->nx;
-		mv->i = ft_vecx(mv->i, vec);
+		mv->i = vectorx(mv->i, vec);
 	}
 	return ;
 }
