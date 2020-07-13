@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/06 13:53:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/10 17:32:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct			s_triangle
 	t_vec				*c;
 	t_vec				*n;
 	t_rgb				rgb;
+	struct s_triangle	*trans;
 	struct s_triangle	*nx;
 }						t_tri;
 
@@ -113,6 +114,7 @@ typedef struct			s_pimitive
 	double				h;
 	double				d;
 	t_rgb				rgb;
+	struct s_pimitive	*trans;
 	struct s_pimitive	*nx;
 }						t_prm;
 
@@ -122,6 +124,7 @@ typedef struct			s_camera
 	t_vec				*p;
 	t_vec				*n;
 	double				fov;
+	struct s_camera		*trans;
 	struct s_camera		*nx;
 }						t_cam;
 
@@ -139,17 +142,6 @@ typedef struct			s_light
 	struct s_light		*nx;
 }						t_lht;
 
-typedef struct			s_scene
-{
-	t_vec				*resolution;
-	t_alt				ambient;
-	t_cam				*cam_active;
-	t_cam				*cam_list;
-	t_lht				*lights;
-	t_prm				*primitives;
-	t_tri				*faces;
-}						t_scn;
-
 typedef struct			s_win {
 	char				*title;
 	int					height;
@@ -164,6 +156,17 @@ typedef struct			s_img {
 	int					endian;
 	int					line_l;
 }						t_img;
+
+typedef struct			s_scene
+{
+	t_vec				*resolution;
+	t_alt				ambient;
+	t_cam				*cam_active;
+	t_cam				*cam_list;
+	t_lht				*lights;
+	t_prm				*primitives;
+	t_tri				*faces;
+}						t_scn;
 
 typedef struct			s_mrt {
 	void				*mlx;

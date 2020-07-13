@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 15:18:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/10 16:17:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 void	flip(t_mrt *mrt);
 void	ft_col(t_mrt *mrt, unsigned int color);
-char	*ft_mov(t_mrt *mrt, int x, int y);
+char	*mrt_cursor(t_mrt *mrt, int x, int y);
 t_mrt	*ft_mrt_init(void);
 int		ft_mrt_init_img(t_mrt *mrt);
 int		ft_mrt_init_win(t_mrt *mrt, char *win_title);

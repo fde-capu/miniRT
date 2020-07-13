@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 11:35:14 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/10 16:21:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	write_mrtitobmp(t_mrt *mrt, int fp)
 		y = 1;
 		while (y <= mrt->i.width)
 		{
-			h = ft_mov(mrt, x, y);
+			h = mrt_cursor(mrt, x, y);
 			write(fp, h, sizeof(int));
 			y++;
 		}
@@ -68,8 +68,8 @@ void	*save_mrttobmp(t_mrt *mrt, char *fn)
 	bmp->file_header.bfsize = size;
 	bmp->file_header.bfoffs = 14 + 40;
 	bmp->info_header.bisize = 40;
-	bmp->info_header.biwidth = ft_v(mrt->scn->resolution, 1);
-	bmp->info_header.biheight = ft_v(mrt->scn->resolution, 2);
+	bmp->info_header.biwidth = vector_get_elem(mrt->scn->resolution, 1);
+	bmp->info_header.biheight = vector_get_elem(mrt->scn->resolution, 2);
 	bmp->info_header.biplanes = 1;
 	bmp->info_header.bpp = mrt->i.bpp;
 	if ((fp = open(fn, O_WRONLY | O_CREAT | O_TRUNC, 0666)) == -1)

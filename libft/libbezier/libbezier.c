@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 15:21:14 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/02 14:28:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/10 17:11:16 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_vec			*linint(t_vec *a, t_vec *b, double t)
 {
 	t_vec	*p;
 
-	p = ft_vec(2, (ft_v(a, 1) + ((ft_v(b, 1) - ft_v(a, 1)) * t)),
-		(ft_v(a, 2) + ((ft_v(b, 2) - ft_v(a, 2)) * t)));
+	p = vector_build(2, (vector_get_elem(a, 1) + ((vector_get_elem(b, 1) - vector_get_elem(a, 1)) * t)),
+		(vector_get_elem(a, 2) + ((vector_get_elem(b, 2) - vector_get_elem(a, 2)) * t)));
 	return (p);
 }
 

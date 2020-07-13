@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 17:55:25 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 18:03:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/10 17:48:41 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	ft_m(t_mat *mat, int m, int n)
+double	matrix_get_elem(t_mat *mat, int m, int n)
 {
 	t_dbl	*h;
 	int		c;
@@ -26,12 +26,12 @@ double	ft_m(t_mat *mat, int m, int n)
 	return (h ? h->d : 0);
 }
 
-double	ft_v(t_vec *vec, int i)
+double	vector_get_elem(t_vec *vec, int i)
 {
-	return (ft_m(vec, i, 1));
+	return (matrix_get_elem(vec, i, 1));
 }
 
-t_vec	*ft_vm(t_mvec *mv, int i, int j)
+t_vec	*matvec_get_elem(t_mvec *mv, int i, int j)
 {
 	t_vec	*h;
 	t_vec	*p;
@@ -57,4 +57,36 @@ t_vec	*ft_vm(t_mvec *mv, int i, int j)
 		c = c + 1 > mv->m ? 1 : c + 1;
 	}
 	return (h);
+}
+
+double	vector_magnitude(t_vec *v)
+{
+	double	dp;
+	t_dbl	*h;
+
+	h = v->i;
+	dp = 0;
+	while (h)
+	{
+		dp += (h->d * h->d);
+		h = h->nx;
+	}
+	dp = (double)sqrt(dp);
+	return (dp);
+}
+
+void	vector_normalize(t_vec *mv)
+{
+	// to do
+	(void)mv;
+	return ;
+}
+
+void	matrix_write_matrix(t_mat *dest, int i, int j, t_mat *ref)
+{
+	// to do
+	(void)dest;
+	(void)ref;
+	(void)i;
+	(void)j;
 }

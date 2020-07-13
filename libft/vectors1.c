@@ -6,19 +6,19 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 17:56:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 09:52:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_vec_destroy(t_vec *vec)
+void	vector_destroy(t_vec *vec)
 {
-	ft_mat_destroy((t_mat *)vec);
+	matrix_destroy((t_mat *)vec);
 	return ;
 }
 
-t_vec	*ft_vec(int len, ...)
+t_vec	*vector_build(int len, ...)
 {
 	va_list	ap;
 	t_vec	*vec;
@@ -29,7 +29,7 @@ t_vec	*ft_vec(int len, ...)
 	vec->i = ft_lstdbl_new(va_arg(ap, double));
 	vec->m = 1;
 	vec->n = 1;
-	while (--len)
+	while (len--)
 	{
 		d = va_arg(ap, double);
 		ft_lstdbl_addlast(vec->i, d);
@@ -39,28 +39,15 @@ t_vec	*ft_vec(int len, ...)
 	return (vec);
 }
 
-t_vec	*ft_veci(int len, ...)
+t_mat	*matrix_new(void)
 {
-	va_list	ap;
-	t_vec	*vec;
-	double	d;
+	t_mat	*mat;
 
-	va_start(ap, len);
-	vec = ft_calloc(sizeof(t_vec), 1);
-	vec->i = ft_lstdbl_new((double)va_arg(ap, int));
-	vec->m = 1;
-	vec->n = 1;
-	while (--len)
-	{
-		d = (double)va_arg(ap, int);
-		ft_lstdbl_addlast(vec->i, d);
-		vec->n++;
-	}
-	va_end(ap);
-	return (vec);
+	mat = ft_calloc(sizeof(t_mat), 1);
+	return (mat);
 }
 
-t_mat	*ft_mat(int m, ...)
+t_mat	*matrix_build(int m, ...)
 {
 	va_list	ap;
 	t_mat	*mat;
@@ -82,7 +69,7 @@ t_mat	*ft_mat(int m, ...)
 	return (mat);
 }
 
-t_mvec	*ft_mvec(void)
+t_mvec	*matvec_new(void)
 {
 	t_mvec	*mvec;
 
