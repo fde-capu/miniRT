@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 12:38:24 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 12:55:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	rt_line_translate_2(t_scn *sc, char **c)
 			ft_atod(c[3]), ft_atod(c[4])), sc);
 	if (rt_c(c[0], "cy"))
 		sc->primitives->rgb = ft_atorgb(c[5]);
+	if ((rt_c(c[0], "pl") || rt_c(c[0], "sq") || rt_c(c[0], "cy"))
+		&& !is_normalized(sc->primitives->n))
+		die(0, NOTNORMAL_ERR, ERR_NOTNORMAL);
+	if (rt_c(c[0], "tr") && !is_normalized(sc->faces->n))
+		die(0, NOTNORMAL_ERR, ERR_NOTNORMAL);
 	return ;
 }
 

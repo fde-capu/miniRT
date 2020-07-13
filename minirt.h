@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 12:14:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 13:03:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ATP_COORD		4
 # define REG_COORD		"-?\\d+\\.?\\d*,-?\\d+\\.?\\d*,-?\\d+\\.?\\d*$"
 # define ATP_NORMAL		5
-# define REG_NORMAL1	"((-?(0*\\.?\\d*|0*1(\\.0*)?|0*1\\.?)),){2}"
-# define REG_NORMAL2	"((-?(0*\\.?\\d*|0*1(\\.0*)?|0*1\\.?))$)"
+# define REG_NORMAL1	"((-?(0*\\.\\d*|0*\\.|0*1\\.0*|0*1\\.|0*1|0+)),){2}"
+# define REG_NORMAL2	"((-?(0*\\.\\d*|0*\\.|0*1\\.0*|0*1\\.|0*1|0+))$)"
 # define ATP_0TO180DBL	6
 # define REG_0TO180DBL	"(0*1[012345678]\\d|0+|0*\\d{1,2})\\.?\\d*$"
 # define ATP_UDBL		7

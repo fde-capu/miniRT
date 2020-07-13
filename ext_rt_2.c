@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:38:21 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:24:52 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 13:06:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		check_arg_types(char **c, int a[ARGS_MAX])
 		|| ((a[i] == ATP_0TO180DBL && (!ft_check(c[i + 1], REG_0TO180DBL)))))
 		{
 			free(reg_rgb);
+			free(reg_normal);
 			return (0);
 		}
 		i++;
