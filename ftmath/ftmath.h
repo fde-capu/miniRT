@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 08:43:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 12:36:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,23 @@
 ** triangle normal does not come from mini.rt :/
 */
 
-double	ft_hipo(double c1, double c2);
-t_alt	amb_light_init(double f, t_rgb rgb);
-t_cam	*cam_init(t_vec *o, t_vec *p, double fov);
-t_scn	*scene_init(void);
-int		scene_destroy(t_scn *sc);
-t_lht	*light_init(t_vec *o, double f, t_rgb rgb);
-t_prm	*sphere_init(t_vec *o, double d, t_rgb rgb);
-t_prm	*plane_init(t_vec *o, t_vec *n, t_rgb rgb);
-t_prm	*square_init(t_vec *o, t_vec *n, double h, t_rgb rgb);
-t_prm	*cylinder_init(t_vec *o, t_vec *n, double h, double d);
-t_tri	*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb);
-void	scn_free_list_lht(t_lht *lst);
-void	scn_free_list_cam(t_cam *lst);
-void	scn_free_list_prm(t_prm *lst);
-void	scn_free_list_tri(t_tri *lst);
-void	scn_add(int objtype, void *obj, t_scn *sc);
+void		math_init(void);
+t_matlst	*matrix_list_init(void);
+double		t_hipo(double c1, double c2);
+t_alt		amb_light_init(double f, t_rgb rgb);
+t_cam		*cam_init(t_vec *o, t_vec *p, double fov);
+t_scn		*scene_init(void);
+int			scene_destroy(t_scn *sc);
+t_lht		*light_init(t_vec *o, double f, t_rgb rgb);
+t_prm		*sphere_init(t_vec *o, double d, t_rgb rgb);
+t_prm		*plane_init(t_vec *o, t_vec *n, t_rgb rgb);
+t_prm		*square_init(t_vec *o, t_vec *n, double h, t_rgb rgb);
+t_prm		*cylinder_init(t_vec *o, t_vec *n, double h, double d);
+t_tri		*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb);
+void		scn_free_list_lht(t_lht *lst);
+void		scn_free_list_cam(t_cam *lst);
+void		scn_free_list_prm(t_prm *lst);
+void		scn_free_list_tri(t_tri *lst);
+void		scn_add(int objtype, void *obj, t_scn *sc);
 
 #endif

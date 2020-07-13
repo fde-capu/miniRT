@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 17:47:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 12:32:47 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+# include "defines_libft.h"
 # include "types_libft.h"
 # include "debug.h"
 # include "keys.h"
@@ -178,16 +179,6 @@ void			ft_bit8_tog(u_int8_t *data, u_int8_t bit);
 char			*ft_bit8_str(u_int8_t data);
 char			*ft_removequotes(char *quoted);
 
-# define TRIM_SET			" \t\n\r\v\f"
-# define SPLIT_SET			" \t"
-# define COMMENT_SET		"#"
-# define DIV				" :: "
-# define DOUBLE_PRECISION	10
-# define DECIMAL_POINT		"."
-# define DEB_STR_ENCLOSURE	"\""
-# define ENCLOSE_OPEN		"([{"
-# define ENCLOSURES			"()[]{}"
-
 /*
 ** Regex related.
 */
@@ -200,17 +191,6 @@ void			rgx_set_rep(int *mm, char *mod);
 char			*rgx_sk_mod(char *mod);
 int				rgx_mm_manual(int pos, char *keys);
 void			rgx_mm_mod(int *mm, int oblig, int optio);
-
-/*
-** ft_check related:
-*/
-
-# define REG_DOUBLE			"-?\\d+\\.?\\d*"
-# define REG_UDOUBLE		"\\d+\\.?\\d*"
-# define FUN_DIG			1
-# define FUN_PAR			2
-# define FUN_SET			3
-# define FUN_CHR			4
 
 /*
 ** Math related:
@@ -241,22 +221,8 @@ t_vec			*vectorx(t_vec *old, t_vec *new);
 t_vec			*ft_atov(char *str);
 void			matrix_write_matrix(t_mat *dest, int i, int j, t_mat *ref);
 double			vector_magnitude(t_vec *v);
+int				is_normalized(t_vec *vec);
 
-# define TYPE_SP_NM		"Sphere"
-# define TYPE_SP		1
-# define TYPE_PL_NM		"Plane"
-# define TYPE_PL		2
-# define TYPE_SQ_NM		"Square"
-# define TYPE_SQ		3
-# define TYPE_CY_NM		"Cylinder"
-# define TYPE_CY		4
-# define TYPE_CAM_NM	"Camera"
-# define TYPE_CAM		5
-# define TYPE_LHT_NM	"Light"
-# define TYPE_LHT		6
-# define TYPE_PRM_NM	"Primitive"
-# define TYPE_PRM		7
-# define TYPE_TRI_NM	"Triangle"
-# define TYPE_TRI		8
+t_matlst		*g_matops;
 
 #endif

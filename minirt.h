@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 14:04:33 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 12:14:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ERR_INV_PARAM	9
 # define CAMLESS_ERR	"No camera found."
 # define ERR_CAMLESS	10
+# define NOTNORMAL_ERR	"Vector is not normalized."
+# define ERR_NOTNORMAL	11
 # define STRANGE_ERROR	"This is weird, you should not be here."
 # define ERR_STRANGE	42
 

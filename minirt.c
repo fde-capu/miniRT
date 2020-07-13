@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/03 17:43:12 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 12:07:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		main(int argc, char **argv)
 		die(0, MLX_INIT_ERROR, ERR_MLX_INIT);
 	mrt->scn = scene_init();
 	ft_putstr("\n\n"WIN_TITLE"\n\n");
-	if (!load_rt_file(argv[1], mrt->scn))
+	if (!load_rt_file(argv[1], mrt->scn))	// check if vectors are normalized in file?
 		die(mrt, FILE_ERROR, ERR_FILE);
 	die_if_random_error(mrt);
 	verbose_scene(mrt->scn);
@@ -41,6 +41,7 @@ int		main(int argc, char **argv)
 		minirt_exit(save_mrttobmp(mrt, SAVE_FN));
 	if (!ft_mrt_init_win(mrt, WIN_TITLE))
 		die(mrt, WIN_ERROR, ERR_WIN);
+	math_init();
 	mrt_win_binds(mrt);
 	render(mrt);
 	flip(mrt);

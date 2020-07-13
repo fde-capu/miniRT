@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 09:55:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/13 12:38:24 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	rt_line_translate(t_scn *sc, char **c)
 	if (rt_c(c[0], "c"))
 		scn_add(TYPE_CAM, cam_init(ft_atov(c[1]), ft_atov(c[2]),
 			ft_atod(c[3])), sc);
+	if ((rt_c(c[0], "c")) && (!is_normalized(sc->cam_list->p)))
+		die(0, NOTNORMAL_ERR, ERR_NOTNORMAL);
 	rt_line_translate_2(sc, c);
 	return ;
 }
