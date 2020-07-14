@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 17:14:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 16:42:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ t_mrt	*ft_mrt_init(void)
 int		ft_mrt_init_img(t_mrt *mrt)
 {
 	if (!(mrt->img = mlx_new_image(mrt->mlx, \
-		vector_get_elem(mrt->scn->resolution, 1), vector_get_elem(mrt->scn->resolution, 2))))
+		vector_get_element(mrt->scn->resolution, 1),
+			vector_get_element(mrt->scn->resolution, 2))))
 		return (0);
-	mrt->i.height = vector_get_elem(mrt->scn->resolution, 2);
-	mrt->i.width = vector_get_elem(mrt->scn->resolution, 1);
+	mrt->i.height = vector_get_element(mrt->scn->resolution, 2);
+	mrt->i.width = vector_get_element(mrt->scn->resolution, 1);
 	mrt->i.address = mlx_get_data_addr(mrt->img, &mrt->i.bpp, \
 		&mrt->i.line_l, &mrt->i.endian);
 	return (1);
@@ -49,8 +50,8 @@ int		ft_mrt_init_win(t_mrt *mrt, char *win_title)
 	int		screen_y;
 
 	keys_init();
-	mrt->w.width = vector_get_elem(mrt->scn->resolution, 1);
-	mrt->w.height = vector_get_elem(mrt->scn->resolution, 2);
+	mrt->w.width = vector_get_element(mrt->scn->resolution, 1);
+	mrt->w.height = vector_get_element(mrt->scn->resolution, 2);
 	if (FTMLX_LIMIT_WIN_SIZE)
 	{
 		mlx_get_screen_size(mrt->mlx, &screen_x, &screen_y);

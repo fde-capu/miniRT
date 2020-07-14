@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 08:29:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 12:58:27 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 16:30:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	matrix_switch_elem(t_mat *mat, t_vec *tvec)
 	double	b;
 
 	ha = mat->i;
-	while (loop_2d(vector_get_elem(tvec, 1), vector_get_elem(tvec, 2)))
+	while (loop_2d(vector_get_element(tvec, 1), vector_get_element(tvec, 2)))
 		ha = ha->nx;
 	a = ha->d;
 	hb = mat->i;
-	while (loop_2d(vector_get_elem(tvec, 3), vector_get_elem(tvec, 4)))
+	while (loop_2d(vector_get_element(tvec, 3), vector_get_element(tvec, 4)))
 		hb = hb->nx;
 	b = hb->d;
 	ha->d = b;

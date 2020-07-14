@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 10:24:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 16:13:56 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ t_vec	*vector_build(int len, ...)
 
 	va_start(ap, len);
 	vec = ft_calloc(sizeof(t_vec), 1);
-	vec->i = lstdbl_new(va_arg(ap, double));
 	vec->m = 1;
-	vec->n = 1;
+	vec->n = 0;
 	while (len--)
 	{
 		d = va_arg(ap, double);
-		lstdbl_addlast(vec->i, d);
+		vec->i = lstdbl_addlast(vec->i, d);
 		vec->n++;
 	}
 	va_end(ap);
@@ -52,20 +51,14 @@ t_mat	*matrix_build(int m, ...)
 	va_list	ap;
 	t_mat	*mat;
 	double	d;
-	int		argc;
 
 	mat = ft_calloc(sizeof(t_mat), 1);
 	va_start(ap, m);
-	mat->i = lstdbl_new(va_arg(ap, double));
-	argc = 0;
-	while ((d = va_arg(ap, double)))
-	{
-		argc++;
-		lstdbl_addlast(mat->i, d);
-	}
-	va_end(ap);
 	mat->m = m;
-	mat->n = ft_ceil((double)argc / (double)m);
+	while ((m--) && (d = va_arg(ap, double)))
+		mat->i = lstdbl_addlast(mat->i, d);
+	va_end(ap);
+	mat->n = ft_ceil((double)mat->m / (double)m);
 	return (mat);
 }
 

@@ -6,32 +6,28 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 17:55:25 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 12:16:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 16:51:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	matrix_get_elem(t_mat *mat, int m, int n)
+double	matrix_get_element(t_mat *mat, int m, int n)
 {
 	t_dbl	*h;
-	int		c;
 
 	if (!mat->i)
 		return (0);
-	h = mat->i;
-	c = (n - 1) * mat->m + m;
-	while (--c)
-		h = h->nx;
+	h = matrix_goto_element(mat, m, n);
 	return (h ? h->d : 0);
 }
 
-double	vector_get_elem(t_vec *vec, int i)
+double	vector_get_element(t_vec *vec, int i)
 {
-	return (matrix_get_elem(vec, i, 1));
+	return (matrix_get_element(vec, i, 1));
 }
 
-t_vec	*matvec_get_elem(t_mvec *mv, int i, int j)
+t_vec	*matvec_get_element(t_mvec *mv, int i, int j)
 {
 	t_vec	*h;
 	t_vec	*p;
@@ -59,27 +55,32 @@ t_vec	*matvec_get_elem(t_mvec *mv, int i, int j)
 	return (h);
 }
 
-double	vector_magnitude(t_vec *v)
+void	matrix_put_element(t_mat *dst, int i, int j, double d)
 {
-	double	dp;
-	t_dbl	*h;
-
-	h = v->i;
-	dp = 0;
-	while (h)
-	{
-		dp += (h->d * h->d);
-		h = h->nx;
-	}
-	dp = (double)sqrt(dp);
-	return (dp);
+	matrix_goto_element(dst, i, j)->d = d;
+	return ;
 }
 
-void	matrix_write_matrix(t_mat *dest, int i, int j, t_mat *ref)
+void	matrix_put_matrix(t_mat *dest, t_mat *ref, int i, int j)
 {
-	// to do
-	(void)dest;
-	(void)ref;
-	(void)i;
-	(void)j;
+	t_mat	*scrn;
+	int		x;
+	int		y;
+
+	scrn = matrix_empty(4, 4);
+	x = 1;
+	while (x <= 1)
+	{
+		y = 1;
+		while (y <= j)
+		{
+			matrix_put_element(scrn, i + x - 1, j + y - 1,
+				matrix_get_element(ref, x, y));
+			y++;
+		}
+		x++;
+	}
+	matrix_screen(dest, scrn);
+	matrix_destroy(scrn);
+	return ;
 }

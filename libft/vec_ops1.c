@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 13:11:49 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 11:55:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 16:31:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	matrix_determinant(t_mat *a)
 	det = 0;
 	while (c <= a->n)
 	{
-		det += mult * (matrix_get_elem(a, 1, c)
+		det += mult * (matrix_get_element(a, 1, c)
 			* matrix_determinant(matrix_minor(a, 1, c)));
 		c++;
 		mult *= -1;
@@ -51,8 +51,8 @@ t_mat	*matrix_minor(t_mat *a, int i, int j)
 			if ((m != i) && (n != j))
 			{
 				new->i = !new->i ? \
-					lstdbl_new(matrix_get_elem(a, i, j)) : \
-					lstdbl_addlast(new->i, matrix_get_elem(a, i, j));
+					lstdbl_new(matrix_get_element(a, i, j)) : \
+					lstdbl_addlast(new->i, matrix_get_element(a, i, j));
 			}
 			n++;
 		}

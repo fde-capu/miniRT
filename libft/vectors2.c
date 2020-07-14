@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 08:04:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 10:24:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 16:32:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ t_vec	*vectorx(t_vec *old, t_vec *new)
 	return (new);
 }
 
-void	matvec_add(t_mvec *mv, int i, int j, t_vec *vec)
+void	matvec_insert_at_pos(t_mvec *mv, int i, int j, t_vec *vec)
 {
 	t_vec	*h;
 
-	h = matvec_get_elem(mv, i, j);
+	h = matvec_get_element(mv, i, j);
 	if (h->pv)
 	{
 		vec->pv = h->pv;
@@ -65,4 +65,14 @@ void	matvec_add(t_mvec *mv, int i, int j, t_vec *vec)
 		mv->i = vectorx(mv->i, vec);
 	}
 	return ;
+}
+
+t_vec	*vector_new(void)
+{
+	t_vec	*vec;
+
+	vec = ft_calloc(sizeof(t_vec), 1);
+	vec->m = 1;
+	vec->n = 0;
+	return (vec);
 }
