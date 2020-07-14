@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 16:38:21 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 11:45:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 13:01:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int		check_arg_types(char **c, int a[ARGS_MAX])
 
 	reg_rgb = ft_strcat(REG_RGB1, REG_RGB2);
 	reg_normal = ft_strcat(REG_NORMAL1, REG_NORMAL2);
-	i = 0;
-	while (a[i])
+	i = -1;
+	while (a[++i])
 	{
 		if ((a[i] == ATP_UINT && (!ft_check(c[i + 1], REG_UINT)))
 		|| ((a[i] == ATP_0TO1 && (!ft_check(c[i + 1], REG_0TO1))))
@@ -60,9 +60,9 @@ int		check_arg_types(char **c, int a[ARGS_MAX])
 		|| ((a[i] == ATP_0TO180DBL && (!ft_check(c[i + 1], REG_0TO180DBL)))))
 		{
 			free(reg_rgb);
-			return (free(reg_normal));
+			free(reg_normal);
+			return (0);
 		}
-		i++;
 	}
 	free(reg_rgb);
 	free(reg_normal);
