@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 12:32:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 10:24:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ char			*ft_lltoa(signed long long n);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void *));
-t_dbl			*ft_lstdbl_addlast(t_dbl *h, double d);
-void			ft_lstdbl_destroy(t_dbl *dbl);
-t_dbl			*ft_lstdbl_last(t_dbl *h);
-t_dbl			*ft_lstdbl_new(double val);
+t_dbl			*lstdbl_addlast(t_dbl *h, double d);
+void			lstdbl_destroy(t_dbl *dbl);
+t_dbl			*lstdbl_last(t_dbl *h);
+t_dbl			*lstdbl_new(double val);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstlast(t_list *lst);
@@ -196,7 +196,7 @@ void			rgx_mm_mod(int *mm, int oblig, int optio);
 ** Math related:
 */
 
-char			*prim_tpnm(int type);
+char			*prim_type_number(int type);
 void			verb_cam(t_scn *scn);
 void			verb_cam_active(t_scn *scn);
 void			verb_faces(t_scn *scn);
@@ -222,6 +222,12 @@ t_vec			*ft_atov(char *str);
 void			matrix_write_matrix(t_mat *dest, int i, int j, t_mat *ref);
 double			vector_magnitude(t_vec *v);
 int				is_normalized(t_vec *vec);
+double			matrix_determinant(t_mat *a);
+t_matlst	*matrix_list_init(void);
+t_mat	*matrix_inverse(t_mat *a);
+t_mat	*matrix_of_minors(t_mat *a);
+t_mat	*matrix_of_cofactors(t_mat *a);
+t_mat	*matrix_copy(t_mat *a);
 
 t_matlst		*g_matops;
 

@@ -6,22 +6,22 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 07:23:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/06 15:29:11 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 10:24:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdbl_destroy(t_dbl *dbl)
+void	lstdbl_destroy(t_dbl *dbl)
 {
 	if (!dbl)
 		return ;
-	ft_lstdbl_destroy(dbl->nx);
+	lstdbl_destroy(dbl->nx);
 	free(dbl);
 	return ;
 }
 
-t_dbl	*ft_lstdbl_new(double val)
+t_dbl	*lstdbl_new(double val)
 {
 	t_dbl	*new;
 
@@ -30,15 +30,15 @@ t_dbl	*ft_lstdbl_new(double val)
 	return (new);
 }
 
-t_dbl	*ft_lstdbl_last(t_dbl *h)
+t_dbl	*lstdbl_last(t_dbl *h)
 {
 	while (h->nx)
 		h = h->nx;
 	return (h);
 }
 
-t_dbl	*ft_lstdbl_addlast(t_dbl *h, double d)
+t_dbl	*lstdbl_addlast(t_dbl *h, double d)
 {
-	ft_lstdbl_last(h)->nx = ft_lstdbl_new(d);
+	lstdbl_last(h)->nx = lstdbl_new(d);
 	return (h);
 }

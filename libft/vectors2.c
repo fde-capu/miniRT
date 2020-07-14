@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 08:04:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 17:22:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 10:24:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	matrix_destroy(t_mat *mat)
 {
 	if (!mat)
 		return ;
-	ft_lstdbl_destroy(mat->i);
+	lstdbl_destroy(mat->i);
 	free(mat);
 	return ;
 }

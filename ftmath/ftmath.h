@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 12:36:44 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 08:27:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 */
 
 void		math_init(void);
-t_matlst	*matrix_list_init(void);
 double		t_hipo(double c1, double c2);
 t_alt		amb_light_init(double f, t_rgb rgb);
 t_cam		*cam_init(t_vec *o, t_vec *p, double fov);

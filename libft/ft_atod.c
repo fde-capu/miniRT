@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:53:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 17:11:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 10:24:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_vec	*ft_atov(char *str)
 		if (!vec)
 			vec = vector_build(1, d);
 		else
-			ft_lstdbl_addlast(vec->i, d);
+			lstdbl_addlast(vec->i, d);
 		h += *h == ',' ? 1 : 0;
 		s = h;
 		n++;

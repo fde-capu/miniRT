@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 13:11:49 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 17:20:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 10:24:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	ft_det(t_mat *a)
+double	matrix_determinant(t_mat *a)
 {
 	int		mult;
 	int		c;
@@ -27,7 +27,7 @@ double	ft_det(t_mat *a)
 	det = 0;
 	while (c <= a->n)
 	{
-		det += mult * (matrix_get_elem(a, 1, c) * ft_det(matrix_minor(a, 1, c)));
+		det += mult * (matrix_get_elem(a, 1, c) * matrix_determinant(matrix_minor(a, 1, c)));
 		c++;
 		mult *= -1;
 	}
@@ -50,8 +50,8 @@ t_mat	*matrix_minor(t_mat *a, int i, int j)
 			if ((m != i) && (n != j))
 			{
 				new->i = !new->i ? \
-					ft_lstdbl_new(matrix_get_elem(a, i, j)) : \
-					ft_lstdbl_addlast(new->i, matrix_get_elem(a, i, j));
+					lstdbl_new(matrix_get_elem(a, i, j)) : \
+					lstdbl_addlast(new->i, matrix_get_elem(a, i, j));
 			}
 			n++;
 		}
@@ -73,7 +73,7 @@ t_mat	*matrix_sum(t_mat *a, t_mat *b)
 	new->n = a->n;
 	c = 2;
 	while (c++ <= new->m * new->n)
-		ft_lstdbl_addlast(new->i, a->i->d + b->i->d);
+		lstdbl_addlast(new->i, a->i->d + b->i->d);
 	return (new);
 }
 
