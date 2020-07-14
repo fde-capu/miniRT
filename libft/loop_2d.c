@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_init.c                                        :+:      :+:    :+:   */
+/*   loop_2d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/13 11:49:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 12:02:18 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/07/14 11:56:53 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/07/14 11:57:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ftmath.h"
+#include "libft.h"
 
-t_matlst	*matrix_list_init(void)
+int		loop_2d(int x, int y)
 {
-	t_matlst	*ml;
-	
-	ml = ft_calloc(sizeof(t_matlst), 1);
-	return (ml);
-}
-void	math_init(void)
-{
-	g_matops = matrix_list_init();
-	return ;
+	static int	c = -1;
+
+	if (c == -1)
+		c = (x * y) + 1;
+	if (--c)
+		return (c);
+	c = -1;
+	return (0);
 }

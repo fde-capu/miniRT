@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:54:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 12:32:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 11:50:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@
 # define TYPE_PRM		7
 # define TYPE_TRI_NM	"Triangle"
 # define TYPE_TRI		8
-
-# define MAT_GEN		1;
 
 #endif

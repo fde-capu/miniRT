@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 17:55:25 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 12:29:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 12:16:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,6 @@ double	vector_magnitude(t_vec *v)
 	return (dp);
 }
 
-void	vector_normalize(t_vec *mv)
-{
-	// to do
-	(void)mv;
-	return ;
-}
-
 void	matrix_write_matrix(t_mat *dest, int i, int j, t_mat *ref)
 {
 	// to do
@@ -89,9 +82,4 @@ void	matrix_write_matrix(t_mat *dest, int i, int j, t_mat *ref)
 	(void)ref;
 	(void)i;
 	(void)j;
-}
-
-int	is_normalized(t_vec *vec)
-{
-	return (vector_magnitude(vec) == 1 ? 1 : 0);
 }

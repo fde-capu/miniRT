@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 13:16:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 11:42:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ void	rt_line_translate(t_scn *sc, char **c)
 	{
 		if (sc->resolution)
 			die(0, DOUBLE_E_ERROR, ERR_DOUBLE_E);
-		sc->resolution = vector_build(2, (double)ft_atoi(c[1]), (double)ft_atoi(c[2]));
-		if (vector_get_elem(sc->resolution, 1) <= 0 || vector_get_elem(sc->resolution, 2) <= 0)
+		sc->resolution = vector_build(2, (double)ft_atoi(c[1]), \
+			(double)ft_atoi(c[2]));
+		if (vector_get_elem(sc->resolution, 1) <= 0 \
+			|| vector_get_elem(sc->resolution, 2) <= 0)
 			die(0, INV_PARAM_ERR, ERR_INV_PARAM);
 	}
 	if (rt_c(c[0], "A"))

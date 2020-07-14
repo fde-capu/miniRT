@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 10:24:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 12:09:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,6 @@ char			*ft_lltoa(signed long long n);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void *));
-t_dbl			*lstdbl_addlast(t_dbl *h, double d);
-void			lstdbl_destroy(t_dbl *dbl);
-t_dbl			*lstdbl_last(t_dbl *h);
-t_dbl			*lstdbl_new(double val);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstlast(t_list *lst);
@@ -168,7 +164,6 @@ char			*ft_uitoa(unsigned int n);
 char			*ft_ulltoa(unsigned long long n);
 char			*ft_ultoa(unsigned long n);
 char			*ft_ultoa(unsigned long n);
-double			vector_get_elem(t_vec *vec, int i);
 char			*ft_vtoa(t_vec *vec);
 char			ft_whichar(const char *s, int x);
 void			*ft_x(void *a1, void *a2);
@@ -178,6 +173,12 @@ void			ft_bit8_set(u_int8_t *data, u_int8_t bit, u_int8_t val);
 void			ft_bit8_tog(u_int8_t *data, u_int8_t bit);
 char			*ft_bit8_str(u_int8_t data);
 char			*ft_removequotes(char *quoted);
+int				loop_2d(int x, int y);
+t_dbl			*lstdbl_addlast(t_dbl *h, double d);
+void			lstdbl_destroy(t_dbl *dbl);
+t_dbl			*lstdbl_last(t_dbl *h);
+void			lstdbl_mult_elem(t_dbl *ld, int e, int m);
+t_dbl			*lstdbl_new(double val);
 
 /*
 ** Regex related.
@@ -196,7 +197,14 @@ void			rgx_mm_mod(int *mm, int oblig, int optio);
 ** Math related:
 */
 
-char			*prim_type_number(int type);
+double			vector_get_elem(t_vec *vec, int i);
+void			vector_normalize(t_vec *mv);
+t_vec			*vector_build(int len, ...);
+void			vector_destroy(t_vec *vec);
+t_vec			*vector_sum(t_vec *a, t_vec *b);
+t_vec			*vectorx(t_vec *old, t_vec *new);
+double			vector_magnitude(t_vec *v);
+char			*primitive_type_number(int type);
 void			verb_cam(t_scn *scn);
 void			verb_cam_active(t_scn *scn);
 void			verb_faces(t_scn *scn);
@@ -205,10 +213,7 @@ void			verb_primitives(t_scn *scn);
 void			verbose_scene(t_scn *scn);
 double			matrix_get_elem(t_mat *mat, int i, int j);
 t_vec			*matvec_get_elem(t_mvec *mv, int i, int j);
-void			vector_normalize(t_vec *mv);
 void			matvec_add(t_mvec *mv, int i, int j, t_vec *vec);
-t_vec			*vector_build(int len, ...);
-void			vector_destroy(t_vec *vec);
 t_mat			*matrix_sum(t_mat *a, t_mat *b);
 t_mat			*matrix_new(void);
 t_mat			*matrix_build(int m, ...);
@@ -216,19 +221,16 @@ void			matrix_destroy(t_mat *mat);
 void			matvec_destroy(t_mvec *mat);
 t_mvec			*matvec_new(void);
 t_mat			*matrix_minor(t_mat *a, int i, int j);
-t_vec			*vector_sum(t_vec *a, t_vec *b);
-t_vec			*vectorx(t_vec *old, t_vec *new);
 t_vec			*ft_atov(char *str);
 void			matrix_write_matrix(t_mat *dest, int i, int j, t_mat *ref);
-double			vector_magnitude(t_vec *v);
 int				is_normalized(t_vec *vec);
 double			matrix_determinant(t_mat *a);
-t_matlst	*matrix_list_init(void);
-t_mat	*matrix_inverse(t_mat *a);
-t_mat	*matrix_of_minors(t_mat *a);
-t_mat	*matrix_of_cofactors(t_mat *a);
-t_mat	*matrix_copy(t_mat *a);
-
-t_matlst		*g_matops;
+t_mat			*matrix_inverse(t_mat *a);
+t_mat			*matrix_of_minors(t_mat *a);
+t_mat			*matrix_of_cofactors(t_mat *a);
+t_mat			*matrix_copy(t_mat *a);
+t_mat			*matrix_transpose(t_mat *a);
+t_mat			*matrix_multiply_scalar(t_mat *b, double s);
+void			matrix_switch_elem(t_mat *mat, t_vec *tvec);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 08:29:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 11:19:08 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 12:12:51 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,8 @@ t_mat	*matrix_inverse(t_mat *a)
 	mt = ft_x(mt, matrix_of_cofactors(mt));
 	mt = ft_x(mt, matrix_transpose(mt));
 	det = matrix_determinant(a);
-	mt = ft_x(mt, matrix_multiply_scalar(mt, 1/det));
-	return (mt).
-}
-
-int		loop_2d(int x, int y)
-{
-	static int	c = (x * y) + 1;
-
-	if (c == -1)
-		c = (x * y) + 1;
-	if (--c)
-		return (c);
-	c = -1;
-	return (0);
+	mt = ft_x(mt, matrix_multiply_scalar(mt, 1 / det));
+	return (mt);
 }
 
 /*
@@ -42,35 +30,34 @@ int		loop_2d(int x, int y)
 ** Would it be sane in performance only switching pointers?
 */
 
-void	matrix_switch_elem(t_mat *a, int ai, int aj, int bi, int bj)
+void	matrix_switch_elem(t_mat *mat, t_vec *tvec)
 {
-	t_lstdbl	*ha;
-	t_lstdbl	*hb;
-	double		a;
-	double		b;
-	double		t;
+	t_dbl	*ha;
+	t_dbl	*hb;
+	double	a;
+	double	b;
 
-	ha = a->i;
-	while (loop_2d(ai, aj))
+	ha = mat->i;
+	while (loop_2d(vector_get_elem(1), vector_get_elem(2)))
 		ha = ha->nx;
 	a = ha->d;
-	hb = a->i;
-	while (loop_2d(bi, bj))
+	hb = mat->i;
+	while (loop_2d(vector_get_elem(3), vector_get_elem(4)))
 		hb = hb->nx;
 	b = hb->d;
-	*ha->d = b;
-	*hb->d = a;
+	ha->d = b;
+	hb->d = a;
 	return ;
 }
 
-t_mat	*matrix_multiply_scalar(t_mat *b, double s)
+t_mat	*matrix_multiply_scalar(t_mat *mat, double s)
 {
-	t_mat		*mms;
-	t_lstdbl	*ld;
+	t_mat	*mms;
+	t_dbl	*ld;
 
-	mms = matrix_copy(a);
+	mms = matrix_copy(mat);
 	ld = mms->i;
-	while (loop_2d(b->m, b->n))
+	while (loop_2d(mat->m, mat->n))
 	{
 		ld->d *= s;
 		ld = ld->nx;
@@ -84,6 +71,7 @@ t_mat	*matrix_transpose(t_mat *a)
 	int		i;
 	int		j;
 	int		mndbt;
+	t_vec	*tvec;
 
 	mt = matrix_copy(a);
 	mndbt = a->m * a->n / 2;
@@ -94,20 +82,16 @@ t_mat	*matrix_transpose(t_mat *a)
 		while (j <= a->n)
 		{
 			if (i != j)
-				matrix_switch_elem(a, i, j, j, i);
+			{
+				tvec = vector_new(4, i, j, j, i);
+				matrix_switch_elem(a, tvec);
+				free(tvec);
+			}
 			j++;
 		}
 		i++;
 	}
 	return (mt);
-}
-
-void	lstdbl_mult_elem(t_lstdbl *ld, int e, int m)
-{
-	while (--e)
-		ld = ld->nx;
-	ld->i *= m;
-	return ;
 }
 
 t_mat	*matrix_of_cofactors(t_mat *a)
@@ -126,37 +110,4 @@ t_mat	*matrix_of_cofactors(t_mat *a)
 		i++;
 	}
 	return (moc);
-}
-
-t_mat	*matrix_copy(t_mat *a)
-{
-	t_mat	*mcp;
-
-	mcp = malloc(sizeof(t_mat));
-	return ((t_mat *)ft_memcpy(mcp, a, sizeof(t_mat)));
-}
-
-t_mat	*matrix_of_minors(t_mat *a)
-{
-	t_mat	*mom;
-	int		i;
-	int		j;
-
-	mom = ft_calloc(sizeof(t_mat), 1);
-	i = 1;
-	while (i <= a->m)
-	{
-		j = 1;
-		while (j <= a->n)
-		{
-			mom->i = !mom->i ? \
-				lstdbl_new(matrix_determinant(matrix_minor(a, i, j))) : \
-				lstdbl_addlast(new->i, matrix_determinant(matrix_minor(a, i, j)));
-			n++;
-		}
-		m++;
-	}
-	mom->m = a->m;
-	mom->n = a->n;
-	return (mom);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 14:49:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 08:33:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 12:10:28 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	verb_cam_active(t_scn *scn)
 	return ;
 }
 
-char	*prim_type_number(int type)
+char	*primitive_type_number(int type)
 {
 	if (type == TYPE_SP)
 		return (ft_str(TYPE_SP_NM));

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/13 11:45:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/14 11:54:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,6 @@ typedef struct			s_matrix
 }						t_mat;
 
 typedef t_mat			t_vec;
-
-typedef struct			s_mat_list
-{
-	t_mat				*mat;
-	struct s_mat_list	*nx;
-	struct s_mat_list	*pv;
-}						t_matlst;
 
 typedef struct			s_matrix_of_vectors
 {
