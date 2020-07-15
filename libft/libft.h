@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 17:06:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/15 12:58:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,8 @@ t_vec			*vector_build(int len, ...);
 void			vector_destroy(t_vec *vec);
 t_vec			*vector_sum(t_vec *a, t_vec *b);
 t_vec			*vectorx(t_vec *old, t_vec *new);
+t_vec			*vector_scale(t_vec *vec, t_vec *xyz);
+t_vec			*vector_translate(t_vec *vec, t_vec *xyz);
 double			vector_magnitude(t_vec *v);
 char			*primitive_type_number(int type);
 t_dbl			*matrix_goto_element(t_mat *mat, int m, int n);
@@ -242,5 +244,9 @@ t_mat			*matrix_multiply_scalar(t_mat *b, double s);
 void			matrix_switch_elem(t_mat *mat, t_vec *tvec);
 t_mat			*matrix_empty(int m, int n);
 void			matrix_screen(t_mat *dst, t_mat *src);
+t_mat			*matrix_identity(int s);
+t_vec			*matrix_vector_multiply(t_mat *left, t_vec *right);
+t_mat			*matrix_diagonal_is(t_vec *dvec);
+void			vector_append_val(t_vec *vec, double val);
 
 #endif

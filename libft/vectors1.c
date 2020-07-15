@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:13:56 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/15 11:45:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ t_vec	*vector_build(int len, ...)
 
 	va_start(ap, len);
 	vec = ft_calloc(sizeof(t_vec), 1);
-	vec->m = 1;
-	vec->n = 0;
+	vec->n = 1;
+	vec->m = 0;
 	while (len--)
 	{
 		d = va_arg(ap, double);
 		vec->i = lstdbl_addlast(vec->i, d);
-		vec->n++;
+		vec->m++;
 	}
 	va_end(ap);
 	return (vec);

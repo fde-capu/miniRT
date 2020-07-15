@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:25:56 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:52:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/15 12:55:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,22 @@ t_vec	*matrix_vector_multiply(t_mat *left, t_vec *right)
 	return (vec);
 }
 
+t_vec	*vector_scale(t_vec *vec, t_vec *xyz)
+{
+	t_mat	*map;
+	t_vec	*dvec;
+	t_mat	*scaled;
+
+	dvec = malloc(sizeof(t_vec));
+	ft_memcpy(dvec, vec, sizeof(t_vec));
+	vector_append_val(xyz, 1);
+	map = matrix_diagonal_is(dvec);
+	scaled = matrix_vector_multiply(map, vec);
+	matrix_destroy(map);
+	vector_destroy(dvec);
+	return (scaled);
+}
+
 t_vec	*vector_translate(t_vec *vec, t_vec *xyz)
 {
 	t_mat	*map;
@@ -71,6 +87,7 @@ t_vec	*vector_translate(t_vec *vec, t_vec *xyz)
 	map = matrix_identity(4);
 	matrix_put_matrix(map, (t_mat *)xyz, 1, 4);
 	translated = matrix_vector_multiply(map, vec);
+	matrix_destroy(map);
 	return (translated);
 }
 
