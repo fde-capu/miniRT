@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_ops3.c                                         :+:      :+:    :+:   */
+/*   matrix_repertoir6.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/14 11:55:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 12:13:52 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/07/17 17:03:06 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/07/17 17:06:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-t_mat	*matrix_copy(t_mat *a)
-{
-	t_mat	*mcp;
-
-	mcp = malloc(sizeof(t_mat));
-	return ((t_mat *)ft_memcpy(mcp, a, sizeof(t_mat)));
-}
 
 t_mat	*matrix_of_minors(t_mat *a)
 {

@@ -6,25 +6,31 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 17:55:25 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:51:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/15 16:36:47 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	matrix_get_element(t_mat *mat, int m, int n)
-{
-	t_dbl	*h;
-
-	if (!mat->i)
-		return (0);
-	h = matrix_goto_element(mat, m, n);
-	return (h ? h->d : 0);
-}
-
 double	vector_get_element(t_vec *vec, int i)
 {
 	return (matrix_get_element(vec, i, 1));
+}
+
+void	vector_put_element(t_vec *vec, int pos, double d)
+{
+	int		c;
+	t_dbl	*h;
+
+	h = vec->i;
+	c = 1;
+	while (c < pos)
+	{
+		h = h->nx;
+		c++;
+	}
+	h->d = d;
+	return ;
 }
 
 t_vec	*matvec_get_element(t_mvec *mv, int i, int j)
@@ -55,32 +61,42 @@ t_vec	*matvec_get_element(t_mvec *mv, int i, int j)
 	return (h);
 }
 
-void	matrix_put_element(t_mat *dst, int i, int j, double d)
+int		vector_range_check_boundaries(t_vec *range, t_mat *m)
 {
-	matrix_goto_element(dst, i, j)->d = d;
-	return ;
+	int	i1;
+	int	i2;
+	int	j1;
+	int	j2;
+
+	i1 = vector_get_element(range, 1);
+	i2 = vector_get_element(range, 3);
+	j1 = vector_get_element(range, 2);
+	j2 = vector_get_element(range, 4);
+	if ((i1 <= 0) || (j1 <= 0) || (i2 > m->m) || (i2 > m->n))
+		return (0);
+	return (1);
 }
 
-void	matrix_put_matrix(t_mat *dest, t_mat *ref, int i, int j)
+void	vector_range_fix(t_vec *range)
 {
-	t_mat	*scrn;
-	int		x;
-	int		y;
+	int	i1;
+	int	i2;
+	int	j1;
+	int	j2;
 
-	scrn = matrix_empty(4, 4);
-	x = 1;
-	while (x <= 1)
+	i1 = vector_get_element(range, 1);
+	i2 = vector_get_element(range, 3);
+	j1 = vector_get_element(range, 2);
+	j2 = vector_get_element(range, 4);
+	if (i2 < i1)
 	{
-		y = 1;
-		while (y <= j)
-		{
-			matrix_put_element(scrn, i + x - 1, j + y - 1,
-				matrix_get_element(ref, x, y));
-			y++;
-		}
-		x++;
+		vector_put_element(range, 1, i2);
+		vector_put_element(range, 3, i1);
 	}
-	matrix_screen(dest, scrn);
-	matrix_destroy(scrn);
+	if (j2 < j1)
+	{
+		vector_put_element(range, 2, j2);
+		vector_put_element(range, 4, j1);
+	}
 	return ;
 }

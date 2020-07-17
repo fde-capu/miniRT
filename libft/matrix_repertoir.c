@@ -6,11 +6,63 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:25:56 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/15 12:55:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/17 16:51:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+t_mat	*matrix_transpose(t_mat *a)
+{
+	t_mat	*transposed;
+	int		i;
+	int		j;
+	t_dbl	*h;
+
+	transposed = matrix_new();
+	transposed->m = a->n;
+	transposed->n = a->m;
+	h = a->i;
+	i = 1;
+	while (i <= a->n)
+	{
+		j = 1;
+		while (j == a->m)
+		{
+			transposed->i = lstdbl_addlast(transposed->i, h->d);
+			h++;
+			j++;
+		}
+		i++;
+	}
+	return (transposed);
+}
+
+t_mat	*matrix_diagonal(t_vec *dvec)
+{
+	t_mat	*mid;
+	int		i;
+	int		sts;
+	int		sp1;
+	int		x;
+
+	x = 1;
+	mid = ft_calloc(sizeof(t_mat), 1);
+	sts = dvec->m * dvec->m;
+	sp1 = dvec->m + 1;
+	i = 1;
+	while (i <= sts)
+	{
+		if (i % sp1 == 1)
+			mid->i = lstdbl_addlast(mid->i, vector_get_element(dvec, x++));
+		else
+			mid->i = lstdbl_addlast(mid->i, 0);
+		i++;
+	}
+	mid->m = dvec->m;
+	mid->n = dvec->m;
+	return (mid);
+}
 
 t_mat	*matrix_identity(int s)
 {
@@ -36,69 +88,33 @@ t_mat	*matrix_identity(int s)
 	return (mid);
 }
 
-t_vec	*matrix_vector_multiply(t_mat *left, t_vec *right)
+t_mat	*matrix_multiply_scalar(t_mat *mat, double s)
 {
-	t_vec	*vec;
-	int		i;
-	int		j;
-	double	d;
+	t_mat	*mms;
+	t_dbl	*ld;
 
-	vec = vector_new();
-	i = 1;
-	while (i <= left->m)
+	mms = matrix_copy(mat);
+	ld = mms->i;
+	while (loop_2d(mat->m, mat->n))
 	{
-		d = 0;
-		j = 1;
-		while (j <= right->m)
-		{
-			d += (vector_get_element(right, j)
-				* matrix_get_element(left, i, j));
-			j++;
-		}
-		vec->i = lstdbl_addlast(vec->i, d);
-		i++;
+		ld->d *= s;
+		ld = ld->nx;
 	}
-	vec->m = right->m;
-	vec->n = right->n;
-	return (vec);
+	return (mms);
 }
 
-t_vec	*vector_scale(t_vec *vec, t_vec *xyz)
+t_mat	*matrix_sum(t_mat *a, t_mat *b)
 {
-	t_mat	*map;
-	t_vec	*dvec;
-	t_mat	*scaled;
+	t_mat	*summed;
+	int		c;
 
-	dvec = malloc(sizeof(t_vec));
-	ft_memcpy(dvec, vec, sizeof(t_vec));
-	vector_append_val(xyz, 1);
-	map = matrix_diagonal_is(dvec);
-	scaled = matrix_vector_multiply(map, vec);
-	matrix_destroy(map);
-	vector_destroy(dvec);
-	return (scaled);
-}
-
-t_vec	*vector_translate(t_vec *vec, t_vec *xyz)
-{
-	t_mat	*map;
-	t_vec	*translated;
-
-	map = matrix_identity(4);
-	matrix_put_matrix(map, (t_mat *)xyz, 1, 4);
-	translated = matrix_vector_multiply(map, vec);
-	matrix_destroy(map);
-	return (translated);
-}
-
-t_mat	*matrix_empty(int m, int n)
-{
-	t_mat	*me;
-
-	me = matrix_new();
-	me->m = m;
-	me->n = n;
-	while (loop_2d(m, n))
-		me->i = lstdbl_addlast(me->i, 0);
-	return (me);
+	if ((a->m != b->m) || (a->n != b->n))
+		return (0);
+	summed = matrix_new();
+	summed->m = a->m;
+	summed->n = a->n;
+	c = 1;
+	while (c++ <= summed->m * summed->n)
+		lstdbl_addlast(summed->i, a->i->d + b->i->d);
+	return (summed);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/15 12:58:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:12:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "types_libft.h"
 # include "debug.h"
 # include "keys.h"
-# include "../ftmath/ftmath.h" //
+# include "../ftmath/ftmath.h" // remove and verify
 
 long long		ft_abs(long long value);
 unsigned int	ft_argbtoi(t_rgb rgb);
@@ -48,6 +48,7 @@ char			*ft_chrtostr(char chr);
 char			*ft_convert_base(const void *bdata, ...);
 unsigned int	ft_countdigits(long long number);
 unsigned int	ft_countdigits_ibase(long long number, unsigned int base);
+void			ft_die(const char *msg, int err);
 char			*ft_dtoa(double d);
 char			*ft_dtob(long long n, int b_to);
 int				ft_enclosure(char *io, char h);
@@ -174,10 +175,11 @@ void			ft_bit8_tog(u_int8_t *data, u_int8_t bit);
 char			*ft_bit8_str(u_int8_t data);
 char			*ft_removequotes(char *quoted);
 int				loop_2d(int x, int y);
+double			lstdbl_pop(t_dbl *h);
 t_dbl			*lstdbl_addlast(t_dbl *h, double d);
 void			lstdbl_destroy(t_dbl *dbl);
 t_dbl			*lstdbl_last(t_dbl *h);
-void			lstdbl_mult_elem(t_dbl *ld, int e, int m);
+void			lstdbl_mult_element(t_dbl *ld, int e, int m);
 t_dbl			*lstdbl_new(double val);
 
 /*
@@ -208,6 +210,11 @@ void			verbose_scene(t_scn *scn);
 ** Math related:
 */
 
+double			vector_pop(t_vec *vec);
+double			vector_dot_product(t_vec *v1, t_vec *v2);
+t_vec			*vector_cross_product(t_vec *x, t_vec *y);
+int				vector_range_check_boundaries(t_vec *range, t_mat *m);
+void			vector_range_fix(t_vec *range);
 t_vec			*vector_new(void);
 double			vector_get_element(t_vec *vec, int i);
 void			vector_normalize(t_vec *mv);
@@ -241,12 +248,15 @@ t_mat			*matrix_of_cofactors(t_mat *a);
 t_mat			*matrix_copy(t_mat *a);
 t_mat			*matrix_transpose(t_mat *a);
 t_mat			*matrix_multiply_scalar(t_mat *b, double s);
-void			matrix_switch_elem(t_mat *mat, t_vec *tvec);
+void			matrix_switch_elements(t_mat *mat, t_vec *tvec);
 t_mat			*matrix_empty(int m, int n);
 void			matrix_screen(t_mat *dst, t_mat *src);
 t_mat			*matrix_identity(int s);
 t_vec			*matrix_vector_multiply(t_mat *left, t_vec *right);
-t_mat			*matrix_diagonal_is(t_vec *dvec);
+t_mat			*matrix_diagonal(t_vec *dvec);
 void			vector_append_val(t_vec *vec, double val);
+t_vec			*matrix_get_vector(t_mat *m, int j);
+t_mat			*matrixx(t_mat *old, t_mat *new);
+t_mat			*matrix_adjoint(t_mat *m);
 
 #endif

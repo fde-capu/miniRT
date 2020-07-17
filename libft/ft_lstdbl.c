@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 07:23:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:05:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/15 15:18:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_dbl	*lstdbl_addlast(t_dbl *h, double d)
 	return (h);
 }
 
-void	lstdbl_mult_elem(t_dbl *ld, int e, int m)
+void	lstdbl_mult_element(t_dbl *ld, int e, int m)
 {
 	while (--e)
 		ld = ld->nx;

@@ -6,23 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 12:15:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 17:04:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/17 17:01:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-t_dbl	*matrix_goto_element(t_mat *mat, int m, int n)
-{
-	t_dbl	*h;
-	int		c;
-
-	h = mat->i;
-	c = (n - 1) * mat->m + m;
-	while (--c)
-		h = h->nx;
-	return (h);
-}
 
 void	vector_normalize(t_vec *mv)
 {
@@ -46,39 +34,32 @@ int		is_normalized(t_vec *vec)
 	return (vector_magnitude(vec) == 1 ? 1 : 0);
 }
 
-double	vector_magnitude(t_vec *v)
+double	vector_dot_product(t_vec *v1, t_vec *v2)
 {
 	double	dp;
-	t_dbl	*h;
+	t_dbl	*h1;
+	t_dbl	*h2;
 
-	h = v->i;
+	h1 = v1->i;
+	h2 = v2->i;
 	dp = 0;
-	while (h)
+	while (h1 && h2)
 	{
-		dp += (h->d * h->d);
-		h = h->nx;
+		dp += (h1->d * h2->d);
+		h1 = h1->nx;
+		h2 = h2->nx;
 	}
-	dp = (double)sqrt(dp);
+	if (h1 || h2)
+		ft_die(DOTPRODERR, ERRDOTPROD);
 	return (dp);
 }
 
-void	matrix_screen(t_mat *dst, t_mat *src)
+double	vector_modulus(t_vec *v)
 {
-	int		i;
-	int		j;
-	double	d;
+	return (vector_dot_product(v, v));
+}
 
-	i = 1;
-	while (i <= dst->m)
-	{
-		j = 1;
-		while (j <= dst->n)
-		{
-			if ((d = matrix_get_element(src, i, j)))
-				matrix_put_element(dst, i, j, d);
-			j++;
-		}
-		i++;
-	}
-	return ;
+double	vector_scalar_product(t_vec *v1, t_vec *v2)
+{
+	return (vector_dot_product(v1, v2));
 }
