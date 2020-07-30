@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 12:59:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/30 16:21:24 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** triangle normal does not come from mini.rt :/
 */
 
-double		t_hipo(double c1, double c2);
+double		hipo(double c1, double c2);
 t_alt		amb_light_init(double f, t_rgb rgb);
 t_cam		*cam_init(t_vec *o, t_vec *p, double fov);
 t_scn		*scene_init(void);
@@ -37,5 +37,7 @@ void		scn_free_list_cam(t_cam *lst);
 void		scn_free_list_prm(t_prm *lst);
 void		scn_free_list_tri(t_tri *lst);
 void		scn_add(int objtype, void *obj, t_scn *sc);
+double		radtodeg(double rad);
+double		degtorad(double deg);
 
 #endif

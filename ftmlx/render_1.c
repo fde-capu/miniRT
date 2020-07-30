@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:44:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/30 14:58:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	render_prepare(t_mrt *mrt)
 {
 //	construct_base_transforms();
 //	prepare_view_space(mrt);
-//	prepare_project_space(mrt);
+	prepare_project_space(mrt);
 (void)mrt;
 	return ;
 }
