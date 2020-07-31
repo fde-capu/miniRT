@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:42:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 09:10:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ int		ft_mrt_init_win(t_mrt *mrt, char *win_title)
 	int		screen_y;
 
 	keys_init();
-	mrt->w.width = vector_get_element(mrt->scn->resolution, 1);
-	mrt->w.height = vector_get_element(mrt->scn->resolution, 2);
+	mrt->window.width = vector_get_element(mrt->scn->resolution, 1);
+	mrt->window.height = vector_get_element(mrt->scn->resolution, 2);
 	if (FTMLX_LIMIT_WIN_SIZE)
 	{
 		mlx_get_screen_size(mrt->mlx, &screen_x, &screen_y);
-		ft_max2d(&mrt->w.width, &mrt->w.height, screen_x, screen_y);
+		ft_max2d(&mrt->window.width, &mrt->window.height, screen_x, screen_y);
 	}
-	mrt->w.title = ft_str(win_title);
+	mrt->window.title = ft_str(win_title);
 	mrt->win = \
-		mlx_new_window(mrt->mlx, mrt->w.width, mrt->w.height, mrt->w.title);
+		mlx_new_window(mrt->mlx, mrt->window.width, mrt->window.height, mrt->window.title);
 	if (!mrt->win)
 		return (0);
 	return (1);
@@ -70,11 +70,12 @@ int		ft_mrt_destroy(void *mrtvoid)
 	t_mrt	*mrt;
 
 	mrt = (t_mrt*)mrtvoid;
-	free(mrt->w.title);
+	free(mrt->window.title);
 	mlx_destroy_image(mrt->mlx, mrt->img);
 	mlx_destroy_window(mrt->mlx, mrt->win);
-	matvec_destroy(mrt->pjt);
-	free(mrt->pjt);
+	matrix_destroy(mrt->pjt[0]);
+	matrix_destroy(mrt->pjt[1]);
+	matrix_destroy(mrt->pjt[2]);
 	vector_destroy(mrt->cursor);
 	free(mrt->mlx);
 	free(mrt);

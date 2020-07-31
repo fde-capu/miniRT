@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 11:54:21 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 09:08:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ typedef struct			s_mrt {
 	void				*win;
 	void				*img;
 	t_scn				*scn;
-	t_mvec				*pjt;
-	t_win				w;
+	t_mat				*pjt[3];
+	t_win				window;
 	t_img				i;
 	t_vec				*cursor;
 	char				*icursor;

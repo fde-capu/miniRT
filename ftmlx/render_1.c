@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/30 14:58:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 09:09:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,22 @@
 
 void	prepare_project_space(t_mrt *mrt)
 {
-	int		res_base;
-	int		step_base;
-	int		step_y;
-	int		step_x;
-	int		x;
-	int		y;
-	t_vec	*vec;
+	int	i;
+	int	j;
 
-	res_base = mrt->i.height > mrt->i.width ? mrt->i.height : mrt->i.width;
-	step_base = 2 * tan(mrt->scn->cam_active->fov / 2) / (double)res_base;
-	if (mrt->i.height >= mrt->i.width)
+	mrt->pjt[0] = matrix_new();
+	mrt->pjt[1] = matrix_new();
+	mrt->pjt[2] = matrix_new();
+	j = 1;
+	while (j <= mrt->window.height)
 	{
-		step_y = step_base;
-		step_x = ft_trig(mrt->i.height, mrt->i.width, step_y);
-	}
-	else
-	{
-		step_x = step_base;
-		step_y = ft_trig(mrt->i.width, mrt->i.height, step_x);
-	}
-	mrt->pjt = matvec_new();
-	y = 1;
-	DEBINT2("res", step_y, step_x);
-	while (y <= step_x)
-	{
-		x = 1;
-		while (x <= step_y)
+		i = 1;
+		while (i <= mrt->window.width)
 		{
-			vec = vector_sum(mrt->scn->cam_active->o, mrt->scn->cam_active->p);
-			matvec_insert_at_pos(mrt->pjt, x, y, vec);
-			x++;
+			i++;
 		}
-		y++;
+		j++;
 	}
-	DEBMATVEC("matvec", mrt->pjt);
-	return ;
 }
 
 /*
@@ -77,7 +57,6 @@ void	render_prepare(t_mrt *mrt)
 //	construct_base_transforms();
 //	prepare_view_space(mrt);
 	prepare_project_space(mrt);
-(void)mrt;
 	return ;
 }
 
