@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/31 09:09:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 13:25:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,44 @@
 
 void	prepare_project_space(t_mrt *mrt)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	double	pndc[2];
+	double	pscreen[2];
+	double	imgaspect;
+	double	pcam[2];
+	t_vec	*pcamspace;
 
-	mrt->pjt[0] = matrix_new();
-	mrt->pjt[1] = matrix_new();
-	mrt->pjt[2] = matrix_new();
+	mrt->pjt[X] = matrix_empty(mrt->window.height, mrt->window.width);
+	mrt->pjt[Y] = matrix_empty(mrt->window.height, mrt->window.width);
+	mrt->pjt[Z] = matrix_empty(mrt->window.height, mrt->window.width);
+	pcamspace = vector_new();
+	imgaspect = mrt->window.width / mrt->window.height;
 	j = 1;
 	while (j <= mrt->window.height)
 	{
+		pndc[X] = (j + 0.5) / mrt->window.width;
+		pscreen[X] = 2 * pndc[X] - 1;
+		pcam[X] = (2 * pscreen[X] - 1) * imgaspect * tan(degtorad(mrt->scn->cam_active->fov) / 2);
 		i = 1;
 		while (i <= mrt->window.width)
 		{
+			pndc[Y] = (i + 0.5) / mrt->window.height;
+			pscreen[Y] = 1 - 2 * pndc[Y];
+			pcam[Y] = (1 - 2 * pscreen[Y]) * tan(degtorad(mrt->scn->cam_active->fov) / 2);
+			pcamspace = vector_build(3, pcam[X], pcam[Y], 5.2);
+			DEBVEC("pcamspace", pcamspace);
+			DEBVEC("cam->p   ", mrt->scn->cam_active->o);
+			pcamspace = vectorx(pcamspace, vector_sum(pcamspace, mrt->scn->cam_active->o));
+			DEBVEC("pcamspaceB", vector_sum(pcamspace, mrt->scn->cam_active->o));
+			matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pcamspace, X));
+			matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pcamspace, Y));
+			matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pcamspace, Z));
 			i++;
 		}
 		j++;
 	}
+	free(pcamspace);
 }
 
 /*

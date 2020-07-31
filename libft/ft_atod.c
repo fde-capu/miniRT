@@ -6,36 +6,23 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:53:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 10:24:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 13:45:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 double	ft_atod(const char *str)
 {
-	char	*n;
-	int		lod;
-	int		rod;
-	double	dec;
-	char	*snc;
+	double	d;
+	char	*h;
+	int		n[2];
 
-	if ((!str) || (!*str))
-		return (0.0);
-	n = ft_strdup(str);
-	lod = ft_atoi(n);
-	snc = ft_check(n, "-?[0123456789]*\\.");
-	if (snc)
-	{
-		rod = ft_atoi(ft_isdigit(*(snc)) ? snc : 0);
-		dec = (double)rod / (ft_pow2(10, ft_countdigits(rod)));
-	}
-	else
-		dec = 0;
-	free(n);
-	dec += lod;
-	dec *= *str == '-' ? -1 : 1;
-	return (dec);
+	n[0] = ft_atoi(str);
+	if (!(h = ft_strstr(str, ".")))
+		return ((double)n[0]);
+	n[1] = ft_atoi(h + 1);
 }
 
 char	*ft_vtoa(t_vec *vec)

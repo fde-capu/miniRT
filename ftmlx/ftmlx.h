@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 16:17:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 10:58:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ void	ft_key_mrt(t_mrt *mrt, \
 void	hook_keys(t_mrt *mrt, int ks, int ke);
 
 # define MSG_RENDERING	"\nRendering...\n"
+# define X	0
+# define Y	1
+# define Z	2
 
 #endif

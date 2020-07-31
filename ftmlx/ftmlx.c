@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/31 09:10:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 09:32:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int		ft_mrt_destroy(void *mrtvoid)
 	free(mrt->window.title);
 	mlx_destroy_image(mrt->mlx, mrt->img);
 	mlx_destroy_window(mrt->mlx, mrt->win);
-	matrix_destroy(mrt->pjt[0]);
-	matrix_destroy(mrt->pjt[1]);
-	matrix_destroy(mrt->pjt[2]);
+	matrix_destroy(mrt->pjt[X]);
+	matrix_destroy(mrt->pjt[Y]);
+	matrix_destroy(mrt->pjt[Z]);
 	vector_destroy(mrt->cursor);
 	free(mrt->mlx);
 	free(mrt);

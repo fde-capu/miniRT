@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/15 11:45:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/07/31 11:56:28 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_mat	*matrix_build(int m, ...)
 	t_mat	*mat;
 	double	d;
 
-	mat = ft_calloc(sizeof(t_mat), 1);
+	mat = matrix_new();
 	va_start(ap, m);
 	mat->m = m;
 	while ((m--) && (d = va_arg(ap, double)))
