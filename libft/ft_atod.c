@@ -6,12 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:53:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 11:38:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/01 13:32:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 double	ft_atod(const char *str)
 {
@@ -73,7 +72,7 @@ t_vec	*ft_atov(char *str)
 		s = h;
 		n++;
 	}
-	vec->m = 1;
-	vec->n = n;
+	vec->m = n;
+	vec->n = 1;
 	return (vec);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_repertoir.c                                 :+:      :+:    :+:   */
+/*   matrix_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/14 13:25:56 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/31 12:00:34 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/08/01 15:59:37 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/08/01 15:59:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,6 @@ t_mat	*matrix_sum(t_mat *a, t_mat *b)
 {
 	t_mat	*summed;
 	int		c;
-
-if (a->m) DEBINT("AM", a->m);
-if (a->n) DEBINT("AN", a->n);
-if (b->m) DEBINT("BM", b->m);
-if (b->n) DEBINT("BN", b->n);
 
 	if ((a->m != b->m) || (a->n != b->n))
 		return (0);

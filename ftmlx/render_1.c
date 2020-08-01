@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/31 13:25:52 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/01 14:12:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ void	prepare_project_space(t_mrt *mrt)
 			pndc[Y] = (i + 0.5) / mrt->window.height;
 			pscreen[Y] = 1 - 2 * pndc[Y];
 			pcam[Y] = (1 - 2 * pscreen[Y]) * tan(degtorad(mrt->scn->cam_active->fov) / 2);
-			pcamspace = vector_build(3, pcam[X], pcam[Y], 5.2);
-			DEBVEC("pcamspace", pcamspace);
-			DEBVEC("cam->p   ", mrt->scn->cam_active->o);
+			pcamspace = vectorx(pcamspace, vector_build(3, pcam[X], pcam[Y], 5.2));
 			pcamspace = vectorx(pcamspace, vector_sum(pcamspace, mrt->scn->cam_active->o));
-			DEBVEC("pcamspaceB", vector_sum(pcamspace, mrt->scn->cam_active->o));
 			matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pcamspace, X));
 			matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pcamspace, Y));
 			matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pcamspace, Z));
@@ -51,7 +48,7 @@ void	prepare_project_space(t_mrt *mrt)
 		}
 		j++;
 	}
-	free(pcamspace);
+	matrix_destroy(pcamspace);
 }
 
 /*

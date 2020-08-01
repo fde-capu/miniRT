@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_repertoir6.c                                :+:      :+:    :+:   */
+/*   matrix_7.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/17 17:03:06 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/17 17:06:57 by fde-capu         ###   ########.fr       */
+/*   Created: 2020/08/01 16:00:24 by fde-capu          #+#    #+#             */
+/*   Updated: 2020/08/01 16:00:24 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_mat	*matrix_of_minors(t_mat *a)
+t_mat	*matrix_new(void)
 {
-	t_mat	*mom;
-	int		i;
-	int		j;
+	t_mat	*mat;
 
-	mom = ft_calloc(sizeof(t_mat), 1);
-	i = 1;
-	while (i <= a->m)
-	{
-		j = 1;
-		while (j <= a->n)
-		{
-			mom->i = !mom->i ? \
-				lstdbl_new(matrix_determinant(matrix_minor(a, i, j))) : \
-				lstdbl_addlast(mom->i,
-					matrix_determinant(matrix_minor(a, i, j)));
-			j++;
-		}
-		i++;
-	}
-	mom->m = a->m;
-	mom->n = a->n;
-	return (mom);
+	mat = ft_calloc(sizeof(t_mat), 1);
+	return (mat);
+}
+
+t_mat	*matrix_build(int m, ...)
+{
+	va_list	ap;
+	t_mat	*mat;
+	double	d;
+
+	mat = matrix_new();
+	va_start(ap, m);
+	mat->m = m;
+	while ((m--) && (d = va_arg(ap, double)))
+		mat->i = lstdbl_addlast(mat->i, d);
+	va_end(ap);
+	mat->n = ft_ceil((double)mat->m / (double)m);
+	return (mat);
 }
