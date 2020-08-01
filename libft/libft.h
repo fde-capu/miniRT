@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/17 17:12:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/01 11:34:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ long long		ft_btod(char *nbr, int b_from);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
 int				ft_ceil(double d);
-char			*ft_check(char *str, char *reg);
+char			*ft_check(const char *str, char *reg);
 int				ft_chrinset(char r, char const *set);
 int				ft_chrsame(char a, char b);
 char			*ft_chrtostr(char chr);

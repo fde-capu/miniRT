@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:53:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/31 13:45:00 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/01 11:38:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 
 double	ft_atod(const char *str)
 {
-	double	d;
-	char	*h;
-	int		n[2];
+	char	*afterdot;
+	int		integer;
+	double	digits;
+	int		digits_count;
 
-	n[0] = ft_atoi(str);
-	if (!(h = ft_strstr(str, ".")))
-		return ((double)n[0]);
-	n[1] = ft_atoi(h + 1);
+	integer = ft_atoi(str);
+	if (!(afterdot = ft_check(str, "[-+]?[0-9]*\\.")))
+		return ((double)integer);
+	digits_count = ft_check(afterdot, "[0-9]*") - afterdot;
+	if (digits_count > DOUBLE_PRECISION)
+		*(afterdot + DOUBLE_PRECISION) = 0;
+	digits = (double)ft_atoi(afterdot) / ft_pow(10, digits_count);
+	if (integer >= 0)
+		return ((double)integer + digits);
+	else
+		return ((double)integer - digits);
 }
 
 char	*ft_vtoa(t_vec *vec)
