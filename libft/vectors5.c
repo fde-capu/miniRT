@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:01:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/17 17:06:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/02 16:55:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ t_vec	*vector_cross_product(t_vec *x, t_vec *y)
 		ft_die(CROSSPRODERR, ERRCROSSPROD);
 	cpd = vector_new();
 	cpd->m = 3;
-	lstdbl_addlast(cpd->i, \
+	cpd->i = lstdbl_addlast(cpd->i, \
 		(vector_get_element(x, 2) * vector_get_element(y, 3)) \
 		- (vector_get_element(y, 2) * vector_get_element(x, 3)));
-	lstdbl_addlast(cpd->i, \
+	cpd->i = lstdbl_addlast(cpd->i, \
 		(vector_get_element(x, 3) * vector_get_element(y, 1)) \
 		- (vector_get_element(y, 3) * vector_get_element(x, 1)));
-	lstdbl_addlast(cpd->i, \
+	cpd->i = lstdbl_addlast(cpd->i, \
 		(vector_get_element(x, 1) * vector_get_element(y, 2)) \
 		- (vector_get_element(y, 1) * vector_get_element(x, 2)));
 	return (cpd);
@@ -66,7 +66,7 @@ double	vector_pop(t_vec *vec)
 
 void	vector_append_val(t_vec *vec, double val)
 {
-	lstdbl_addlast(vec->i, val);
+	vec->i = lstdbl_addlast(vec->i, val);
 	vec->m++;
 	return ;
 }
