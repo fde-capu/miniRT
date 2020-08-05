@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 11:34:18 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/05 14:32:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "../ftmath/ftmath.h" // remove and verify
 
 long long		ft_abs(long long value);
+double			ft_abs_double(double value);
 unsigned int	ft_argbtoi(t_rgb rgb);
 char			*ft_args(int argc, char **argv, char *test);
 double			ft_atod(const char *str);

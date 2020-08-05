@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 13:22:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/03 16:18:12 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_mvec	*matvec_new(void)
 	t_mvec	*mvec;
 
 	mvec = ft_calloc(sizeof(t_mvec), 1);
+	mvec->n = 1;
 	return (mvec);
 }

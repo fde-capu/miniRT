@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:30:46 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/03 17:20:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	rt_line_translate_2(t_scn *sc, char **c)
 		die(0, NOTNORMAL_ERR, ERR_NOTNORMAL);
 	return ;
 }
+
+#include <stdio.h>
 
 void	rt_line_translate(t_scn *sc, char **c)
 {

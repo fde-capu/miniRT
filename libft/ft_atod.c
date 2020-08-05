@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:53:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/03 16:14:55 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/05 14:34:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ double	ft_atod(const char *str)
 		*(afterdot + DOUBLE_PRECISION) = 0;
 	digits = (double)ft_atoi(afterdot) / (digits_count * 10);
 	if (integer >= 0)
-		return ((double)integer + digits);
+		digits = (double)integer + digits;
 	else
-		return ((double)integer - digits);
+		digits = (double)integer - digits;
+	return (digits);
 }
