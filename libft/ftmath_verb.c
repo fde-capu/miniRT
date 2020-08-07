@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 12:11:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/07 15:16:47 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	verb_primitives(t_scn *scn)
 	{
 		DEB(TIT_PRM);
 		DEBSTR(S_TYPE, t = primitive_type_number(h->type));
-		free(t);
 		DEBVEC(S_ORIGIN, h->o);
-		DEBVEC(S_NORMAL, h->n);
+		if (!ft_stridentical(t, TYPE_SP_NM))
+			DEBVEC(S_NORMAL, h->n);
+		free(t);
 		DEBDBL(S_HEIGHT, h->h);
 		DEBDBL(S_WIDTH, h->d);
 		DEBRGB(S_COLOR, h->rgb);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/05 14:32:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/05 14:54:38 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,5 +259,29 @@ void			vector_append_val(t_vec *vec, double val);
 t_vec			*matrix_get_vector(t_mat *m, int j);
 t_mat			*matrixx(t_mat *old, t_mat *new);
 t_mat			*matrix_adjoint(t_mat *m);
+
+/*
+** Debugs:
+*/
+
+int		debug_pass(void);
+void	debug(char *str, char *val, int *ival);
+void	debug_body(char *str, char *val, int ival);
+void	debug_int(char *str, int ival);
+void	debug_int2(char *str, int val, int val2);
+void	subdebug_int(char *str, int ival, int subdeb);
+void	subdebug_int2(char *str, int val, int val2, int subdeb);
+void	debug_str(char *str, char *val);
+void	debug_str2(char *str, char *val, char *val2);
+void	debug_str_only(char *str);
+void	debug_double(char *str, double val);
+void	debug_rgb(char *str, t_rgb rgb);
+void	debug_vector(char *str, t_vec *vec);
+void	debug_str_add(char *str, void *add);
+void	debug_str_str(char *str1, char *str2);
+void	debug_t_dbl(char *str, t_dbl *dbl);
+void	debug_matrix(char *str, t_mat *mat);
+void	debug_matrix_of_vectors(char *str, t_mvec *mat);
+void	debug_matrix_2(t_mat *mat);
 
 #endif

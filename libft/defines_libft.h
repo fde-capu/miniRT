@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:54:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/31 09:30:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/05 14:55:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,34 @@
 # define ERRCROSSPROD	2
 # define MATRIXSUBMATRIXERR "matrix_sub_matrix() error"
 # define ERRMATRIXSUBMATRIX 3
+
+# define X	0
+# define Y	1
+# define Z	2
+
+/*
+** Debugs:
+*/
+
+# define DEBUG		debug
+# define DEBSTR		debug_str
+# define DEBSTR2	debug_str2
+# define DEBINT		debug_int
+# define DEBINT2	debug_int2
+# define SUBDEBINT	subdebug_int
+# define SUBDEBINT2	subdebug_int2
+# define VERBSTR	debug_str
+# define VERBINT	debug_int
+# define DEBDBL		debug_double
+# define DEBTDBL	debug_t_dbl
+# define DEBRGB		debug_rgb
+# define DEBVEC		debug_vector
+# define VERBOSE	verbose
+# define DEB		debug_str_only
+# define DEB2		debug_str_str
+# define VERB		debug_str_only
+# define DEBSTRADD	debug_str_add
+# define DEBMAT		debug_matrix
+# define DEBMATVEC	debug_matrix_of_vectors
 
 #endif

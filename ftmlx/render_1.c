@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 14:12:25 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/07 15:37:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	prepare_project_space(t_mrt *mrt)
 			pcam[Y] = (1 - 2 * pscreen[Y]) * tan(degtorad(mrt->scn->cam_active->fov) / 2);
 			pcamspace = vectorx(pcamspace, vector_build(3, pcam[X], pcam[Y], 5.2));
 			pcamspace = vectorx(pcamspace, vector_sum(pcamspace, mrt->scn->cam_active->o));
-			matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pcamspace, X));
-			matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pcamspace, Y));
-			matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pcamspace, Z));
+			matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pcamspace, X + 1));
+			matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pcamspace, Y + 1));
+			matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pcamspace, Z + 1));
 			i++;
 		}
 		j++;
