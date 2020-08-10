@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:11 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 16:00:11 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 15:33:47 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_dbl	*matrix_goto_element(t_mat *mat, int m, int n)
 	int		c;
 
 	h = mat->i;
-	c = (n - 1) * mat->m + m;
+	c = ((n - 1) * mat->m) + m;
 	while (--c)
 		h = h->nx;
 	return (h);

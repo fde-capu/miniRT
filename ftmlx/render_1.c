@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 13:21:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 15:36:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ void	prepare_project_space(t_mrt *mrt)
 		i = 1;
 		while (i <= mrt->window.width)
 		{
-			pjt_xyz(mrt, i, j);
+			pjt_xyz2(mrt, j, i);
 			i++;
 		}
 		j++;
 	}
+	return ;
 }
 
 /*
@@ -56,6 +57,9 @@ void	render_prepare(t_mrt *mrt)
 //	construct_base_transforms();
 //	prepare_view_space(mrt);
 	prepare_project_space(mrt);
+	DEBMAT("X", mrt->pjt[X]);
+	DEBMAT("Y", mrt->pjt[Y]);
+	DEBMAT("Z", mrt->pjt[Z]);
 	return ;
 }
 

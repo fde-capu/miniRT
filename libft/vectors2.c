@@ -6,20 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 08:04:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:32:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 14:18:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	matrix_destroy(t_mat *mat)
-{
-	if (!mat)
-		return ;
-	lstdbl_destroy(mat->i);
-	free(mat);
-	return ;
-}
 
 void	matvec_destroy(t_mvec *mat)
 {
