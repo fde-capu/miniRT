@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:14 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 16:00:14 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 12:50:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_vec	*matrix_get_vector(t_mat *m, int j)
 	t_vec	*temp;
 	t_vec	*extracted;
 
-	temp = vector_build(1, j, m->m, j);
+	temp = vector_build(4, (double)1, (double)j, (double)m->m, (double)j);
 	extracted = (t_vec *)matrix_get_submatrix(m, temp);
 	vector_destroy(temp);
 	return (extracted);

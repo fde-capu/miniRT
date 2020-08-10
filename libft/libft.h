@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/05 14:54:38 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 13:05:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void			verbose_scene(t_scn *scn);
 double			vector_pop(t_vec *vec);
 double			vector_dot_product(t_vec *v1, t_vec *v2);
 t_vec			*vector_cross_product(t_vec *x, t_vec *y);
+int				vector_equal(t_vec *a, t_vec *b);
 int				vector_range_check_boundaries(t_vec *range, t_mat *m);
 void			vector_range_fix(t_vec *range);
 t_vec			*vector_new(void);

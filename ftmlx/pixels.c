@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 13:38:48 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/10 17:22:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 12:53:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*mrt_cursor(t_mrt *mrt, int x, int y)
 {
 	x--;
 	y--;
-	mrt->cursor = vectorx(mrt->cursor, vector_build(2, x, y));
+	mrt->cursor = vectorx(mrt->cursor, vector_build(2, (double)x, (double)y));
 	mrt->icursor = mrt->i.address + \
 		((y * mrt->i.line_l) + (x * (mrt->i.bpp / 8)));
 	return (mrt->icursor);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/05 14:42:18 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 10:14:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_pxi(t_mrt *mrt);
 void	ft_key_mrt(t_mrt *mrt, \
 			char *key_code, int (*fun)(void*), void *arg);
 void	hook_keys(t_mrt *mrt, int ks, int ke);
+void	pjt_init(t_mrt *mrt);
+void	pjt_xyz(t_mrt *mrt, int i, int j, t_vec *pcamspace);
 
 # define MSG_RENDERING	"\nRendering...\n"
 

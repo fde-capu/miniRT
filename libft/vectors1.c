@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/03 16:18:12 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 13:07:53 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,23 @@ t_mvec	*matvec_new(void)
 	mvec = ft_calloc(sizeof(t_mvec), 1);
 	mvec->n = 1;
 	return (mvec);
+}
+
+int		vector_equal(t_vec *a, t_vec *b)
+{
+	t_dbl	*ha;
+	t_dbl	*hb;
+
+	if (a->m != b->m || a->n != b->n)
+		return (0);
+	ha = a->i;
+	hb = b->i;
+	while (ha)
+	{
+		if (ha->d != hb->d)
+			return (0);
+		ha = ha->nx;
+		hb = hb->nx;
+	}
+	return (1);
 }

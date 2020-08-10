@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/07 15:37:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 12:52:59 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,33 @@
 
 void	prepare_project_space(t_mrt *mrt)
 {
-	int		i;
-	int		j;
-	double	pndc[2];
+	int		ij[2];
 	double	pscreen[2];
-	double	imgaspect;
 	double	pcam[2];
-	t_vec	*pcamspace;
+	t_vec	*pcs;
 
-	mrt->pjt[X] = matrix_empty(mrt->window.height, mrt->window.width);
-	mrt->pjt[Y] = matrix_empty(mrt->window.height, mrt->window.width);
-	mrt->pjt[Z] = matrix_empty(mrt->window.height, mrt->window.width);
-	pcamspace = vector_new();
-	imgaspect = mrt->window.width / mrt->window.height;
-	j = 1;
-	while (j <= mrt->window.height)
+	pjt_init(mrt);
+	pcs = vector_new();
+	ij[1] = 1;
+	while (ij[1] <= mrt->window.height)
 	{
-		pndc[X] = (j + 0.5) / mrt->window.width;
-		pscreen[X] = 2 * pndc[X] - 1;
-		pcam[X] = (2 * pscreen[X] - 1) * imgaspect * tan(degtorad(mrt->scn->cam_active->fov) / 2);
-		i = 1;
-		while (i <= mrt->window.width)
+		pscreen[X] = 2 * ((ij[1] + 0.5) / mrt->window.width) - 1;
+		pcam[X] = (2 * pscreen[X] - 1) * mrt->window.width / \
+			mrt->window.height * tan(degtorad(mrt->scn->cam_active->fov) / 2);
+		ij[0] = 1;
+		while (ij[0] <= mrt->window.width)
 		{
-			pndc[Y] = (i + 0.5) / mrt->window.height;
-			pscreen[Y] = 1 - 2 * pndc[Y];
-			pcam[Y] = (1 - 2 * pscreen[Y]) * tan(degtorad(mrt->scn->cam_active->fov) / 2);
-			pcamspace = vectorx(pcamspace, vector_build(3, pcam[X], pcam[Y], 5.2));
-			pcamspace = vectorx(pcamspace, vector_sum(pcamspace, mrt->scn->cam_active->o));
-			matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pcamspace, X + 1));
-			matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pcamspace, Y + 1));
-			matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pcamspace, Z + 1));
-			i++;
+			pscreen[Y] = 1 - 2 * ((ij[0] + 0.5) / mrt->window.height);
+			pcam[Y] = (1 - 2 * pscreen[Y]) * \
+				tan(degtorad(mrt->scn->cam_active->fov) / 2);
+			pcs = vectorx(pcs, vector_build(3, pcam[X], pcam[Y], (double)1));
+			pcs = vectorx(pcs, vector_sum(pcs, mrt->scn->cam_active->o));
+			pjt_xyz(mrt, ij[0], ij[1], pcs);
+			ij[0]++;
 		}
-		j++;
+		ij[1]++;
 	}
-	matrix_destroy(pcamspace);
+	matrix_destroy(pcs);
 }
 
 /*

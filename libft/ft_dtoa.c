@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:16:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/05 14:33:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 12:41:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_dtoa(double d)
 	double	d2;
 
 	neg = (double)d < 0.0 ? 1 : 0;
+	if (!d)
+		return (ft_str("0"));
 	d = ft_abs_double(d);
 	o = ft_itoa((int)d);
 	d2 = d;

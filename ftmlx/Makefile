@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 14:22:40 by fde-capu          #+#    #+#              #
-#    Updated: 2020/07/14 17:07:44 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/08/10 12:21:38 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ AR		=	ar -rcs
 CFLAGS	=	-Wall -Wextra -Werror -g -O3
 #CFLAGS	=	-O3 -g
 #FLAGS	=	$(CFLAGS) $(IFLAGS)
-SRCS	=	ftmlx.c	pixels.c events.c render_1.c render_2.c
+SRCS	=	ftmlx.c	pixels.c events.c render_1.c render_2.c pjt.c
 HEADS	=	ftmlx.h
 OBJS	=	$(SRCS:.c=.o)
 ELINE	=	echo	""; echo ""
