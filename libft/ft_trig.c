@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 14:04:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/30 08:42:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 16:14:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	ft_trig(double a_is_to, double b_as, double this_is_to_x)
+double	ft_trig(double is_to_this, double as_this_is, double to_this)
 {
-	return ((this_is_to_x * b_as) / a_is_to);
+	return (is_to_this * as_this_is / to_this);
 }
