@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 15:59:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/07 15:35:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 13:12:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ t_mat	*matrix_sum(t_mat *a, t_mat *b)
 	c = 1;
 	while (c <= summed->m * summed->n)
 	{
-		summed->i = lstdbl_addlast \
-			(summed->i, matrix_get_element(a, c, 1) + matrix_get_element(b, c, 1));
+		summed->i = lstdbl_addlast(summed->i, matrix_get_element(a, c, 1) \
+			+ matrix_get_element(b, c, 1));
 		c++;
 	}
 	return (summed);
