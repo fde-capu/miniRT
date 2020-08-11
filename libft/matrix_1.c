@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 15:59:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 13:12:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 17:15:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_mat	*matrix_identity(int s)
 	return (mid);
 }
 
-t_mat	*matrix_multiply_scalar(t_mat *mat, double s)
+t_mat	*matrix_scalar_multiply(t_mat *mat, double s)
 {
 	t_mat	*mms;
 	t_dbl	*ld;

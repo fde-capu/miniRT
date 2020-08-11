@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 15:49:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 17:17:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,32 @@ void	pjt_xyz2(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
 	t_vec	*center;
-//	double	fov_size;
+	double	factor;
+	double	fov_size[2];
 //	double	aspect;
 
 	center = vector_build(3, (mrt->window.height + 1.0) / 2.0, (mrt->window.width + 1.0) / 2.0, 0.0);
+	if (mrt->window.width > mrt->window.height)
+	{
+		fov_size[Y] = 2 * tan(degtorad(mrt->scn->cam_active->fov) / 2);
+		fov_size[X] = ft_trig(mrt->window.height, fov_size[Y], mrt->window.width);
+	}
+	else
+	{
+		fov_size[X] = 2 * tan(degtorad(mrt->scn->cam_active->fov) / 2);
+		fov_size[Y] = ft_trig(mrt->window.width, fov_size[X], mrt->window.height);
+	}
+	factor = ft_trig(fov_size[Y], 1, mrt->window.width);
 	pix = vector_build(3, (double)i, (double)j, (double)0);
 	pix = vectorx(pix, vector_subtract(pix, center));
+	pix = vectorx(pix, vector_scalar_multiply(pix, factor));
 //	aspect = mrt->window.width / mer->window.height;
 //	fov_size = 
 //	pix = vectotx(pix, vector_scale(pix, fov_size / 2));
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
 	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
-//	vector_destroy(center);
+	vector_destroy(center);
 	vector_destroy(pix);
 	return ;
 }

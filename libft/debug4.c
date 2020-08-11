@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 11:45:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/15 12:52:55 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 16:21:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,24 @@ void	debug_matrix_of_vectors(char *str, t_mvec *mat)
 	ft_putstr(o);
 	ft_putstr(DEB_DIV);
 	o = ft_x(o, ft_itoa(mat->n));
+	ft_putstr(o);
+	ft_putstr("\n");
+	free(o);
+	return ;
+}
+
+void	debug_double2(char *str, double val, double val2)
+{
+	char	*o;
+
+	if (!debug_pass())
+		return ;
+	ft_putstr(str);
+	ft_putstr(DEB_DIV);
+	o = ft_dtoa(val);
+	ft_putstr(o);
+	ft_putstr(DEB_DIV);
+	o = ft_x(o, ft_dtoa(val2));
 	ft_putstr(o);
 	ft_putstr("\n");
 	free(o);

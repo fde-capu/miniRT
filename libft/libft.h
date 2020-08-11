@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 14:30:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/11 10:34:59 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memset(void *b, int c, size_t len);
 double			ft_pow(double a, double e);
-double			ft_pow2(double a, double e);
 char			*ft_ptoa(void *p);
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
@@ -252,7 +251,7 @@ t_mat			*matrix_of_minors(t_mat *a);
 t_mat			*matrix_of_cofactors(t_mat *a);
 t_mat			*matrix_copy(t_mat *a);
 t_mat			*matrix_transpose(t_mat *a);
-t_mat			*matrix_multiply_scalar(t_mat *b, double s);
+t_mat			*matrix_scalar_multiply(t_mat *b, double s);
 void			matrix_switch_elements(t_mat *mat, t_vec *tvec);
 t_mat			*matrix_empty(int m, int n);
 void			matrix_screen(t_mat *dst, t_mat *src);
@@ -279,6 +278,7 @@ void			debug_str(char *str, char *val);
 void			debug_str2(char *str, char *val, char *val2);
 void			debug_str_only(char *str);
 void			debug_double(char *str, double val);
+void			debug_double2(char *str, double val, double val2);
 void			debug_rgb(char *str, t_rgb rgb);
 void			debug_vector(char *str, t_vec *vec);
 void			debug_str_add(char *str, void *add);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 15:59:52 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 15:59:55 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/10 17:14:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_mat	*matrix_subtract(t_mat *a, t_mat *b)
 	t_mat	*subtracted;
 	t_mat	*temp;
 
-	temp = matrix_multiply_scalar(b, -1);
+	temp = matrix_scalar_multiply(b, -1.0);
 	subtracted = matrix_sum(a, temp);
 	matrix_destroy(temp);
 	return (subtracted);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:54:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/05 14:55:21 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/11 10:32:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # define SPLIT_SET			" \t"
 # define COMMENT_SET		"#"
 # define DIV				" :: "
-# define DOUBLE_PRECISION	10
+# define DOUBLE_PRECISION_ATOD	10
+# define DOUBLE_PRECISION	5
+# define DOUBLE_PRECISION_DTOA	4
 # define DECIMAL_POINT		"."
+# define DECIMAL_POINT_CHAR	'.'
 # define DEB_STR_ENCLOSURE	"\""
 # define ENCLOSE_OPEN		"([{"
 # define ENCLOSURES			"()[]{}"
@@ -76,6 +79,7 @@
 # define VERBSTR	debug_str
 # define VERBINT	debug_int
 # define DEBDBL		debug_double
+# define DEBDBL2	debug_double2
 # define DEBTDBL	debug_t_dbl
 # define DEBRGB		debug_rgb
 # define DEBVEC		debug_vector
