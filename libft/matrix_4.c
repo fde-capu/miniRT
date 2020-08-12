@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:11 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 07:37:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 13:52:12 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,24 @@ void	matrix_screen(t_mat *dst, t_mat *src)
 
 t_mat	*matrix_minor(t_mat *a, int i, int j)
 {
-	t_mat	*minor;
-	int		m;
-	int		n;
+	t_mat	*mat;
+	int		ic;
+	int		jc;
 
-	minor = ft_calloc(sizeof(t_mat), 1);
-	m = 1;
-	while (m <= a->m)
+	mat = matrix_new();
+	mat->m = a->m - 1;
+	mat->n = a->n - 1;
+	jc = 0;
+	while (++jc <= a->n)
 	{
-		n = 1;
-		while (n <= a->n)
+		ic = 0;
+		while (++ic <= a->m)
 		{
-			if ((m != i) && (n != j))
-			{
-				minor->i = !minor->i ? \
-					lstdbl_new(matrix_get_element(a, i, j)) : \
-					lstdbl_addlast(minor->i, matrix_get_element(a, i, j));
-			}
-			n++;
+			if (ic != i && jc != j)
+				mat->i = lstdbl_addlast(mat->i, matrix_get_element(a, ic, jc));
 		}
-		m++;
 	}
-	minor->m = a->m - 1;
-	minor->n = a->n - 1;
-	return (minor);
+	return (mat);
 }
 
 double	matrix_get_element(t_mat *mat, int m, int n)

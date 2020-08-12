@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 09:23:28 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 13:55:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	pjt_xyz(t_mrt *mrt, int i, int j)
 	return ;
 }
 
+/*
+** inspired by Zhu
+** http://steve.hollasch.net/cgindex/math/rotvecs.html
+*/
+
 t_mat	*rotvv(t_vec *v1, t_vec *v2)
 {
 	t_vec	*v3;
@@ -56,17 +61,18 @@ t_mat	*rotvv(t_vec *v1, t_vec *v2)
 	vector_normalize(v3);
 	v4 = vector_cross_product(v3, v1);
 	m1 = matrix_of_vectors_transposed(v1, v4, v3);
+	DEBMAT("m1", m1);
 	cos = vector_dot_product(v2, v1);
 	sin = vector_dot_product(v2, v4);
 	DEBDBL2("cos sin", cos, sin);
 	m2 = matrix_build(3, 3, cos, -sin, 0.0, sin, cos, 0.0, 0.0, 0.0, 1.0);
 	DEBMAT("m2", m2);
-	DEBMAT("m1", m1);
 	ret = matrix_matrix_multiply(m2, m1);
-	DEBMAT("ret", ret);
+	DEBMAT("m2m1", ret);
 	m1i = matrix_inverse(m1);
 	DEBMAT("m1i", m1i);
 	ret = matrixx(ret, matrix_matrix_multiply(m1i, ret));
+	DEBMAT("retf(m1i,m2m1)", ret);
 	vector_destroy(v3);
 	vector_destroy(v4);
 	matrix_destroy(m1);

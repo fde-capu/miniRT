@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:20 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 14:18:06 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 13:51:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_mat	*matrix_of_minors(t_mat *a)
 	int		i;
 	int		j;
 
-	mom = ft_calloc(sizeof(t_mat), 1);
+	mom = matrix_new();
 	i = 1;
 	while (i <= a->m)
 	{
