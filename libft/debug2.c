@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:04:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/07 15:46:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 08:29:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,7 @@ void	debug_rgb(char *str, t_rgb rgb)
 
 void	debug_vector(char *str, t_vec *vec)
 {
-	char	*o;
-
-	if (!debug_pass())
-		return ;
-	ft_putstr(str);
-	ft_putstr(DEB_DIV);
-	if (!vec)
-	{
-		ft_putstr(VOID_MSG);
-		ft_putstr("\n");
-		return ;
-	}
-	o = ft_vtoa(vec);
-	ft_putstr(o);
-	debug_int2("", vec->m, vec->n);
-	free(o);
-	return ;
+	debug_matrix(str, (t_mat *)vec);
 }
 
 void	debug_str_add(char *str, void *add)

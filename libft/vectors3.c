@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 17:55:25 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/15 16:36:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 09:19:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vec	*matvec_get_element(t_mvec *mv, int i, int j)
 	return (h);
 }
 
-int		vector_range_check_boundaries(t_vec *range, t_mat *m)
+int		vector_range_check_boundaries(t_mat *m, t_vec *range)
 {
 	int	i1;
 	int	i2;
@@ -72,7 +72,8 @@ int		vector_range_check_boundaries(t_vec *range, t_mat *m)
 	i2 = vector_get_element(range, 3);
 	j1 = vector_get_element(range, 2);
 	j2 = vector_get_element(range, 4);
-	if ((i1 <= 0) || (j1 <= 0) || (i2 > m->m) || (i2 > m->n))
+	if ((i1 < 1) || (i2 < 1) || (j1 < 1) || (j2 < 1) \
+		|| (j1 > m->n) || (j2 > m->n) || (i1 > m->m) || (i2 > m->m))
 		return (0);
 	return (1);
 }

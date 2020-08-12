@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:01:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/02 16:55:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/11 12:15:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_vec	*vector_cross_product(t_vec *x, t_vec *y)
 	if (x->m != 3 || y->m != 3)
 		ft_die(CROSSPRODERR, ERRCROSSPROD);
 	cpd = vector_new();
+	cpd->n = 1;
 	cpd->m = 3;
 	cpd->i = lstdbl_addlast(cpd->i, \
 		(vector_get_element(x, 2) * vector_get_element(y, 3)) \

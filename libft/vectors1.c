@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 13:07:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/11 16:58:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ t_vec	*vector_build(int len, ...)
 	}
 	va_end(ap);
 	return (vec);
+}
+
+t_mat	*vector_transpose(t_vec *v)
+{
+	return (matrix_transpose((t_mat *)v));
 }
 
 t_mvec	*matvec_new(void)

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/31 11:02:24 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/11 11:58:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct			s_camera
 	t_vec				*o;
 	t_vec				*p;
 	t_vec				*n;
+	t_vec				*side;
 	double				fov;
 	struct s_camera		*trans;
 	struct s_camera		*nx;

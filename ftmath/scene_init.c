@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 13:07:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/11 12:10:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,15 @@ t_alt	amb_light_init(double f, t_rgb rgb)
 t_cam	*cam_init(t_vec *o, t_vec *p, double fov)
 {
 	t_cam	*cam;
-	t_vec	*tilt;
 
 	cam = ft_calloc(sizeof(t_cam), 1);
 	cam->o = o;
 	cam->p = p;
-	tilt = vector_build(3, (double)0, (double)1, (double)0);
-	if (vector_equal(tilt, cam->p))
-		cam->n = vector_build(3, (double)0, (double)0, (double)1);
+	cam->side = vector_build(3, 0.0, 1.0, 0.0);
+	if (vector_equal(cam->side, cam->p))
+		cam->n = vector_build(3, 0.0, 0.0, 1.0);
 	else
-		cam->n = vector_cross_product(p, tilt);
-	vector_destroy(tilt);
+		cam->n = vector_cross_product(p, cam->side);
 	cam->fov = fov;
 	return (cam);
 }
@@ -66,7 +64,7 @@ t_tri	*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb)
 	new->a = a;
 	new->b = b;
 	new->c = c;
-	new->n = vector_build(3, (double)0, (double)0, (double)0);
+	new->n = vector_build(3, 0.0, 0.0, 0.0);
 	new->rgb = rgb;
 	return (new);
 }

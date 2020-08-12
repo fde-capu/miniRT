@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 14:49:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 13:24:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/11 11:59:49 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	verb_cam(t_scn *scn)
 		DEBVEC(S_ORIGIN, c->o);
 		DEBVEC(S_POINT, c->p);
 		DEBVEC(S_NORMAL, c->n);
+		DEBVEC(S_SIDE, c->side);
 		DEBDBL(S_FOV, c->fov);
 		c = c->nx;
 	}
@@ -35,6 +36,7 @@ void	verb_cam_active(t_scn *scn)
 	DEBVEC(S_ORIGIN, scn->cam_active->o);
 	DEBVEC(S_POINT, scn->cam_active->p);
 	DEBVEC(S_NORMAL, scn->cam_active->n);
+	DEBVEC(S_SIDE, scn->cam_active->side);
 	DEBDBL(S_FOV, scn->cam_active->fov);
 	return ;
 }

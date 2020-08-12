@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:14 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 12:50:46 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 11:19:11 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,38 @@
 
 void	matrix_put_element(t_mat *dst, int i, int j, double d)
 {
-	matrix_goto_element(dst, i, j)->d = d;
+	t_dbl	*h;
+
+	h = matrix_goto_element(dst, i, j);
+	h->d = d;
 	return ;
 }
 
 void	matrix_put_matrix(t_mat *dest, t_mat *ref, int i, int j)
 {
-	t_mat	*scrn;
-	int		x;
-	int		y;
+	t_dbl	*h;
+	int		vector_num;
+	t_vec	*vec;
+	t_dbl	*vh;
+	int		v_count;
 
-	scrn = matrix_empty(dest->m, dest->n);
-	x = 1;
-	while (x <= 1)
+	h = matrix_goto_element(dest, i, j);
+	vector_num = 1;
+	vec = vector_new();
+	while (vector_num <= ref->n)
 	{
-		y = 1;
-		while (y <= j)
+		vec = vectorx(vec, matrix_get_vector(ref, vector_num));
+		vh = vec->i;
+		v_count = 0;
+		while (vh)
 		{
-			matrix_put_element(scrn, i + x - 1, j + y - 1,
-				matrix_get_element(ref, x, y));
-			y++;
+			matrix_put_element(dest, i + v_count, j + vector_num - 1, vh->d);
+			v_count++;
+			vh = vh->nx;
 		}
-		x++;
+		vector_num++;
 	}
-	matrix_screen(dest, scrn);
-	matrix_destroy(scrn);
+	vector_destroy(vec);
 	return ;
 }
 
@@ -50,7 +57,7 @@ t_mat	*matrix_get_submatrix(t_mat *m, t_vec *range)
 	int		i0fixed;
 
 	vector_range_fix(range);
-	if (!vector_range_check_boundaries(range, m))
+	if (!vector_range_check_boundaries(m, range))
 		ft_die(MATRIXSUBMATRIXERR, ERRMATRIXSUBMATRIX);
 	j[0] = vector_get_element(range, 2);
 	j[1] = vector_get_element(range, 4);
@@ -79,6 +86,26 @@ t_vec	*matrix_get_vector(t_mat *m, int j)
 	extracted = (t_vec *)matrix_get_submatrix(m, temp);
 	vector_destroy(temp);
 	return (extracted);
+}
+
+t_mat	*matrix_get_line(t_mat *m, int i)
+{
+	t_vec	*range;
+	t_mat	*line;
+
+	range = vector_build(4, (double)i, 1.0, (double)i, (double)m->n);
+	line = matrix_get_submatrix(m, range);
+	vector_destroy(range);
+	return (line);
+}
+
+t_vec	*matrix_get_line_transposed(t_mat *m, int i)
+{
+	t_mat	*linet;
+
+	linet = matrix_get_line(m, i);
+	linet = matrixx(linet, matrix_transpose(linet));
+	return ((t_vec *)linet);
 }
 
 t_mat	*matrix_copy(t_mat *a)

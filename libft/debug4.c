@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 11:45:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 16:21:29 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 08:30:23 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,17 @@ void	debug_t_dbl(char *str, t_dbl *dbl)
 
 void	debug_matrix(char *str, t_mat *mat)
 {
-	char	*o;
-
 	if (!debug_pass())
 		return ;
-	o = ft_strcat(str, DEB_DIV);
-	ft_putstr(o);
-	o = ft_x(o, ft_itoa(mat->m));
-	ft_putstr(o);
-	ft_putstr(DEB_DIV);
-	o = ft_x(o, ft_itoa(mat->n));
-	ft_putstr(o);
-	ft_putstr("\n");
+	ft_putstr(str);
+	if (!mat)
+	{
+		ft_putstr(VOID_MSG);
+		ft_putstr("\n");
+		return ;
+	}
+	debug_int2("", mat->m, mat->n);
 	debug_matrix_2(mat);
-	free(o);
 	ft_putstr("\n");
 	return ;
 }

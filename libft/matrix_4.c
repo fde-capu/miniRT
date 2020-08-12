@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:11 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/10 17:15:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 07:37:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ t_mat	*matrix_inverse(t_mat *a)
 	mt = ft_x(mt, matrix_scalar_multiply(mt, 1.0 / det));
 	return (mt);
 }
+
+/*
+** matrix_screen is thought for equal size matrices.
+*/
 
 void	matrix_screen(t_mat *dst, t_mat *src)
 {

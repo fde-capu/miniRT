@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/11 10:34:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 11:06:12 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memset(void *b, int c, size_t len);
-double			ft_pow(double a, double e);
+double			ft_pow(double a, int e);
 char			*ft_ptoa(void *p);
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
@@ -210,12 +210,13 @@ void			verbose_scene(t_scn *scn);
 ** Math related:
 */
 
+void			vector_append_val(t_vec *vec, double val);
 double			vector_pop(t_vec *vec);
 double			vector_dot_product(t_vec *v1, t_vec *v2);
 t_vec			*vector_copy(t_vec *a);
 t_vec			*vector_cross_product(t_vec *x, t_vec *y);
 int				vector_equal(t_vec *a, t_vec *b);
-int				vector_range_check_boundaries(t_vec *range, t_mat *m);
+int				vector_range_check_boundaries(t_mat *m, t_vec *range);
 void			vector_range_fix(t_vec *range);
 t_vec			*vector_new(void);
 double			vector_get_element(t_vec *vec, int i);
@@ -225,43 +226,47 @@ void			vector_destroy(t_vec *vec);
 t_vec			*vector_scalar_multiply(t_vec *a, double scalar);
 t_vec			*vector_subtract(t_vec *a, t_vec *b);
 t_vec			*vector_sum(t_vec *a, t_vec *b);
+t_mat			*vector_transpose(t_vec *v);
 t_vec			*vectorx(t_vec *old, t_vec *new);
 t_vec			*vector_scale(t_vec *vec, t_vec *xyz);
 t_vec			*vector_translate(t_vec *vec, t_vec *xyz);
 double			vector_magnitude(t_vec *v);
-char			*primitive_type_number(int type);
-t_dbl			*matrix_goto_element(t_mat *mat, int m, int n);
-double			matrix_get_element(t_mat *mat, int i, int j);
 t_vec			*matvec_get_element(t_mvec *mv, int i, int j);
 void			matvec_insert_at_pos(t_mvec *mv, int i, int j, t_vec *vec);
-t_mat			*matrix_sum(t_mat *a, t_mat *b);
-t_mat			*matrix_new(void);
-t_mat			*matrix_build(int m, ...);
-void			matrix_destroy(t_mat *mat);
 void			matvec_destroy(t_mvec *mat);
 t_mvec			*matvec_new(void);
-t_mat			*matrix_minor(t_mat *a, int i, int j);
 t_vec			*ft_atov(char *str);
-void			matrix_put_matrix(t_mat *dest, t_mat *ref, int i, int j);
-void			matrix_put_element(t_mat *dst, int i, int j, double d);
 int				is_normalized(t_vec *vec);
-double			matrix_determinant(t_mat *a);
-t_mat			*matrix_inverse(t_mat *a);
-t_mat			*matrix_of_minors(t_mat *a);
-t_mat			*matrix_of_cofactors(t_mat *a);
-t_mat			*matrix_copy(t_mat *a);
-t_mat			*matrix_transpose(t_mat *a);
-t_mat			*matrix_scalar_multiply(t_mat *b, double s);
-void			matrix_switch_elements(t_mat *mat, t_vec *tvec);
-t_mat			*matrix_empty(int m, int n);
-void			matrix_screen(t_mat *dst, t_mat *src);
-t_mat			*matrix_identity(int s);
-t_vec			*matrix_vector_multiply(t_mat *left, t_vec *right);
-t_mat			*matrix_diagonal(t_vec *dvec);
-void			vector_append_val(t_vec *vec, double val);
-t_vec			*matrix_get_vector(t_mat *m, int j);
-t_mat			*matrixx(t_mat *old, t_mat *new);
 t_mat			*matrix_adjoint(t_mat *m);
+t_mat			*matrix_build(int m, int n, ...);
+t_mat			*matrix_copy(t_mat *a);
+void			matrix_destroy(t_mat *mat);
+double			matrix_determinant(t_mat *a);
+t_mat			*matrix_diagonal(t_vec *dvec);
+t_mat			*matrix_empty(int m, int n);
+double			matrix_get_element(t_mat *mat, int i, int j);
+t_mat			*matrix_get_line(t_mat *m, int i);
+t_vec			*matrix_get_line_transposed(t_mat *m, int i);
+t_vec			*matrix_get_vector(t_mat *m, int j);
+t_dbl			*matrix_goto_element(t_mat *mat, int m, int n);
+t_mat			*matrix_identity(int s);
+t_mat			*matrix_inverse(t_mat *a);
+t_mat			*matrix_matrix_multiply(t_mat *left, t_mat *right);
+t_mat			*matrix_minor(t_mat *a, int i, int j);
+t_mat			*matrix_new(void);
+t_mat			*matrix_of_cofactors(t_mat *a);
+t_mat			*matrix_of_minors(t_mat *a);
+t_mat			*matrix_of_vectors_transposed(t_vec *v1, t_vec *v2, t_vec *v3);
+void			matrix_put_element(t_mat *dst, int i, int j, double d);
+void			matrix_put_matrix(t_mat *dest, t_mat *ref, int i, int j);
+t_mat			*matrix_scalar_multiply(t_mat *b, double s);
+void			matrix_screen(t_mat *dst, t_mat *src);
+t_mat			*matrix_sum(t_mat *a, t_mat *b);
+void			matrix_switch_elements(t_mat *mat, t_vec *tvec);
+t_mat			*matrix_transpose(t_mat *a);
+t_vec			*matrix_vector_multiply(t_mat *left, t_vec *right);
+t_mat			*matrixx(t_mat *old, t_mat *new);
+char			*primitive_type_number(int type);
 
 /*
 ** Debugs:
