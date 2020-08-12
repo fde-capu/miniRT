@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 11:06:12 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 14:41:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ t_vec			*vectorx(t_vec *old, t_vec *new);
 t_vec			*vector_scale(t_vec *vec, t_vec *xyz);
 t_vec			*vector_translate(t_vec *vec, t_vec *xyz);
 double			vector_magnitude(t_vec *v);
+t_vec			*vector_matrix_multiply(t_vec *left, t_mat *right);
 t_vec			*matvec_get_element(t_mvec *mv, int i, int j);
 void			matvec_insert_at_pos(t_mvec *mv, int i, int j, t_vec *vec);
 void			matvec_destroy(t_mvec *mat);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:20 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 13:51:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 14:55:56 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	matrix_destroy(t_mat *mat)
 t_mat	*matrix_of_minors(t_mat *a)
 {
 	t_mat	*mom;
+	t_mat	*minor;
 	int		i;
 	int		j;
 
@@ -34,10 +35,9 @@ t_mat	*matrix_of_minors(t_mat *a)
 		j = 1;
 		while (j <= a->n)
 		{
-			mom->i = !mom->i ? \
-				lstdbl_new(matrix_determinant(matrix_minor(a, i, j))) : \
-				lstdbl_addlast(mom->i,
-					matrix_determinant(matrix_minor(a, i, j)));
+			minor = matrix_minor(a, i, j);
+			mom->i = lstdbl_addlast(mom->i, matrix_determinant(minor));
+			matrix_destroy(minor);
 			j++;
 		}
 		i++;

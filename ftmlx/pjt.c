@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 13:55:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 14:47:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	pjt_xyz2(t_mrt *mrt, int i, int j)
 	double	fov_size[2];
 	t_vec	*up;
 	t_mat	*rvv;
-//	double	aspect;
 
 	center = vector_build(3, (mrt->window.height + 1.0) / 2.0, (mrt->window.width + 1.0) / 2.0, 0.0);
 	if (mrt->window.width > mrt->window.height)
@@ -109,9 +108,8 @@ void	pjt_xyz2(t_mrt *mrt, int i, int j)
 	up = vector_build(3, 0.0, 0.0, 1.0);
 	rvv = rotvv(up, mrt->scn->cam_active->p);
 	vector_destroy(up);
-//	aspect = mrt->window.width / mer->window.height;
-//	fov_size = 
-//	pix = vectotx(pix, vector_scale(pix, fov_size / 2));
+	pix = vectorx(pix, vector_matrix_multiply(pix, rvv));
+	vector_destroy(rvv);
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
 	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));

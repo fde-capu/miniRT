@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 15:59:52 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 13:51:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/12 14:50:30 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,25 @@ t_mat	*matrix_matrix_multiply(t_mat *a, t_mat *b)
 		j++;
 	}
 	vector_destroy(v);
+	vector_destroy(v2);
 	return (c);
 }
 
 t_vec	*matrix_vector_multiply(t_mat *left, t_vec *right)
 {
 	return ((t_vec *)matrix_matrix_multiply(left, (t_mat *)right));
+}
+
+t_vec	*vector_matrix_multiply(t_vec *left, t_mat *right)
+{
+	t_mat	*foo_transpose;
+	t_mat	*ret;
+
+	foo_transpose = vector_transpose(left);
+	ret = matrix_matrix_multiply(foo_transpose, right);
+	ret = matrixx(ret, matrix_transpose(ret));
+	matrix_destroy(foo_transpose);
+	return (ret);
 }
 
 double	matrix_determinant(t_mat *a)
