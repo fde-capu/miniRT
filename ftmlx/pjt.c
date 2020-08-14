@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 12:04:23 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 12:46:53 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_mat	*rotvv(t_vec *v1, t_vec *v2)
 void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
+	t_vec	*pix2;
 	t_vec	*center;
 	double	factor;
 	double	fov_size[2];
@@ -84,6 +85,9 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	up = vector_build(3, 0.0, 0.0, 1.0);
 	rvv = rotvv(up, mrt->scn->cam_active->p);
 	vector_destroy(up);
+	pix2 = vector_matrix_multiply(pix, rvv);
+	DEBVEC("pix", pix);
+	DEBVEC("pix2", pix2);
 	pix = vectorx(pix, vector_matrix_multiply(pix, rvv));
 	vector_destroy(rvv);
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
@@ -91,5 +95,6 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
 	vector_destroy(center);
 	vector_destroy(pix);
+	vector_destroy(pix2);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 15:59:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 11:25:45 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 12:45:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,15 @@ t_mat	*matrix_transpose(t_mat *a)
 	t_mat	*transposed;
 	int		i;
 	int		j;
-	t_dbl	*h;
 
-	transposed = matrix_new();
-	transposed->m = a->n;
-	transposed->n = a->m;
-	h = a->i;
+	transposed = matrix_new_mn(a->n, a->m);
 	i = 1;
-	while (i <= a->n)
+	while (i <= a->m)
 	{
 		j = 1;
-		while (j <= a->m)
+		while (j <= a->n)
 		{
-			transposed->i = lstdbl_addlast(transposed->i, h->d);
-			h = h->nx;
+			transposed->i = lstdbl_addlast(transposed->i, matrix_get_element(a, i, j));
 			j++;
 		}
 		i++;
