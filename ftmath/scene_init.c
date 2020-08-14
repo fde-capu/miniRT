@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 16:20:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:44:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ t_cam	*cam_init(t_vec *o, t_vec *p, double fov)
 	cam->o = o;
 	cam->p = vector_scalar_multiply(g_z, -1.0);
 	cam->n = vector_copy(g_y);
-	cam->side = vector_scalar_multiply(g_x, -1.0);
 	rvv = rotvv(cam->p, p);
-	vector_destroy(p);
 	vector_transform(&cam->p, rvv);
 	vector_transform(&cam->n, rvv);
-	vector_transform(&cam->side, rvv);
+	cam->side = vector_cross_product(cam->p, cam->n);
 	matrix_destroy(rvv);
+	vector_destroy(p);
 	return (cam);
 }
 
