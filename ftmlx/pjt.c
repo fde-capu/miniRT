@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 16:18:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:56:02 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,12 @@ t_mat	*rotvv(t_vec *v1, t_vec *v2)
 	return (ret);
 }
 
-void	pjt_pixtocam(t_mrt *mrt, int i, int j)
+t_vec	*pix_film(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
-	t_vec	*pix2;
 	t_vec	*center;
 	double	factor;
 	double	fov_size[2];
-	t_mat	*rvv;
-	t_vec	*screen_up;
 
 	center = vector_build(3, (mrt->window.height + 1.0) / 2.0, \
 		(mrt->window.width + 1.0) / 2.0, 0.0);
@@ -90,6 +87,18 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	pix = vector_build(3, (double)i, (double)j, (double)0);
 	pix = vectorx(pix, vector_subtract(pix, center));
 	pix = vectorx(pix, vector_scalar_multiply(pix, factor));
+	vector_destroy(center);
+	return (pix);
+}
+
+void	pjt_pixtocam(t_mrt *mrt, int i, int j)
+{
+	t_vec	*pix;
+	t_vec	*pix2;
+	t_mat	*rvv;
+	t_vec	*screen_up;
+
+	pix = pix_film(mrt, i, j);
 	rvv = rotvv(g_z, mrt->scn->cam_active->p);
 	pix2 = vector_matrix_multiply(pix, rvv);
 	DEBVEC("pix", pix);
@@ -104,7 +113,6 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
 	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
-	vector_destroy(center);
 	vector_destroy(pix);
 	vector_destroy(pix2);
 	vector_destroy(screen_up);

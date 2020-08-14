@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 12:04:27 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:56:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_key_mrt(t_mrt *mrt, \
 			char *key_code, int (*fun)(void*), void *arg);
 void	hook_keys(t_mrt *mrt, int ks, int ke);
 void	pjt_init(t_mrt *mrt);
+t_vec	*pix_film(t_mrt *mrt, int i, int j);
 void	pjt_pixtocam(t_mrt *mrt, int i, int j);
 
 # define MSG_RENDERING	"\nRendering...\n"
