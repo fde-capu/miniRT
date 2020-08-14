@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:14 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 11:19:11 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 11:44:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,21 @@ t_vec	*matrix_get_line_transposed(t_mat *m, int i)
 	return ((t_vec *)linet);
 }
 
+t_mat	*matrix_new_mn(int m, int n)
+{
+	t_mat	*mnmn;
+
+	mnmn = matrix_new();
+	mnmn->m = m;
+	mnmn->n = n;
+	return (mnmn);
+}
+
 t_mat	*matrix_copy(t_mat *a)
 {
 	t_mat	*mcp;
 
-	mcp = malloc(sizeof(t_mat));
-	return ((t_mat *)ft_memcpy(mcp, a, sizeof(t_mat)));
+	mcp = matrix_new_mn(a->m, a->n);
+	mcp->i = lstdbl_copy(a->i);
+	return (mcp);
 }

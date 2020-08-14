@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:11 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 13:52:12 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 11:58:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_mat	*matrix_inverse(t_mat *a)
 
 	det = matrix_determinant(a);
 	if (!det || a->m != a->n)
-		return (0);
+		ft_die(NOTINVERTABLEERR, ERRNOTINVERTABLE);
 	mt = matrix_adjoint(a);
-	mt = ft_x(mt, matrix_scalar_multiply(mt, 1.0 / det));
+	mt = matrixx(mt, matrix_scalar_multiply(mt, 1.0 / det));
 	return (mt);
 }
 
@@ -56,9 +56,7 @@ t_mat	*matrix_minor(t_mat *a, int i, int j)
 	int		ic;
 	int		jc;
 
-	mat = matrix_new();
-	mat->m = a->m - 1;
-	mat->n = a->n - 1;
+	mat = matrix_new_mn(a->m - 1, a->n - 1);
 	jc = 0;
 	while (++jc <= a->n)
 	{

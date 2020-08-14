@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:01:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/11 12:15:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 10:32:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_vec	*vector_cross_product(t_vec *x, t_vec *y)
 {
 	t_vec	*cpd;
 
-	if (x->m != 3 || y->m != 3)
+	if ((x->m != 3 || y->m != 3)
+		|| (!(vector_magnitude(x) || !(vector_magnitude(y))))
+		|| (vector_vector_angle_deg(x, y) == 180.0 || vector_vector_angle_deg(x, y) == 0.0))
 		ft_die(CROSSPRODERR, ERRCROSSPROD);
 	cpd = vector_new();
 	cpd->n = 1;
@@ -37,6 +39,19 @@ t_vec	*vector_cross_product(t_vec *x, t_vec *y)
 		(vector_get_element(x, 1) * vector_get_element(y, 2)) \
 		- (vector_get_element(y, 1) * vector_get_element(x, 2)));
 	return (cpd);
+}
+
+double	vector_vector_angle_rad(t_vec *x, t_vec *y)
+{
+	double	cos;
+
+	cos = vector_dot_product(x, y) / (vector_magnitude(x) * vector_magnitude(y));
+	return (acos(cos));
+}
+
+double	vector_vector_angle_deg(t_vec *x, t_vec *y)
+{
+	return (radtodeg(vector_vector_angle_rad(x, y)));
 }
 
 /*

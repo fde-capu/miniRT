@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 15:59:52 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 14:50:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 11:40:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ t_mat	*matrix_adjoint(t_mat *m)
 {
 	t_mat	*madj;
 
-	madj = matrix_of_minors(m);
-	madj = matrixx(madj, matrix_of_cofactors(madj));
+	madj = matrix_of_cofactors(m);
 	madj = matrixx(madj, matrix_transpose(madj));
 	return (madj);
 }

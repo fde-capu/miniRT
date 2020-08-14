@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 14:41:46 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 11:48:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,20 @@ void			ft_bit8_tog(u_int8_t *data, u_int8_t bit);
 char			*ft_bit8_str(u_int8_t data);
 char			*ft_removequotes(char *quoted);
 int				loop_2d(int x, int y);
-double			lstdbl_pop(t_dbl *h);
+
+
+/*
+** lstdbl
+*/
+
+
 t_dbl			*lstdbl_addlast(t_dbl *h, double d);
+t_dbl			*lstdbl_copy(t_dbl *h);
 void			lstdbl_destroy(t_dbl *dbl);
 t_dbl			*lstdbl_last(t_dbl *h);
 void			lstdbl_mult_element(t_dbl *ld, int e, int m);
 t_dbl			*lstdbl_new(double val);
+double			lstdbl_pop(t_dbl *h);
 
 /*
 ** Regex related.
@@ -211,27 +219,28 @@ void			verbose_scene(t_scn *scn);
 */
 
 void			vector_append_val(t_vec *vec, double val);
-double			vector_pop(t_vec *vec);
-double			vector_dot_product(t_vec *v1, t_vec *v2);
+t_vec			*vector_build(int len, ...);
 t_vec			*vector_copy(t_vec *a);
 t_vec			*vector_cross_product(t_vec *x, t_vec *y);
-int				vector_equal(t_vec *a, t_vec *b);
-int				vector_range_check_boundaries(t_mat *m, t_vec *range);
-void			vector_range_fix(t_vec *range);
-t_vec			*vector_new(void);
-double			vector_get_element(t_vec *vec, int i);
-void			vector_normalize(t_vec *mv);
-t_vec			*vector_build(int len, ...);
 void			vector_destroy(t_vec *vec);
+double			vector_dot_product(t_vec *v1, t_vec *v2);
+int				vector_equal(t_vec *a, t_vec *b);
+double			vector_get_element(t_vec *vec, int i);
 t_vec			*vector_scalar_multiply(t_vec *a, double scalar);
+t_vec			*vector_scale(t_vec *vec, t_vec *xyz);
 t_vec			*vector_subtract(t_vec *a, t_vec *b);
 t_vec			*vector_sum(t_vec *a, t_vec *b);
 t_mat			*vector_transpose(t_vec *v);
-t_vec			*vectorx(t_vec *old, t_vec *new);
-t_vec			*vector_scale(t_vec *vec, t_vec *xyz);
 t_vec			*vector_translate(t_vec *vec, t_vec *xyz);
+double			vector_vector_angle_deg(t_vec *x, t_vec *y);
 double			vector_magnitude(t_vec *v);
 t_vec			*vector_matrix_multiply(t_vec *left, t_mat *right);
+t_vec			*vector_new(void);
+void			vector_normalize(t_vec *mv);
+double			vector_pop(t_vec *vec);
+int				vector_range_check_boundaries(t_mat *m, t_vec *range);
+void			vector_range_fix(t_vec *range);
+t_vec			*vectorx(t_vec *old, t_vec *new);
 t_vec			*matvec_get_element(t_mvec *mv, int i, int j);
 void			matvec_insert_at_pos(t_mvec *mv, int i, int j, t_vec *vec);
 void			matvec_destroy(t_mvec *mat);
@@ -240,6 +249,7 @@ t_vec			*ft_atov(char *str);
 int				is_normalized(t_vec *vec);
 t_mat			*matrix_adjoint(t_mat *m);
 t_mat			*matrix_build(int m, int n, ...);
+t_mat			*matrix_checkers_sign(t_mat *a);
 t_mat			*matrix_copy(t_mat *a);
 void			matrix_destroy(t_mat *mat);
 double			matrix_determinant(t_mat *a);
@@ -255,6 +265,7 @@ t_mat			*matrix_inverse(t_mat *a);
 t_mat			*matrix_matrix_multiply(t_mat *left, t_mat *right);
 t_mat			*matrix_minor(t_mat *a, int i, int j);
 t_mat			*matrix_new(void);
+t_mat			*matrix_new_mn(int m, int n);
 t_mat			*matrix_of_cofactors(t_mat *a);
 t_mat			*matrix_of_minors(t_mat *a);
 t_mat			*matrix_of_vectors_transposed(t_vec *v1, t_vec *v2, t_vec *v3);

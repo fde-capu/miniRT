@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:24 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 08:52:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 11:53:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ t_mat	*matrix_build(int m, int n, ...)
 	t_mat	*mat;
 	int		c;
 
-	mat = matrix_new();
 	va_start(ap, n);
-	mat->m = m;
-	mat->n = n;
+	mat = matrix_new_mn(m, n);
 	c = m * n;
 	while (c--)
 		mat->i = lstdbl_addlast(mat->i, va_arg(ap, double));

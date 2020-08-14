@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/01 16:00:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 11:28:02 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,32 @@ t_mat	*matrix_full(int m, int n, double f)
 	return (me);
 }
 
-t_mat	*matrix_of_cofactors(t_mat *a)
+t_mat	*matrix_checkers_sign(t_mat *a)
 {
-	t_mat	*moc;
+	t_mat	*chk;
 	int		i;
 	int		mtn;
 
-	moc = matrix_copy(a);
+	chk = matrix_copy(a);
 	mtn = a->m * a->n;
 	i = 1;
 	while (i <= mtn)
 	{
 		if (!(i % 2))
-			lstdbl_mult_element(moc->i, i, -1);
+			lstdbl_mult_element(chk->i, i, -1);
 		i++;
 	}
+	return (chk);
+}
+
+t_mat	*matrix_of_cofactors(t_mat *a)
+{
+	t_mat	*moc;
+
+	if (a->m != a->n)
+		ft_die(COFACTORERR, ERRCOFACTOR);
+	moc = matrix_of_minors(a);
+	moc = matrixx(moc, matrix_checkers_sign(a));
 	return (moc);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:54:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 08:55:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 11:19:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@
 # define ERRCROSSPROD			2
 # define MATRIXSUBMATRIXERR		"matrix_sub_matrix() out of bondaries."
 # define ERRMATRIXSUBMATRIX		3
+# define COFACTORERR			"Cofactor error. Not a square matrix?"
+# define ERRCOFACTOR			4
+# define NOTINVERTABLEERR		"Non invertable matrix."
+# define ERRNOTINVERTABLE		5
 
 # define X						0
 # define Y						1
