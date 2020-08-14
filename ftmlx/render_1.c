@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 12:04:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 14:14:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	prepare_project_space(t_mrt *mrt)
 		i = 1;
 		while (i <= mrt->window.width)
 		{
-			pjt_pixtocam(mrt, j, i);
+			pjt_pixtocam(mrt, i, j);
 			i++;
 		}
 		j++;

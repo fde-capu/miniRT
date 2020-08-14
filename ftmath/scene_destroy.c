@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 13:37:52 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/11 12:03:38 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:00:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,8 @@ int			scene_destroy(t_scn *sc)
 	if (sc->faces)
 		scn_free_list_tri(sc->faces);
 	free(sc);
+	vector_destroy(g_x);
+	vector_destroy(g_y);
+	vector_destroy(g_z);
 	return (1);
 }

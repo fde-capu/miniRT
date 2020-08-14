@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 13:10:08 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:20:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ t_scn	*scene_init(void)
 	t_scn	*scn;
 
 	scn = ft_calloc(sizeof(t_scn), 1);
+	g_x = vector_build(3, 1.0, 0.0, 0.0);
+	g_y = vector_build(3, 0.0, 1.0, 0.0);
+	g_z = vector_build(3, 0.0, 0.0, 1.0);
 	return (scn);
 }
 
@@ -32,16 +35,20 @@ t_alt	amb_light_init(double f, t_rgb rgb)
 t_cam	*cam_init(t_vec *o, t_vec *p, double fov)
 {
 	t_cam	*cam;
+	t_mat	*rvv;
 
 	cam = ft_calloc(sizeof(t_cam), 1);
-	cam->o = o;
-	cam->p = p;
-	cam->side = vector_build(3, 0.0, 1.0, 0.0);
-	if (vector_equal(cam->side, cam->p))
-		cam->n = vector_build(3, 0.0, 0.0, 1.0);
-	else
-		cam->n = vector_cross_product(p, cam->side);
 	cam->fov = fov;
+	cam->o = o;
+	cam->p = vector_scalar_multiply(g_z, -1.0);
+	cam->n = vector_copy(g_y);
+	cam->side = vector_scalar_multiply(g_x, -1.0);
+	rvv = rotvv(cam->p, p);
+	vector_destroy(p);
+	vector_transform(&cam->p, rvv);
+	vector_transform(&cam->n, rvv);
+	vector_transform(&cam->side, rvv);
+	matrix_destroy(rvv);
 	return (cam);
 }
 

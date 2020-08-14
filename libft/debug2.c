@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:04:45 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/12 08:29:09 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:00:58 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,25 @@ void	debug_rgb(char *str, t_rgb rgb)
 
 void	debug_vector(char *str, t_vec *vec)
 {
-	debug_matrix(str, (t_mat *)vec);
+	char	*o;
+
+	if (!debug_pass())
+		return ;
+	ft_putstr(str);
+	ft_putstr(DEB_DIV);
+	if (!vec)
+	{
+		ft_putstr(VOID_MSG);
+		ft_putstr("\n");
+		return ;
+	}
+	debug_matrix_single_line(vec);
+	ft_putstr(DEB_DIV);
+	o = ft_itoa((int)vec->m);
+	ft_putstr(o);
+	free(o);
+	ft_putstr("\n");
+	return ;
 }
 
 void	debug_str_add(char *str, void *add)
@@ -68,6 +86,25 @@ void	debug_str_add(char *str, void *add)
 	o = ft_ptoa(&add);
 	ft_putstr(o);
 	ft_putstr("\n");
+	free(o);
+	return ;
+}
+
+void	debug_matrix_single_line(t_mat *mat)
+{
+	t_dbl	*h;
+	char	*o;
+
+	o = ft_strnew();
+	h = mat->i;
+	while (h)
+	{
+		o = ft_strcatx(o, ft_dtoa(h->d));
+		h = h->nx;
+		if (h)
+			o = ft_strcatxl(o, " ");
+	}
+	ft_putstr(o);
 	free(o);
 	return ;
 }

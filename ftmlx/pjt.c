@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 13:21:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:18:47 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	t_vec	*center;
 	double	factor;
 	double	fov_size[2];
-	t_vec	*up;
 	t_mat	*rvv;
+	t_vec	*screen_up;
 
 	center = vector_build(3, (mrt->window.height + 1.0) / 2.0, \
 		(mrt->window.width + 1.0) / 2.0, 0.0);
@@ -90,12 +90,15 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	pix = vector_build(3, (double)i, (double)j, (double)0);
 	pix = vectorx(pix, vector_subtract(pix, center));
 	pix = vectorx(pix, vector_scalar_multiply(pix, factor));
-	up = vector_build(3, 0.0, 0.0, 1.0);
-	rvv = rotvv(up, mrt->scn->cam_active->p);
-	vector_destroy(up);
+	rvv = rotvv(g_z, mrt->scn->cam_active->p);
 	pix2 = vector_matrix_multiply(pix, rvv);
 	DEBVEC("pix", pix);
 	DEBVEC("pix2", pix2);
+	screen_up = vector_matrix_multiply(g_y, rvv);
+	pix = vectorx(pix, vector_matrix_multiply(pix, rvv));
+	rvv = matrixx(rvv, rotvv(screen_up, mrt->scn->cam_active->n));
+	pix2 = vectorx(pix2, vector_matrix_multiply(pix, rvv));
+	DEBVEC("pix3", pix2);
 	pix = vectorx(pix, vector_matrix_multiply(pix, rvv));
 	vector_destroy(rvv);
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
@@ -104,5 +107,6 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	vector_destroy(center);
 	vector_destroy(pix);
 	vector_destroy(pix2);
+	vector_destroy(screen_up);
 	return ;
 }

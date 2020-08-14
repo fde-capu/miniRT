@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 15:59:52 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 11:40:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:16:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ t_vec	*vector_matrix_multiply(t_vec *left, t_mat *right)
 	ret = matrixx(ret, matrix_transpose(ret));
 	matrix_destroy(foo_transpose);
 	return (ret);
+}
+
+void	vector_transform(t_vec **vec, t_mat *trans)
+{
+	*vec = vectorx(*vec, vector_matrix_multiply(*vec, trans));
+	return ;
 }
 
 double	matrix_determinant(t_mat *a)

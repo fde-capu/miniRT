@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/07/13 12:30:04 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/08/14 14:08:06 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,6 @@ ffclean	:	fre	fclean
 	@$(T0) "All clear!" $(T2)
 	@$(ELINE); $(ELINE); $(ELINE)
 	@$(ELINE); $(ELINE); $(ELINE)
-	@sleep 1
 	@$(ELINE); $(ELINE); $(ELINE)
 	@$(ELINE); $(ELINE); $(ELINE)
 
