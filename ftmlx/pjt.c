@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 16:56:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 17:12:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,27 +94,25 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
-	t_vec	*pix2;
 	t_mat	*rvv;
 	t_vec	*screen_up;
 
 	pix = pix_film(mrt, i, j);
+	screen_up = vector_scalar_multiply(g_y, -1.0);
 	rvv = rotvv(g_z, mrt->scn->cam_active->p);
-	pix2 = vector_matrix_multiply(pix, rvv);
-	DEBVEC("pix", pix);
-	DEBVEC("pix2", pix2);
-	screen_up = vector_matrix_multiply(g_y, rvv);
-	pix = vectorx(pix, vector_matrix_multiply(pix, rvv));
+	DEBVEC("pix1", pix);
+	vector_transform(&pix, rvv);
+	DEBVEC("pix2", pix);
+	vector_transform(&screen_up, rvv);
 	rvv = matrixx(rvv, rotvv(screen_up, mrt->scn->cam_active->n));
-	pix2 = vectorx(pix2, vector_matrix_multiply(pix, rvv));
-	DEBVEC("pix3", pix2);
-	pix = vectorx(pix, vector_matrix_multiply(pix, rvv));
+	vector_transform(&pix, rvv);
+	DEBVEC("pix3", pix);
+	DEB("");
 	vector_destroy(rvv);
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
 	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
 	vector_destroy(pix);
-	vector_destroy(pix2);
 	vector_destroy(screen_up);
 	return ;
 }
