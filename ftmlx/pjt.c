@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 12:46:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 13:21:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ t_mat	*rotvv(t_vec *v1, t_vec *v2)
 	t_mat	*ret;
 	t_mat	*m1i;
 
+	if (vector_vector_angle_deg(v1, v2) == 0)
+		return (matrix_identity(3));
+	if (vector_vector_angle_deg(v1, v2) == 180)
+	{
+		ret = matrix_identity(3);
+		ret = matrixx(ret, matrix_scalar_multiply(ret, -1.0)); 
+		return (ret);
+	}
 	v3 = vector_cross_product(v1, v2);
 	vector_normalize(v3);
 	v4 = vector_cross_product(v3, v1);

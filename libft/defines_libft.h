@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:54:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 11:19:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/14 12:54:02 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 
 # define DOTPRODERR				"Dot product must be of same length vectors."
 # define ERRDOTPROD				1
-# define CROSSPRODERR			"Cross product only possible in 3D."
+# define CROSSPRODERR			"Error cross product (not: 3D, mag or angle)."
 # define ERRCROSSPROD			2
 # define MATRIXSUBMATRIXERR		"matrix_sub_matrix() out of bondaries."
 # define ERRMATRIXSUBMATRIX		3
