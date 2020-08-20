@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 15:34:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 16:05:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	tmp = vector_scalar_multiply(g_y, -1.0);
 	rvv = vector_vector_rotation_matrix(tmp, mrt->scn->cam_active->p);
 	vector_transform(&pix, rvv);
-	vector_transform(&tmp, rvv);
 	rvv = matrixx(rvv, vector_vector_rotation_matrix(mrt->scn->cam_active->p, \
 		mrt->scn->cam_active->n));
 	vector_transform(&pix, rvv);
-	vector_transform(&tmp, rvv);
-	if (vector_parallel(tmp, g_z))
+	if (vector_parallel(mrt->scn->cam_active->p, g_y))
 	{
 		rvv = matrixx(rvv, axis_angle_rotation(g_y, degtorad(180.0)));
 		vector_transform(&pix, rvv);
 	}
+	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->o));
+	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->p));
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
 	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
