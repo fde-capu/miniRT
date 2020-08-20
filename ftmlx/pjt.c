@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 16:05:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 18:47:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ t_mat	*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2)
 
 t_vec	*pix_film(t_mrt *mrt, int i, int j)
 {
-	t_vec	*pix;
-	t_vec	*center;
-	double	factor;
-	double	fov_size[2];
+	t_vec			*pix;
+	static t_vec	*center;
+	static double	factor;
+	static double	fov_size[2];
 
 	center = vector_build(3, (mrt->window.height + 1.0) / 2.0, \
 		(mrt->window.width + 1.0) / 2.0, 0.0);
@@ -89,21 +89,21 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 
 void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
-	t_vec	*pix;
-	t_mat	*rvv;
-	t_vec	*tmp;
+	t_vec			*pix;
+	static t_mat	*rvv[3];
+	static t_vec	*tmp;
 
 	pix = pix_film(mrt, i, j);
 	tmp = vector_scalar_multiply(g_y, -1.0);
-	rvv = vector_vector_rotation_matrix(tmp, mrt->scn->cam_active->p);
-	vector_transform(&pix, rvv);
-	rvv = matrixx(rvv, vector_vector_rotation_matrix(mrt->scn->cam_active->p, \
-		mrt->scn->cam_active->n));
-	vector_transform(&pix, rvv);
+	rvv[0] = vector_vector_rotation_matrix(tmp, mrt->scn->cam_active->p);
+	vector_transform(&pix, rvv[0]);
+	rvv[1] = vector_vector_rotation_matrix(mrt->scn->cam_active->p, \
+		mrt->scn->cam_active->n);
+	vector_transform(&pix, rvv[1]);
 	if (vector_parallel(mrt->scn->cam_active->p, g_y))
 	{
-		rvv = matrixx(rvv, axis_angle_rotation(g_y, degtorad(180.0)));
-		vector_transform(&pix, rvv);
+		rvv[2] = axis_angle_rotation(g_y, degtorad(180.0));
+		vector_transform(&pix, rvv[2]);
 	}
 	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->o));
 	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->p));
@@ -111,7 +111,10 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
 	vector_destroy(pix);
+	ft_putchar('.');
 	vector_destroy(tmp);
-	vector_destroy(rvv);
+	vector_destroy(rvv[0]);
+	vector_destroy(rvv[1]);
+	vector_destroy(rvv[2]);
 	return ;
 }

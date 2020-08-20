@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 08:47:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 17:39:59 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,14 @@ typedef struct			s_mrt {
 	char				*icursor;
 	t_rgb				color;
 }						t_mrt;
+
+typedef struct			s_ray {
+	t_vec				*point_a;
+	t_vec				*point_b;
+	t_vec				*a;
+	t_vec				*o;
+	t_vec				*b;
+	t_vec				*d;
+}						t_ray;
 
 #endif

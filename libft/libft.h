@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 14:50:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 17:48:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,6 +287,9 @@ t_mat			*matrix_transpose(t_mat *a);
 t_vec			*matrix_vector_multiply(t_mat *left, t_vec *right);
 t_mat			*matrixx(t_mat *old, t_mat *new);
 char			*primitive_type_number(int type);
+t_ray			*ray_build(t_vec *a, t_vec *b);
+void			ray_destroy(t_ray *ray);
+int				hit_sphere(t_ray *ray, t_prm *sphere);
 
 /*
 ** Debugs:

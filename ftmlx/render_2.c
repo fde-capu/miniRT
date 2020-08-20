@@ -1,31 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render2.c                                          :+:      :+:    :+:   */
+/*   render_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:44:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 18:16:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmlx.h"
 
+t_ray	*mrt_ray(t_mrt *mrt, int x, int y)
+{
+	t_vec	*b;
+	t_ray	*ray;
+
+	b = vector_build(3,							\
+		matrix_get_element(mrt->pjt[X], x, y),	\
+		matrix_get_element(mrt->pjt[Y], x, y),	\
+		matrix_get_element(mrt->pjt[Z], x, y));
+	ray = ray_build(mrt->scn->cam_active->o, b);
+	vector_destroy(b);
+	return (ray);
+}
+
 int		collision_pix(t_mrt *mrt, int x, int y)
 {
-	t_prm	*p;
+	t_prm	*primitive;
+	t_ray	*ray;
 
 	// for evey object (prm and tri)
 	//		find intersections
 	//		keep if closest
-	p = mrt->scn->primitives;
-	while (p)
+	ray = mrt_ray(mrt, x, y);
+	primitive = mrt->scn->primitives;
+	while (primitive)
 	{
-		p = p->nx;
+		if (hit_sphere(ray, primitive))
+		{
+			ray_destroy(ray);
+			return (1);
+		}
+		primitive = primitive->nx;
 	}
-	(void)x;
-	(void)y;
+	ray_destroy(ray);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 16:56:09 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 18:19:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include "../ftmath/ftmath.h"
 
 # define FTMLX_LIMIT_WIN_SIZE	1
-# define FLIP_PARTS				6
+# define FLIP_PARTS				1000
 
+int		collision_pix(t_mrt *mrt, int x, int y);
 void	flip(t_mrt *mrt);
 void	ft_col(t_mrt *mrt, unsigned int color);
 char	*mrt_cursor(t_mrt *mrt, int x, int y);
@@ -35,6 +36,7 @@ void	hook_keys(t_mrt *mrt, int ks, int ke);
 void	pjt_init(t_mrt *mrt);
 t_vec	*pix_film(t_mrt *mrt, int i, int j);
 void	pjt_pixtocam(t_mrt *mrt, int i, int j);
+t_ray	*mrt_ray(t_mrt *mrt, int x, int y);
 
 # define MSG_RENDERING	"\nRendering...\n"
 
