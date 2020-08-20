@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:01:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/18 17:08:24 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 09:09:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ t_vec	*vector_cross_product(t_vec *x, t_vec *y)
 	t_vec	*cpd;
 
 	if ((x->m != 3 || y->m != 3)
-		|| (!(vector_magnitude(x) || !(vector_magnitude(y))))
-		|| (vector_vector_angle_deg(x, y) == 180.0 || vector_vector_angle_deg(x, y) == 0.0))
+		|| (!(vector_magnitude(x) || !(vector_magnitude(y)))))
 		ft_die(CROSSPRODERR, ERRCROSSPROD);
+	if (vector_vector_angle_deg(x, y) == 180.0 || vector_vector_angle_deg(x, y) == 0.0)
+		return (vector_empty(3));
 	cpd = vector_new();
 	cpd->n = 1;
 	cpd->m = 3;

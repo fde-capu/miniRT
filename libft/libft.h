@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/18 17:53:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 09:13:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ t_vec			*vector_copy(t_vec *a);
 t_vec			*vector_cross_product(t_vec *x, t_vec *y);
 void			vector_destroy(t_vec *vec);
 double			vector_dot_product(t_vec *v1, t_vec *v2);
+t_vec			*vector_empty(int len);
 int				vector_equal(t_vec *a, t_vec *b);
 double			vector_get_element(t_vec *vec, int i);
 double			vector_magnitude(t_vec *v);

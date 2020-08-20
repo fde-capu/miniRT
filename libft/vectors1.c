@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:46:38 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/11 16:58:06 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 09:12:33 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@ void	vector_destroy(t_vec *vec)
 {
 	matrix_destroy((t_mat *)vec);
 	return ;
+}
+
+t_vec	*vector_empty(int len)
+{
+	t_vec	*vec;
+
+	vec = ft_calloc(sizeof(t_vec), 1);
+	while (len--)
+		vec->i = lstdbl_addlast(vec->i, 0.0);
+	vec->m = len;
+	vec->n = 1;
+	return (vec);
 }
 
 t_vec	*vector_build(int len, ...)
