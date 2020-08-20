@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 16:16:28 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/18 17:53:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,16 @@ void			vector_destroy(t_vec *vec);
 double			vector_dot_product(t_vec *v1, t_vec *v2);
 int				vector_equal(t_vec *a, t_vec *b);
 double			vector_get_element(t_vec *vec, int i);
+double			vector_magnitude(t_vec *v);
+t_vec			*vector_matrix_multiply(t_vec *left, t_mat *right);
+void			vector_multiply_element(t_vec *vec, int elem, double factor);
+t_vec			*vector_new(void);
+void			vector_normalize(t_vec *mv);
+int				vector_parallel(t_vec *x, t_vec *y);
+double			vector_pop(t_vec *vec);
+void			vector_put_element(t_vec *vec, int pos, double d);
+int				vector_range_check_boundaries(t_mat *m, t_vec *range);
+void			vector_range_fix(t_vec *range);
 t_vec			*vector_scalar_multiply(t_vec *a, double scalar);
 t_vec			*vector_scale(t_vec *vec, t_vec *xyz);
 t_vec			*vector_subtract(t_vec *a, t_vec *b);
@@ -234,13 +244,6 @@ void			vector_transform(t_vec **vec, t_mat *trans);
 t_mat			*vector_transpose(t_vec *v);
 t_vec			*vector_translate(t_vec *vec, t_vec *xyz);
 double			vector_vector_angle_deg(t_vec *x, t_vec *y);
-double			vector_magnitude(t_vec *v);
-t_vec			*vector_matrix_multiply(t_vec *left, t_mat *right);
-t_vec			*vector_new(void);
-void			vector_normalize(t_vec *mv);
-double			vector_pop(t_vec *vec);
-int				vector_range_check_boundaries(t_mat *m, t_vec *range);
-void			vector_range_fix(t_vec *range);
 t_vec			*vectorx(t_vec *old, t_vec *new);
 t_vec			*matvec_get_element(t_mvec *mv, int i, int j);
 void			matvec_insert_at_pos(t_mvec *mv, int i, int j, t_vec *vec);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:01:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 13:00:17 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/18 17:08:24 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ double	vector_vector_angle_rad(t_vec *x, t_vec *y)
 
 	cos = vector_dot_product(x, y) / (vector_magnitude(x) * vector_magnitude(y));
 	return (acos(cos));
+}
+
+int		vector_parallel(t_vec *x, t_vec *y)
+{
+	double	deg;
+
+	deg = vector_vector_angle_deg(x, y);
+	return (deg == 180.0 || deg == 0 ? 1 : 0);
 }
 
 double	vector_vector_angle_deg(t_vec *x, t_vec *y)
@@ -99,4 +107,10 @@ t_vec	*vector_translate(t_vec *vec, t_vec *xyz)
 	matrix_destroy(map);
 	vector_pop(translated);
 	return (translated);
+}
+
+void	vector_multiply_element(t_vec *vec, int elem, double factor)
+{
+	vector_put_element(vec, elem, vector_get_element(vec, elem) * factor);
+	return ;
 }

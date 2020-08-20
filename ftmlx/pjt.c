@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 17:12:44 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/18 17:02:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_mat	*rotvv(t_vec *v1, t_vec *v2)
 	if (vector_vector_angle_deg(v1, v2) == 180)
 	{
 		ret = matrix_identity(3);
-		ret = matrixx(ret, matrix_scalar_multiply(ret, -1.0)); 
+		ret = matrixx(ret, matrix_scalar_multiply(ret, -1.0));
 		return (ret);
 	}
 	v3 = vector_cross_product(v1, v2);
@@ -98,13 +98,12 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	t_vec	*screen_up;
 
 	pix = pix_film(mrt, i, j);
-	screen_up = vector_scalar_multiply(g_y, -1.0);
-	rvv = rotvv(g_z, mrt->scn->cam_active->p);
+	screen_up = vector_copy(g_y);
+	rvv = rotvv(screen_up, mrt->scn->cam_active->p);
 	DEBVEC("pix1", pix);
 	vector_transform(&pix, rvv);
 	DEBVEC("pix2", pix);
-	vector_transform(&screen_up, rvv);
-	rvv = matrixx(rvv, rotvv(screen_up, mrt->scn->cam_active->n));
+	rvv = matrixx(rvv, rotvv(mrt->scn->cam_active->p, mrt->scn->cam_active->n));
 	vector_transform(&pix, rvv);
 	DEBVEC("pix3", pix);
 	DEB("");

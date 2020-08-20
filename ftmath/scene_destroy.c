@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 13:37:52 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/17 14:15:41 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 08:48:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		scn_free_list_cam(t_cam *lst)
 	vector_destroy(lst->o);
 	vector_destroy(lst->p);
 	vector_destroy(lst->n);
-	vector_destroy(lst->right);
+	vector_destroy(lst->left);
 	free(lst);
 	return ;
 }

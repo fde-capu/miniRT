@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/17 14:15:41 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 08:48:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,22 @@ t_alt	amb_light_init(double f, t_rgb rgb)
 t_cam	*cam_init(t_vec *o, t_vec *p, double fov)
 {
 	t_cam	*cam;
-	t_mat	*rvv;
 
 	cam = ft_calloc(sizeof(t_cam), 1);
 	cam->fov = fov;
 	cam->o = o;
-	cam->p = vector_scalar_multiply(g_z, -1.0);
-	cam->n = vector_copy(g_y);
-	rvv = rotvv(cam->p, p);
-	vector_transform(&cam->p, rvv);
-	vector_transform(&cam->n, rvv);
-	cam->right = vector_cross_product(cam->p, cam->n);
-	matrix_destroy(rvv);
-	vector_destroy(p);
+	cam->p = p;
+	if (vector_parallel(p, g_z))
+	{
+		cam->left = vector_copy(g_x);
+		cam->n = vector_cross_product(cam->left, p);
+	}
+	else
+	{
+		cam->left = vector_cross_product(g_z, p);
+		cam->n = vector_cross_product(p, cam->left);
+	}
+	cam->left = vectorx(cam->left, vector_cross_product(cam->n, p));
 	return (cam);
 }
 

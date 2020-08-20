@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 07:20:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/17 14:16:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 08:49:58 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define S_COLOR		"  color argb"
 # define S_POINT		"       point"
 # define S_NORMAL		"      normal"
-# define S_SIDE			"       right"
+# define S_SIDE			"        left"
 # define S_HEIGHT		"      height"
 # define S_WIDTH		"       width"
 # define S_DIAMETER		"    diameter"
