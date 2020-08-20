@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 18:27:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 19:27:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	render(t_mrt *mrt)
 	double	rtflip;
 
 	ft_putstr(MSG_RENDERING);
-	prepare_project_space(mrt);
-	DEB("project space done!");
+//	prepare_project_space(mrt);
 	pix_count = 0;
 	rtflip = (1.0 / (double)FLIP_PARTS) * mrt->i.height * mrt->i.width;
 	y = 1;

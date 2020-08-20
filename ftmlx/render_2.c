@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 18:16:18 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 19:29:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ t_ray	*mrt_ray(t_mrt *mrt, int x, int y)
 	t_vec	*b;
 	t_ray	*ray;
 
-	b = vector_build(3,							\
-		matrix_get_element(mrt->pjt[X], x, y),	\
-		matrix_get_element(mrt->pjt[Y], x, y),	\
-		matrix_get_element(mrt->pjt[Z], x, y));
+	b = pjt_pixtocam(mrt, x, y);
+//	b = vector_build(3,							\
+//		matrix_get_element(mrt->pjt[X], x, y),	\
+//		matrix_get_element(mrt->pjt[Y], x, y),	\
+//		matrix_get_element(mrt->pjt[Z], x, y));
 	ray = ray_build(mrt->scn->cam_active->o, b);
 	vector_destroy(b);
 	return (ray);

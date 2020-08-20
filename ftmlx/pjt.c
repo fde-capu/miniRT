@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 18:47:54 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 19:28:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_mat	*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2)
 t_vec	*pix_film(t_mrt *mrt, int i, int j)
 {
 	t_vec			*pix;
-	static t_vec	*center;
-	static double	factor;
-	static double	fov_size[2];
+	t_vec	*center;
+	double	factor;
+	double	fov_size[2];
 
 	center = vector_build(3, (mrt->window.height + 1.0) / 2.0, \
 		(mrt->window.width + 1.0) / 2.0, 0.0);
@@ -87,11 +87,11 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 	return (pix);
 }
 
-void	pjt_pixtocam(t_mrt *mrt, int i, int j)
+t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
 	t_vec			*pix;
-	static t_mat	*rvv[3];
-	static t_vec	*tmp;
+	t_mat	*rvv[3];
+	t_vec	*tmp;
 
 	pix = pix_film(mrt, i, j);
 	tmp = vector_scalar_multiply(g_y, -1.0);
@@ -107,14 +107,14 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	}
 	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->o));
 	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->p));
-	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
-	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
-	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
-	vector_destroy(pix);
-	ft_putchar('.');
+//	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
+//	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
+//	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
+//	vector_destroy(pix);
+//	ft_putchar('.');
 	vector_destroy(tmp);
 	vector_destroy(rvv[0]);
 	vector_destroy(rvv[1]);
 	vector_destroy(rvv[2]);
-	return ;
+	return (pix);
 }

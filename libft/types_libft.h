@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 17:39:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 18:51:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct			s_dbl
 {
 	double				d;
 	struct s_dbl		*nx;
+	struct s_dbl		*last;
 }						t_dbl;
 
 typedef struct			s_matrix

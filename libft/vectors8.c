@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:31:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 15:31:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 19:02:20 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec	*vector_translate(t_vec *vec, t_vec *xyz)
 
 	map = matrix_identity(xyz->m + 1);
 	matrix_put_matrix(map, (t_mat *)xyz, 1, xyz->m + 1);
-	vector_append_val(vec, 1);
+	vector_append_val(vec, 1.0);
 	translated = matrix_vector_multiply(map, vec);
 	matrix_destroy(map);
 	vector_pop(translated);
