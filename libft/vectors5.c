@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:01:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 12:49:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 15:30:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ double	vector_vector_angle_rad(t_vec *x, t_vec *y)
 {
 	double	cos;
 
-	cos = vector_dot_product(x, y) / (vector_magnitude(x) * vector_magnitude(y));
+	cos = vector_dot_product(x, y) \
+		/ (vector_magnitude(x) * vector_magnitude(y));
 	return (acos(cos));
 }
 
@@ -76,42 +77,4 @@ double	vector_magnitude(t_vec *v)
 	dp = (double)sqrt(dp);
 	dp *= dp <= 0 ? -1 : 1;
 	return (dp);
-}
-
-double	vector_pop(t_vec *vec)
-{
-	double	d;
-
-	d = lstdbl_pop(vec->i);
-	vec->m--;
-	if (!vec->m)
-		vec->i = 0;
-	return (d);
-}
-
-void	vector_append_val(t_vec *vec, double val)
-{
-	vec->i = lstdbl_addlast(vec->i, val);
-	vec->m++;
-	return ;
-}
-
-t_vec	*vector_translate(t_vec *vec, t_vec *xyz)
-{
-	t_mat	*map;
-	t_vec	*translated;
-
-	map = matrix_identity(xyz->m + 1);
-	matrix_put_matrix(map, (t_mat *)xyz, 1, xyz->m + 1);
-	vector_append_val(vec, 1);
-	translated = matrix_vector_multiply(map, vec);
-	matrix_destroy(map);
-	vector_pop(translated);
-	return (translated);
-}
-
-void	vector_multiply_element(t_vec *vec, int elem, double factor)
-{
-	vector_put_element(vec, elem, vector_get_element(vec, elem) * factor);
-	return ;
 }

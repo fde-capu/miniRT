@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 11:28:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 15:24:56 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,4 @@ void	matrix_switch_elements(t_mat *mat, t_vec *tvec)
 	ha->d = b;
 	hb->d = a;
 	return ;
-}
-
-t_mat	*matrixx(t_mat *old, t_mat *new)
-{
-	matrix_destroy(old);
-	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 14:47:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 15:34:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ t_mat	*axis_angle_rotation(t_vec *axis, double theta)
 		((uz * uy) + (uz * uy * -cosine) + (ux * sine)),
 		((ux * uz) + (ux * uz * -cosine) + (uy * sine)),
 		((uy * uz) + (uy * uz * -cosine) - (ux * sine)),
-		((uz * uz) + (uz * uz * -cosine) + cosine)
-	));
+		((uz * uz) + (uz * uz * -cosine) + cosine)));
 }
 
 t_mat	*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2)
@@ -99,7 +98,8 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 	rvv = vector_vector_rotation_matrix(tmp, mrt->scn->cam_active->p);
 	vector_transform(&pix, rvv);
 	vector_transform(&tmp, rvv);
-	rvv = matrixx(rvv, vector_vector_rotation_matrix(mrt->scn->cam_active->p, mrt->scn->cam_active->n));
+	rvv = matrixx(rvv, vector_vector_rotation_matrix(mrt->scn->cam_active->p, \
+		mrt->scn->cam_active->n));
 	vector_transform(&pix, rvv);
 	vector_transform(&tmp, rvv);
 	if (vector_parallel(tmp, g_z))

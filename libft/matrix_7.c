@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:00:24 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 11:53:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 15:26:30 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ t_mat	*matrix_of_vectors_transposed(t_vec *v1, t_vec *v2, t_vec *v3)
 void	matrix_put_vector(t_mat *dst, t_vec *vec, int n)
 {
 	return (matrix_put_matrix(dst, (t_mat *)vec, 1, n));
+}
+
+t_mat	*matrix_copy(t_mat *a)
+{
+	t_mat	*mcp;
+
+	mcp = matrix_new_mn(a->m, a->n);
+	mcp->i = lstdbl_copy(a->i);
+	return (mcp);
 }

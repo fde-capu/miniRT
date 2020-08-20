@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 14:13:21 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 14:50:53 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 ** Incompatibility!
 ** ft_chrinset used to be `(char *, char *)`, now is `(char, char *)`.
 ** Change previous version to `ft_strchrinset (char *, char *)` to fix it.
+**
+** !!!! Attention! This file has <ftmath.h> !!!!!
 */
 
 #ifndef LIBFT_H
@@ -29,7 +31,7 @@
 # include "types_libft.h"
 # include "debug.h"
 # include "keys.h"
-# include "../ftmath/ftmath.h" // remove and verify
+# include "../ftmath/ftmath.h"
 
 long long		ft_abs(long long value);
 double			ft_abs_double(double value);
@@ -176,11 +178,9 @@ char			*ft_bit8_str(u_int8_t data);
 char			*ft_removequotes(char *quoted);
 int				loop_2d(int x, int y);
 
-
 /*
 ** lstdbl
 */
-
 
 t_dbl			*lstdbl_addlast(t_dbl *h, double d);
 t_dbl			*lstdbl_copy(t_dbl *h);

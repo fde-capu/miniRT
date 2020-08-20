@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:07 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 16:00:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 15:32:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int		ft_mrt_init_win(t_mrt *mrt, char *win_title)
 		ft_max2d(&mrt->window.width, &mrt->window.height, screen_x, screen_y);
 	}
 	mrt->window.title = ft_str(win_title);
-	mrt->win = \
-		mlx_new_window(mrt->mlx, mrt->window.width, mrt->window.height, mrt->window.title);
+	mrt->win = mlx_new_window(mrt->mlx, mrt->window.width, \
+		mrt->window.height, mrt->window.title);
 	if (!mrt->win)
 		return (0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 14:14:29 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 15:37:32 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,15 @@ void	prepare_project_space(t_mrt *mrt)
 }
 
 /*
-**
 **      v v v d   rgb  d  d i     v v v
 ** cam	o p n fov
 ** lht	o     f   rgb
 ** prm  o   n     rgb  h  d type
 ** tri      n     rgb             a b c
-**
 */
-
-void	world_to_view(void)
-{
-	// to do
-}
-
-void	prepare_view_space(void)
-{
-	// to do
-}
 
 void	render_prepare(t_mrt *mrt)
 {
-//	construct_base_transforms();
-//	prepare_view_space(mrt);
 	prepare_project_space(mrt);
 	DEBMAT("X", mrt->pjt[X]);
 	DEBMAT("Y", mrt->pjt[Y]);
@@ -69,7 +55,7 @@ void	render(t_mrt *mrt)
 	int		y;
 	int		pix_count;
 	double	rtflip;
-	
+
 	ft_putstr(MSG_RENDERING);
 	render_prepare(mrt);
 	pix_count = 0;
