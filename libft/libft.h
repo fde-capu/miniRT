@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 09:13:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 14:13:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,7 @@ void			verbose_scene(t_scn *scn);
 ** Math related:
 */
 
+t_mat			*axis_angle_rotation(t_vec *axis, double theta);
 void			vector_append_val(t_vec *vec, double val);
 t_vec			*vector_build(int len, ...);
 t_vec			*vector_copy(t_vec *a);
@@ -245,6 +246,7 @@ void			vector_transform(t_vec **vec, t_mat *trans);
 t_mat			*vector_transpose(t_vec *v);
 t_vec			*vector_translate(t_vec *vec, t_vec *xyz);
 double			vector_vector_angle_deg(t_vec *x, t_vec *y);
+double			vector_vector_angle_rad(t_vec *x, t_vec *y);
 t_vec			*vectorx(t_vec *old, t_vec *new);
 t_vec			*matvec_get_element(t_mvec *mv, int i, int j);
 void			matvec_insert_at_pos(t_mvec *mv, int i, int j, t_vec *vec);
@@ -280,6 +282,7 @@ t_mat			*matrix_scalar_multiply(t_mat *b, double s);
 void			matrix_screen(t_mat *dst, t_mat *src);
 t_mat			*matrix_sum(t_mat *a, t_mat *b);
 void			matrix_switch_elements(t_mat *mat, t_vec *tvec);
+void			matrix_transform(t_mat **mat, t_mat *trans);
 t_mat			*matrix_transpose(t_mat *a);
 t_vec			*matrix_vector_multiply(t_mat *left, t_vec *right);
 t_mat			*matrixx(t_mat *old, t_mat *new);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/18 17:02:29 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 14:47:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,46 +20,43 @@ void	pjt_init(t_mrt *mrt)
 	return ;
 }
 
-/*
-** inspired by Zhu
-** http://steve.hollasch.net/cgindex/math/rotvecs.html
-*/
-
-t_mat	*rotvv(t_vec *v1, t_vec *v2)
+t_mat	*axis_angle_rotation(t_vec *axis, double theta)
 {
-	t_vec	*v3;
-	t_vec	*v4;
-	t_mat	*m1;
-	t_mat	*m2;
-	double	cos;
-	double	sin;
-	t_mat	*ret;
-	t_mat	*m1i;
+	double	cosine;
+	double	sine;
+	double	ux;
+	double	uy;
+	double	uz;
 
-	if (vector_vector_angle_deg(v1, v2) == 0)
-		return (matrix_identity(3));
-	if (vector_vector_angle_deg(v1, v2) == 180)
-	{
-		ret = matrix_identity(3);
-		ret = matrixx(ret, matrix_scalar_multiply(ret, -1.0));
-		return (ret);
-	}
-	v3 = vector_cross_product(v1, v2);
-	vector_normalize(v3);
-	v4 = vector_cross_product(v3, v1);
-	m1 = matrix_of_vectors_transposed(v1, v4, v3);
-	cos = vector_dot_product(v2, v1);
-	sin = vector_dot_product(v2, v4);
-	m2 = matrix_build(3, 3, cos, -sin, 0.0, sin, cos, 0.0, 0.0, 0.0, 1.0);
-	ret = matrix_matrix_multiply(m2, m1);
-	m1i = matrix_inverse(m1);
-	ret = matrixx(ret, matrix_matrix_multiply(m1i, ret));
-	vector_destroy(v3);
-	vector_destroy(v4);
-	matrix_destroy(m1);
-	matrix_destroy(m2);
-	matrix_destroy(m1i);
-	return (ret);
+	cosine = cos(theta);
+	sine = sin(theta);
+	ux = vector_get_element(axis, 1);
+	uy = vector_get_element(axis, 2);
+	uz = vector_get_element(axis, 3);
+	return (matrix_build(3, 3, \
+		((ux * ux) + (ux * ux * -cosine) + cosine),
+		((uy * ux) + (uy * ux * -cosine) + (uz * sine)),
+		((uz * ux) + (uz * ux * -cosine) - (uy * sine)),
+		((ux * uy) + (ux * uy * -cosine) - (uz * sine)),
+		((uy * uy) + (uy * uy * -cosine) + cosine),
+		((uz * uy) + (uz * uy * -cosine) + (ux * sine)),
+		((ux * uz) + (ux * uz * -cosine) + (uy * sine)),
+		((uy * uz) + (uy * uz * -cosine) - (ux * sine)),
+		((uz * uz) + (uz * uz * -cosine) + cosine)
+	));
+}
+
+t_mat	*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2)
+{
+	double	theta;
+	t_vec	*axis;
+	t_mat	*rvv;
+
+	theta = vector_vector_angle_rad(v1, v2);
+	axis = vector_cross_product(v1, v2);
+	rvv = axis_angle_rotation(axis, theta);
+	vector_destroy(axis);
+	return (rvv);
 }
 
 t_vec	*pix_film(t_mrt *mrt, int i, int j)
@@ -95,23 +92,26 @@ void	pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
 	t_mat	*rvv;
-	t_vec	*screen_up;
+	t_vec	*tmp;
 
 	pix = pix_film(mrt, i, j);
-	screen_up = vector_copy(g_y);
-	rvv = rotvv(screen_up, mrt->scn->cam_active->p);
-	DEBVEC("pix1", pix);
+	tmp = vector_scalar_multiply(g_y, -1.0);
+	rvv = vector_vector_rotation_matrix(tmp, mrt->scn->cam_active->p);
 	vector_transform(&pix, rvv);
-	DEBVEC("pix2", pix);
-	rvv = matrixx(rvv, rotvv(mrt->scn->cam_active->p, mrt->scn->cam_active->n));
+	vector_transform(&tmp, rvv);
+	rvv = matrixx(rvv, vector_vector_rotation_matrix(mrt->scn->cam_active->p, mrt->scn->cam_active->n));
 	vector_transform(&pix, rvv);
-	DEBVEC("pix3", pix);
-	DEB("");
-	vector_destroy(rvv);
+	vector_transform(&tmp, rvv);
+	if (vector_parallel(tmp, g_z))
+	{
+		rvv = matrixx(rvv, axis_angle_rotation(g_y, degtorad(180.0)));
+		vector_transform(&pix, rvv);
+	}
 	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
 	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
 	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
 	vector_destroy(pix);
-	vector_destroy(screen_up);
+	vector_destroy(tmp);
+	vector_destroy(rvv);
 	return ;
 }

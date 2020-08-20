@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 16:19:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/20 11:54:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		scn_free_list_tri(t_tri *lst);
 void		scn_add(int objtype, void *obj, t_scn *sc);
 double		radtodeg(double rad);
 double		degtorad(double deg);
-t_mat		*rotvv(t_vec *v1, t_vec *v2);
+t_mat		*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2);
 
 t_vec		*g_x;
 t_vec		*g_y;
