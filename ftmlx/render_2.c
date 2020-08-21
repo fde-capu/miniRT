@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 19:29:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 12:11:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,42 @@ t_ray	*mrt_ray(t_mrt *mrt, int x, int y)
 	t_ray	*ray;
 
 	b = pjt_pixtocam(mrt, x, y);
-//	b = vector_build(3,							\
-//		matrix_get_element(mrt->pjt[X], x, y),	\
-//		matrix_get_element(mrt->pjt[Y], x, y),	\
-//		matrix_get_element(mrt->pjt[Z], x, y));
 	ray = ray_build(mrt->scn->cam_active->o, b);
 	vector_destroy(b);
 	return (ray);
 }
 
-int		collision_pix(t_mrt *mrt, int x, int y)
+t_isc	*collision_pix(t_mrt *mrt, t_ray *ray)
 {
 	t_prm	*primitive;
-	t_ray	*ray;
+	double	test;
+	t_isc	*intersection;
 
 	// for evey object (prm and tri)
 	//		find intersections
 	//		keep if closest
-	ray = mrt_ray(mrt, x, y);
+	intersection = ft_calloc(sizeof(t_isc), 1);
+	intersection->t = MAX_DEPTH;
 	primitive = mrt->scn->primitives;
 	while (primitive)
 	{
-		if (hit_sphere(ray, primitive))
+		test = hit_sphere(ray, primitive);
+		if (test > 0.0)
 		{
-			ray_destroy(ray);
-			return (1);
+			if (test < intersection->t)
+			{
+				intersection->t = test;
+				intersection->primitive = primitive;
+				intersection->ray = ray;
+			}
 		}
 		primitive = primitive->nx;
 	}
-	ray_destroy(ray);
+	if (intersection->t != MAX_DEPTH)
+	{
+		return (intersection);
+	}
+	intersect_destroy(intersection);
 	return (0);
 }
 

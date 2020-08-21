@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 13:04:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 10:39:32 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int		main(int argc, char **argv)
 	verbose_scene(mrt->scn);
 	if (!ft_mrt_init_img(mrt))
 		die(mrt, IMG_ERROR, ERR_IMG);
-	if (ft_args(argc, argv, "--save"))
-		minirt_exit(save_mrttobmp(mrt, SAVE_FN));
 	if (!ft_mrt_init_win(mrt, WIN_TITLE))
 		die(mrt, WIN_ERROR, ERR_WIN);
+	if (ft_args(argc, argv, "--save"))
+		minirt_exit(save_mrttobmp(mrt, SAVE_FN));
 	mrt_win_binds(mrt);
 	render(mrt);
 	flip(mrt);

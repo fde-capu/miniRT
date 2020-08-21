@@ -6,19 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 19:28:21 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 10:42:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmlx.h"
-
-void	pjt_init(t_mrt *mrt)
-{
-	mrt->pjt[X] = matrix_empty(mrt->window.height, mrt->window.width);
-	mrt->pjt[Y] = matrix_empty(mrt->window.height, mrt->window.width);
-	mrt->pjt[Z] = matrix_empty(mrt->window.height, mrt->window.width);
-	return ;
-}
 
 t_mat	*axis_angle_rotation(t_vec *axis, double theta)
 {
@@ -60,7 +52,7 @@ t_mat	*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2)
 
 t_vec	*pix_film(t_mrt *mrt, int i, int j)
 {
-	t_vec			*pix;
+	t_vec	*pix;
 	t_vec	*center;
 	double	factor;
 	double	fov_size[2];
@@ -69,17 +61,17 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 		(mrt->window.width + 1.0) / 2.0, 0.0);
 	if (mrt->window.width > mrt->window.height)
 	{
-		fov_size[Y] = 2 * tan(degtorad(mrt->scn->cam_active->fov) / 2);
+		fov_size[Y] = 2.0 * tan(degtorad(mrt->scn->cam_active->fov) / 2.0);
 		fov_size[X] = \
 			ft_trig(mrt->window.height, fov_size[Y], mrt->window.width);
 	}
 	else
 	{
-		fov_size[X] = 2 * tan(degtorad(mrt->scn->cam_active->fov) / 2);
+		fov_size[X] = 2.0 * tan(degtorad(mrt->scn->cam_active->fov) / 2.0);
 		fov_size[Y] = \
 			ft_trig(mrt->window.width, fov_size[X], mrt->window.height);
 	}
-	factor = ft_trig(fov_size[Y], 1, mrt->window.width);
+	factor = ft_trig(fov_size[Y], 1.0, mrt->window.width);
 	pix = vector_build(3, (double)i, (double)j, (double)0);
 	pix = vectorx(pix, vector_subtract(pix, center));
 	pix = vectorx(pix, vector_scalar_multiply(pix, factor));
@@ -89,7 +81,7 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 
 t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
-	t_vec			*pix;
+	t_vec	*pix;
 	t_mat	*rvv[3];
 	t_vec	*tmp;
 
@@ -107,11 +99,6 @@ t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j)
 	}
 	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->o));
 	pix = vectorx(pix, vector_translate(pix, mrt->scn->cam_active->p));
-//	matrix_put_element(mrt->pjt[X], i, j, vector_get_element(pix, 1));
-//	matrix_put_element(mrt->pjt[Y], i, j, vector_get_element(pix, 2));
-//	matrix_put_element(mrt->pjt[Z], i, j, vector_get_element(pix, 3));
-//	vector_destroy(pix);
-//	ft_putchar('.');
 	vector_destroy(tmp);
 	vector_destroy(rvv[0]);
 	vector_destroy(rvv[1]);

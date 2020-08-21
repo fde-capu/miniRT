@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/07/14 16:30:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 10:43:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	write_mrtitobmp(t_mrt *mrt, int fp)
 		y = 1;
 		while (y <= mrt->i.width)
 		{
-			h = mrt_cursor(mrt, x, y);
+			h = mrt_cursor(mrt, y, x);
 			write(fp, h, sizeof(int));
 			y++;
 		}

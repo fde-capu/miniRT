@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 17:51:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 11:38:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ray_destroy(t_ray *ray)
 	return (free(ray));
 }
 
-int		hit_sphere(t_ray *ray, t_prm *sphere)
+double	hit_sphere(t_ray *ray, t_prm *sphere)
 {
 	t_vec	*oc;
 	double	a;
@@ -46,7 +46,10 @@ int		hit_sphere(t_ray *ray, t_prm *sphere)
 	a = vector_dot_product(ray->d, ray->d);
 	b = 2.0 * vector_dot_product(oc, ray->d);
 	c = vector_dot_product(oc, oc) - (sphere->h * sphere->h);
-	discriminant = (b * b) - (4 * a * c);
+	discriminant = (b * b) - (4.0 * a * c);
 	vector_destroy(oc);
-	return (discriminant > 0 ? 1 : 0);
+	if (discriminant < 0)
+		return (-1.0);
+	else
+		return ((-b - sqrt(discriminant)) / (2.0 * a));
 }

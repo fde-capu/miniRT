@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 18:51:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 12:00:46 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ typedef struct			s_mrt {
 	void				*win;
 	void				*img;
 	t_scn				*scn;
-	t_mat				*pjt[3];
 	t_win				window;
 	t_img				i;
 	t_vec				*cursor;
@@ -192,4 +191,9 @@ typedef struct			s_ray {
 	t_vec				*d;
 }						t_ray;
 
+typedef struct			s_intersection {
+	t_prm				*primitive;
+	t_ray				*ray;
+	double				t;
+}						t_isc;
 #endif
