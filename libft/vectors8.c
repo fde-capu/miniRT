@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:31:17 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 19:02:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 17:48:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,19 @@ void	vector_multiply_element(t_vec *vec, int elem, double factor)
 {
 	vector_put_element(vec, elem, vector_get_element(vec, elem) * factor);
 	return ;
+}
+
+t_vec	*vector_scalar_sum(t_vec *vec, double val)
+{
+	t_dbl	*h;
+	t_vec	*out;
+
+	out = vector_copy(vec);
+	h = out->i;
+	while (h)
+	{
+		h->d += val;
+		h = h->nx;
+	}
+	return (out);
 }

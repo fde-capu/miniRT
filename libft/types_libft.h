@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 12:00:46 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 15:21:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,5 +195,7 @@ typedef struct			s_intersection {
 	t_prm				*primitive;
 	t_ray				*ray;
 	double				t;
-}						t_isc;
+	t_vec				*phit;
+	t_vec				*n;
+}						t_hit;
 #endif

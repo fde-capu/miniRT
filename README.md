@@ -9,6 +9,7 @@ miniRT aka minirt
 ---
 <sub><sup>
 Dev. notes:
+known bugs: window aspect ratio
 </sup></sub>
 ___
 

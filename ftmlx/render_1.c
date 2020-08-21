@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 12:12:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 18:30:08 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 
 void	render(t_mrt *mrt)
 {
-	int		x;
-	int		y;
-	t_ray	*ray;
-	t_isc	*intersect;
+	int				x;
+	int				y;
+	t_ray			*ray;
+	t_hit			*hit;
+	unsigned int	color;
 
 	ft_putstr(MSG_RENDERING);
 	y = 1;
@@ -35,18 +36,20 @@ void	render(t_mrt *mrt)
 		while (x <= mrt->i.width)
 		{
 			ray = mrt_ray(mrt, x, y);
-			intersect = collision_pix(mrt, ray);
-			if (intersect)
+			hit = collision_pix(mrt, ray);
+			if (hit)
 			{
+//				DEBVEC("cn", hit->n);
+				color = color_normal(hit->n);
 				// compute color at intersection point
-				ft_pix(mrt, x, y, (x * y * 3) >> 1 << 0);
+				ft_pix(mrt, x, y, color);
 			}
 			else
 			{
 				// draw background
 				ft_pix(mrt, x, y, (x * y / 2) << 16);
 			}
-			intersect_destroy(intersect);
+			intersect_destroy(hit);
 			ray_destroy(ray);
 			flip(mrt);
 			x++;

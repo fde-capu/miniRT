@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 12:11:06 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 15:25:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,40 @@ t_ray	*mrt_ray(t_mrt *mrt, int x, int y)
 	return (ray);
 }
 
-t_isc	*collision_pix(t_mrt *mrt, t_ray *ray)
+t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 {
 	t_prm	*primitive;
 	double	test;
-	t_isc	*intersection;
+	t_hit	*hit;
 
 	// for evey object (prm and tri)
 	//		find intersections
 	//		keep if closest
-	intersection = ft_calloc(sizeof(t_isc), 1);
-	intersection->t = MAX_DEPTH;
+	hit = ft_calloc(sizeof(t_hit), 1);
+	hit->t = MAX_DEPTH;
 	primitive = mrt->scn->primitives;
 	while (primitive)
 	{
-		test = hit_sphere(ray, primitive);
+		test = 0.0;
+		if (primitive->type == TYPE_SP)
+			test = hit_sphere(ray, primitive);
 		if (test > 0.0)
 		{
-			if (test < intersection->t)
+			if (test < hit->t)
 			{
-				intersection->t = test;
-				intersection->primitive = primitive;
-				intersection->ray = ray;
+				hit->t = test;
+				hit->primitive = primitive;
+				hit->ray = ray;
 			}
 		}
 		primitive = primitive->nx;
 	}
-	if (intersection->t != MAX_DEPTH)
+	if (hit->t != MAX_DEPTH)
 	{
-		return (intersection);
+		intersect_complements(hit);
+		return (hit);
 	}
-	intersect_destroy(intersection);
+	intersect_destroy(hit);
 	return (0);
 }
 

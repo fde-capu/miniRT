@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 10:56:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 17:31:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,7 @@ void			vector_put_element(t_vec *vec, int pos, double d);
 int				vector_range_check_boundaries(t_mat *m, t_vec *range);
 void			vector_range_fix(t_vec *range);
 t_vec			*vector_scalar_multiply(t_vec *a, double scalar);
+t_vec			*vector_scalar_sum(t_vec *vec, double val);
 t_vec			*vector_scale(t_vec *vec, t_vec *xyz);
 t_vec			*vector_subtract(t_vec *a, t_vec *b);
 t_vec			*vector_sum(t_vec *a, t_vec *b);

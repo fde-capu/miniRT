@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 12:05:11 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 15:21:33 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define FTMLX_LIMIT_WIN_SIZE	1
 # define MAX_DEPTH				500.0
 
-t_isc	*collision_pix(t_mrt *mrt, t_ray *ray);
+t_hit	*collision_pix(t_mrt *mrt, t_ray *ray);
 void	flip(t_mrt *mrt);
 void	ft_col(t_mrt *mrt, unsigned int color);
 char	*mrt_cursor(t_mrt *mrt, int x, int y);
