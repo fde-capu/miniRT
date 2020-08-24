@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 15:25:18 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 12:41:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 		test = 0.0;
 		if (primitive->type == TYPE_SP)
 			test = hit_sphere(ray, primitive);
+		if (primitive->type == TYPE_PL)
+		{
+			test = hit_plane(ray, primitive);
+		}
 		if (test > 0.0)
 		{
 			if (test < hit->t)

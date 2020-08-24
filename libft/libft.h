@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 17:31:52 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/21 18:46:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,7 @@ char			*primitive_type_number(int type);
 t_ray			*ray_build(t_vec *a, t_vec *b);
 void			ray_destroy(t_ray *ray);
 double			hit_sphere(t_ray *ray, t_prm *sphere);
+double			hit_plane(t_ray *ray, t_prm *plane);
 
 /*
 ** Debugs:

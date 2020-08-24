@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 16:37:56 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 12:59:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ void		intersect_destroy(t_hit *hit);
 void		intersect_phit(t_hit *hit);
 void		intersect_normal(t_hit *hit);
 void		intersect_complements(t_hit *hit);
-unsigned int	color_normal(t_vec *n);
+t_rgb	color_normal(t_hit *hit);
+t_rgb	color_distance(t_hit *hit);
+t_rgb	ft_argb_multiply(t_rgb argb, double factor);
+t_rgb	ft_argb_sum(t_rgb a, t_rgb b);
+t_rgb	color_blend(t_rgb a, t_rgb b, double factor);
 
 t_vec		*g_x;
 t_vec		*g_y;

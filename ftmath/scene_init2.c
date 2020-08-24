@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 18:30:08 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 12:59:41 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	intersect_phit(t_hit *hit)
 {
 	hit->phit = vector_scalar_multiply(hit->ray->d, hit->t);
 	hit->phit = vectorx(hit->phit, vector_sum(hit->phit, hit->ray->o));
-	DEBVEC("sp hit", hit->phit);
 	return ;
 }
 
@@ -88,7 +87,10 @@ void	intersect_normal(t_hit *hit)
 	{
 		hit->n = vector_subtract(hit->phit, hit->primitive->o);
 		vector_normalize(hit->n);
-		DEBVEC("sp norm", hit->n);
+	}
+	if (hit->primitive->type == TYPE_PL)
+	{
+		hit->n = vector_copy(hit->primitive->n);
 	}
 	return ;
 }
@@ -100,12 +102,12 @@ void	intersect_complements(t_hit *hit)
 	return ;
 }
 
-unsigned int	color_normal(t_vec *n)
+t_rgb	color_normal(t_hit *hit)
 {
 	t_rgb	argb;
 	t_vec	*tmp;
 
-	tmp = vector_copy(n);
+	tmp = vector_copy(hit->n);
 	tmp = vectorx(tmp, vector_scalar_sum(tmp, 1.0));
 	tmp = vectorx(tmp, vector_scalar_multiply(tmp, 0.5));
 	tmp = vectorx(tmp, vector_scalar_multiply(tmp, 255.0));
@@ -115,5 +117,48 @@ unsigned int	color_normal(t_vec *n)
 		vector_get_element(tmp, 3)
 	);
 	vector_destroy(tmp);
-	return (ft_argbtoi(argb));
+	return (argb);
+}
+
+t_rgb	ft_argb_multiply(t_rgb argb, double factor)
+{
+	t_rgb	ret;
+
+	ret = ft_rgb(
+		argb.a * factor,
+		argb.r * factor,
+		argb.g * factor,
+		argb.b * factor
+	);
+	return (ret);
+}
+
+t_rgb	ft_argb_sum(t_rgb a, t_rgb b)
+{
+	t_rgb	ret;
+
+	ret = ft_rgb(
+		a.a + b.a,
+		a.r + b.r,
+		a.g + b.g,
+		a.b + b.b
+	);
+	return (ret);
+}
+
+t_rgb	color_distance(t_hit *hit)
+{
+	t_rgb			argb;
+	double			v;
+
+	v = ft_trig(hit->t, 255.0, 500.0);
+	argb = ft_rgb(0, v, v, v);
+	return (argb);
+}
+
+t_rgb	color_blend(t_rgb a, t_rgb b, double factor)
+{
+	a = ft_argb_multiply(a, factor);
+	b = ft_argb_multiply(b, 1 - factor);
+	return (ft_argb_sum(a, b));
 }
