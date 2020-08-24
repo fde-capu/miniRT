@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 07:23:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 19:09:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 20:15:51 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ t_dbl	*lstdbl_last(t_dbl *h)
 	if (!h)
 		return (0);
 	return (h->last);
-//	while (h->nx)
-//		h = h->nx;
-//	return (h);
 }
 
 t_dbl	*lstdbl_addlast(t_dbl *h, double d)
