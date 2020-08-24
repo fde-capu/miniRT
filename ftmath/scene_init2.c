@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 12:59:41 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 16:33:49 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,18 @@ void	intersect_destroy(t_hit *hit)
 	free(hit);
 }
 
+t_vec	*hit_point(t_ray *ray, double t)
+{
+	t_vec	*hitp;
+
+	hitp = vector_scalar_multiply(ray->d, t);
+	hitp = vectorx(hitp, vector_sum(hitp, ray->o));
+	return (hitp);
+}
+
 void	intersect_phit(t_hit *hit)
 {
-	hit->phit = vector_scalar_multiply(hit->ray->d, hit->t);
-	hit->phit = vectorx(hit->phit, vector_sum(hit->phit, hit->ray->o));
+	hit->phit = hit_point(hit->ray, hit->t);
 	return ;
 }
 
@@ -88,10 +96,12 @@ void	intersect_normal(t_hit *hit)
 		hit->n = vector_subtract(hit->phit, hit->primitive->o);
 		vector_normalize(hit->n);
 	}
-	if (hit->primitive->type == TYPE_PL)
-	{
+	else
 		hit->n = vector_copy(hit->primitive->n);
-	}
+//	if ((hit->primitive->type == TYPE_PL) || (hit->primitive->type == TYPE_SQ))
+//	{
+//		hit->n = vector_copy(hit->primitive->n);
+//	}
 	return ;
 }
 

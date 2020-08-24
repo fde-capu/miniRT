@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 12:33:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 14:23:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,7 @@ t_cam	*cam_init(t_vec *o, t_vec *p, double fov)
 	cam->fov = fov;
 	cam->o = o;
 	cam->p = p;
-	if (vector_parallel(p, g_z))
-	{
-		cam->left = vector_copy(g_x);
-		cam->n = vector_cross_product(cam->left, p);
-	}
-	else
-	{
-		cam->left = vector_cross_product(g_z, p);
-		cam->n = vector_cross_product(p, cam->left);
-	}
-	cam->left = vectorx(cam->left, vector_cross_product(cam->n, p));
+	missing_up_gambiarra(p, &cam->n, &cam->left);
 	return (cam);
 }
 
