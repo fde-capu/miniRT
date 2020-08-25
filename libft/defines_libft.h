@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:54:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/14 15:26:11 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 17:05:58 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@
 # define TYPE_PRM				7
 # define TYPE_TRI_NM			"Triangle"
 # define TYPE_TRI				8
+# define TYPE_DS_NM				"Disc"
+# define TYPE_DS				9
 
 # define DOTPRODERR				"Dot product must be of same length vectors."
 # define ERRDOTPROD				1

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 16:29:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:22:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ t_prm		*cylinder_init(t_vec *o, t_vec *n, double d, double h)
 	new->n = n;
 	new->h = h;
 	new->d = d;
+	return (new);
+}
+
+t_prm		*disc_init(t_vec *o, t_vec *n, double d, t_rgb rgb)
+{
+	t_prm	*new;
+
+	new = plane_init(o, n, rgb);
+	new->type = TYPE_DS;
+	new->h = d / 2.0;
 	return (new);
 }
 

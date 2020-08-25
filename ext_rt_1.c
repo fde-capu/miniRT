@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 20:21:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:30:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,30 @@
 int		rt_c(char *str, char *com)
 {
 	return (str && ft_stridentical(str, com) ? 1 : 0);
+}
+
+void	scn_make_cylinder(t_scn *sc, char **c)
+{
+	t_vec	*origin_b;
+	t_vec	*normal;
+	double	diameter;
+	double	height;
+	t_rgb	rgb;
+	t_vec	*origin_t;
+
+	origin_b = ft_atov(c[1]);
+	normal = ft_atov(c[2]);
+	diameter = ft_atod(c[3]);
+	height = ft_atod(c[4]);
+	rgb = ft_atorgb(c[5]);
+	origin_t = vector_scalar_multiply(normal, height);
+	origin_t = vectorx(origin_t, vector_sum(origin_t, origin_b));
+	scn_add(TYPE_PRM, disc_init(origin_t, vector_copy(normal), diameter, rgb), sc);
+	scn_add(TYPE_PRM, cylinder_init(origin_b, vector_copy(normal), diameter, height), sc);
+	sc->primitives->rgb = rgb;
+	normal = vectorx(normal, vector_scalar_multiply(normal, -1.0));
+	scn_add(TYPE_PRM, disc_init(vector_copy(origin_b), normal, diameter, rgb), sc);
+	return ;
 }
 
 /*
@@ -41,10 +65,7 @@ void	rt_line_translate_2(t_scn *sc, char **c)
 		scn_add(TYPE_PRM, square_init(ft_atov(c[1]), ft_atov(c[2]),
 			ft_atod(c[3]), ft_atorgb(c[4])), sc);
 	if (rt_c(c[0], "cy"))
-		scn_add(TYPE_PRM, cylinder_init(ft_atov(c[1]), ft_atov(c[2]),
-			ft_atod(c[3]), ft_atod(c[4])), sc);
-	if (rt_c(c[0], "cy"))
-		sc->primitives->rgb = ft_atorgb(c[5]);
+		scn_make_cylinder(sc, c);
 	if (((rt_c(c[0], "pl") || rt_c(c[0], "sq") || rt_c(c[0], "cy"))
 		&& !is_normalized(sc->primitives->n))
 		|| (rt_c(c[0], "tr") && !is_normalized(sc->faces->n)))

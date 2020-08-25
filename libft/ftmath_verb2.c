@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 14:49:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 08:46:41 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 17:05:11 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*primitive_type_number(int type)
 		return (ft_str(TYPE_SP_NM));
 	if (type == TYPE_PL)
 		return (ft_str(TYPE_PL_NM));
+	if (type == TYPE_DS)
+		return (ft_str(TYPE_DS_NM));
 	if (type == TYPE_SQ)
 		return (ft_str(TYPE_SQ_NM));
 	if (type == TYPE_CY)

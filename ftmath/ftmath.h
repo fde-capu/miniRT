@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 15:17:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:23:27 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int			scene_destroy(t_scn *sc);
 t_lht		*light_init(t_vec *o, double f, t_rgb rgb);
 t_prm		*sphere_init(t_vec *o, double d, t_rgb rgb);
 t_prm		*plane_init(t_vec *o, t_vec *n, t_rgb rgb);
+t_prm		*disc_init(t_vec *o, t_vec *n, double d, t_rgb rgb);
 t_prm		*square_init(t_vec *o, t_vec *n, double h, t_rgb rgb);
 t_prm		*cylinder_init(t_vec *o, t_vec *n, double h, double d);
 t_tri		*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb);
