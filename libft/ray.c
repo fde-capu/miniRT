@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 13:13:23 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:24:38 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,26 @@ void	ray_transform(t_ray *ray, t_mat *trn)
 	return ;
 }
 
+void	ray_translate(t_ray *ray, t_vec *trn)
+{
+	ray->a = vectorx(ray->a, vector_translate(ray->a, trn));
+	ray->b = vectorx(ray->b, vector_translate(ray->b, trn));
+	ray->d = vectorx(ray->d, vector_translate(ray->d, trn));
+	return ;
+}
+
+void	vector_smash_z(t_vec *vec)
+{
+	vector_put_element(vec, 3, 0.0);
+	return ;
+}
+
 void	ray_smash_z(t_ray *ray)
 {
 	vector_put_element(ray->a, 3, 0.0);
 	vector_put_element(ray->b, 3, 0.0);
 	vector_put_element(ray->d, 3, 0.0);
+	vector_normalize(ray->d);
 	return ;
 }
 
@@ -57,6 +72,15 @@ void	ray_destroy(t_ray *ray)
 	vector_destroy(ray->b);
 	vector_destroy(ray->d);
 	return (free(ray));
+}
+
+void	ray_verb(char *str, t_ray *ray)
+{
+	DEB(str);
+	DEBVEC("a", ray->a);
+	DEBVEC("b", ray->b);
+	DEBVEC("d", ray->d);
+	return ;
 }
 
 /*
@@ -83,26 +107,100 @@ double	hit_sphere(t_ray *ray, t_prm *sphere)
 		return (hit_minimal((-b - sqrt(discriminant)) / (2.0 * a)));
 }
 
+void	primitive_transform(t_prm *prm, t_mat *trm)
+{
+	if (prm->o)
+		vector_transform(&prm->o, trm);
+	if (prm->n)
+		vector_transform(&prm->n, trm);
+	return ;
+}
+
+void	triangle_transform(t_tri *tri, t_mat *trm)
+{
+	if (tri->a)
+		vector_transform(&tri->a, trm);
+	if (tri->b)
+		vector_transform(&tri->b, trm);
+	if (tri->c)
+		vector_transform(&tri->c, trm);
+	if (tri->n)
+		vector_transform(&tri->n, trm);
+	return ;
+}
+
+void	primitive_translate(t_prm *prm, t_mat *trm)
+{
+	if (prm->o)
+		prm->o = vectorx(prm->o, vector_translate(prm->o, trm));
+	if (prm->n)
+		prm->n = vectorx(prm->n, vector_translate(prm->n, trm));
+	return ;
+}
+
+void	triangle_translate(t_tri *tri, t_mat *trm)
+{
+	if (tri->a)
+		tri->a = vectorx(tri->a, vector_translate(tri->a, trm));
+	if (tri->b)
+		tri->b = vectorx(tri->b, vector_translate(tri->b, trm));
+	if (tri->c)
+		tri->c = vectorx(tri->c, vector_translate(tri->c, trm));
+	if (tri->n)
+		tri->n = vectorx(tri->n, vector_translate(tri->n, trm));
+	return ;
+}
+
+double	quadratic_minor(double a, double b, double c)
+{
+	double	discriminant;
+
+	discriminant = (b * b) - (4.0 * a * c);
+	return ((-b - sqrt(discriminant)) / (2.0 * a));
+}
+
+void	primitive_zzz_position(t_prm *cyl, t_ray *ray)
+{
+	t_vec	*zzz;
+	t_mat	*rot;
+
+	rot = vector_vector_rotation_matrix(cyl->n, g_z);
+	zzz = vector_scalar_multiply(cyl->o, -1.0);
+	ray_translate(ray, zzz);
+	ray_transform(ray, rot);
+	primitive_translate(cyl, zzz);
+	primitive_transform(cyl, rot);
+	vector_destroy(zzz);
+	matrix_destroy(rot);
+	return ;
+}
+
 double	hit_infinite_cylinder(t_ray *ray3d, t_prm *cylinder)
 {
 	double	t;
-	t_mat	*rot;
-	t_prm	*circle;
-	t_vec	*circ_o;
+	t_prm	*cyl;
 	t_ray	*ray;
+	double	dx;
+	double	dy;
+	double	x0;
+	double	y0;
+	double	a;
+	double	b;
+	double	c;
 
-	rot = vector_vector_rotation_matrix(cylinder->n, g_z);
 	ray = ray_copy(ray3d);
-	ray_transform(ray, rot);
-	ray_smash_z(ray);
-	circ_o = vector_copy(cylinder->o);
-	vector_put_element(circ_o, 3, 0.0);
-	circle = sphere_init(circ_o, cylinder->d, cylinder->rgb);
-	t = hit_sphere(ray, circle);
-	matrix_destroy(rot);
-	vector_destroy(circ_o);
-	free(circle);
+	cyl = cylinder_init(vector_copy(cylinder->o), vector_copy(cylinder->n), cylinder->h, cylinder->d);
+	primitive_zzz_position(cyl, ray);
+	dx = vector_get_element(ray->d, 1);
+	dy = vector_get_element(ray->d, 2);
+	x0 = vector_get_element(ray->a, 1);
+	y0 = vector_get_element(ray->a, 2);
+	a = ((dx * dx) + (dy * dy));
+	b = ((x0 * dx) + (y0 * dy)) * 2;
+	c = ((x0 * x0) + (y0 * y0)) - cylinder->d;
+	t = quadratic_minor(a, b, c);
 	ray_destroy(ray);
+	primitive_destroy(cyl);
 	return (t);
 }
 
@@ -111,7 +209,7 @@ double	hit_cylinder(t_ray *ray, t_prm *cylinder)
 	double	t2d;
 
 	t2d = hit_infinite_cylinder(ray, cylinder);
-	return (t2d ? 1.0 : 0.0);
+	return (hit_minimal(t2d));
 }
 
 double	hit_plane(t_ray *ray, t_prm *plane)

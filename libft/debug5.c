@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 14:51:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/20 14:52:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 13:34:45 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,21 @@ void	debug_str_add(char *str, void *add)
 	ft_putstr(o);
 	ft_putstr("\n");
 	free(o);
+	return ;
+}
+
+void	debug_primitive(t_prm *h)
+{
+	char	*t;
+
+	DEB(TIT_PRM);
+	DEBSTR(S_TYPE, t = primitive_type_number(h->type));
+	DEBVEC(S_ORIGIN, h->o);
+	if (!ft_stridentical(t, TYPE_SP_NM))
+		DEBVEC(S_NORMAL, h->n);
+	free(t);
+	DEBDBL(S_HEIGHT, h->h);
+	DEBDBL(S_WIDTH, h->d);
+	DEBRGB(S_COLOR, h->rgb);
 	return ;
 }

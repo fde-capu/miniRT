@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 13:07:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:25:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ void			verb_cam(t_scn *scn);
 void			verb_cam_active(t_scn *scn);
 void			verb_faces(t_scn *scn);
 void			verb_lights(t_scn *scn);
+void			debug_primitive(t_prm *h);
 void			verb_primitives(t_scn *scn);
 void			verbose_scene(t_scn *scn);
 
@@ -290,6 +291,7 @@ t_mat			*matrixx(t_mat *old, t_mat *new);
 char			*primitive_type_number(int type);
 t_ray			*ray_build(t_vec *a, t_vec *b);
 t_ray			*ray_copy(t_ray *src);
+void			ray_verb(char *str, t_ray *ray);
 void			ray_smash_z(t_ray *ray);
 void			ray_transform(t_ray *ray, t_mat *trn);
 void			ray_destroy(t_ray *ray);
@@ -303,6 +305,12 @@ double			hit_triangle(t_ray *ray, t_vec *a, t_vec *b, t_vec *c);
 double			hit_plane(t_ray *ray, t_prm *plane);
 double			hit_cylinder(t_ray *ray, t_prm *cylinder);
 double			hit_infinite_cylinder(t_ray *ray, t_prm *cylinder);
+void			primitive_transform(t_prm *prm, t_mat *trn);
+void			triangle_transform(t_tri *tri, t_mat *trn);
+void			primitive_translate(t_prm *prm, t_mat *trn);
+void			triangle_translate(t_tri *tri, t_mat *trn);
+double			quadratic_minor(double a, double b, double c);
+void			vector_smash_z(t_vec *vec);
 
 /*
 ** Debugs:

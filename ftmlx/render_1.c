@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 22:40:56 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:02:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ void	render(t_mrt *mrt)
 			if (hit)
 			{
 //				DEBVEC("cn", hit->n);
-				if ((hit->primitive->type == TYPE_SP)
-					|| (hit->primitive->type == TYPE_CY))
+				if (hit->primitive->type == TYPE_SP)
 					color = ft_argbtoi(color_normal(hit));
 				if ((hit->primitive->type == TYPE_SQ) || (hit->primitive->type == TYPE_PL))
 					color = ft_argbtoi(color_blend(color_distance(hit), color_normal(hit), 0.5));
+				if (hit->primitive->type == TYPE_CY)
+					color = ft_argbtoi(color_normal(hit));
 				// compute color at intersection point
 				ft_pix(mrt, x, y, color);
 			}
@@ -55,10 +56,10 @@ void	render(t_mrt *mrt)
 			}
 			intersect_destroy(hit);
 			ray_destroy(ray);
-			flip(mrt);
 			x++;
 		}
 		y++;
+		flip(mrt);
 	}
 	return ;
 }

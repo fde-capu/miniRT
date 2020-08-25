@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 13:12:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 16:29:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_prm		*sphere_init(t_vec *o, double d, t_rgb rgb)
 	return (new);
 }
 
-t_prm		*cylinder_init(t_vec *o, t_vec *n, double h, double d)
+t_prm		*cylinder_init(t_vec *o, t_vec *n, double d, double h)
 {
 	t_prm	*new;
 
@@ -91,18 +91,24 @@ void	intersect_phit(t_hit *hit)
 
 void	intersect_normal(t_hit *hit)
 {
-	if ((hit->primitive->type == TYPE_SP)
-		|| (hit->primitive->type == TYPE_CY))
+	t_vec	*vec;
+
+	if (hit->primitive->type == TYPE_SP)
 	{
 		hit->n = vector_subtract(hit->phit, hit->primitive->o);
 		vector_normalize(hit->n);
+		return ;
 	}
-	else
-		hit->n = vector_copy(hit->primitive->n);
-//	if ((hit->primitive->type == TYPE_PL) || (hit->primitive->type == TYPE_SQ))
-//	{
-//		hit->n = vector_copy(hit->primitive->n);
-//	}
+	if (hit->primitive->type == TYPE_CY)
+	{
+		vec = vector_subtract(hit->phit, hit->primitive->o);
+		vec = vectorx(vec, vector_cross_product(hit->primitive->n, vec));
+		hit->n = vector_cross_product(vec, hit->primitive->n);
+		vector_normalize(hit->n);
+		vector_destroy(vec);
+		return ;
+	}
+	hit->n = vector_copy(hit->primitive->n);
 	return ;
 }
 

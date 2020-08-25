@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 20:23:31 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:17:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_rgb		color_distance(t_hit *hit);
 t_rgb		ft_argb_multiply(t_rgb argb, double factor);
 t_rgb		ft_argb_sum(t_rgb a, t_rgb b);
 t_rgb		color_blend(t_rgb a, t_rgb b, double factor);
+void		primitive_destroy(t_prm *lst);
+void		primitive_zzz_position(t_prm *cyl, t_ray *ray);
 
 t_vec		*g_x;
 t_vec		*g_y;

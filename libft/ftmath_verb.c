@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 13:51:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/07 15:16:47 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 13:34:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,11 @@ void	verb_lights(t_scn *scn)
 void	verb_primitives(t_scn *scn)
 {
 	t_prm	*h;
-	char	*t;
 
 	h = scn->primitives;
 	while (h)
 	{
-		DEB(TIT_PRM);
-		DEBSTR(S_TYPE, t = primitive_type_number(h->type));
-		DEBVEC(S_ORIGIN, h->o);
-		if (!ft_stridentical(t, TYPE_SP_NM))
-			DEBVEC(S_NORMAL, h->n);
-		free(t);
-		DEBDBL(S_HEIGHT, h->h);
-		DEBDBL(S_WIDTH, h->d);
-		DEBRGB(S_COLOR, h->rgb);
+		debug_primitive(h);
 		h = h->nx;
 	}
 	return ;
