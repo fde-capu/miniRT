@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 21:58:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 13:12:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ t_prm		*sphere_init(t_vec *o, double d, t_rgb rgb)
 	new->d = d;
 	new->h = d / 2.0;
 	new->rgb = rgb;
+	return (new);
+}
+
+t_prm		*cylinder_init(t_vec *o, t_vec *n, double h, double d)
+{
+	t_prm	*new;
+
+	new = ft_calloc(sizeof(t_prm), 1);
+	new->type = TYPE_CY;
+	new->o = o;
+	new->n = n;
+	new->h = h;
+	new->d = d;
 	return (new);
 }
 
@@ -50,19 +63,6 @@ t_prm		*square_init(t_vec *o, t_vec *n, double h, t_rgb rgb)
 	return (new);
 }
 
-t_prm		*cylinder_init(t_vec *o, t_vec *n, double h, double d)
-{
-	t_prm	*new;
-
-	new = ft_calloc(sizeof(t_prm), 1);
-	new->type = TYPE_CY;
-	new->o = o;
-	new->n = n;
-	new->h = h;
-	new->d = d;
-	return (new);
-}
-
 void	intersect_destroy(t_hit *hit)
 {
 	if (!hit)
@@ -79,7 +79,7 @@ t_vec	*hit_point(t_ray *ray, double t)
 	t_vec	*hitp;
 
 	hitp = vector_scalar_multiply(ray->d, t);
-	hitp = vectorx(hitp, vector_sum(hitp, ray->o));
+	hitp = vectorx(hitp, vector_sum(hitp, ray->a));
 	return (hitp);
 }
 

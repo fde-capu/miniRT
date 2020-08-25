@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 20:25:38 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 13:09:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,10 +182,7 @@ typedef struct			s_mrt {
 }						t_mrt;
 
 typedef struct			s_ray {
-	t_vec				*point_a;
-	t_vec				*point_b;
 	t_vec				*a;
-	t_vec				*o;
 	t_vec				*b;
 	t_vec				*d;
 }						t_ray;

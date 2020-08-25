@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 00:15:32 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 13:13:23 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,44 @@ t_ray	*ray_build(t_vec *a, t_vec *point_b)
 
 	ray = ft_calloc(sizeof(t_ray), 1);
 	ray->a = vector_copy(a);
-	ray->point_a = ray->a;
-	ray->o = ray->a;
-	ray->b = vector_subtract(point_b, a);
-	vector_normalize(ray->b);
-	ray->d = ray->b;
+	ray->b = vector_copy(point_b);
+	ray->d = vector_subtract(point_b, a);
+	vector_normalize(ray->d);
 	return (ray);
+}
+
+t_ray	*ray_copy(t_ray *src)
+{
+	t_ray	*ray;
+
+	ray = ft_calloc(sizeof(t_ray), 1);
+	ray->a = vector_copy(src->a);
+	ray->b = vector_copy(src->b);
+	ray->d = vector_copy(src->d);
+	return (ray);
+}
+
+void	ray_transform(t_ray *ray, t_mat *trn)
+{
+	vector_transform(&(ray->a), trn);
+	vector_transform(&(ray->b), trn);
+	vector_transform(&(ray->d), trn);
+	return ;
+}
+
+void	ray_smash_z(t_ray *ray)
+{
+	vector_put_element(ray->a, 3, 0.0);
+	vector_put_element(ray->b, 3, 0.0);
+	vector_put_element(ray->d, 3, 0.0);
+	return ;
 }
 
 void	ray_destroy(t_ray *ray)
 {
 	vector_destroy(ray->a);
 	vector_destroy(ray->b);
-	vector_destroy(ray->point_b);
+	vector_destroy(ray->d);
 	return (free(ray));
 }
 
@@ -46,7 +71,7 @@ double	hit_sphere(t_ray *ray, t_prm *sphere)
 	double	c;
 	double	discriminant;
 
-	oc = vector_subtract(ray->o, sphere->o);
+	oc = vector_subtract(ray->a, sphere->o);
 	a = 1.0;
 	b = 2.0 * vector_dot_product(oc, ray->d);
 	c = vector_dot_product(oc, oc) - (sphere->h * sphere->h);
@@ -58,29 +83,26 @@ double	hit_sphere(t_ray *ray, t_prm *sphere)
 		return (hit_minimal((-b - sqrt(discriminant)) / (2.0 * a)));
 }
 
-double	hit_infinite_cylinder(t_ray *ray, t_prm *cylinder)
+double	hit_infinite_cylinder(t_ray *ray3d, t_prm *cylinder)
 {
-	t_vec	*ray_o;
-	t_vec	*ray_b;
-	t_ray	*ray2d;
-	t_prm	*circle;
-	t_mat	*rot;
 	double	t;
+	t_mat	*rot;
+	t_prm	*circle;
+	t_vec	*circ_o;
+	t_ray	*ray;
 
 	rot = vector_vector_rotation_matrix(cylinder->n, g_z);
-	ray_o = vector_copy(ray->o);
-	ray_b = vector_sum(ray->o, ray->d);
-	vector_transform(&ray_o, rot);
-	vector_transform(&ray_b, rot);
-	vector_put_element(ray_o, 3, vector_get_element(cylinder->o, 3));
-	vector_put_element(ray_b, 3, vector_get_element(cylinder->o, 3));
-	ray2d = ray_build(ray_o, ray_b);
-	circle = sphere_init(cylinder->o, cylinder->d, cylinder->rgb);
-	t = hit_sphere(ray2d, circle);
+	ray = ray_copy(ray3d);
+	ray_transform(ray, rot);
+	ray_smash_z(ray);
+	circ_o = vector_copy(cylinder->o);
+	vector_put_element(circ_o, 3, 0.0);
+	circle = sphere_init(circ_o, cylinder->d, cylinder->rgb);
+	t = hit_sphere(ray, circle);
+	matrix_destroy(rot);
+	vector_destroy(circ_o);
 	free(circle);
-	ray_destroy(ray2d);
-	vector_destroy(ray_b);
-	vector_destroy(ray_o);
+	ray_destroy(ray);
 	return (t);
 }
 
@@ -89,7 +111,7 @@ double	hit_cylinder(t_ray *ray, t_prm *cylinder)
 	double	t2d;
 
 	t2d = hit_infinite_cylinder(ray, cylinder);
-	return (t2d);
+	return (t2d ? 1.0 : 0.0);
 }
 
 double	hit_plane(t_ray *ray, t_prm *plane)
@@ -98,7 +120,7 @@ double	hit_plane(t_ray *ray, t_prm *plane)
 	double	t;
 	double	t2;
 
-	vec = vector_subtract(plane->o, ray->o);
+	vec = vector_subtract(plane->o, ray->a);
 	t = vector_dot_product(vec, plane->n);
 	vector_destroy(vec);
 	t2 = vector_dot_product(ray->d, plane->n);
