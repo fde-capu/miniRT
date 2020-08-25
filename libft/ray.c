@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 19:04:09 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 00:15:32 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,40 @@ double	hit_sphere(t_ray *ray, t_prm *sphere)
 		return (-1.0);
 	else
 		return (hit_minimal((-b - sqrt(discriminant)) / (2.0 * a)));
+}
+
+double	hit_infinite_cylinder(t_ray *ray, t_prm *cylinder)
+{
+	t_vec	*ray_o;
+	t_vec	*ray_b;
+	t_ray	*ray2d;
+	t_prm	*circle;
+	t_mat	*rot;
+	double	t;
+
+	rot = vector_vector_rotation_matrix(cylinder->n, g_z);
+	ray_o = vector_copy(ray->o);
+	ray_b = vector_sum(ray->o, ray->d);
+	vector_transform(&ray_o, rot);
+	vector_transform(&ray_b, rot);
+	vector_put_element(ray_o, 3, vector_get_element(cylinder->o, 3));
+	vector_put_element(ray_b, 3, vector_get_element(cylinder->o, 3));
+	ray2d = ray_build(ray_o, ray_b);
+	circle = sphere_init(cylinder->o, cylinder->d, cylinder->rgb);
+	t = hit_sphere(ray2d, circle);
+	free(circle);
+	ray_destroy(ray2d);
+	vector_destroy(ray_b);
+	vector_destroy(ray_o);
+	return (t);
+}
+
+double	hit_cylinder(t_ray *ray, t_prm *cylinder)
+{
+	double	t2d;
+
+	t2d = hit_infinite_cylinder(ray, cylinder);
+	return (t2d);
 }
 
 double	hit_plane(t_ray *ray, t_prm *plane)

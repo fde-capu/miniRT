@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 16:33:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 21:58:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	intersect_phit(t_hit *hit)
 
 void	intersect_normal(t_hit *hit)
 {
-	if (hit->primitive->type == TYPE_SP)
+	if ((hit->primitive->type == TYPE_SP)
+		|| (hit->primitive->type == TYPE_CY))
 	{
 		hit->n = vector_subtract(hit->phit, hit->primitive->o);
 		vector_normalize(hit->n);

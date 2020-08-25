@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 13:10:59 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/24 22:40:56 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	render(t_mrt *mrt)
 			if (hit)
 			{
 //				DEBVEC("cn", hit->n);
-				if (hit->primitive->type == TYPE_SP)
+				if ((hit->primitive->type == TYPE_SP)
+					|| (hit->primitive->type == TYPE_CY))
 					color = ft_argbtoi(color_normal(hit));
 				if ((hit->primitive->type == TYPE_SQ) || (hit->primitive->type == TYPE_PL))
 					color = ft_argbtoi(color_blend(color_distance(hit), color_normal(hit), 0.5));
