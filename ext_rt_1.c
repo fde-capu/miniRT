@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 01:51:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 02:01:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 		if (!BONUS)
 		{
 			t = quadratic_major(a, b, c);
-			if (!inside_cylinder_bondaries(ray, t, cyl))
+			if (!inside_cylinder_bondaries(ray3d, t, cylinder))
 				t = 0.0;
 		}
 		else

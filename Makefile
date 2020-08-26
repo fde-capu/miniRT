@@ -6,10 +6,11 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/08/20 18:26:20 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/08/26 01:58:59 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+BONUS	=	0
 NAME	=	miniRT
 ARGV	=	mini.rt
 T_SAVE	=	--save
@@ -22,7 +23,7 @@ D_FTMAT	=	ftmath
 D_MLXOC	=	minilibx-linux
 D_MLX_L	=	libmlx
 CC		=	clang
-CFLAGS	=	-Wall -Werror -Wextra -O3 -g
+CFLAGS	=	-Wall -Werror -Wextra -O3 -g -DBONUS=$(BONUS)
 IFLAGS	=	-I./$(D_FTMLX) -L./$(D_FTMLX) -lftmlx \
 			-I./$(D_FTMAT) -L./$(D_FTMAT) -lftmath \
 			-I./$(D_LIBFT) -L./$(D_LIBFT) -lft \
