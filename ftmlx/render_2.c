@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 00:44:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 14:55:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 	t_hit	*hit;
 	t_tri	*tri;
 
-	// for evey object (prm and tri)
-	//		find intersections
-	//		keep if closest
 	hit = ft_calloc(sizeof(t_hit), 1);
 	hit->t = MAX_DEPTH;
 	primitive = mrt->scn->primitives;

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 18:43:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 17:03:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define FTMLX_LIMIT_WIN_SIZE	1
 # define MAX_DEPTH				500.0
+# define DIFFUSE_REFLECTIVITY	0.5
 
 t_hit	*collision_pix(t_mrt *mrt, t_ray *ray);
 void	flip(t_mrt *mrt);

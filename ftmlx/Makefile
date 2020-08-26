@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-BONUS	=	1
+BONUS	=	0
 NAME	=	libftmlx.a
 #DEPMLX	=	minilibx-linux
 #DEPMLXLIB=	libmlx.a

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 14:43:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 17:02:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,13 @@ int						valid_arg_types(char **c);
 int						valid_command(char **c);
 void					write_mrtitobmp(t_mrt *mrt, int fp);
 void					write_bmpheads(t_bmp *bmp, int fp);
-unsigned int			rgb_force(t_rgb rgb, double f);
+t_rgb					rgb_force(t_rgb rgb, double f);
+unsigned int			color_force(t_rgb rgb, double f);
 unsigned int			skybox(int x, int y);
+unsigned int			color_trace(t_mrt *mrt, t_hit *hit);
+t_rgb					color_ambient(t_mrt *mrt, t_hit *hit);
+t_rgb					color_diffuse(t_mrt *mrt, t_hit *hit);
+t_rgb					color_add(t_rgb ca, t_rgb cb);
 
 # define ARGS_MAX		6
 
