@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 00:34:45 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 01:19:34 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,15 @@ void	triangle_translate(t_tri *tri, t_mat *trm)
 	return ;
 }
 
+double	quadratic_major(double a, double b, double c)
+{
+	double	discriminant;
+
+	discriminant = (b * b) - (4.0 * a * c);
+	return ((-b + sqrt(discriminant)) / (2.0 * a));
+}
+
+
 double	quadratic_minor(double a, double b, double c)
 {
 	double	discriminant;
@@ -175,7 +184,25 @@ void	primitive_zzz_position(t_prm *cyl, t_ray *ray)
 	return ;
 }
 
-double	hit_infinite_cylinder(t_ray *ray3d, t_prm *cylinder)
+int		inside_cylinder_bondaries(t_ray *ray, double t, t_prm *cylinder)
+{
+	double	d;
+	int		is_it;
+	t_vec	*hp;
+	t_vec	*hpm;
+
+	is_it = 1;
+	hp = hit_point(ray, t);
+	hpm = vector_subtract(hp, cylinder->o);
+	d = vector_dot_product(hpm, cylinder->n);
+	if ((d > cylinder->h) || (d < 0))
+		is_it = 0;
+	vector_destroy(hpm);
+	vector_destroy(hp);
+	return (is_it);
+}
+
+double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 {
 	double	t;
 	t_prm	*cyl;
@@ -199,25 +226,15 @@ double	hit_infinite_cylinder(t_ray *ray3d, t_prm *cylinder)
 	b = ((x0 * dx) + (y0 * dy)) * 2;
 	c = ((x0 * x0) + (y0 * y0)) - ((cyl->h / 2) * (cyl->h / 2));
 	t = quadratic_minor(a, b, c);
+	if (!inside_cylinder_bondaries(ray, t, cyl))
+	{
+		t = quadratic_major(a, b, c);
+		if (!inside_cylinder_bondaries(ray, t, cyl))
+			t = 0.0;
+	}
 	ray_destroy(ray);
 	primitive_destroy(cyl);
 	return (t);
-}
-
-double	hit_cylinder(t_ray *ray, t_prm *cylinder)
-{
-	double	t;
-	t_vec	*hp;
-	double	d;
-	t_vec	*hpm;
-
-	t = hit_infinite_cylinder(ray, cylinder);
-	hp = hit_point(ray, t);
-	hpm = vector_subtract(hp, cylinder->o);
-	d = vector_dot_product(hpm, cylinder->n);
-	if ((d > cylinder->h) || (d < 0))
-		t = 0.0;
-	return (hit_minimal(t));
 }
 
 double	hit_plane(t_ray *ray, t_prm *plane)

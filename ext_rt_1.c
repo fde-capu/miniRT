@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 18:58:12 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 00:52:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@ void	scn_make_cylinder(t_scn *sc, char **c)
 	diameter = ft_atod(c[3]);
 	height = ft_atod(c[4]);
 	rgb = ft_atorgb(c[5]);
-	origin_t = vector_scalar_multiply(normal, height);
-	origin_t = vectorx(origin_t, vector_sum(origin_t, origin_b));
-	scn_add(TYPE_PRM, disc_init(origin_t, vector_copy(normal), diameter, rgb), sc);
-	scn_add(TYPE_PRM, cylinder_init(origin_b, vector_copy(normal), diameter, height), sc);
+	if (BONUS)
+	{
+		origin_t = vector_scalar_multiply(normal, height);
+		origin_t = vectorx(origin_t, vector_sum(origin_t, origin_b));
+		scn_add(TYPE_PRM, disc_init(origin_t, vector_copy(normal), diameter, rgb), sc);
+	}
+	scn_add(TYPE_PRM, cylinder_init(origin_b, normal, diameter, height), sc);
 	sc->primitives->rgb = rgb;
-	normal = vectorx(normal, vector_scalar_multiply(normal, -1.0));
-	scn_add(TYPE_PRM, disc_init(vector_copy(origin_b), normal, diameter, rgb), sc);
+	if (BONUS)
+	{
+		normal = vector_scalar_multiply(normal, -1.0);
+		scn_add(TYPE_PRM, disc_init(vector_copy(origin_b), normal, diameter, rgb), sc);
+	}
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 23:22:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 01:18:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,12 +305,13 @@ void			missing_up_gambiarra(t_vec *p, t_vec **v_up, t_vec **v_left);
 double			hit_triangle_helper(t_ray *ray, t_vec *a, t_vec *b, t_vec *c);
 double			hit_plane(t_ray *ray, t_prm *plane);
 double			hit_cylinder(t_ray *ray, t_prm *cylinder);
-double			hit_infinite_cylinder(t_ray *ray, t_prm *cylinder);
+int				inside_cylinder_bondaries(t_ray *ray, double t, t_prm *cylinder);
 void			primitive_transform(t_prm *prm, t_mat *trn);
 void			triangle_transform(t_tri *tri, t_mat *trn);
 void			primitive_translate(t_prm *prm, t_mat *trn);
 void			triangle_translate(t_tri *tri, t_mat *trn);
 double			quadratic_minor(double a, double b, double c);
+double			quadratic_major(double a, double b, double c);
 void			vector_smash_z(t_vec *vec);
 
 /*
