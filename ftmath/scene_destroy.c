@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 13:37:52 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 14:40:20 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 23:37:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,21 @@ void		scn_free_list_prm(t_prm *lst)
 	return ;
 }
 
-void		scn_free_list_tri(t_tri *lst)
+void		triangle_destroy(t_tri *lst)
 {
-	if (lst->nx)
-		scn_free_list_tri(lst->nx);
 	vector_destroy(lst->a);
 	vector_destroy(lst->b);
 	vector_destroy(lst->c);
 	vector_destroy(lst->n);
 	free(lst);
+	return ;
+}
+
+void		scn_free_list_tri(t_tri *lst)
+{
+	if (lst->nx)
+		scn_free_list_tri(lst->nx);
+	triangle_destroy(lst);
 	return ;
 }
 

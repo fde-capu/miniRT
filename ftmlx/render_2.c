@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 17:07:17 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 00:04:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 	t_prm	*primitive;
 	double	test;
 	t_hit	*hit;
+	t_tri	*tri;
 
 	// for evey object (prm and tri)
 	//		find intersections
@@ -48,16 +49,25 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 			test = hit_square(ray, primitive);
 		if (primitive->type == TYPE_CY)
 			test = hit_cylinder(ray, primitive);
-		if (test > 0.0)
+		if ((test > 0.0) && (test < hit->t))
 		{
-			if (test < hit->t)
-			{
-				hit->t = test;
-				hit->primitive = primitive;
-				hit->ray = ray;
-			}
+			hit->t = test;
+			hit->primitive = primitive;
+			hit->ray = ray;
 		}
 		primitive = primitive->nx;
+	}
+	tri = mrt->scn->faces;
+	while (tri)
+	{
+		test = hit_triangle(ray, tri);
+		if ((test > 0.0) && (test < hit->t))
+		{
+			hit->t = test;
+			hit->triangle = tri;
+			hit->ray = ray;
+		}
+		tri = tri->nx;
 	}
 	if (hit->t != MAX_DEPTH)
 	{

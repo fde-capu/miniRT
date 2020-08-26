@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 15:25:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 23:22:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,12 +296,13 @@ void			ray_smash_z(t_ray *ray);
 void			ray_transform(t_ray *ray, t_mat *trn);
 void			ray_destroy(t_ray *ray);
 double			hit_sphere(t_ray *ray, t_prm *sphere);
+double			hit_triangle(t_ray *ray, t_tri *tri);
 double			hit_square(t_ray *ray, t_prm *square);
 double			hit_minimal(double t);
 double			hit_disc(t_ray *ray, t_prm *disc);
 t_vec			*hit_point(t_ray *ray, double t);
 void			missing_up_gambiarra(t_vec *p, t_vec **v_up, t_vec **v_left);
-double			hit_triangle(t_ray *ray, t_vec *a, t_vec *b, t_vec *c);
+double			hit_triangle_helper(t_ray *ray, t_vec *a, t_vec *b, t_vec *c);
 double			hit_plane(t_ray *ray, t_prm *plane);
 double			hit_cylinder(t_ray *ray, t_prm *cylinder);
 double			hit_infinite_cylinder(t_ray *ray, t_prm *cylinder);

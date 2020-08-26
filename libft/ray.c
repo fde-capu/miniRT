@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 17:01:17 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 23:43:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ double	hit_disc(t_ray *ray, t_prm *disc)
 	return (0.0);
 }
 
-double	hit_triangle(t_ray *ray, t_vec *a, t_vec *b, t_vec *c)
+double	hit_triangle_helper(t_ray *ray, t_vec *a, t_vec *b, t_vec *c)
 {
 	t_prm	*plane;
 	t_vec	*plane_n;
@@ -290,36 +290,38 @@ double	hit_triangle(t_ray *ray, t_vec *a, t_vec *b, t_vec *c)
 	return (hit_minimal(t));
 }
 
+double	hit_triangle(t_ray *ray, t_tri *tri)
+{
+	return (hit_triangle_helper(ray, tri->a, tri->b, tri->c));
+}
+
 double	hit_square(t_ray *ray, t_prm *square)
 {
-	t_vec	*p[5];
+	t_vec	*p[4];
 	t_mat	*rot;
 	double	t;
+	t_tri	*tri[2];
 
-	t = 0.0;
-	p[0] = vector_copy(g_z);
-	p[1] = vector_build(3, -square->h / 2, square->h / 2, 0.0);
-	p[2] = vector_build(3, square->h / 2, square->h / 2, 0.0);
-	p[3] = vector_build(3, square->h / 2, -square->h / 2, 0.0);
-	p[4] = vector_build(3, -square->h / 2, -square->h / 2, 0.0);
-	rot = vector_vector_rotation_matrix(p[0], square->n);
-	vector_transform(&p[1], rot);
-	vector_transform(&p[2], rot);
-	vector_transform(&p[3], rot);
-	vector_transform(&p[4], rot);
-	p[1] = vectorx(p[1], vector_translate(p[1], square->o));
-	p[2] = vectorx(p[2], vector_translate(p[2], square->o));
-	p[3] = vectorx(p[3], vector_translate(p[3], square->o));
-	p[4] = vectorx(p[4], vector_translate(p[4], square->o));
-	if ((hit_triangle(ray, p[3], p[2], p[1])
-		|| hit_triangle(ray, p[1], p[4], p[3])))
-		t = hit_plane(ray, square);
+	p[0] = vector_build(3, -square->h / 2, square->h / 2, 0.0);
+	p[1] = vector_build(3, square->h / 2, square->h / 2, 0.0);
+	p[2] = vector_build(3, square->h / 2, -square->h / 2, 0.0);
+	p[3] = vector_build(3, -square->h / 2, -square->h / 2, 0.0);
+	tri[0] = triangle_init(p[2], p[1], p[0], square->rgb);
+	tri[1] = triangle_init(p[0], p[3], p[2], square->rgb);
+	rot = vector_vector_rotation_matrix(g_z, square->n);
+	triangle_transform(tri[0], rot);
+	triangle_transform(tri[1], rot);
+	triangle_translate(tri[0], square->o);
+	triangle_translate(tri[1], square->o);
+	t = hit_triangle(ray, tri[0]);
+	t = t ? t : hit_triangle(ray, tri[1]);
 	vector_destroy(p[0]);
 	vector_destroy(p[1]);
 	vector_destroy(p[2]);
 	vector_destroy(p[3]);
-	vector_destroy(p[4]);
 	matrix_destroy(rot);
+	triangle_destroy(tri[0]);
+	triangle_destroy(tri[1]);
 	return (hit_minimal(t));
 }
 

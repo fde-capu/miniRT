@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:04:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 18:23:27 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 23:50:38 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_tri		*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb);
 void		scn_free_list_lht(t_lht *lst);
 void		scn_free_list_cam(t_cam *lst);
 void		scn_free_list_prm(t_prm *lst);
+void		triangle_destroy(t_tri *lst);
 void		scn_free_list_tri(t_tri *lst);
 void		scn_add(int objtype, void *obj, t_scn *sc);
 double		radtodeg(double rad);
@@ -44,6 +45,7 @@ t_mat		*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2);
 void		intersect_destroy(t_hit *hit);
 void		intersect_phit(t_hit *hit);
 void		intersect_normal(t_hit *hit);
+void		intersect_normaltriangle(t_hit *hit);
 void		intersect_complements(t_hit *hit);
 t_rgb		color_normal(t_hit *hit);
 t_rgb		color_distance(t_hit *hit);

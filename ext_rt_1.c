@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 18:30:09 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:58:12 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,8 @@ void	rt_line_translate_2(t_scn *sc, char **c)
 			ft_atod(c[3]), ft_atorgb(c[4])), sc);
 	if (rt_c(c[0], "cy"))
 		scn_make_cylinder(sc, c);
-	if (((rt_c(c[0], "pl") || rt_c(c[0], "sq") || rt_c(c[0], "cy"))
+	if ((rt_c(c[0], "pl") || rt_c(c[0], "sq") || rt_c(c[0], "cy"))
 		&& !is_normalized(sc->primitives->n))
-		|| (rt_c(c[0], "tr") && !is_normalized(sc->faces->n)))
 		die(0, NOTNORMAL_ERR, ERR_NOTNORMAL);
 	return ;
 }

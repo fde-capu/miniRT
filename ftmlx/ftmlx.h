@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 15:21:33 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:43:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j);
 t_ray	*mrt_ray(t_mrt *mrt, int x, int y);
 
 # define MSG_RENDERING	"\nRendering...\n"
+# define MSG_DONE "Done.\n"
 
 #endif
