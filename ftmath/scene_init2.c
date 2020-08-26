@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 00:06:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 00:34:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,50 +99,38 @@ void	intersect_phit(t_hit *hit)
 	return ;
 }
 
-void	intersect_normal_triangle(t_hit *hit)
-{
-	t_vec	*a;
-	t_vec	*b;
-
-	a = vector_subtract(hit->triangle->b, hit->triangle->a);
-	b = vector_subtract(hit->triangle->c, hit->triangle->a);
-	hit->n = vector_cross_product(b, a);
-	vector_normalize(hit->n);
-	vector_destroy(a);
-	vector_destroy(b);
-	return ;
-}
-
 void	intersect_normal(t_hit *hit)
 {
 	t_vec	*vec;
 
-	if (hit->primitive->type == TYPE_SP)
+	if (hit->primitive)
 	{
-		hit->n = vector_subtract(hit->phit, hit->primitive->o);
-		vector_normalize(hit->n);
+		if (hit->primitive->type == TYPE_SP)
+		{
+			hit->n = vector_subtract(hit->phit, hit->primitive->o);
+			vector_normalize(hit->n);
+			return ;
+		}
+		if (hit->primitive->type == TYPE_CY)
+		{
+			vec = vector_subtract(hit->phit, hit->primitive->o);
+			vec = vectorx(vec, vector_cross_product(hit->primitive->n, vec));
+			hit->n = vector_cross_product(vec, hit->primitive->n);
+			vector_normalize(hit->n);
+			vector_destroy(vec);
+			return ;
+		}
+		hit->n = vector_copy(hit->primitive->n);
 		return ;
 	}
-	if (hit->primitive->type == TYPE_CY)
-	{
-		vec = vector_subtract(hit->phit, hit->primitive->o);
-		vec = vectorx(vec, vector_cross_product(hit->primitive->n, vec));
-		hit->n = vector_cross_product(vec, hit->primitive->n);
-		vector_normalize(hit->n);
-		vector_destroy(vec);
-		return ;
-	}
-	hit->n = vector_copy(hit->primitive->n);
+	hit->n = vector_copy(hit->triangle->n);
 	return ;
 }
 
 void	intersect_complements(t_hit *hit)
 {
 	intersect_phit(hit);
-	if (hit->primitive)
-		intersect_normal(hit);
-	if (hit->triangle)
-		intersect_normal_triangle(hit);
+	intersect_normal(hit);
 	return ;
 }
 

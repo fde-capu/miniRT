@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 23:43:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 00:34:45 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,12 +302,12 @@ double	hit_square(t_ray *ray, t_prm *square)
 	double	t;
 	t_tri	*tri[2];
 
-	p[0] = vector_build(3, -square->h / 2, square->h / 2, 0.0);
-	p[1] = vector_build(3, square->h / 2, square->h / 2, 0.0);
-	p[2] = vector_build(3, square->h / 2, -square->h / 2, 0.0);
-	p[3] = vector_build(3, -square->h / 2, -square->h / 2, 0.0);
-	tri[0] = triangle_init(p[2], p[1], p[0], square->rgb);
-	tri[1] = triangle_init(p[0], p[3], p[2], square->rgb);
+	p[0] = vector_build(3, -square->h / 2.0, square->h / 2.0, 0.0);
+	p[1] = vector_build(3, square->h / 2.0, square->h / 2.0, 0.0);
+	p[2] = vector_build(3, square->h / 2.0, -square->h / 2.0, 0.0);
+	p[3] = vector_build(3, -square->h / 2.0, -square->h / 2.0, 0.0);
+	tri[0] = triangle_init(vector_copy(p[2]), vector_copy(p[1]), vector_copy(p[0]), square->rgb);
+	tri[1] = triangle_init(vector_copy(p[0]), vector_copy(p[3]), vector_copy(p[2]), square->rgb);
 	rot = vector_vector_rotation_matrix(g_z, square->n);
 	triangle_transform(tri[0], rot);
 	triangle_transform(tri[1], rot);

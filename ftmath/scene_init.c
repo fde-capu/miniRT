@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/24 14:23:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 00:18:53 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,19 @@ t_lht	*light_init(t_vec *o, double f, t_rgb rgb)
 t_tri	*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb)
 {
 	t_tri	*new;
+	t_vec	*ta;
+	t_vec	*tb;
 
 	new = ft_calloc(sizeof(t_tri), 1);
 	new->a = a;
 	new->b = b;
 	new->c = c;
-	new->n = vector_build(3, 0.0, 0.0, 0.0);
+	ta = vector_subtract(b, a);
+	tb = vector_subtract(c, a);
+	new->n = vector_cross_product(ta, tb);
+	vector_normalize(new->n);
+	vector_destroy(ta);
+	vector_destroy(tb);
 	new->rgb = rgb;
 	return (new);
 }

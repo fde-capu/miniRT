@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 00:04:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 00:44:43 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 	tri = mrt->scn->faces;
 	while (tri)
 	{
+		test = 0.0;
 		test = hit_triangle(ray, tri);
 		if ((test > 0.0) && (test < hit->t))
 		{
 			hit->t = test;
 			hit->triangle = tri;
+			hit->primitive = 0;
 			hit->ray = ray;
 		}
 		tri = tri->nx;
