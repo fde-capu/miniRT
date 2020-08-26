@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 02:00:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 12:53:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
-
-# ifndef BONUS
-#  define BONUS		1
-# endif
 
 # define WIN_TITLE	":: mrt : minirt : miniRT :: by fde-capu :: 42SP ::"
 # define SAVE_FN	"minirt.bmp"

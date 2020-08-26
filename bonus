@@ -1,0 +1,45 @@
+#! /bin/bash
+
+CONFIG_FILE1=./Makefile;
+CONFIG_FILE2=./ftmlx/Makefile;
+
+OK="false";
+if [ "$1" == "x" ] || [ "$1" == "flip" ] || [ "$1" == "i" ] || [ "$1" == "invert" ]
+then
+	OK="true";
+	OLD_VALUE=`sed -n 's/BONUS\t=\t\(.*\)/\1/p' $CONFIG_FILE1`;
+	if [ $OLD_VALUE == 0 ]
+	then
+		NEW_VALUE='1';
+	else
+		NEW_VALUE='0';
+	fi
+fi
+if [ "$1" == "on" ]
+then
+	OK="true";
+	NEW_VALUE=1;
+fi
+if [ "$1" == "off" ]
+then
+	OK="true";
+	NEW_VALUE=0;
+fi
+if [ $OK == "true" ]
+then
+	sed -i "s/BONUS\t=\t.*/BONUS\t=\t$NEW_VALUE/g" $CONFIG_FILE1;
+	echo "$CONFIG_FILE1 :: BONUS $NEW_VALUE;";
+	sed -i "s/BONUS\t=\t.*/BONUS\t=\t$NEW_VALUE/g" $CONFIG_FILE2;
+	echo "$CONFIG_FILE2 :: BONUS $NEW_VALUE;";
+	exit;
+fi
+echo "USAGE: bonus [OPTION]
+
+  x, flip, i, invert
+	If it is on, turns off; if it is off, turns on.
+  on
+	Switch on.
+  off
+	Switche off.
+This programs runs over $CONFIG_FILE1 and $CONFIG_FILE2.
+Maintainer: <fde-capu@student.42sp.org.br>.";

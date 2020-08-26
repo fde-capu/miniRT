@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 01:37:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 13:17:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 ** prm  o   n     rgb  h  d type
 ** tri      n     rgb             a b c
 */
+
+unsigned int	rgb_force(t_rgb rgb, double f)
+{
+	t_rgb	nrgb;
+
+	nrgb = rgb;
+	nrgb.a *= f;
+	nrgb.r *= f;
+	nrgb.g *= f;
+	nrgb.b *= f;
+	return (ft_argbtoi(nrgb));
+}
 
 void	render(t_mrt *mrt)
 {
@@ -37,21 +49,13 @@ void	render(t_mrt *mrt)
 		{
 			ray = mrt_ray(mrt, x, y);
 			hit = collision_pix(mrt, ray);
-			if (hit && hit->primitive)
-			{
-				if (hit->primitive->type == TYPE_SP)
-					color = ft_argbtoi(color_normal(hit));
-				if ((hit->primitive->type == TYPE_SQ) || (hit->primitive->type == TYPE_PL))
-					color = ft_argbtoi(color_blend(color_distance(hit), color_normal(hit), 0.5));
-				if (hit->primitive->type == TYPE_CY)
-					color = ft_argbtoi(color_normal(hit));
-				if (hit->primitive->type == TYPE_DS)
-					color = ft_argbtoi(color_normal(hit));
-			}
-			if (hit && hit->triangle)
+			if (hit && BONUS)
 				color = ft_argbtoi(color_normal(hit));
+			if (hit && !BONUS)
+			{
+			}
 			if (!hit)
-				color = (x * y / 2) << 16;
+				color = rgb_force(mrt->scn->ambient.rgb, mrt->scn->ambient.f);
 			ft_pix(mrt, x, y, color);
 			intersect_destroy(hit);
 			ray_destroy(ray);
