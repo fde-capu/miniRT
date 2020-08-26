@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 13:17:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 14:41:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ unsigned int	rgb_force(t_rgb rgb, double f)
 	return (ft_argbtoi(nrgb));
 }
 
-void	render(t_mrt *mrt)
+unsigned int	skybox(int x, int y)
+{
+	return (((x * x) + (y * y) - 70) << 16);
+}
+
+void	render(t_mrt *mrt, int saving)
 {
 	int				x;
 	int				y;
@@ -54,15 +59,18 @@ void	render(t_mrt *mrt)
 			if (hit && !BONUS)
 			{
 			}
-			if (!hit)
+			if (!hit && !BONUS)
 				color = rgb_force(mrt->scn->ambient.rgb, mrt->scn->ambient.f);
+			if (!hit && BONUS)
+				color = skybox(x, y);
 			ft_pix(mrt, x, y, color);
 			intersect_destroy(hit);
 			ray_destroy(ray);
 			x++;
 		}
 		y++;
-		flip(mrt);
+		if (!saving)
+			flip(mrt);
 	}
 	ft_putstr(MSG_DONE);
 	return ;

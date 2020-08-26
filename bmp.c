@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 10:43:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 14:44:49 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	write_mrtitobmp(t_mrt *mrt, int fp)
 	int		x;
 	int		y;
 
-	render(mrt);
+	render(mrt, 1);
 	x = mrt->i.height;
 	while (x > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 12:53:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 14:43:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void					die_if_random_error(t_mrt *mrt);
 int						load_rt_file(char *fn, t_scn *sc);
 int						minirt_exit(void *mrt);
 void					mrt_win_binds(t_mrt *mrt);
-void					render(t_mrt *mrt);
+void					render(t_mrt *mrt, int saving);
 void					rt_line_interpret(char *ln, t_scn *sc);
 int						rt_c(char *str, char *com);
 void					rt_line_translate(t_scn *sc, char **c);
@@ -43,6 +43,8 @@ int						valid_arg_types(char **c);
 int						valid_command(char **c);
 void					write_mrtitobmp(t_mrt *mrt, int fp);
 void					write_bmpheads(t_bmp *bmp, int fp);
+unsigned int			rgb_force(t_rgb rgb, double f);
+unsigned int			skybox(int x, int y);
 
 # define ARGS_MAX		6
 
