@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 00:52:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 01:51:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,57 @@ void	scn_make_cylinder(t_scn *sc, char **c)
 	diameter = ft_atod(c[3]);
 	height = ft_atod(c[4]);
 	rgb = ft_atorgb(c[5]);
+	scn_add(TYPE_PRM, cylinder_init(origin_b, normal, diameter, height), sc);
+	sc->primitives->rgb = rgb;
 	if (BONUS)
 	{
 		origin_t = vector_scalar_multiply(normal, height);
 		origin_t = vectorx(origin_t, vector_sum(origin_t, origin_b));
 		scn_add(TYPE_PRM, disc_init(origin_t, vector_copy(normal), diameter, rgb), sc);
-	}
-	scn_add(TYPE_PRM, cylinder_init(origin_b, normal, diameter, height), sc);
-	sc->primitives->rgb = rgb;
-	if (BONUS)
-	{
 		normal = vector_scalar_multiply(normal, -1.0);
 		scn_add(TYPE_PRM, disc_init(vector_copy(origin_b), normal, diameter, rgb), sc);
 	}
 	return ;
+}
+
+double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
+{
+	double	t;
+	t_prm	*cyl;
+	t_ray	*ray;
+	double	dx;
+	double	dy;
+	double	x0;
+	double	y0;
+	double	a;
+	double	b;
+	double	c;
+
+	ray = ray_copy(ray3d);
+	cyl = cylinder_init(vector_copy(cylinder->o), vector_copy(cylinder->n), cylinder->h, cylinder->d);
+	primitive_zzz_position(cyl, ray);
+	dx = vector_get_element(ray->d, 1);
+	dy = vector_get_element(ray->d, 2);
+	x0 = vector_get_element(ray->a, 1);
+	y0 = vector_get_element(ray->a, 2);
+	a = ((dx * dx) + (dy * dy));
+	b = ((x0 * dx) + (y0 * dy)) * 2;
+	c = ((x0 * x0) + (y0 * y0)) - ((cyl->h / 2) * (cyl->h / 2));
+	t = quadratic_minor(a, b, c);
+	if (!inside_cylinder_bondaries(ray3d, t, cylinder))
+	{
+		if (!BONUS)
+		{
+			t = quadratic_major(a, b, c);
+			if (!inside_cylinder_bondaries(ray, t, cyl))
+				t = 0.0;
+		}
+		else
+			t = 0.0;
+	}
+	ray_destroy(ray);
+	primitive_destroy(cyl);
+	return (t);
 }
 
 /*

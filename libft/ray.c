@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 01:19:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 01:39:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,41 +200,6 @@ int		inside_cylinder_bondaries(t_ray *ray, double t, t_prm *cylinder)
 	vector_destroy(hpm);
 	vector_destroy(hp);
 	return (is_it);
-}
-
-double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
-{
-	double	t;
-	t_prm	*cyl;
-	t_ray	*ray;
-	double	dx;
-	double	dy;
-	double	x0;
-	double	y0;
-	double	a;
-	double	b;
-	double	c;
-
-	ray = ray_copy(ray3d);
-	cyl = cylinder_init(vector_copy(cylinder->o), vector_copy(cylinder->n), cylinder->h, cylinder->d);
-	primitive_zzz_position(cyl, ray);
-	dx = vector_get_element(ray->d, 1);
-	dy = vector_get_element(ray->d, 2);
-	x0 = vector_get_element(ray->a, 1);
-	y0 = vector_get_element(ray->a, 2);
-	a = ((dx * dx) + (dy * dy));
-	b = ((x0 * dx) + (y0 * dy)) * 2;
-	c = ((x0 * x0) + (y0 * y0)) - ((cyl->h / 2) * (cyl->h / 2));
-	t = quadratic_minor(a, b, c);
-	if (!inside_cylinder_bondaries(ray, t, cyl))
-	{
-		t = quadratic_major(a, b, c);
-		if (!inside_cylinder_bondaries(ray, t, cyl))
-			t = 0.0;
-	}
-	ray_destroy(ray);
-	primitive_destroy(cyl);
-	return (t);
 }
 
 double	hit_plane(t_ray *ray, t_prm *plane)
