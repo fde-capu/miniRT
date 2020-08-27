@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 22:30:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 23:50:39 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,8 @@ unsigned int	skybox(int x, int y)
 
 t_rgb			color_ambient(t_mrt *mrt, t_hit *hit)
 {
-	t_rgb	color;
-	t_rgb	amb;
-	double	f;
-
-	f = mrt->scn->ambient.f;
-	color = hit->primitive->rgb;
-	color = rgb_force(color, f);
-	amb = rgb_force(mrt->scn->ambient.rgb, f);
-	color = color_blend(color, amb, 0.5);
-	return (color);
+	(void)hit;
+	return (rgb_force(mrt->scn->ambient.rgb, mrt->scn->ambient.f));
 }
 
 t_rgb			color_diffuse(t_mrt *mrt, t_hit *hit)
@@ -69,6 +61,7 @@ t_rgb			color_diffuse(t_mrt *mrt, t_hit *hit)
 	intensity = vector_dot_product(hit_to_light, hit->n) * DIFFUSE_REFLECTIVITY * f;
 	intensity = intensity < 0.0 ? 0.0 : intensity;
 	dif = rgb_force(dif, intensity);
+	dif = color_multiply(dif, hit->primitive->rgb);
 	vector_destroy(hit_to_light);
 	return (dif);
 }
@@ -88,11 +81,11 @@ t_rgb			color_specular(t_mrt *mrt, t_hit *hit)
 	rot = vector_vector_rotation_matrix(hit->n, hit->ray->d);
 	reflection = vector_copy(hit->n);
 	vector_transform(&reflection, rot);
-	intensity = vector_dot_product(hit_to_light, reflection) * -1.0;
+	intensity = vector_dot_product(reflection, hit_to_light) * -SPECULAR_INTENSITY;
 	intensity = intensity < 0.0 ? 0.0 : intensity;
 	intensity = ft_pow(intensity, SPECULAR_POWER);
-	spec = rgb_force(spec, f);
 	spec = rgb_force(spec, intensity);
+	spec = rgb_force(spec, f);
 	vector_destroy(reflection);
 	matrix_destroy(rot);
 	return (spec);
@@ -119,6 +112,25 @@ t_rgb			color_add(t_rgb ca, t_rgb cb)
 	add.g = (unsigned char)g;
 	add.b = (unsigned char)b;
 	return (add);
+}
+
+t_rgb			color_multiply(t_rgb ca, t_rgb cb)
+{
+	t_rgb	mult;
+	int		a;
+	int		r;
+	int		g;
+	int		b;
+
+	a = (int)ca.a * (int)cb.a / 255;
+	r = (int)ca.r * (int)cb.r / 255;
+	g = (int)ca.g * (int)cb.g / 255;
+	b = (int)ca.b * (int)cb.b / 255;
+	mult.a = (unsigned char)a;
+	mult.r = (unsigned char)r;
+	mult.g = (unsigned char)g;
+	mult.b = (unsigned char)b;
+	return (mult);
 }
 
 unsigned int	color_trace(t_mrt *mrt, t_hit *hit)

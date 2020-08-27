@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 21:28:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 23:40:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,6 +314,7 @@ double			quadratic_minor(double a, double b, double c);
 double			quadratic_major(double a, double b, double c);
 void			vector_smash_z(t_vec *vec);
 t_vec			*vector_normal_construct(t_vec *ori, t_vec *dest);
+t_rgb			color_multiply(t_rgb ca, t_rgb cb);
 
 /*
 ** Debugs:

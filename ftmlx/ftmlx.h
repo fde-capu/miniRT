@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 17:22:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 23:53:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # define FTMLX_LIMIT_WIN_SIZE	1
 # define MAX_DEPTH				500.0
 # define DIFFUSE_REFLECTIVITY	0.5
-# define SPECULAR_POWER			16	
+# define SPECULAR_POWER			4
+# define SPECULAR_INTENSITY		0.7
 
 t_hit	*collision_pix(t_mrt *mrt, t_ray *ray);
 void	flip(t_mrt *mrt);
@@ -38,6 +39,7 @@ void	hook_keys(t_mrt *mrt, int ks, int ke);
 t_vec	*pix_film(t_mrt *mrt, int i, int j);
 t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j);
 t_ray	*mrt_ray(t_mrt *mrt, int x, int y);
+t_rgb					color_add(t_rgb ca, t_rgb cb);
 
 # define MSG_RENDERING	"\nRendering...\n"
 # define MSG_DONE "Done.\n"

@@ -10,6 +10,8 @@ miniRT aka minirt
 <sub><sup>
 Dev. notes:
 known bugs: window aspect ratio
+not saving well
+ambient not accepting 0.0
 </sup></sub>
 ___
 

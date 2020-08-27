@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 21:28:19 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 22:44:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ unsigned int			skybox(int x, int y);
 unsigned int			color_trace(t_mrt *mrt, t_hit *hit);
 t_rgb					color_ambient(t_mrt *mrt, t_hit *hit);
 t_rgb					color_diffuse(t_mrt *mrt, t_hit *hit);
-t_rgb					color_add(t_rgb ca, t_rgb cb);
 
 # define ARGS_MAX		6
 
