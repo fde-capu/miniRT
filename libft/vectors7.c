@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:30:29 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 15:33:33 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 21:27:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,13 @@ void	vector_append_val(t_vec *vec, double val)
 	vec->i = lstdbl_addlast(vec->i, val);
 	vec->m++;
 	return ;
+}
+
+t_vec			*vector_normal_construct(t_vec *ori, t_vec *dest)
+{
+	t_vec	*vec;
+
+	vec = vector_subtract(dest, ori);	
+	vector_normalize(vec);
+	return (vec);
 }

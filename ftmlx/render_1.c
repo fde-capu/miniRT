@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 17:06:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/26 22:30:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,42 @@ t_rgb			color_diffuse(t_mrt *mrt, t_hit *hit)
 {
 	t_rgb	dif;
 	double	f;
-	t_vec	*hit_to_ligth;
+	t_vec	*hit_to_light;
 	double	intensity;
 
 	dif = mrt->scn->lights->rgb;
-		f = mrt->scn->lights->f;
-	hit_to_ligth = vector_subtract(mrt->scn->lights->o, hit->phit);
-	vector_normalize(hit_to_ligth);
-	intensity = vector_dot_product(hit_to_ligth, hit->n) * DIFFUSE_REFLECTIVITY * f;
+	f = mrt->scn->lights->f;
+	hit_to_light = vector_normal_construct(hit->phit, mrt->scn->lights->o);
+	intensity = vector_dot_product(hit_to_light, hit->n) * DIFFUSE_REFLECTIVITY * f;
 	intensity = intensity < 0.0 ? 0.0 : intensity;
 	dif = rgb_force(dif, intensity);
-	vector_destroy(hit_to_ligth);
+	vector_destroy(hit_to_light);
 	return (dif);
+}
+
+t_rgb			color_specular(t_mrt *mrt, t_hit *hit)
+{
+	t_rgb	spec;
+	double	f;
+	t_vec	*reflection;
+	double	intensity;
+	t_mat	*rot;
+	t_vec	*hit_to_light;
+
+	f = mrt->scn->lights->f;
+	hit_to_light = vector_normal_construct(hit->phit, mrt->scn->lights->o);
+	spec = mrt->scn->lights->rgb;
+	rot = vector_vector_rotation_matrix(hit->n, hit->ray->d);
+	reflection = vector_copy(hit->n);
+	vector_transform(&reflection, rot);
+	intensity = vector_dot_product(hit_to_light, reflection) * -1.0;
+	intensity = intensity < 0.0 ? 0.0 : intensity;
+	intensity = ft_pow(intensity, SPECULAR_POWER);
+	spec = rgb_force(spec, f);
+	spec = rgb_force(spec, intensity);
+	vector_destroy(reflection);
+	matrix_destroy(rot);
+	return (spec);
 }
 
 t_rgb			color_add(t_rgb ca, t_rgb cb)
@@ -101,11 +125,14 @@ unsigned int	color_trace(t_mrt *mrt, t_hit *hit)
 {
 	t_rgb	ambient;
 	t_rgb	diffuse;
+	t_rgb	specular;
 	t_rgb	result;
 
 	ambient = color_ambient(mrt, hit);
 	diffuse = color_diffuse(mrt, hit);
+	specular = color_specular(mrt, hit);
 	result = color_add(ambient, diffuse);
+	result = color_add(result, specular);
 	return (ft_argbtoi(result));
 }
 
