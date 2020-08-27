@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 01:39:14 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 01:05:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ double	hit_sphere(t_ray *ray, t_prm *sphere)
 	discriminant = (b * b) - (4.0 * a * c);
 	vector_destroy(oc);
 	if (discriminant < 0)
-		return (-1.0);
+		return (0.0);
 	else
 		return (hit_minimal((-b - sqrt(discriminant)) / (2.0 * a)));
 }
@@ -309,7 +309,7 @@ double	hit_square(t_ray *ray, t_prm *square)
 
 double	hit_minimal(double t)
 {
-	return (t > 0.01 ? t : 0.0);
+	return (t > 0.001 ? t : 0.0);
 }
 
 void	missing_up_gambiarra(t_vec *p, t_vec **v_up, t_vec **v_left)

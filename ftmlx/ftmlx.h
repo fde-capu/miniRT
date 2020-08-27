@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 23:53:18 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 00:48:08 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	hook_keys(t_mrt *mrt, int ks, int ke);
 t_vec	*pix_film(t_mrt *mrt, int i, int j);
 t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j);
 t_ray	*mrt_ray(t_mrt *mrt, int x, int y);
-t_rgb					color_add(t_rgb ca, t_rgb cb);
+t_rgb	color_add(t_rgb ca, t_rgb cb);
+double	can_see_light(t_mrt *mrt, t_vec *o, t_vec *l);
 
 # define MSG_RENDERING	"\nRendering...\n"
 # define MSG_DONE "Done.\n"

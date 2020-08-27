@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 23:50:39 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 01:02:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,33 @@ unsigned int	skybox(int x, int y)
 	return (((x * x) + (y * y) - 70) << 16);
 }
 
-t_rgb			color_ambient(t_mrt *mrt, t_hit *hit)
+t_rgb			color_ambient(t_mrt *mrt)
 {
-	(void)hit;
 	return (rgb_force(mrt->scn->ambient.rgb, mrt->scn->ambient.f));
 }
 
-t_rgb			color_diffuse(t_mrt *mrt, t_hit *hit)
+t_rgb			color_diffuse(t_lht *light, t_hit *hit)
 {
 	t_rgb	dif;
 	double	f;
 	t_vec	*hit_to_light;
 	double	intensity;
 
-	dif = mrt->scn->lights->rgb;
-	f = mrt->scn->lights->f;
-	hit_to_light = vector_normal_construct(hit->phit, mrt->scn->lights->o);
+	dif = light->rgb;
+	f = light->f;
+	hit_to_light = vector_normal_construct(hit->phit, light->o);
 	intensity = vector_dot_product(hit_to_light, hit->n) * DIFFUSE_REFLECTIVITY * f;
 	intensity = intensity < 0.0 ? 0.0 : intensity;
 	dif = rgb_force(dif, intensity);
-	dif = color_multiply(dif, hit->primitive->rgb);
+	if (hit->primitive)
+		dif = color_multiply(dif, hit->primitive->rgb);
+	else
+		dif = color_multiply(dif, hit->triangle->rgb);
 	vector_destroy(hit_to_light);
 	return (dif);
 }
 
-t_rgb			color_specular(t_mrt *mrt, t_hit *hit)
+t_rgb			color_specular(t_lht *light, t_hit *hit)
 {
 	t_rgb	spec;
 	double	f;
@@ -75,9 +77,9 @@ t_rgb			color_specular(t_mrt *mrt, t_hit *hit)
 	t_mat	*rot;
 	t_vec	*hit_to_light;
 
-	f = mrt->scn->lights->f;
-	hit_to_light = vector_normal_construct(hit->phit, mrt->scn->lights->o);
-	spec = mrt->scn->lights->rgb;
+	f = light->f;
+	hit_to_light = vector_normal_construct(hit->phit, light->o);
+	spec = light->rgb;
 	rot = vector_vector_rotation_matrix(hit->n, hit->ray->d);
 	reflection = vector_copy(hit->n);
 	vector_transform(&reflection, rot);
@@ -88,6 +90,7 @@ t_rgb			color_specular(t_mrt *mrt, t_hit *hit)
 	spec = rgb_force(spec, f);
 	vector_destroy(reflection);
 	matrix_destroy(rot);
+	vector_destroy(hit_to_light);
 	return (spec);
 }
 
@@ -139,12 +142,24 @@ unsigned int	color_trace(t_mrt *mrt, t_hit *hit)
 	t_rgb	diffuse;
 	t_rgb	specular;
 	t_rgb	result;
+	t_lht	*light;
+	double	test;
 
-	ambient = color_ambient(mrt, hit);
-	diffuse = color_diffuse(mrt, hit);
-	specular = color_specular(mrt, hit);
-	result = color_add(ambient, diffuse);
-	result = color_add(result, specular);
+	ambient = color_ambient(mrt);
+	result = ambient;
+	light = mrt->scn->lights;
+	while (light)
+	{
+		test = can_see_light(mrt, hit->phit, light->o);
+		if (test)
+		{
+			diffuse = color_diffuse(light, hit);
+			specular = color_specular(light, hit);
+			result = color_add(result, diffuse);
+			result = color_add(result, specular);
+		}
+		light = light->nx;
+	}
 	return (ft_argbtoi(result));
 }
 

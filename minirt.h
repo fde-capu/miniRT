@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 22:44:09 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 00:02:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ t_rgb					rgb_force(t_rgb rgb, double f);
 unsigned int			color_force(t_rgb rgb, double f);
 unsigned int			skybox(int x, int y);
 unsigned int			color_trace(t_mrt *mrt, t_hit *hit);
-t_rgb					color_ambient(t_mrt *mrt, t_hit *hit);
-t_rgb					color_diffuse(t_mrt *mrt, t_hit *hit);
+t_rgb					color_ambient(t_mrt *mrt);
+t_rgb					color_diffuse(t_lht *light, t_hit *hit);
+t_rgb					color_specular(t_lht *light, t_hit *hit);
 
 # define ARGS_MAX		6
 
