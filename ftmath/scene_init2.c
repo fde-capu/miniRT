@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 17:17:15 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 02:03:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 03:24:28 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,16 @@ void	intersect_normal(t_hit *hit)
 			vector_destroy(vec);
 			return ;
 		}
-		hit->n = vector_copy(hit->primitive->n);
+		if (vector_dot_product(hit->ray->d, hit->primitive->n) < 0.0)
+			hit->n = vector_copy(hit->primitive->n);
+		else
+			hit->n = vector_scalar_multiply(hit->primitive->n, -1.0);
 		return ;
 	}
-	hit->n = vector_copy(hit->triangle->n);
+	if (vector_dot_product(hit->ray->d, hit->triangle->n) < 0.0)
+		hit->n = vector_copy(hit->triangle->n);
+	else
+		hit->n = vector_scalar_multiply(hit->triangle->n, -1.0);
 	return ;
 }
 

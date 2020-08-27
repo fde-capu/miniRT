@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 02:33:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 03:16:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ double		can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l)
 	t_ray	*ray;
 	t_tri	*tri;
 	t_vec	*o;
+	double	light_distance;
+	t_vec	*tmp;
 
 	o = hit->phit;
 	ray = ray_build(o, l);
-	if (vector_dot_product(hit->ray->d, hit->n) > 0.0)
-		return (0.0);
+	tmp = vector_subtract(l, o);
+	light_distance = vector_magnitude(tmp);
+	vector_destroy(tmp);
 	test = 0.0;
 	primitive = mrt->scn->primitives;
 	while (primitive)
@@ -47,16 +50,22 @@ double		can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l)
 			test = hit_disc(ray, primitive);
 		if (primitive->type == TYPE_CY)
 			test = hit_cylinder(ray, primitive);
-		if (test)
+		if (test && test <= light_distance)
+		{
+			ray_destroy(ray);
 			return (0.0);
+		}
 		primitive = primitive->nx;
 	}
 	tri = mrt->scn->faces;
 	while (tri)
 	{
 		test = hit_triangle(ray, tri);
-		if (test)
+		if (test && test <= light_distance)
+		{
+			ray_destroy(ray);
 			return (0.0);
+		}
 		tri = tri->nx;
 	}
 	ray_destroy(ray);
