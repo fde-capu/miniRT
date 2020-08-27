@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/08/26 01:58:59 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/08/27 13:31:20 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,3 +117,4 @@ norm	:
 	cd libft && $(NORM) *.h *.c
 	cd ftmath && $(NORM) *.h *.c
 	cd ftmlx && $(NORM) *.h *.c
+rs		:	ts

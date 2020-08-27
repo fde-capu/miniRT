@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 02:40:44 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 13:30:17 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,8 @@ double	hit_triangle_helper(t_ray *ray, t_vec *a, t_vec *b, t_vec *c)
 	plane = plane_init(a, plane_n, ft_rgb(0.0, 0.0, 0.0, 0.0));
 	t = hit_plane(ray, plane);
 	hit = hit_point(ray, t);
+	DEBVEC("hit", hit);
+	DEBVEC("a", a);
 	pos[0] = vector_subtract(hit, a);
 	pos[1] = vector_subtract(hit, b);
 	pos[2] = vector_subtract(hit, c);
