@@ -25,6 +25,12 @@ then
 	OK="true";
 	NEW_VALUE=0;
 fi
+if [ "$1" == "status" ]
+then
+	echo "$CONFIG_FILE1 :: BONUS $OLD_VALUE;";
+	echo "$CONFIG_FILE2 :: BONUS $OLD_VALUE;";
+	exit;
+fi
 if [ $OK == "true" ]
 then
 	sed -i "s/BONUS\t=\t.*/BONUS\t=\t$NEW_VALUE/g" $CONFIG_FILE1;
@@ -35,6 +41,8 @@ then
 fi
 echo "USAGE: bonus [OPTION]
 
+  status
+	Shows current status.
   x, flip, i, invert
 	If it is on, turns off; if it is off, turns on.
   on
