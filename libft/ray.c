@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 16:23:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 01:05:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 02:40:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,36 +275,6 @@ double	hit_triangle_helper(t_ray *ray, t_vec *a, t_vec *b, t_vec *c)
 double	hit_triangle(t_ray *ray, t_tri *tri)
 {
 	return (hit_triangle_helper(ray, tri->a, tri->b, tri->c));
-}
-
-double	hit_square(t_ray *ray, t_prm *square)
-{
-	t_vec	*p[4];
-	t_mat	*rot;
-	double	t;
-	t_tri	*tri[2];
-
-	p[0] = vector_build(3, -square->h / 2.0, square->h / 2.0, 0.0);
-	p[1] = vector_build(3, square->h / 2.0, square->h / 2.0, 0.0);
-	p[2] = vector_build(3, square->h / 2.0, -square->h / 2.0, 0.0);
-	p[3] = vector_build(3, -square->h / 2.0, -square->h / 2.0, 0.0);
-	tri[0] = triangle_init(vector_copy(p[2]), vector_copy(p[1]), vector_copy(p[0]), square->rgb);
-	tri[1] = triangle_init(vector_copy(p[0]), vector_copy(p[3]), vector_copy(p[2]), square->rgb);
-	rot = vector_vector_rotation_matrix(g_z, square->n);
-	triangle_transform(tri[0], rot);
-	triangle_transform(tri[1], rot);
-	triangle_translate(tri[0], square->o);
-	triangle_translate(tri[1], square->o);
-	t = hit_triangle(ray, tri[0]);
-	t = t ? t : hit_triangle(ray, tri[1]);
-	vector_destroy(p[0]);
-	vector_destroy(p[1]);
-	vector_destroy(p[2]);
-	vector_destroy(p[3]);
-	matrix_destroy(rot);
-	triangle_destroy(tri[0]);
-	triangle_destroy(tri[1]);
-	return (hit_minimal(t));
 }
 
 double	hit_minimal(double t)

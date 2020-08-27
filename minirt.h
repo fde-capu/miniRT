@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 00:02:01 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 02:44:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ unsigned int			color_trace(t_mrt *mrt, t_hit *hit);
 t_rgb					color_ambient(t_mrt *mrt);
 t_rgb					color_diffuse(t_lht *light, t_hit *hit);
 t_rgb					color_specular(t_lht *light, t_hit *hit);
+void					scn_make_cylinder(t_scn *sc, char **c);
+void					scn_make_square(t_scn *sc, char **c);
 
 # define ARGS_MAX		6
 

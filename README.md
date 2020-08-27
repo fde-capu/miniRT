@@ -12,6 +12,7 @@ Dev. notes:
 known bugs: window aspect ratio
 not saving well
 ambient not accepting 0.0
+non-squared screem sizes position
 </sup></sub>
 ___
 

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 23:40:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 02:34:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,6 @@ void			ray_transform(t_ray *ray, t_mat *trn);
 void			ray_destroy(t_ray *ray);
 double			hit_sphere(t_ray *ray, t_prm *sphere);
 double			hit_triangle(t_ray *ray, t_tri *tri);
-double			hit_square(t_ray *ray, t_prm *square);
 double			hit_minimal(double t);
 double			hit_disc(t_ray *ray, t_prm *disc);
 t_vec			*hit_point(t_ray *ray, double t);

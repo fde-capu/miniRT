@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:40:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 00:18:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 02:13:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_tri	*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb)
 	new->c = c;
 	ta = vector_subtract(b, a);
 	tb = vector_subtract(c, a);
-	new->n = vector_cross_product(ta, tb);
+	new->n = vector_cross_product(tb, ta);
 	vector_normalize(new->n);
 	vector_destroy(ta);
 	vector_destroy(tb);
