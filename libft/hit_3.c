@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 15:35:36 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 15:16:15 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 16:41:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,6 @@ int		hit_inside_sphere(t_ray *ray, t_prm *sph)
 		return (0);
 	return (vector_vector_distance(ray->a, sph->o) \
 		>= sph->h ? 0 : 1);
-}
-
-void	intersect_normal(t_hit *hit)
-{
-	t_vec	*vec;
-	double	d;
-
-	if (hit->primitive)
-	{
-		if (hit->primitive->type == TYPE_SP)
-		{
-			if (hit_inside_sphere(hit->ray, hit->primitive))
-				hit->n = vector_normal_construct(hit->phit, hit->primitive->o);
-			else
-				hit->n = vector_normal_construct(hit->primitive->o, hit->phit);
-			return ;
-		}
-		if (hit->primitive->type == TYPE_CY)
-		{
-			vec = vector_subtract(hit->phit, hit->primitive->o);
-			d = vector_dot_product(hit->primitive->n, vec);
-			vec = vectorx(vec, vector_scalar_multiply(hit->primitive->n, d));
-			vec = vectorx(vec, vector_sum(vec, hit->primitive->o));
-			hit->n = vector_normal_construct(vec, hit->phit);
-			vector_destroy(vec);
-			return ;
-		}
-		hit->n = intersect_normal_generic_primitive(hit);
-		return ;
-	}
-	hit->n = intersect_normal_triangle(hit);
-	return ;
 }
 
 t_vec	*intersect_normal_generic_primitive(t_hit *hit)
@@ -90,4 +58,13 @@ void	hit_set_triangle(t_hit *hit, double test, t_tri *triangle, t_ray *ray)
 	hit->primitive = 0;
 	hit->ray = ray;
 	return ;
+}
+
+t_hit	*hit_new(double max)
+{
+	t_hit	*hit;
+
+	hit = ft_calloc(sizeof(t_hit), 1);
+	hit->t = max;
+	return (hit);
 }

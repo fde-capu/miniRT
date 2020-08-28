@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 15:17:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 17:14:27 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,30 @@ t_hit	*intersect_complements(t_hit *hit)
 	intersect_phit(hit);
 	intersect_normal(hit);
 	return (hit);
+}
+
+void	intersect_normal(t_hit *hit)
+{
+	if (hit->primitive)
+	{
+		if (hit->primitive->type == TYPE_SP)
+		{
+			if (hit_inside_sphere(hit->ray, hit->primitive))
+				hit->n = vector_normal_construct(hit->phit, hit->primitive->o);
+			else
+				hit->n = vector_normal_construct(hit->primitive->o, hit->phit);
+			return ;
+		}
+		if (hit->primitive->type == TYPE_CY)
+		{
+			hit->n = intersect_cylinder_normal(hit);
+			return ;
+		}
+		hit->n = intersect_normal_generic_primitive(hit);
+		return ;
+	}
+	hit->n = intersect_normal_triangle(hit);
+	return ;
 }
 
 void	*intersect_destroy(t_hit *hit)
@@ -71,13 +95,4 @@ double	can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l)
 		hit->primitive->h)
 		return (ray_destroy_and_return(ray, 0.0));
 	return (ray_destroy_and_return(ray, 1.0));
-}
-
-t_hit	*hit_new(double max)
-{
-	t_hit	*hit;
-
-	hit = ft_calloc(sizeof(t_hit), 1);
-	hit->t = max;
-	return (hit);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 14:36:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 16:47:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,6 +317,7 @@ double			hit_plane(t_ray *ray, t_prm *plane);
 double			hit_cylinder(t_ray *ray, t_prm *cylinder);
 int				inside_cylinder_bondaries(t_ray *ray, double t, \
 					t_prm *cylinder);
+t_vec			*intersect_cylinder_normal(t_hit *hit);
 void			primitive_transform(t_prm *prm, t_mat *trn);
 void			triangle_transform(t_tri *tri, t_mat *trn);
 void			primitive_translate(t_prm *prm, t_mat *trn);

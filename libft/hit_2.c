@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:09:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 04:58:35 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 18:45:25 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,24 @@ t_vec	*hit_triangle_crosshit(t_vec *hit, t_vec *tri_a, t_vec *tri_b)
 	return (pos);
 }
 
-void	destroy_hit_triangle(t_vec *hit, t_vec *pos[3], t_prm *pl, t_vec *v)
-{
-	vector_destroy(hit);
-	free(pl);
-	vector_destroy(v);
-	vector_destroy(pos[0]);
-	vector_destroy(pos[1]);
-	vector_destroy(pos[2]);
-	return ;
-}
-
 void	intersect_phit(t_hit *hit)
 {
 	hit->phit = hit_point(hit->ray, hit->t);
 	return ;
+}
+
+int		ray_inside_infinite_cylinder(t_ray *ray, t_prm *cyl)
+{
+	t_vec	*cyl_plane;
+	double	d;
+
+	if (vector_vector_angle_deg(ray->a, cyl->n) == 0.0)
+		return (1);
+	cyl_plane = vector_cross_product(ray->a, cyl->n);
+	cyl_plane = vectorx(cyl_plane, vector_cross_product(cyl->n, cyl_plane));
+	d = vector_dot_product(cyl_plane, ray->a);
+	vector_destroy(cyl_plane);
+	return (d < cyl->d / 2.0 ? 1 : 0);
 }
 
 double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
@@ -65,9 +68,14 @@ double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 
 	cyl = cylinder_init(vector_copy(cylinder->o), \
 		vector_copy(cylinder->n), cylinder->h, cylinder->d);
-	abc[0] = cyl->h / 2;
+	abc[0] = cyl->d;
 	ray = ray_quadratic(ray3d, &abc[0], &abc[1], &abc[2]);
 	primitive_zzz_position(cyl, ray);
+	if (ray_inside_infinite_cylinder(ray, cyl))
+	{
+		abc[0] *= -1.0;
+		abc[2] *= -1.0;
+	}
 	t = quadratic_minor(abc[0], abc[1], abc[2]);
 	if (!inside_cylinder_bondaries(ray3d, t, cylinder))
 	{
@@ -78,4 +86,22 @@ double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 	ray_destroy(ray);
 	primitive_destroy(cyl);
 	return (hit_minimal(t));
+}
+
+int		inside_cylinder_bondaries(t_ray *ray, double t, t_prm *cylinder)
+{
+	double	d;
+	int		is_it;
+	t_vec	*hp;
+	t_vec	*hpm;
+
+	is_it = 1;
+	hp = hit_point(ray, t);
+	hpm = vector_subtract(hp, cylinder->o);
+	d = vector_dot_product(hpm, cylinder->n);
+	if ((d > cylinder->h) || (d < 0))
+		is_it = 0;
+	vector_destroy(hpm);
+	vector_destroy(hp);
+	return (is_it);
 }

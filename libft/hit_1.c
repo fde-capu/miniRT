@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 14:36:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 17:24:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,13 @@ double	hit_disc(t_ray *ray, t_prm *disc)
 	return (0.0);
 }
 
-int		inside_cylinder_bondaries(t_ray *ray, double t, t_prm *cylinder)
+void	destroy_hit_triangle(t_vec *hit, t_vec *pos[3], t_prm *pl, t_vec *v)
 {
-	double	d;
-	int		is_it;
-	t_vec	*hp;
-	t_vec	*hpm;
-
-	is_it = 1;
-	hp = hit_point(ray, t);
-	hpm = vector_subtract(hp, cylinder->o);
-	d = vector_dot_product(hpm, cylinder->n);
-	if ((d > cylinder->h) || (d < 0))
-		is_it = 0;
-	vector_destroy(hpm);
-	vector_destroy(hp);
-	return (is_it);
+	vector_destroy(hit);
+	free(pl);
+	vector_destroy(v);
+	vector_destroy(pos[0]);
+	vector_destroy(pos[1]);
+	vector_destroy(pos[2]);
+	return ;
 }
