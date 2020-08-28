@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 14:51:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/25 13:34:45 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 14:19:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,14 @@ void	debug_primitive(t_prm *h)
 	DEBDBL(S_HEIGHT, h->h);
 	DEBDBL(S_WIDTH, h->d);
 	DEBRGB(S_COLOR, h->rgb);
+	return ;
+}
+
+void	debug_ray(char *str, t_ray *ray)
+{
+	DEB(str);
+	DEBVEC("a", ray->a);
+	DEBVEC("b", ray->b);
+	DEBVEC("d", ray->d);
 	return ;
 }

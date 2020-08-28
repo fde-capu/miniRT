@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 14:43:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 00:32:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	mrt_win_binds(t_mrt *mrt)
 int		main(int argc, char **argv)
 {
 	t_mrt	*mrt;
-	int		saving;
-	
-	saving = 0;
+
 	if (!(mrt = ft_mrt_init()))
 		die(0, MLX_INIT_ERROR, ERR_MLX_INIT);
 	g_mrt = mrt;
@@ -41,14 +39,11 @@ int		main(int argc, char **argv)
 	if (!ft_mrt_init_img(mrt))
 		die(mrt, IMG_ERROR, ERR_IMG);
 	if (ft_args(argc, argv, "--save"))
-	{
-		saving = 1;
 		minirt_exit(save_mrttobmp(mrt, SAVE_FN));
-	}
 	if (!ft_mrt_init_win(mrt, WIN_TITLE))
 		die(mrt, WIN_ERROR, ERR_WIN);
 	mrt_win_binds(mrt);
-	render(mrt, saving);
+	render(mrt, 0);
 	flip(mrt);
 	mlx_loop(mrt->mlx);
 	return (die(mrt, STRANGE_ERROR, ERR_STRANGE));

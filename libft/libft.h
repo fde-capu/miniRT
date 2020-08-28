@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 02:34:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 19:18:10 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** ft_chrinset used to be `(char *, char *)`, now is `(char, char *)`.
 ** Change previous version to `ft_strchrinset (char *, char *)` to fix it.
 **
-** !!!! Attention! This file has <ftmath.h> !!!!!
+** !!!! Attention! This file has <math.h> !!!!!
 */
 
 #ifndef LIBFT_H
@@ -26,12 +26,12 @@
 # include <errno.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <math.h>
 
 # include "defines_libft.h"
 # include "types_libft.h"
 # include "debug.h"
 # include "keys.h"
-# include "../ftmath/ftmath.h"
 
 long long		ft_abs(long long value);
 double			ft_abs_double(double value);
@@ -270,6 +270,7 @@ t_vec			*matrix_get_line_transposed(t_mat *m, int i);
 t_vec			*matrix_get_vector(t_mat *m, int j);
 t_dbl			*matrix_goto_element(t_mat *mat, int m, int n);
 t_mat			*matrix_identity(int s);
+int				ft_mrt_init_img(t_mrt *mrt);
 t_mat			*matrix_inverse(t_mat *a);
 t_mat			*matrix_matrix_multiply(t_mat *left, t_mat *right);
 t_mat			*matrix_minor(t_mat *a, int i, int j);
@@ -297,23 +298,81 @@ void			ray_transform(t_ray *ray, t_mat *trn);
 void			ray_destroy(t_ray *ray);
 double			hit_sphere(t_ray *ray, t_prm *sphere);
 double			hit_triangle(t_ray *ray, t_tri *tri);
+t_vec			*triangle_normal(t_tri *tri);
+t_vec			*hit_triangle_crosshit(t_vec *hit, t_vec *tri_a, t_vec *tri_b);
+void			destroy_hit_triangle(t_vec *hit, t_vec *pos[3], \
+					t_prm *pl, t_vec *v);
 double			hit_minimal(double t);
 double			hit_disc(t_ray *ray, t_prm *disc);
 t_vec			*hit_point(t_ray *ray, double t);
 void			missing_up_gambiarra(t_vec *p, t_vec **v_up, t_vec **v_left);
-double			hit_triangle_helper(t_ray *ray, t_vec *a, t_vec *b, t_vec *c);
 double			hit_plane(t_ray *ray, t_prm *plane);
 double			hit_cylinder(t_ray *ray, t_prm *cylinder);
-int				inside_cylinder_bondaries(t_ray *ray, double t, t_prm *cylinder);
+int				inside_cylinder_bondaries(t_ray *ray, double t, \
+					t_prm *cylinder);
 void			primitive_transform(t_prm *prm, t_mat *trn);
 void			triangle_transform(t_tri *tri, t_mat *trn);
 void			primitive_translate(t_prm *prm, t_mat *trn);
 void			triangle_translate(t_tri *tri, t_mat *trn);
-double			quadratic_minor(double a, double b, double c);
-double			quadratic_major(double a, double b, double c);
+void			ray_translate(t_ray *ray, t_vec *trn);
 void			vector_smash_z(t_vec *vec);
 t_vec			*vector_normal_construct(t_vec *ori, t_vec *dest);
 t_rgb			color_multiply(t_rgb ca, t_rgb cb);
+t_rgb			color_normal(t_hit *hit);
+t_rgb			ft_argb_multiply(t_rgb argb, double factor);
+t_rgb			ft_argb_sum(t_rgb a, t_rgb b);
+t_rgb			color_distance(t_hit *hit);
+t_rgb			color_blend(t_rgb a, t_rgb b, double factor);
+void			primitive_destroy(t_prm *lst);
+void			intersect_phit(t_hit *hit);
+void			*intersect_destroy(t_hit *hit);
+double			hipo(double c1, double c2);
+double			radtodeg(double rad);
+double			quadratic_minor(double a, double b, double c);
+double			quadratic_major(double a, double b, double c);
+double			degtorad(double deg);
+void			intersect_normal(t_hit *hit);
+t_hit			*intersect_complements(t_hit *hit);
+t_vec			*intersect_normal_triangle(t_hit *hit);
+t_vec			*intersect_normal_generic_primitive(t_hit *hit);
+void			triangle_destroy(t_tri *lst);
+int				scene_destroy(t_scn *sc);
+void			scn_free_list_lht(t_lht *lst);
+void			scn_free_list_cam(t_cam *lst);
+void			scn_free_list_prm(t_prm *lst);
+void			scn_free_list_tri(t_tri *lst);
+t_alt			amb_light_init(double f, t_rgb rgb);
+t_cam			*cam_init(t_vec *o, t_vec *p, double fov);
+t_scn			*scene_init(void);
+t_lht			*light_init(t_vec *o, double f, t_rgb rgb);
+t_prm			*sphere_init(t_vec *o, double d, t_rgb rgb);
+t_prm			*plane_init(t_vec *o, t_vec *n, t_rgb rgb);
+t_prm			*disc_init(t_vec *o, t_vec *n, double d, t_rgb rgb);
+t_prm			*square_init(t_vec *o, t_vec *n, double h, t_rgb rgb);
+t_prm			*cylinder_init(t_vec *o, t_vec *n, double h, double d);
+t_tri			*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb);
+void			scn_add(int objtype, void *obj, t_scn *sc);
+t_mat			*vector_vector_rotation_matrix(t_vec *v1, t_vec *v2);
+double			vector_vector_distance(t_vec *a, t_vec *b);
+void			intersect_normaltriangle(t_hit *hit);
+void			primitive_zzz_position(t_prm *cyl, t_ray *ray);
+t_rgb			color_add(t_rgb ca, t_rgb cb);
+t_rgb			rgb_force(t_rgb rgb, double f);
+unsigned int	color_force(t_rgb rgb, double f);
+unsigned int	color_trace(t_mrt *mrt, t_hit *hit);
+unsigned int	skybox(int x, int y);
+t_rgb			color_ambient(t_mrt *mrt);
+t_rgb			color_diffuse(t_lht *light, t_hit *hit);
+t_rgb			color_specular(t_lht *light, t_hit *hit);
+double			can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l);
+double			hit_primitive(t_prm *primitive, t_ray *ray);
+double			ray_destroy_and_return(t_ray *ray, double val);
+t_hit			*hit_new(double max);
+
+t_vec			*g_x;
+t_vec			*g_y;
+t_vec			*g_z;
+t_mrt			*g_mrt;
 
 /*
 ** Debugs:
@@ -340,5 +399,6 @@ void			debug_matrix(char *str, t_mat *mat);
 void			debug_matrix_2(t_mat *mat);
 void			debug_matrix_of_vectors(char *str, t_mvec *mat);
 void			debug_matrix_single_line(t_mat *mat);
+void			debug_ray(char *str, t_ray *ray);
 
 #endif

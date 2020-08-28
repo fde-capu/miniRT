@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 03:16:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 19:19:03 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,110 +18,39 @@ t_ray	*mrt_ray(t_mrt *mrt, int x, int y)
 	t_ray	*ray;
 
 	b = pjt_pixtocam(mrt, x, y);
+	verb_cam_active(mrt->scn);
 	ray = ray_build(mrt->scn->cam_active->o, b);
 	vector_destroy(b);
 	return (ray);
 }
 
-double		can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l)
-{
-	double	test;
-	t_prm	*primitive;
-	t_ray	*ray;
-	t_tri	*tri;
-	t_vec	*o;
-	double	light_distance;
-	t_vec	*tmp;
-
-	o = hit->phit;
-	ray = ray_build(o, l);
-	tmp = vector_subtract(l, o);
-	light_distance = vector_magnitude(tmp);
-	vector_destroy(tmp);
-	test = 0.0;
-	primitive = mrt->scn->primitives;
-	while (primitive)
-	{
-		if (primitive->type == TYPE_SP)
-			test = hit_sphere(ray, primitive);
-		if (primitive->type == TYPE_PL)
-			test = hit_plane(ray, primitive);
-		if (primitive->type == TYPE_DS)
-			test = hit_disc(ray, primitive);
-		if (primitive->type == TYPE_CY)
-			test = hit_cylinder(ray, primitive);
-		if (test && test <= light_distance)
-		{
-			ray_destroy(ray);
-			return (0.0);
-		}
-		primitive = primitive->nx;
-	}
-	tri = mrt->scn->faces;
-	while (tri)
-	{
-		test = hit_triangle(ray, tri);
-		if (test && test <= light_distance)
-		{
-			ray_destroy(ray);
-			return (0.0);
-		}
-		tri = tri->nx;
-	}
-	ray_destroy(ray);
-	return (1.0);
-}
-
 t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 {
 	t_prm	*primitive;
+	t_tri	*tri;
 	double	test;
 	t_hit	*hit;
-	t_tri	*tri;
 
-	hit = ft_calloc(sizeof(t_hit), 1);
-	hit->t = MAX_DEPTH;
+	hit = hit_new(MAX_DEPTH);
 	primitive = mrt->scn->primitives;
 	while (primitive)
 	{
-		test = 0.0;
-		if (primitive->type == TYPE_SP)
-			test = hit_sphere(ray, primitive);
-		if (primitive->type == TYPE_PL)
-			test = hit_plane(ray, primitive);
-		if (primitive->type == TYPE_DS)
-			test = hit_disc(ray, primitive);
-		if (primitive->type == TYPE_CY)
-			test = hit_cylinder(ray, primitive);
+		test = hit_primitive(primitive, ray);
 		if ((test > 0.0) && (test < hit->t))
-		{
-			hit->t = test;
-			hit->primitive = primitive;
-			hit->ray = ray;
-		}
+			hit_set_primitive(hit, test, primitive, ray);
 		primitive = primitive->nx;
 	}
 	tri = mrt->scn->faces;
 	while (tri)
 	{
-		test = 0.0;
 		test = hit_triangle(ray, tri);
 		if ((test > 0.0) && (test < hit->t))
-		{
-			hit->t = test;
-			hit->triangle = tri;
-			hit->primitive = 0;
-			hit->ray = ray;
-		}
+			hit_set_triangle(hit, test, triangle, ray);
 		tri = tri->nx;
 	}
 	if (hit->t != MAX_DEPTH)
-	{
-		intersect_complements(hit);
-		return (hit);
-	}
-	intersect_destroy(hit);
-	return (0);
+		return (intersect_complements(hit));
+	return (intersect_destroy(hit));
 }
 
 void	flip(t_mrt *mrt)

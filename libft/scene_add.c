@@ -6,11 +6,11 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 09:19:37 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/06/29 09:57:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/27 15:45:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftmath.h"
+#include "libft.h"
 
 void	scn_add(int objtype, void *obj, t_scn *sc)
 {
