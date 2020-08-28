@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 19:17:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:24:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_hit	*intersect_complements(t_hit *hit)
 void	*intersect_destroy(t_hit *hit)
 {
 	if (!hit)
-		return ;
+		return (0);
 	if (hit->phit)
 		vector_destroy(hit->phit);
 	if (hit->n)
@@ -74,6 +74,6 @@ t_hit	*hit_new(double max)
 	t_hit	*hit;
 
 	hit = ft_calloc(sizeof(t_hit), 1);
-	hit->t = MAX_DEPTH;
+	hit->t = max;
 	return (hit);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 18:07:21 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:42:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_TITLE	":: mrt : minirt : miniRT :: by fde-capu :: 42SP ::"
-# define SAVE_FN	"minirt.bmp"
+# define WIN_TITLE		":: mrt : minirt : miniRT :: by fde-capu :: 42SP ::"
+# define SAVE_FN		"minirt.bmp"
 
 int						change_cam_up(void *mlx);
 int						change_cam_down(void *mlx);
@@ -44,7 +44,10 @@ void					write_mrtitobmp(t_mrt *mrt, int fp);
 void					write_bmpheads(t_bmp *bmp, int fp);
 void					scn_make_cylinder(t_scn *sc, char **c);
 void					scn_make_square(t_scn *sc, char **c);
-unsigned int			hit_and_bonus_color(t_mrt *mrt, t_hit *hit);
+unsigned int			hit_and_bonus_color(t_mrt *mrt, t_hit *hit, \
+							int x, int y);
+t_ray					*ray_quadratic(t_ray *ray3d, double *a, double *b, \
+							double *c);
 
 # define ARGS_MAX		6
 

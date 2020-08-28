@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 18:02:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 02:18:08 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 	double	factor;
 	double	fov_size[2];
 
-	center = vector_build(3, (mrt->window.height + 1.0) \
-		/ 2.0, (mrt->window.width + 1.0) / 2.0, 0.0);
+	center = vector_build(3, (mrt->window.width + 1.0) \
+		/ 2.0, (mrt->window.height + 1.0) / 2.0, 0.0);
 	if (mrt->window.width > mrt->window.height)
 	{
 		fov_size[Y] = 2.0 * tan(degtorad(mrt->scn->cam_active->fov) / 2.0);
@@ -58,7 +58,7 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 		fov_size[Y] = ft_trig(mrt->window.width, \
 			fov_size[X], mrt->window.height);
 	}
-	factor = ft_trig(fov_size[Y], 1.0, mrt->window.width);
+	factor = fov_size[Y] / mrt->window.width;
 	pix = vector_build(3, (double)i, (double)j, (double)0);
 	pix = vectorx(pix, vector_subtract(pix, center));
 	pix = vectorx(pix, vector_scalar_multiply(pix, factor));

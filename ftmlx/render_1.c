@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 19:19:33 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:16:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** tri      n     rgb             a b c
 */
 
-unsigned int	hit_and_bonus_color(t_mrt *mrt, t_hit *hit)
+unsigned int	hit_and_bonus_color(t_mrt *mrt, t_hit *hit, int x, int y)
 {
 	if (hit && BONUS)
 		return (ft_argbtoi(color_normal(hit)));
@@ -50,7 +50,7 @@ void			render(t_mrt *mrt, int saving)
 		{
 			ray = mrt_ray(mrt, x, y);
 			hit = collision_pix(mrt, ray);
-			color = hit_and_bonus_color(mrt, hit);
+			color = hit_and_bonus_color(mrt, hit, x, y);
 			ft_pix(mrt, x, y, color);
 			intersect_destroy(hit);
 			ray_destroy(ray);

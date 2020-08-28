@@ -9,10 +9,10 @@ miniRT aka minirt
 ---
 <sub><sup>
 Dev. notes:
-known bugs: window aspect ratio
+checkup-list:
+[ ] Norme (always)
 not saving well (`pjt_pixtocam()`)
-ambient not accepting 0.0
-non-squared screem sizes position
+ambient not accepting 0.0 (check manual)
 </sup></sub>
 ___
 

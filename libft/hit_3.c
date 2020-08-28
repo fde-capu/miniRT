@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 15:35:36 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 19:16:37 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:21:48 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	hit_set_primitive(t_hit *hit, double test, t_prm *primitive, t_ray *ray)
 void	hit_set_triangle(t_hit *hit, double test, t_tri *triangle, t_ray *ray)
 {
 	hit->t = test;
-	hit->triangle = tri;
+	hit->triangle = triangle;
 	hit->primitive = 0;
 	hit->ray = ray;
 }

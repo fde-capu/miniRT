@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 17:04:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:23:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../minilibx-linux/mlx.h"
 
 # define FTMLX_LIMIT_WIN_SIZE	1
-# define MAX_DEPTH				500.0
 
 t_hit	*collision_pix(t_mrt *mrt, t_ray *ray);
 void	flip(t_mrt *mrt);

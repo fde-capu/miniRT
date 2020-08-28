@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 23:16:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 00:29:01 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:44:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,21 @@ void	scn_make_cylinder(t_scn *sc, char **c)
 	return ;
 }
 
-void	ray_quadratic(t_ray *ray, double *a, double *b, double *c)
+t_ray	*ray_quadratic(t_ray *ray3d, double *a, double *b, double *c)
 {
 	double	d[2];
 	double	z[2];
-	double	a;
-	double	b;
-	double	c;
+	t_ray	*ray;
 
+	ray = ray_copy(ray3d);
 	d[X] = vector_get_element(ray->d, 1);
 	d[Y] = vector_get_element(ray->d, 2);
 	z[X] = vector_get_element(ray->a, 1);
 	z[Y] = vector_get_element(ray->a, 2);
-	a = ((d[X] * d[X]) + (d[Y] * d[Y]));
-	b = ((z[X] * d[X]) + (z[Y] * d[Y])) * 2;
-	c = ((z[X] * z[X]) + (z[Y] * z[Y])) - ((cyl->h / 2) * (cyl->h / 2));
-	return ;
+	*c = ((z[X] * z[X]) + (z[Y] * z[Y])) - ((*a / 2) * (*a / 2));
+	*a = ((d[X] * d[X]) + (d[Y] * d[Y]));
+	*b = ((z[X] * d[X]) + (z[Y] * d[Y])) * 2;
+	return (ray);
 }
 
 double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
@@ -62,16 +61,17 @@ double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 	double	t;
 	t_prm	*cyl;
 	t_ray	*ray;
+	double	abc[3];
 
-	ray = ray_copy(ray3d);
 	cyl = cylinder_init(vector_copy(cylinder->o), \
 		vector_copy(cylinder->n), cylinder->h, cylinder->d);
+	abc[0] = cyl->h / 2;
+	ray = ray_quadratic(ray3d, &abc[0], &abc[1], &abc[2]);
 	primitive_zzz_position(cyl, ray);
-	ray_quadratic(ray, &a, &b, &c);
-	t = quadratic_minor(a, b, c);
+	t = quadratic_minor(abc[0], abc[1], abc[2]);
 	if (!inside_cylinder_bondaries(ray3d, t, cylinder))
 	{
-		t = quadratic_major(a, b, c);
+		t = quadratic_major(abc[0], abc[1], abc[2]);
 		if (!inside_cylinder_bondaries(ray3d, t, cylinder))
 			t = 0.0;
 	}

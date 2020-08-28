@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:54:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 16:54:38 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:23:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define DIFFUSE_REFLECTIVITY	0.5
 # define SPECULAR_POWER			4
 # define SPECULAR_INTENSITY		0.7
+# define MAX_DEPTH				500.0
 
 # define TRIM_SET				" \t\n\r\v\f"
 # define SPLIT_SET				" \t"

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 19:19:03 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:45:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_ray	*mrt_ray(t_mrt *mrt, int x, int y)
 	t_ray	*ray;
 
 	b = pjt_pixtocam(mrt, x, y);
-	verb_cam_active(mrt->scn);
 	ray = ray_build(mrt->scn->cam_active->o, b);
 	vector_destroy(b);
 	return (ray);
@@ -45,7 +44,7 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 	{
 		test = hit_triangle(ray, tri);
 		if ((test > 0.0) && (test < hit->t))
-			hit_set_triangle(hit, test, triangle, ray);
+			hit_set_triangle(hit, test, tri, ray);
 		tri = tri->nx;
 	}
 	if (hit->t != MAX_DEPTH)
