@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 09:35:03 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/26 14:44:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 04:19:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,20 @@ void	write_bmpheads(t_bmp *bmp, int fp)
 		sizeof((t_bmih *)0)->biimportantcolors);
 }
 
+void	void_window_set(t_mrt *mrt)
+{
+	mrt->window.width = vector_get_element(mrt->scn->resolution, 1);
+	mrt->window.height = vector_get_element(mrt->scn->resolution, 2);
+	return ;
+}
+
 void	*save_mrttobmp(t_mrt *mrt, char *fn)
 {
 	int		size;
 	t_bmp	*bmp;
 	int		fp;
 
+	void_window_set(mrt);
 	size = 14 + 40 + ((mrt->i.width * mrt->i.height) * sizeof(int));
 	bmp = ft_calloc(sizeof(t_bmp), 1);
 	bmp->file_header.bftype = 19778;

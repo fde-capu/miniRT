@@ -6,11 +6,11 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/08/27 23:40:00 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/08/28 03:54:25 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BONUS	=	1
+BONUS	=	0
 NAME	=	miniRT
 ARGV	=	mini.rt
 T_SAVE	=	--save
@@ -100,9 +100,9 @@ vf		:	all
 	-$(VALGRIND) $(ALLLEAKS) ./$(NAME) $(ARGV)
 rv		:	ffclean	v
 ts		:	ffclean	all
-	-$(VALGRIND) ./$(NAME) $(ARGV) $(T_SAVE)
+	-./$(NAME) $(ARGV) $(T_SAVE)
 s		:	all
-	-$(VALGRIND) ./$(NAME) $(ARGV) $(T_SAVE)
+	./$(NAME) $(ARGV) $(T_SAVE)
 norm	:
 	$(NORM)
 	cd libft && $(NORM) *.h *.c
