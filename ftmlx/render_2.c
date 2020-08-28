@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:43:02 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 04:40:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 14:53:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 	while (primitive)
 	{
 		test = hit_primitive(primitive, ray);
-		if ((test > 0.0) && (test < hit->t))
+		if (test && test < hit->t)
 			hit_set_primitive(hit, test, primitive, ray);
 		primitive = primitive->nx;
 	}
@@ -43,7 +43,7 @@ t_hit	*collision_pix(t_mrt *mrt, t_ray *ray)
 	while (tri)
 	{
 		test = hit_triangle(ray, tri);
-		if ((test > 0.0) && (test < hit->t))
+		if (test && test < hit->t)
 			hit_set_triangle(hit, test, tri, ray);
 		tri = tri->nx;
 	}

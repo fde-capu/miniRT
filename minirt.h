@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 01:42:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 05:07:24 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void					scn_make_cylinder(t_scn *sc, char **c);
 void					scn_make_square(t_scn *sc, char **c);
 unsigned int			hit_and_bonus_color(t_mrt *mrt, t_hit *hit, \
 							int x, int y);
-t_ray					*ray_quadratic(t_ray *ray3d, double *a, double *b, \
-							double *c);
 
 # define ARGS_MAX		6
 

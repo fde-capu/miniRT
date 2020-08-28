@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:09:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 18:40:23 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 04:58:35 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,28 @@ void	intersect_phit(t_hit *hit)
 {
 	hit->phit = hit_point(hit->ray, hit->t);
 	return ;
+}
+
+double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
+{
+	double	t;
+	t_prm	*cyl;
+	t_ray	*ray;
+	double	abc[3];
+
+	cyl = cylinder_init(vector_copy(cylinder->o), \
+		vector_copy(cylinder->n), cylinder->h, cylinder->d);
+	abc[0] = cyl->h / 2;
+	ray = ray_quadratic(ray3d, &abc[0], &abc[1], &abc[2]);
+	primitive_zzz_position(cyl, ray);
+	t = quadratic_minor(abc[0], abc[1], abc[2]);
+	if (!inside_cylinder_bondaries(ray3d, t, cylinder))
+	{
+		t = quadratic_major(abc[0], abc[1], abc[2]);
+		if (!inside_cylinder_bondaries(ray3d, t, cylinder))
+			t = 0.0;
+	}
+	ray_destroy(ray);
+	primitive_destroy(cyl);
+	return (hit_minimal(t));
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 04:51:41 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 14:36:57 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,18 @@ double	hit_sphere(t_ray *ray, t_prm *sphere)
 	double	a;
 	double	b;
 	double	c;
-	double	discriminant;
+	double	t;
 
 	oc = vector_subtract(ray->a, sphere->o);
 	a = 1.0;
 	b = 2.0 * vector_dot_product(oc, ray->d);
 	c = vector_dot_product(oc, oc) - (sphere->h * sphere->h);
-	discriminant = (b * b) - (4.0 * a * c);
 	vector_destroy(oc);
-	if (discriminant < 0)
-		return (0.0);
+	if (hit_inside_sphere(ray, sphere))
+		t = quadratic_major(a, b, c);
 	else
-	{
-		c = (-b - sqrt(discriminant)) / (2.0 * a);
-		if (c > 0)
-			return (hit_minimal(c));
-		return (hit_minimal((-b + sqrt(discriminant)) / (2.0 * a)));
-	}
+		t = quadratic_minor(a, b, c);
+	return (hit_minimal(t));
 }
 
 double	hit_plane(t_ray *ray, t_prm *plane)

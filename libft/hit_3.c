@@ -6,11 +6,19 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 15:35:36 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 01:21:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 15:16:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int		hit_inside_sphere(t_ray *ray, t_prm *sph)
+{
+	if (sph->type != TYPE_SP)
+		return (0);
+	return (vector_vector_distance(ray->a, sph->o) \
+		>= sph->h ? 0 : 1);
+}
 
 void	intersect_normal(t_hit *hit)
 {
@@ -21,7 +29,10 @@ void	intersect_normal(t_hit *hit)
 	{
 		if (hit->primitive->type == TYPE_SP)
 		{
-			hit->n = vector_normal_construct(hit->primitive->o, hit->phit);
+			if (hit_inside_sphere(hit->ray, hit->primitive))
+				hit->n = vector_normal_construct(hit->phit, hit->primitive->o);
+			else
+				hit->n = vector_normal_construct(hit->primitive->o, hit->phit);
 			return ;
 		}
 		if (hit->primitive->type == TYPE_CY)
@@ -78,4 +89,5 @@ void	hit_set_triangle(t_hit *hit, double test, t_tri *triangle, t_ray *ray)
 	hit->triangle = triangle;
 	hit->primitive = 0;
 	hit->ray = ray;
+	return ;
 }
