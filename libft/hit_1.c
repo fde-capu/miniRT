@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:11:09 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 14:27:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/28 04:51:41 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ double	hit_sphere(t_ray *ray, t_prm *sphere)
 	if (discriminant < 0)
 		return (0.0);
 	else
-		return (hit_minimal((-b - sqrt(discriminant)) / (2.0 * a)));
+	{
+		c = (-b - sqrt(discriminant)) / (2.0 * a);
+		if (c > 0)
+			return (hit_minimal(c));
+		return (hit_minimal((-b + sqrt(discriminant)) / (2.0 * a)));
+	}
 }
 
 double	hit_plane(t_ray *ray, t_prm *plane)

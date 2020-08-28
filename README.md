@@ -11,7 +11,6 @@ miniRT aka minirt
 Dev. notes:
 checkup-list:
 [ ] Norme (always)
-not saving well (`pjt_pixtocam()`)
 ambient not accepting 0.0 (check manual)
 </sup></sub>
 ___
