@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:16:29 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 14:51:43 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 17:22:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,8 @@ void	triangle_translate(t_tri *tri, t_mat *trm)
 		tri->b = vectorx(tri->b, vector_translate(tri->b, trm));
 	if (tri->c)
 		tri->c = vectorx(tri->c, vector_translate(tri->c, trm));
-	return ;
-}
-
-/*
-**	a = vector_dot_product(ray->d, ray->d);
-*/
-
-void	primitive_transform(t_prm *prm, t_mat *trm)
-{
-	if (prm->o)
-		vector_transform(&prm->o, trm);
-	if (prm->n)
-		vector_transform(&prm->n, trm);
+	if (tri->o)
+		tri->o = vectorx(tri->o, vector_translate(tri->o, trm));
 	return ;
 }
 
@@ -69,5 +58,16 @@ void	triangle_transform(t_tri *tri, t_mat *trm)
 		vector_transform(&tri->c, trm);
 	if (tri->n)
 		vector_transform(&tri->n, trm);
+	if (tri->o)
+		vector_transform(&tri->o, trm);
+	return ;
+}
+
+void	primitive_transform(t_prm *prm, t_mat *trm)
+{
+	if (prm->o)
+		vector_transform(&prm->o, trm);
+	if (prm->n)
+		vector_transform(&prm->n, trm);
 	return ;
 }

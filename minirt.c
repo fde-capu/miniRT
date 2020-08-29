@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 08:32:59 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 04:15:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:05:17 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	mrt_win_binds(t_mrt *mrt)
 	ft_key_mrt(mrt, KEY_QUIT2, minirt_exit, mrt);
 	ft_key_mrt(mrt, KEY_CAM_UP, change_cam_up, mrt->scn);
 	ft_key_mrt(mrt, KEY_CAM_DOWN, change_cam_down, mrt->scn);
+	ft_key_mrt(mrt, KEY_SCALE_UP, scale_up, mrt->scn);
+	ft_key_mrt(mrt, KEY_SCALE_DOWN, scale_down, mrt->scn);
 	mlx_do_key_autorepeatoff(mrt->mlx);
 	mlx_hook(mrt->win, 17, 1L << 17, minirt_exit, mrt);
 	return ;

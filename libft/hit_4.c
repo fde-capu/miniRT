@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 15:33:44 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:15:49 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ double	can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l)
 			return (ray_destroy_and_return(ray, 0.0));
 		tri = tri->nx;
 	}
-	if (hit_inside_sphere(hit->ray, hit->primitive) && \
+	if (hit->primitive && \
+		hit->primitive->type == TYPE_SP && \
+		hit_inside_sphere(hit->ray, hit->primitive) && \
 		vector_vector_distance(hit->primitive->o, l) >
 		hit->primitive->h)
 		return (ray_destroy_and_return(ray, 0.0));

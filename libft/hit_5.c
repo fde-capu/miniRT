@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 05:11:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 15:40:36 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:49:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,6 @@ double			hit_primitive(t_prm *primitive, t_ray *ray)
 	if (primitive->type == TYPE_CY)
 		return (hit_cylinder(ray, primitive));
 	return (0.0);
-}
-
-t_vec	*vector_inverse_translate(t_vec *vec, t_vec *trans)
-{
-	t_vec	*inv;
-	t_vec	*copy;
-
-	copy = vector_copy(vec);
-	inv = vector_scalar_multiply(trans, -1.0);
-	copy = vectorx(copy, vector_translate(copy, inv));
-	vector_destroy(inv);
-	return (copy);
 }
 
 t_vec		*intersect_cylinder_normal(t_hit *hit)

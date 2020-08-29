@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 11:40:13 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 00:38:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:54:11 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct			s_triangle
 	t_vec				*b;
 	t_vec				*c;
 	t_vec				*n;
+	t_vec				*o;
 	t_rgb				rgb;
 	struct s_triangle	*trans;
 	struct s_triangle	*nx;

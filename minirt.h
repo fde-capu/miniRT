@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 05:07:24 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:08:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,21 @@ void					scn_make_cylinder(t_scn *sc, char **c);
 void					scn_make_square(t_scn *sc, char **c);
 unsigned int			hit_and_bonus_color(t_mrt *mrt, t_hit *hit, \
 							int x, int y);
+int	scale_up(void *scn);
+int	scale_down(void *scn);
 
 # define ARGS_MAX		6
 
 int						check_arg_types(char **c, int a[ARGS_MAX]);
 
+# define SCALE_FACTOR	1.2
+
 # define KEY_QUIT1		"{ESC}"
 # define KEY_QUIT2		"q"
 # define KEY_CAM_UP		"c"
 # define KEY_CAM_DOWN	"{SHIFT}c"
+# define KEY_SCALE_UP	"s"
+# define KEY_SCALE_DOWN	"{SHIFT}s"
 
 # define RT_SPLIT		" \t"
 # define VALID_COMMANDS	"R A c l sp pl sq cy tr"

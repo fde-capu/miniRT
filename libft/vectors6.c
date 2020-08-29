@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:06:01 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/21 18:27:58 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:52:52 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vec	*vector_scale(t_vec *vec, t_vec *xyz)
 	t_mat	*map;
 	t_vec	*scaled;
 
-	vector_append_val(xyz, 1);
+	vector_append_val(xyz, 1.0);
 	map = matrix_diagonal(xyz);
 	scaled = matrix_vector_multiply(map, vec);
 	vector_pop(scaled);

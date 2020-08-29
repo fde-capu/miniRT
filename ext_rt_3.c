@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 23:16:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 05:08:00 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 17:23:40 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	scn_make_square(t_scn *sc, char **c)
 	tri[0] = triangle_init(p[0], p[1], p[2], square->rgb);
 	tri[1] = triangle_init(vector_copy(p[2]), p[3], vector_copy(p[0]), \
 		square->rgb);
+	tri[0]->o = vector_halfway(tri[0]->a, tri[0]->c);
+	tri[1]->o = vector_copy(tri[0]->o);
 	rot = vector_vector_rotation_matrix(g_z, square->n);
 	triangle_transform(tri[0], rot);
 	triangle_transform(tri[1], rot);

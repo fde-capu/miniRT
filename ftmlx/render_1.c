@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 05:11:10 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:21:55 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** cam	o p n fov
 ** lht	o     f   rgb
 ** prm  o   n     rgb  h  d type
-** tri      n     rgb             a b c
+** tri  o   n     rgb             a b c
 */
 
 unsigned int	hit_and_bonus_color(t_mrt *mrt, t_hit *hit, int x, int y)
