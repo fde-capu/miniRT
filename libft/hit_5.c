@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 05:11:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 01:51:18 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 15:40:36 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,34 @@ double			hit_primitive(t_prm *primitive, t_ray *ray)
 	return (0.0);
 }
 
-t_vec	*hit_inf_cylinder_shadow(t_hit *hit)
+t_vec	*vector_inverse_translate(t_vec *vec, t_vec *trans)
 {
-	t_vec	*shadow;
-	t_vec	*tmp;
+	t_vec	*inv;
+	t_vec	*copy;
 
-	tmp = vector_normal_construct(hit->primitive->o, hit->phit);
-	tmp = vectorx(tmp, vector_cross_product(hit->primitive->n, tmp));
-	tmp = vectorx(tmp, vector_cross_product(tmp, hit->primitive->n));
-	vector_normalize(tmp);
-	shadow = vector_scalar_multiply(tmp, hit->primitive->d / 2.0);
-	return (shadow);
+	copy = vector_copy(vec);
+	inv = vector_scalar_multiply(trans, -1.0);
+	copy = vectorx(copy, vector_translate(copy, inv));
+	vector_destroy(inv);
+	return (copy);
 }
 
 t_vec		*intersect_cylinder_normal(t_hit *hit)
 {
-	t_vec	*shadow;
+	t_vec	*phit;
+	t_vec	*pcenter;
 	double	d;
+	t_vec	*pre_n;
 
-	shadow = hit_inf_cylinder_shadow(hit);
-	d = vector_dot_product(shadow, hit->ray->d);
-	if (d < 0.0)
-		hit->n = vector_normal_construct(hit->primitive->o, shadow);
-	else
-		hit->n = vector_normal_construct(shadow, hit->primitive->o);
-	vector_destroy(shadow);
+	phit = vector_inverse_translate(hit->phit, hit->primitive->o);
+	d = vector_dot_product(hit->primitive->n, phit);
+	pcenter = vector_scalar_multiply(hit->primitive->n, d);
+	pre_n = vector_normal_construct(pcenter, phit);
+	if (vector_dot_product(hit->ray->d, pre_n) > 0.0)
+		pre_n = vectorx(pre_n, vector_normal_construct(phit, pcenter));
+	hit->n = pre_n;
+	vector_destroy(phit);
+	vector_destroy(pcenter);
 	return (hit->n);
 }
 

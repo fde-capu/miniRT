@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 00:59:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 13:42:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void			hit_set_primitive(t_hit *hit, double test, t_prm *primitive, \
 					t_ray *ray);
 void			hit_set_triangle(t_hit *hit, double test, t_tri *triangle, \
 					t_ray *ray);
-t_ray			*ray_quadratic_gambiarra(t_ray *ray3d, double *a, double *b, \
+void			quadratic_build(t_ray *ray, double *a, double *b, \
 					double *c);
 int				hit_inside_sphere(t_ray *ray, t_prm *prm);
 
@@ -300,7 +300,6 @@ char			*primitive_type_number(int type);
 t_ray			*ray_build(t_vec *a, t_vec *b);
 t_ray			*ray_copy(t_ray *src);
 void			ray_verb(char *str, t_ray *ray);
-void			ray_smash_z(t_ray *ray);
 void			ray_transform(t_ray *ray, t_mat *trn);
 void			ray_destroy(t_ray *ray);
 double			hit_sphere(t_ray *ray, t_prm *sphere);
@@ -315,6 +314,7 @@ t_vec			*hit_point(t_ray *ray, double t);
 void			missing_up_gambiarra(t_vec *p, t_vec **v_up, t_vec **v_left);
 double			hit_plane(t_ray *ray, t_prm *plane);
 double			hit_cylinder(t_ray *ray, t_prm *cylinder);
+double			hit_cylinder2(t_ray *ray, t_prm *cylinder);
 int				inside_cylinder_bondaries(t_ray *ray, double t, \
 					t_prm *cylinder);
 t_vec			*intersect_cylinder_normal(t_hit *hit);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:55 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 17:14:27 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 15:33:44 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@ t_hit	*intersect_complements(t_hit *hit)
 	intersect_phit(hit);
 	intersect_normal(hit);
 	return (hit);
+}
+
+void	intersect_phit(t_hit *hit)
+{
+	hit->phit = hit_point(hit->ray, hit->t);
+	return ;
+}
+
+t_vec	*hit_point(t_ray *ray, double t)
+{
+	t_vec	*hitp;
+
+	hitp = vector_scalar_multiply(ray->d, t);
+	hitp = vectorx(hitp, vector_translate(hitp, ray->a));
+	return (hitp);
 }
 
 void	intersect_normal(t_hit *hit)
@@ -53,15 +68,6 @@ void	*intersect_destroy(t_hit *hit)
 		vector_destroy(hit->n);
 	free(hit);
 	return (0);
-}
-
-t_vec	*hit_point(t_ray *ray, double t)
-{
-	t_vec	*hitp;
-
-	hitp = vector_scalar_multiply(ray->d, t);
-	hitp = vectorx(hitp, vector_sum(hitp, ray->a));
-	return (hitp);
 }
 
 double	can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l)

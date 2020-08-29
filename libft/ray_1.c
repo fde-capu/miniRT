@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:17:26 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 00:45:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 14:04:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ray_translate(t_ray *ray, t_vec *trn)
 {
 	ray->a = vectorx(ray->a, vector_translate(ray->a, trn));
 	ray->b = vectorx(ray->b, vector_translate(ray->b, trn));
-	ray->d = vectorx(ray->d, vector_translate(ray->d, trn));
 	return ;
 }
 

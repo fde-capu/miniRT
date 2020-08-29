@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 02:18:08 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 14:32:54 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j)
 	vector_destroy(tmp);
 	vector_destroy(rvv[0]);
 	vector_destroy(rvv[1]);
-	vector_destroy(rvv[2]);
+//	vector_destroy(rvv[2]);
 	return (pix);
 }

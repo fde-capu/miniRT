@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:09:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 01:51:49 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 15:22:22 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ t_vec	*hit_triangle_crosshit(t_vec *hit, t_vec *tri_a, t_vec *tri_b)
 	return (pos);
 }
 
-void	intersect_phit(t_hit *hit)
-{
-	hit->phit = hit_point(hit->ray, hit->t);
-	return ;
-}
-
 double	hitcyldie(double val, t_ray *ray, t_prm *cyl)
 {
 	primitive_destroy(cyl);
 	return (ray_destroy_and_return(ray, val));
 }
+
+//double	hit_cylinder0(t_ray *ray, t_prm *cyl)
+//{
+//	double	t;
+//	return (t);
+//}
 
 double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 {
@@ -60,18 +60,19 @@ double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 	double	abc[3];
 
 	cyl = cylinder_init(vector_copy(cylinder->o), \
-		vector_copy(cylinder->n), cylinder->h, cylinder->d);
-	abc[0] = cyl->d;
-	ray = ray_quadratic_gambiarra(ray3d, &abc[0], &abc[1], &abc[2]);
+		vector_copy(cylinder->n), cylinder->d, cylinder->h);
+	ray = ray_copy(ray3d);
 	primitive_zzz_position(cyl, ray);
+	abc[0] = cyl->d;
+	quadratic_build(ray, &abc[0], &abc[1], &abc[2]);
 	t1 = quadratic_minor(abc[0], abc[1], abc[2]);
 	t2 = quadratic_major(abc[0], abc[1], abc[2]);
-	t1 = inside_cylinder_bondaries(ray, t1, cyl) ? t1 : 0.0;
-	t2 = inside_cylinder_bondaries(ray, t2, cyl) ? t2 : 0.0;
+	t1 = inside_cylinder_bondaries(ray3d, t1, cylinder) ? t1 : 0.0;
+	t2 = inside_cylinder_bondaries(ray3d, t2, cylinder) ? t2 : 0.0;
 	t1 = t1 > EPSILON ? t1 : 0.0;
 	t2 = t2 > EPSILON ? t2 : 0.0;
-	ray_destroy(ray);
 	primitive_destroy(cyl);
+	ray_destroy(ray);
 	return (hit_minimal(t1 ? t1 : t2));
 }
 
