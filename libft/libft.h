@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 16:47:05 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 00:59:05 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void			hit_set_primitive(t_hit *hit, double test, t_prm *primitive, \
 					t_ray *ray);
 void			hit_set_triangle(t_hit *hit, double test, t_tri *triangle, \
 					t_ray *ray);
-t_ray			*ray_quadratic(t_ray *ray3d, double *a, double *b, \
+t_ray			*ray_quadratic_gambiarra(t_ray *ray3d, double *a, double *b, \
 					double *c);
 int				hit_inside_sphere(t_ray *ray, t_prm *prm);
 

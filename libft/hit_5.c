@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 05:11:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 17:13:16 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 01:51:18 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,34 @@ double			hit_primitive(t_prm *primitive, t_ray *ray)
 	if (primitive->type == TYPE_CY)
 		return (hit_cylinder(ray, primitive));
 	return (0.0);
+}
+
+t_vec	*hit_inf_cylinder_shadow(t_hit *hit)
+{
+	t_vec	*shadow;
+	t_vec	*tmp;
+
+	tmp = vector_normal_construct(hit->primitive->o, hit->phit);
+	tmp = vectorx(tmp, vector_cross_product(hit->primitive->n, tmp));
+	tmp = vectorx(tmp, vector_cross_product(tmp, hit->primitive->n));
+	vector_normalize(tmp);
+	shadow = vector_scalar_multiply(tmp, hit->primitive->d / 2.0);
+	return (shadow);
+}
+
+t_vec		*intersect_cylinder_normal(t_hit *hit)
+{
+	t_vec	*shadow;
+	double	d;
+
+	shadow = hit_inf_cylinder_shadow(hit);
+	d = vector_dot_product(shadow, hit->ray->d);
+	if (d < 0.0)
+		hit->n = vector_normal_construct(hit->primitive->o, shadow);
+	else
+		hit->n = vector_normal_construct(shadow, hit->primitive->o);
+	vector_destroy(shadow);
+	return (hit->n);
 }
 
 double			hit_triangle(t_ray *ray, t_tri *tri)
@@ -46,32 +74,4 @@ double			hit_triangle(t_ray *ray, t_tri *tri)
 		t = 0.0;
 	destroy_hit_triangle(hit, pos, plane, plane_n);
 	return (hit_minimal(t));
-}
-
-int			hit_cylinder_outside(t_hit *hit)
-{
-	double	dp;
-	t_vec	*ruler;
-
-	ruler = vector_normal_construct(hit->primitive->o, hit->phit);
-	dp = vector_dot_product(ruler, hit->ray->d);
-	vector_destroy(ruler);
-	return (dp < 0.0 ? 1 : 0);
-}
-
-t_vec		*intersect_cylinder_normal(t_hit *hit)
-{
-	t_vec	*vec;
-	double	d;
-
-	vec = vector_subtract(hit->phit, hit->primitive->o);
-	d = vector_dot_product(hit->primitive->n, vec);
-	vec = vectorx(vec, vector_scalar_multiply(hit->primitive->n, d));
-	vec = vectorx(vec, vector_sum(vec, hit->primitive->o));
-	if (hit_cylinder_outside(hit))
-		hit->n = vector_normal_construct(vec, hit->phit);
-	else
-		hit->n = vector_normal_construct(hit->phit, vec);
-	vector_destroy(vec);
-	return (hit->n);
 }

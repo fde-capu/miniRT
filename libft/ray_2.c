@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:17:31 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 05:06:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 00:58:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_ray	*ray_quadratic(t_ray *ray3d, double *a, double *b, double *c)
+t_ray	*ray_quadratic_gambiarra(t_ray *ray3d, double *a, double *b, double *c)
 {
 	double	d[2];
 	double	z[2];
