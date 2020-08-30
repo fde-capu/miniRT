@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 02:32:26 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 18:04:21 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "debug.h"
 # include "keys.h"
 
+int				bad_file_extension(char *fn, char *required_extension);
 long long		ft_abs(long long value);
 double			ft_abs_double(double value);
 unsigned int	ft_argbtoi(t_rgb rgb);

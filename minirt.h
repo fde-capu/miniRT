@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 02:33:52 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 18:20:23 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define KEY_ROT_UP		"r"
 # define KEY_ROT_DOWN	"{SHIFT}r"
 
+# define REQ_EXTENSION	".rt"
+
 # define RT_SPLIT		" \t"
 # define VALID_COMMANDS	"R A c l sp pl sq cy tr"
 
@@ -102,6 +104,8 @@ int						check_arg_types(char **c, int a[ARGS_MAX]);
 # define ERR_CAMLESS	10
 # define NOTNORMAL_ERR	"Vector is not normalized."
 # define ERR_NOTNORMAL	11
+# define EXT_ERROR		"Bad file extension."
+# define ERR_EXTENSION	12
 # define STRANGE_ERROR	"This is weird, you should not be here."
 # define ERR_STRANGE	42
 

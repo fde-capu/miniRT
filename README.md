@@ -9,11 +9,6 @@ miniRT aka minirt
 ---
 <sub><sup>
 Dev. notes:
-checkup-list:
-[ ] Norme (always)
-ambient not accepting 0.0 (check manual)
+dependent of zlib1g-dev
 </sup></sub>
 ___
-
-# Pre install:
-`$ git submodule update --init`

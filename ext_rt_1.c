@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 22:50:35 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 23:22:34 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 18:21:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ int		load_rt_file(char *fn, t_scn *sc)
 	int		eof;
 
 	fd = open(fn, O_RDONLY);
-	if (fd == -1)
-		return (0);
+	if ((fd == -1) || (bad_file_extension(fn, REQ_EXTENSION)))
+		die(0, EXT_ERROR, ERR_EXTENSION);
 	buf = ft_calloc(1 + 1, 1);
 	eof = 0;
 	ft_putstr_nl(fn);
