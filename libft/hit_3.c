@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 15:35:36 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/28 16:41:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 01:44:06 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,4 @@ void	hit_set_triangle(t_hit *hit, double test, t_tri *triangle, t_ray *ray)
 	hit->primitive = 0;
 	hit->ray = ray;
 	return ;
-}
-
-t_hit	*hit_new(double max)
-{
-	t_hit	*hit;
-
-	hit = ft_calloc(sizeof(t_hit), 1);
-	hit->t = max;
-	return (hit);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 20:00:14 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 23:19:48 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:04:01 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ t_tri	*triangle_init(t_vec *a, t_vec *b, t_vec *c, t_rgb rgb)
 	vector_destroy(ta);
 	vector_destroy(tb);
 	new->rgb = rgb;
+	new->o = triangle_center(new->a, new->b, new->c);
 	return (new);
 }

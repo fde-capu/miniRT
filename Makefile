@@ -6,7 +6,7 @@
 #    By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/07 16:33:14 by fde-capu          #+#    #+#              #
-#    Updated: 2020/08/29 13:33:08 by fde-capu         ###   ########.fr        #
+#    Updated: 2020/08/30 02:08:00 by fde-capu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	miniRT
 ARGV	=	mini.rt
 T_SAVE	=	--save
 SRCS	=	minirt.c		events.c	ext_rt_1.c		ext_rt_2.c	\
-			bmp.c			ext_rt_3.c	
+			bmp.c			ext_rt_3.c	events2.c		events3.c
 HEADS	=	minirt.h
 D_FTMLX	=	ftmlx
 D_LIBFT	=	libft

@@ -6,13 +6,22 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 05:11:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 16:49:42 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 01:45:58 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double			hit_primitive(t_prm *primitive, t_ray *ray)
+t_hit	*hit_new(double max)
+{
+	t_hit	*hit;
+
+	hit = ft_calloc(sizeof(t_hit), 1);
+	hit->t = max;
+	return (hit);
+}
+
+double	hit_primitive(t_prm *primitive, t_ray *ray)
 {
 	if (primitive->type == TYPE_SP)
 		return (hit_sphere(ray, primitive));
@@ -25,7 +34,7 @@ double			hit_primitive(t_prm *primitive, t_ray *ray)
 	return (0.0);
 }
 
-t_vec		*intersect_cylinder_normal(t_hit *hit)
+t_vec	*intersect_cylinder_normal(t_hit *hit)
 {
 	t_vec	*phit;
 	t_vec	*pcenter;
@@ -44,7 +53,7 @@ t_vec		*intersect_cylinder_normal(t_hit *hit)
 	return (hit->n);
 }
 
-double			hit_triangle(t_ray *ray, t_tri *tri)
+double	hit_triangle(t_ray *ray, t_tri *tri)
 {
 	t_prm	*plane;
 	t_vec	*plane_n;
@@ -65,4 +74,14 @@ double			hit_triangle(t_ray *ray, t_tri *tri)
 		t = 0.0;
 	destroy_hit_triangle(hit, pos, plane, plane_n);
 	return (hit_minimal(t));
+}
+
+t_prm	*primitive_copy(t_prm *prm)
+{
+	if (prm->type == TYPE_CY)
+	{
+		return (cylinder_init(vector_copy(prm->o), \
+			vector_copy(prm->n), prm->d, prm->h));
+	}
+	return (0);
 }

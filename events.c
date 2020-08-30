@@ -6,13 +6,13 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 09:34:41 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 17:20:24 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:06:14 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	change_cam_up(void *scn)
+int		change_cam_up(void *scn)
 {
 	t_scn	*s;
 	t_cam	*nnx;
@@ -26,7 +26,7 @@ int	change_cam_up(void *scn)
 	return (1);
 }
 
-int	change_cam_down(void *scn)
+int		change_cam_down(void *scn)
 {
 	t_cam	*cam;
 	t_scn	*s;
@@ -39,48 +39,7 @@ int	change_cam_down(void *scn)
 	return (1);
 }
 
-void	primitive_scale(t_prm *prm, double factor)
-{
-	t_vec	*vec;
-
-	if ((prm->type == TYPE_SP)
-	|| (prm->type == TYPE_CY))
-	{
-		prm->d *= factor;
-		prm->h *= factor;
-	}
-	if (prm->type == TYPE_CY)
-	{
-		vec = vector_scalar_multiply(prm->n, factor > 1.0 ? -factor : factor);
-		primitive_translate(prm, vec);
-		vector_destroy(vec);
-	}
-	return ;
-}
-
-t_vec	*triangle_center(t_vec *a, t_vec *b, t_vec *c)
-{
-	t_vec	*center;
-
-	DEB("oops no center");
-	center = vector_empty(3);
-	vector_put_element(center, 1, (vector_get_element(a, 1) + vector_get_element(a, 2) + vector_get_element(a, 3) / 3.0));
-	vector_put_element(center, 2, (vector_get_element(b, 1) + vector_get_element(b, 2) + vector_get_element(b, 3) / 3.0));
-	vector_put_element(center, 3, (vector_get_element(c, 1) + vector_get_element(c, 2) + vector_get_element(c, 3) / 3.0));
-	return (center);
-}
-
-void	triangle_scale(t_tri *tri, double factor)
-{
-	if (!tri->o)
-		tri->o = triangle_center(tri->a, tri->b, tri->c);
-	tri->a = vectorx(tri->a, vector_origin_scale(tri->a, tri->o, factor));
-	tri->b = vectorx(tri->b, vector_origin_scale(tri->b, tri->o, factor));
-	tri->c = vectorx(tri->c, vector_origin_scale(tri->c, tri->o, factor));
-	return ;
-}
-
-int	scale_up(void *scn)
+int		scale_up(void *scn)
 {
 	t_prm	*prm;
 	t_scn	*s;
@@ -103,7 +62,7 @@ int	scale_up(void *scn)
 	return (1);
 }
 
-int	scale_down(void *scn)
+int		scale_down(void *scn)
 {
 	t_prm	*prm;
 	t_scn	*s;
@@ -124,4 +83,14 @@ int	scale_down(void *scn)
 	}
 	render(g_mrt, 0);
 	return (1);
+}
+
+t_vec	*demo_trans(t_vec *o, double factor)
+{
+	t_vec	*demo;
+
+	demo = vector_copy(o);
+	vector_normalize(demo);
+	demo = vectorx(demo, vector_scalar_multiply(demo, factor));
+	return (demo);
 }

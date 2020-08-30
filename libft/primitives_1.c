@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:16:29 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 17:22:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 01:58:27 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,25 @@ void	primitive_zzz_position(t_prm *cyl, t_ray *ray)
 	rot = vector_vector_rotation_matrix(g_z, cyl->n);
 	primitive_translate(cyl, zzz);
 	primitive_transform(cyl, rot);
-	ray_translate(ray, zzz);
-	ray_transform(ray, rot);
+	if (ray)
+	{
+		ray_translate(ray, zzz);
+		ray_transform(ray, rot);
+	}
 	vector_destroy(zzz);
 	matrix_destroy(rot);
+	return ;
+}
+
+void	triangle_zzz_position(t_tri *tri)
+{
+	t_vec	*zzz;
+
+	zzz = vector_scalar_multiply(tri->o, -1.0);
+	tri->o = vectorx(tri->o, vector_translate(tri->o, zzz));
+	tri->a = vectorx(tri->a, vector_translate(tri->a, zzz));
+	tri->b = vectorx(tri->b, vector_translate(tri->b, zzz));
+	tri->c = vectorx(tri->c, vector_translate(tri->c, zzz));
 	return ;
 }
 
@@ -60,14 +75,5 @@ void	triangle_transform(t_tri *tri, t_mat *trm)
 		vector_transform(&tri->n, trm);
 	if (tri->o)
 		vector_transform(&tri->o, trm);
-	return ;
-}
-
-void	primitive_transform(t_prm *prm, t_mat *trm)
-{
-	if (prm->o)
-		vector_transform(&prm->o, trm);
-	if (prm->n)
-		vector_transform(&prm->n, trm);
 	return ;
 }

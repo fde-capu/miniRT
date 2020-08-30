@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 16:56:16 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:32:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,13 @@ void			verbose_scene(t_scn *scn);
 ** Math related:
 */
 
+void			primitive_scale(t_prm *prm, double factor);
+void			triangle_scale(t_tri *tri, double factor);
+void			triangle_zzz_position(t_tri *tri);
+t_prm			*primitive_copy(t_prm *prm);
+void			triangle_rotate_in_place(t_tri *tri, t_mat *rot);
+void			primitive_rotate_in_place(t_prm *prm, t_mat *rot);
+t_vec			*triangle_center(t_vec *a, t_vec *b, t_vec *c);
 t_mat			*axis_angle_rotation(t_vec *axis, double theta);
 t_vec			*vector_halfway(t_vec *a, t_vec *b);
 t_vec			*vector_inverse_translate(t_vec *vec, t_vec *trans);
@@ -376,6 +383,8 @@ t_rgb			color_ambient(t_mrt *mrt);
 t_rgb			color_diffuse(t_lht *light, t_hit *hit);
 t_rgb			color_specular(t_lht *light, t_hit *hit);
 double			can_see_light(t_mrt *mrt, t_hit *hit, t_vec *l);
+double			can_see_light_primitive(t_mrt *mrt, t_hit *hit, t_vec *l);
+double			can_see_light_triangle(t_mrt *mrt, t_hit *hit, t_vec *l);
 double			hit_primitive(t_prm *primitive, t_ray *ray);
 double			ray_destroy_and_return(t_ray *ray, double val);
 t_hit			*hit_new(double max);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:09:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 15:22:22 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 01:43:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,6 @@ double	hitcyldie(double val, t_ray *ray, t_prm *cyl)
 	return (ray_destroy_and_return(ray, val));
 }
 
-//double	hit_cylinder0(t_ray *ray, t_prm *cyl)
-//{
-//	double	t;
-//	return (t);
-//}
-
 double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 {
 	double	t1;
@@ -59,8 +53,7 @@ double	hit_cylinder(t_ray *ray3d, t_prm *cylinder)
 	t_ray	*ray;
 	double	abc[3];
 
-	cyl = cylinder_init(vector_copy(cylinder->o), \
-		vector_copy(cylinder->n), cylinder->d, cylinder->h);
+	cyl = primitive_copy(cylinder);
 	ray = ray_copy(ray3d);
 	primitive_zzz_position(cyl, ray);
 	abc[0] = cyl->d;

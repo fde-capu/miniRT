@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 23:16:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 17:23:40 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:23:50 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,29 @@ void	scn_make_cylinder(t_scn *sc, char **c)
 
 void	scn_make_square(t_scn *sc, char **c)
 {
-	t_prm	*square;
+	t_prm	*sr;
 	t_vec	*p[4];
 	t_mat	*rot;
 	t_tri	*tri[2];
+	int		i;
 
-	square = square_init(ft_atov(c[1]), ft_atov(c[2]), ft_atod(c[3]), \
+	sr = square_init(ft_atov(c[1]), ft_atov(c[2]), ft_atod(c[3]), \
 		ft_atorgb(c[4]));
-	scn_add(TYPE_PRM, square, sc);
-	p[0] = vector_build(3, -square->h / 2.0, square->h / 2.0, 0.0);
-	p[1] = vector_build(3, square->h / 2.0, square->h / 2.0, 0.0);
-	p[2] = vector_build(3, square->h / 2.0, -square->h / 2.0, 0.0);
-	p[3] = vector_build(3, -square->h / 2.0, -square->h / 2.0, 0.0);
-	tri[0] = triangle_init(p[0], p[1], p[2], square->rgb);
-	tri[1] = triangle_init(vector_copy(p[2]), p[3], vector_copy(p[0]), \
-		square->rgb);
-	tri[0]->o = vector_halfway(tri[0]->a, tri[0]->c);
-	tri[1]->o = vector_copy(tri[0]->o);
-	rot = vector_vector_rotation_matrix(g_z, square->n);
-	triangle_transform(tri[0], rot);
-	triangle_transform(tri[1], rot);
-	triangle_translate(tri[0], square->o);
-	triangle_translate(tri[1], square->o);
-	scn_add(TYPE_TRI, tri[0], sc);
-	scn_add(TYPE_TRI, tri[1], sc);
-	matrix_destroy(rot);
-	return ;
+	rot = vector_vector_rotation_matrix(g_z, sr->n);
+	scn_add(TYPE_PRM, sr, sc);
+	p[0] = vector_build(3, -sr->h / 2.0, sr->h / 2.0, 0.0);
+	p[1] = vector_build(3, sr->h / 2.0, sr->h / 2.0, 0.0);
+	p[2] = vector_build(3, sr->h / 2.0, -sr->h / 2.0, 0.0);
+	p[3] = vector_build(3, -sr->h / 2.0, -sr->h / 2.0, 0.0);
+	tri[0] = triangle_init(p[0], p[1], p[2], sr->rgb);
+	tri[1] = triangle_init(vector_copy(p[2]), p[3], vector_copy(p[0]), sr->rgb);
+	i = -1;
+	while (++i <= 1)
+	{
+		tri[i]->o = vector_halfway(tri[i]->a, tri[i]->c);
+		triangle_transform(tri[i], rot);
+		triangle_translate(tri[i], sr->o);
+		scn_add(TYPE_TRI, tri[i], sc);
+	}
+	return (matrix_destroy(rot));
 }
