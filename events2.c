@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 02:04:40 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 02:13:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:50:02 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int		rotate_all_obj(void *scn)
 	trans = demo_rotation(ROTATE_FACTOR);
 	while (prm)
 	{
-		vector_transform(&prm->n, trans);
+		if (prm->n)
+			vector_transform(&prm->n, trans);
 		prm = prm->nx;
 	}
 	tri = s->faces;

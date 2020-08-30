@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 23:16:47 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 02:23:50 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:46:26 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	scn_make_square(t_scn *sc, char **c)
 	i = -1;
 	while (++i <= 1)
 	{
-		tri[i]->o = vector_halfway(tri[i]->a, tri[i]->c);
+		tri[i]->o = vectorx(tri[i]->o, vector_halfway(tri[i]->a, tri[i]->c));
 		triangle_transform(tri[i], rot);
 		triangle_translate(tri[i], sr->o);
 		scn_add(TYPE_TRI, tri[i], sc);

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 15:31:16 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 15:31:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:42:24 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		triangle_destroy(t_tri *lst)
 	vector_destroy(lst->b);
 	vector_destroy(lst->c);
 	vector_destroy(lst->n);
+	vector_destroy(lst->o);
 	free(lst);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:16:29 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 01:58:27 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:55:00 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	triangle_zzz_position(t_tri *tri)
 	tri->a = vectorx(tri->a, vector_translate(tri->a, zzz));
 	tri->b = vectorx(tri->b, vector_translate(tri->b, zzz));
 	tri->c = vectorx(tri->c, vector_translate(tri->c, zzz));
+	vector_destroy(zzz);
 	return ;
 }
 
