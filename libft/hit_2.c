@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:09:32 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 01:43:04 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:26:15 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 t_vec	*triangle_normal(t_tri *tri)
 {
-	t_vec	*tri_hat[3];
+	t_vec	*tri_hat[2];
 	t_vec	*plane_n;
 
 	tri_hat[0] = vector_subtract(tri->b, tri->a);
 	tri_hat[1] = vector_subtract(tri->c, tri->b);
-	tri_hat[2] = vector_subtract(tri->a, tri->c);
 	plane_n = vector_cross_product(tri_hat[0], tri_hat[1]);
 	vector_destroy(tri_hat[0]);
 	vector_destroy(tri_hat[1]);
-	vector_destroy(tri_hat[2]);
 	return (plane_n);
 }
 

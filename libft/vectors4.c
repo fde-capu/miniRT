@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 12:15:00 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 18:11:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/08/30 05:03:29 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void	vector_normalize(t_vec *mv)
 
 int		is_normalized(t_vec *vec)
 {
-	return (vector_magnitude(vec) == 1 ? 1 : 0);
+	double	mag;
+
+	mag = vector_magnitude(vec);
+	if (mag > 0.9 && mag < 1.1)
+		return (1);
+	return (0);
 }
 
 double	vector_dot_product(t_vec *v1, t_vec *v2)
