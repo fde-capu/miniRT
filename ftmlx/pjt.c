@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 00:51:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/02 15:37:09 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,34 @@ t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
 	t_mat	*trf;
-	t_vec	*tmp;
 
 	pix = pix_film(mrt, i, j);
-	tmp = vector_scalar_multiply(g_y, -1.0);
-	trf = vector_vector_rotation_matrix(tmp, mrt->scn->cam_active->p);
-	vector_transform(&pix, trf);
-	trf = matrixx(trf, vector_vector_rotation_matrix(\
-		mrt->scn->cam_active->p, mrt->scn->cam_active->n));
-	vector_transform(&pix, trf);
-	if (vector_parallel(mrt->scn->cam_active->p, g_y))
+	if (vector_parallel(g_y, mrt->scn->cam_active->p))
 	{
-		trf = matrixx(trf, axis_angle_rotation(g_y, degtorad(180.0)));
+		trf = vector_vector_rotation_matrix(g_y, mrt->scn->cam_active->p);
 		vector_transform(&pix, trf);
+		trf = matrixx(trf, vector_vector_rotation_matrix(\
+					mrt->scn->cam_active->p, mrt->scn->cam_active->n));
+		vector_transform(&pix, trf);
+		vector_destroy(trf);
+	}
+	if (vector_parallel(g_z, mrt->scn->cam_active->p))
+	{
+		vector_multiply_element(pix, 2, -1.0);
+	}
+	if (vector_parallel(g_x, mrt->scn->cam_active->p))
+	{
+		trf = vector_vector_rotation_matrix(g_z, mrt->scn->cam_active->p);
+		vector_transform(&pix, trf);
+		trf = matrixx(trf, vector_vector_rotation_matrix(\
+					g_y, mrt->scn->cam_active->n));
+		vector_transform(&pix, trf);
+		vector_multiply_element(pix, 2, -1.0);
+		vector_destroy(trf);
 	}
 	pix = vectorx(pix, \
 		vector_translate(pix, mrt->scn->cam_active->o));
 	pix = vectorx(pix, \
 		vector_translate(pix, mrt->scn->cam_active->p));
-	vector_destroy(tmp);
-	vector_destroy(trf);
 	return (pix);
 }

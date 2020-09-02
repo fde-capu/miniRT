@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:38:51 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 18:20:23 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/01 23:14:04 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ t_vec					*demo_trans(t_vec *o, double factor);
 
 int						check_arg_types(char **c, int a[ARGS_MAX]);
 
-# define SCALE_FACTOR	1.2
+# define SCALE_FACTOR	1.4
 # define TRANSLATE_FACTOR	1.5
-# define ROTATE_FACTOR	25
+# define ROTATE_FACTOR	90
 
 # define KEY_QUIT1		"{ESC}"
 # define KEY_QUIT2		"q"

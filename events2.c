@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 02:04:40 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 02:50:02 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/02 02:27:19 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,13 @@ int		rotate_all_obj(void *scn)
 
 int		rotate_active_cam(void *scn)
 {
-	t_scn	*s;
 	t_mat	*trans;
-	t_cam	*cam;
+	t_scn	*s;
 
 	s = (t_scn *)scn;
 	trans = demo_rotation(ROTATE_FACTOR);
-	cam = s->cam_active;
-	vector_transform(&cam->n, trans);
-	vector_transform(&cam->p, trans);
-	vector_transform(&cam->left, trans);
+	vector_transform(&s->cam_active->p, trans);
+	vector_transform(&s->cam_active->left, trans);
 	matrix_destroy(trans);
 	render(g_mrt, 0);
 	return (1);
