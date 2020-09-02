@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/29 16:21:55 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/02 16:41:30 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void			render(t_mrt *mrt, int saving)
 	unsigned int	color;
 
 	ft_putstr(MSG_RENDERING);
+	verb_cam_active(mrt->scn);
 	y = 0;
 	while (++y <= mrt->i.height)
 	{

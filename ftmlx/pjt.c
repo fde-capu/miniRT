@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/09/02 15:37:09 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/02 17:00:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,34 +70,63 @@ t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
 	t_mat	*trf;
+	t_cam	*cam;
+	t_vec	*m_g;
 
+	cam = mrt->scn->cam_active;
 	pix = pix_film(mrt, i, j);
-	if (vector_parallel(g_y, mrt->scn->cam_active->p))
+	trf = vector_new();
+	m_g = vector_new();
+	if (vector_dot_product(cam->p, g_y) > 0.0)
 	{
-		trf = vector_vector_rotation_matrix(g_y, mrt->scn->cam_active->p);
+		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_z));
 		vector_transform(&pix, trf);
-		trf = matrixx(trf, vector_vector_rotation_matrix(\
-					mrt->scn->cam_active->p, mrt->scn->cam_active->n));
+		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
 		vector_transform(&pix, trf);
-		vector_destroy(trf);
 	}
-	if (vector_parallel(g_z, mrt->scn->cam_active->p))
+	if (vector_dot_product(cam->p, g_y) < 0.0)
+	{
+		vector_multiply_element(pix, 1, -1.0);
+		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_z));
+		vector_transform(&pix, trf);
+		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
+		vector_transform(&pix, trf);
+	}
+	if (vector_dot_product(cam->p, g_x) < 0.0)
+	{
+		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_x));
+		vector_transform(&pix, trf);
+		trf = vectorx(trf, vector_vector_rotation_matrix(g_z, g_x));
+		vector_transform(&pix, trf);
+		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
+		vector_transform(&pix, trf);
+	}
+	if (vector_dot_product(cam->p, g_x) > 0.0)
+	{
+		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_x));
+		vector_transform(&pix, trf);
+		trf = vectorx(trf, vector_vector_rotation_matrix(g_z, g_x));
+		vector_transform(&pix, trf);
+		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
+		vector_transform(&pix, trf);
+	}
+	if (vector_dot_product(cam->p, g_z) < 0.0)
 	{
 		vector_multiply_element(pix, 2, -1.0);
+		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_y));
+		vector_transform(&pix, trf);
 	}
-	if (vector_parallel(g_x, mrt->scn->cam_active->p))
+	if (vector_dot_product(cam->p, g_z) > 0.0)
 	{
-		trf = vector_vector_rotation_matrix(g_z, mrt->scn->cam_active->p);
+		trf = (t_mat *)vector_scalar_multiply(g_y, -1.0);
+		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, trf));
 		vector_transform(&pix, trf);
-		trf = matrixx(trf, vector_vector_rotation_matrix(\
-					g_y, mrt->scn->cam_active->n));
-		vector_transform(&pix, trf);
-		vector_multiply_element(pix, 2, -1.0);
-		vector_destroy(trf);
 	}
 	pix = vectorx(pix, \
 		vector_translate(pix, mrt->scn->cam_active->o));
 	pix = vectorx(pix, \
 		vector_translate(pix, mrt->scn->cam_active->p));
+	vector_destroy(m_g);
+	vector_destroy(trf);
 	return (pix);
 }
