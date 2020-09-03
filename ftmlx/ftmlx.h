@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:40:23 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/30 00:27:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/02 19:57:13 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void	hook_keys(t_mrt *mrt, int ks, int ke);
 t_vec	*pix_film(t_mrt *mrt, int i, int j);
 t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j);
 t_ray	*mrt_ray(t_mrt *mrt, int x, int y);
+void	cam_faces_y(t_cam *cam, t_vec **pix);
+void	cam_faces_minus_y(t_cam *cam, t_vec **pix);
+void	cam_faces_minus_x(t_cam *cam, t_vec **pix);
+void	cam_faces_x(t_cam *cam, t_vec **pix);
+void	cam_faces_minus_z(t_cam *cam, t_vec **pix);
 
 # define MSG_RENDERING	"\nRendering...\n"
 # define MSG_DONE "Done.\n"

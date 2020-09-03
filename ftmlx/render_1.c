@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 13:32:27 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/09/02 16:41:30 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/02 19:59:42 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ unsigned int	hit_and_bonus_color(t_mrt *mrt, t_hit *hit, int x, int y)
 	return (0);
 }
 
+void			rendering_message(t_mrt *mrt)
+{
+	ft_putstr(MSG_RENDERING);
+	verb_cam_active(mrt->scn);
+	return ;
+}
+
 void			render(t_mrt *mrt, int saving)
 {
 	int				x;
@@ -41,8 +48,7 @@ void			render(t_mrt *mrt, int saving)
 	t_hit			*hit;
 	unsigned int	color;
 
-	ft_putstr(MSG_RENDERING);
-	verb_cam_active(mrt->scn);
+	rendering_message(mrt);
 	y = 0;
 	while (++y <= mrt->i.height)
 	{

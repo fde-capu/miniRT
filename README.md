@@ -1,3 +1,5 @@
+![miniRT](art/cover.bmp)
+
 miniRT aka minirt
 =================
 || by fde-capu ||

@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:10:58 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/09/02 17:00:13 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/02 19:55:12 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,67 +66,39 @@ t_vec	*pix_film(t_mrt *mrt, int i, int j)
 	return (pix);
 }
 
+void	cam_faces_z(t_cam *cam, t_vec **pix)
+{
+	t_mat	*trf;
+
+	trf = (t_mat *)vector_scalar_multiply(g_y, -1.0);
+	trf = vector_vector_rotation_matrix(cam->n, trf);
+	vector_transform(pix, trf);
+	vector_destroy(trf);
+	return ;
+}
+
 t_vec	*pjt_pixtocam(t_mrt *mrt, int i, int j)
 {
 	t_vec	*pix;
-	t_mat	*trf;
 	t_cam	*cam;
-	t_vec	*m_g;
 
 	cam = mrt->scn->cam_active;
 	pix = pix_film(mrt, i, j);
-	trf = vector_new();
-	m_g = vector_new();
 	if (vector_dot_product(cam->p, g_y) > 0.0)
-	{
-		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_z));
-		vector_transform(&pix, trf);
-		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
-		vector_transform(&pix, trf);
-	}
+		cam_faces_y(cam, &pix);
 	if (vector_dot_product(cam->p, g_y) < 0.0)
-	{
-		vector_multiply_element(pix, 1, -1.0);
-		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_z));
-		vector_transform(&pix, trf);
-		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
-		vector_transform(&pix, trf);
-	}
+		cam_faces_minus_y(cam, &pix);
 	if (vector_dot_product(cam->p, g_x) < 0.0)
-	{
-		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_x));
-		vector_transform(&pix, trf);
-		trf = vectorx(trf, vector_vector_rotation_matrix(g_z, g_x));
-		vector_transform(&pix, trf);
-		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
-		vector_transform(&pix, trf);
-	}
+		cam_faces_minus_x(cam, &pix);
 	if (vector_dot_product(cam->p, g_x) > 0.0)
-	{
-		trf = vectorx(trf, vector_vector_rotation_matrix(g_y, g_x));
-		vector_transform(&pix, trf);
-		trf = vectorx(trf, vector_vector_rotation_matrix(g_z, g_x));
-		vector_transform(&pix, trf);
-		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_z));
-		vector_transform(&pix, trf);
-	}
+		cam_faces_x(cam, &pix);
 	if (vector_dot_product(cam->p, g_z) < 0.0)
-	{
-		vector_multiply_element(pix, 2, -1.0);
-		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, g_y));
-		vector_transform(&pix, trf);
-	}
+		cam_faces_minus_z(cam, &pix);
 	if (vector_dot_product(cam->p, g_z) > 0.0)
-	{
-		trf = (t_mat *)vector_scalar_multiply(g_y, -1.0);
-		trf = vectorx(trf, vector_vector_rotation_matrix(cam->n, trf));
-		vector_transform(&pix, trf);
-	}
+		cam_faces_z(cam, &pix);
 	pix = vectorx(pix, \
-		vector_translate(pix, mrt->scn->cam_active->o));
+		vector_translate(pix, cam->o));
 	pix = vectorx(pix, \
-		vector_translate(pix, mrt->scn->cam_active->p));
-	vector_destroy(m_g);
-	vector_destroy(trf);
+		vector_translate(pix, cam->p));
 	return (pix);
 }
