@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:19:33 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/09/02 01:47:53 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/03 00:21:37 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "debug.h"
 # include "keys.h"
 
+t_rgb			light_decay(t_lht *light, t_hit *hit, t_rgb base);
 int				bad_file_extension(char *fn, char *required_extension);
 long long		ft_abs(long long value);
 double			ft_abs_double(double value);

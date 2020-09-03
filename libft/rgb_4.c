@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:23:42 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/08/27 16:28:57 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/03 00:28:07 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ unsigned int	color_trace(t_mrt *mrt, t_hit *hit)
 			specular = color_specular(light, hit);
 			result = color_add(result, diffuse);
 			result = color_add(result, specular);
+			result = light_decay(light, hit, result);
 		}
 		light = light->nx;
 	}
