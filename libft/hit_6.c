@@ -6,7 +6,7 @@
 /*   By: fde-capu <fde-capu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 01:44:29 by fde-capu          #+#    #+#             */
-/*   Updated: 2020/09/03 00:33:07 by fde-capu         ###   ########.fr       */
+/*   Updated: 2020/09/03 03:32:31 by fde-capu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_rgb	light_decay(t_lht *light, t_hit *hit, t_rgb base)
 	double	power;
 
 	distance = vector_vector_distance(light->o, hit->phit);
-	power = 1.0 / (distance / 750.0 + 1.0);
+	power = 1.0 / (distance / 420.0 + 1.0);
 	power *= power;
 	base.a = (unsigned char)((double)base.a * power);
 	base.r = (unsigned char)((double)base.r * power);
