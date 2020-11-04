@@ -17,9 +17,9 @@ Navigation keys:
 - `q` or `<Esc>` closes window
 
 Bonus:
-	- `bonus on` activates
-	- `bonus off` deactivates
-	- `bonus x` swiches
+- `bonus on` activates
+- `bonus off` deactivates
+- `bonus x` swiches
 
 <sub><sup>
 dependent of zlib1g-dev
