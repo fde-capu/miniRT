@@ -45,7 +45,7 @@ Cylinders (outside and inside), spheres (outside and inside), triangles, squares
     tr 10,20,10 10,10,20 20,10,10 0,0,255 # Triangle vertex, vertex, vertex, RGB color.
 
 ##### Bonus
-When activatin the *bonus* mode, things will get weird. That is because it is designed only to show some extra features: skybox, cylinder caps, normal disruption (rainbow based on normals), and keyboard interactivity for camera and objects.
+When activating the *bonus* mode, things get weird. Do not panic, it is intentional! That is because it is designed only to show some extra features: skybox, cylinder caps, normal disruption (rainbow based on normals), and keyboard interactivity for camera and objects.
 
 *this project is part of 42 São Paulo curriculum*
 *just bragging this was the first sucessfull deliver of **miniRT** by our 42 campus*
