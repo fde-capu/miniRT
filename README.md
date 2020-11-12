@@ -31,7 +31,7 @@ Fully written in `C`. Matrix functions manually implemented, no external librari
 For screen rendering, it is based on *MinilibX*, a simple X-Window (X11R6) programming API in C written by Olivier Crouzet. *MinilibX* give us the possibility of opening windows, capturing keyboard events and drawing... pixels. (More: https://github.com/42Paris/minilibx-linux).
 
 #### Summary of specifications:
-Cylinders (outside and inside), spheres (outside and inside), triangles, squares, infinite planes, lights, multicamera, camera movement and rotation and objects scaling, movement and rotation. Must deal with screen size agains resolution. Must be able to save a valid `.bmp` format.
+Cylinders (outside and inside), spheres (outside and inside), triangles, squares, infinite planes, lights, multicamera, camera movement and rotation and objects scaling, movement and rotation. Must deal with screen size against resolution. Must be able to save a valid `.bmp` format.
 
 ##### Sample of file `.rt`:
     R 1920 1080	# Resolution Width Height.
@@ -48,6 +48,7 @@ Cylinders (outside and inside), spheres (outside and inside), triangles, squares
 When activating the *bonus* mode, things get weird. Do not panic, it is intentional! That is because it is designed only to show some extra features: skybox, cylinder caps, normal disruption (rainbow based on normals), and keyboard interactivity for camera and objects.
 
 *this project is part of 42 São Paulo curriculum*
+
 *just bragging this was the first sucessfull deliver of **miniRT** by our 42 campus*
 
 Copyright 2020 fde-capu
