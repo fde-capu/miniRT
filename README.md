@@ -51,6 +51,10 @@ When activating the *bonus* mode, things get weird. Do not panic, it is intentio
 
 *just bragging this was the first sucessfull deliver of **miniRT** by our 42 campus*
 
+[![fde-capu's 42Project Score](https://badge42.herokuapp.com/api/project/fde-capu/minirt)](https://github.com/JaeSeoKim/badge42)
+
+---
+
 Copyright 2020 fde-capu
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
@@ -58,3 +62,4 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
