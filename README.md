@@ -51,7 +51,7 @@ When activating the *bonus* mode, things get weird. Do not panic, it is intentio
 
 *just bragging this was the first sucessfull deliver of **miniRT** by our 42 campus*
 
-[![fde-capu's 42Project Score](https://badge42.herokuapp.com/api/project/fde-capu/minirt)](https://github.com/JaeSeoKim/badge42)
+[![fde-capu's 42Project Score](https://badge42.herokuapp.com/api/project/fde-capu/miniRT)](https://github.com/JaeSeoKim/badge42)
 
 ---
 
